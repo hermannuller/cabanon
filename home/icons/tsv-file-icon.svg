@@ -1,0 +1,13 @@
+<svg aria-hidden="true" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 36 36" style="fill:currentColor;stroke:none;stroke-width:1" xml:space="preserve">
+
+<rect style="fill:currentColor;" width="36.19" height="36.19"/>
+<polygon style="fill:var(--l1);" points="2.51,14.43 5.75,18.95 9,14.43 "/>
+<polygon style="fill:var(--l1);" points="2.51,34.03 7.04,30.79 2.51,27.54 "/>
+<polygon style="fill:var(--l1);" points="8.46,14.43 11.7,18.95 14.94,14.43 "/>
+<line style="fill:none;stroke:var(--l1);stroke-miterlimit:10;" x1="11.7" y1="16.23" x2="11.7" y2="30.79"/>
+<polygon style="fill:var(--l1);" points="14.94,25.85 19.47,22.61 14.94,19.37 "/>
+<line style="fill:none;stroke:var(--l1);stroke-miterlimit:10;" x1="16.75" y1="22.61" x2="30.42" y2="22.61"/>
+<polygon style="fill:var(--l1);" points="27.18,14.43 30.42,18.95 33.67,14.43 "/>
+<polyline style="fill:none;stroke:var(--l1);stroke-miterlimit:10;" points="30.42,16.23 30.42,30.79 5.75,30.79 5.75,16.23 "/>
+</svg>

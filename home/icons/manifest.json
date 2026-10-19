@@ -1,0 +1,20 @@
+{
+  "river.solid": "river.svg",
+  "river.outline": "river.svg",
+  "blind.solid": "blind-icon.svg",
+  "blind.outline": "blind-icon.svg",
+  "marathon.solid": "marathon-icon.svg",
+  "marathon.outline": "marathon-icon.svg",
+  "wall.solid": "wall-file-icon.svg",
+  "wall.outline": "wall-file-icon.svg",
+  "berlin.solid": "berlin-icon.svg",
+  "berlin.outline": "berlin-icon.svg",
+  "grid.solid": "tsv-file-icon.svg",
+  "grid.outline": "tsv-file-icon.svg",
+  "ur.solid": "ur-icon.svg",
+  "ur.outline": "ur-icon.svg",
+  "where.solid": "where-icon.svg",
+  "where.outline": "where-icon.svg",
+  "help-app.solid": "help-animated.svg",
+  "help-app.outline": "help-animated.svg"
+}

@@ -1,0 +1,19 @@
+'use strict';
+// All user-created blank entries and newly packed archives share this path.
+// Copies, restored files, links and bundled seeds are not blank-file creation.
+const CabanonCreation=(()=>{
+ const pending=new Map();let queued=false;
+ const rows=()=>[...document.querySelectorAll('.file[data-entry],.file[data-file],.file[data-search-file],.file[data-wall-entry],[data-rive-file]')];
+ const rowName=row=>row.dataset.entry||row.dataset.file||row.dataset.searchFile||row.dataset.wallEntry||row.dataset.riveFile;
+ function flush(){queued=false;if(!pending.size)return;const all=rows();for(const [id,record]of pending){const entry=prefs.entries.find(e=>e.id===id);if(record.profile!==activeProfile||!entry){pending.delete(id);continue;}for(const row of all){if(rowName(row)!==entry.name)continue;const label=row.querySelector('.paragraph-name')||row.querySelector(':scope > span:last-of-type');if(!label||record.labels.has(label))continue;const r=row.getBoundingClientRect(),viewport=row.closest('.house-file-list,.wall-chooser-list,.rive-picker-list,#file-results,#files')?.getBoundingClientRect();if(!row.getClientRects().length||viewport&&(r.bottom<=viewport.top||r.top>=viewport.bottom||r.right<=viewport.left||r.left>=viewport.right))continue;
+ const chars=typeof removalSegmenter!=='undefined'&&removalSegmenter?[...removalSegmenter.segment(label.textContent)].length:Array.from(label.textContent).length,duration=chars*20;if(record.started===null){record.started=performance.now();setTimeout(()=>pending.delete(id),duration+100);}const elapsed=performance.now()-record.started;record.labels.add(label);if(elapsed<duration)animateCreatedFileName(entry.name,{rows:[row],elapsed});}}
+ }
+ function schedule(){if(queued)return;queued=true;queueMicrotask(flush);}
+ function reveal(entry){const candidates=[...windowMap.values()].filter(win=>win.dataset.fileBrowser&&syncPath(win.dataset.fileBrowser)===entry.parent&&!win.hidden),browser=candidates.find(win=>win===activeWindow)||candidates[0];if(!browser)return;const list=browser.querySelector('.house-file-list'),row=[...list.querySelectorAll('.file[data-entry]')].find(row=>row.dataset.entry===entry.name);if(!row)return;focusWindow(browser);const r=row.getBoundingClientRect(),box=list.getBoundingClientRect(),top=list.querySelector('.details-head')?.getBoundingClientRect().bottom||box.top,scale=document.querySelector('#desktop').getBoundingClientRect().width/1920;list.scrollBy({left:(r.left<box.left?r.left-box.left:r.right>box.right?r.right-box.right:0)/scale,top:(r.top<top?r.top-top:r.bottom>box.bottom?r.bottom-box.bottom:0)/scale,behavior:'instant'});}
+ function create(path,options={}){path=syncPath(path);const folder=!!options.folder,extension=folder?null:options.extension??'txt',automatic=options.name===undefined,raw=automatic?defaultNewEntryName(extension):options.name,name=CabanonFilenames.require(raw,folder);if(name===null)return null;let entry;
+ runFileMutation(()=>{const full=uniqueName(folder?path+'/'+name:name,path,folder);entry={...(options.metadata||{}),id:(folder?'folder:':'file:')+crypto.randomUUID(),name:full,parent:path,folder};if(options.contents!==undefined)entry.contents=[...options.contents];else if(!folder&&applicationFileFormats.STUFF.includes(knownFileExtension(full)))entry.contents=[];pending.set(entry.id,{profile:activeProfile,labels:new WeakSet(),started:null});prefs.entries.push(entry);prefs.files.push(full);if(!folder&&!entry.shortcut)prefs.content[full]=options.content??'';noteFileMutationPath(path);persistProfiles();refreshBrowsers(path);renderDesktop();});
+ queueMicrotask(()=>{if(options.reveal??automatic)reveal(entry);schedule();});return entry;}
+ new MutationObserver(records=>{if(pending.size&&records.some(r=>r.addedNodes.length))schedule();}).observe(document.querySelector('#desktop'),{childList:true,subtree:true});
+ addEventListener('scroll',()=>{if(pending.size)schedule();},{capture:true,passive:true});
+ return{create};
+})();

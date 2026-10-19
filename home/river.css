@@ -1,0 +1,125 @@
+.river-window{min-width:500px;min-height:440px}.river-window>.window-content{padding:0;overflow:hidden;display:flex;flex-direction:column;position:relative;container:river / inline-size;font:400 14px/28px Inter,SourceHan,sans-serif}.river-app{height:100%;display:flex;flex-direction:column;min-height:0;color:var(--l5)}.river-app button,.river-app input,.river-app time,.river-meta,.river-tags,.river-profile-head,.river-app textarea,.river-empty{font:400 14px/28px JetBrains,SourceHan,monospace}.river-app button{padding:0 8px;color:var(--l6)}.river-app button:hover,.river-app button[aria-pressed=true]{color:var(--l5)}.river-nav{height:64px;flex-shrink:0;display:flex;align-items:center;gap:16px;padding:0 24px;border-bottom:1px solid var(--l4)}.river-nav button{min-width:48px;display:flex;flex-direction:column;align-items:center;line-height:18px;gap:2px}.river-nav svg{width:32px;height:22px;fill:currentColor;stroke:none}.river-nav .river-write{margin-left:auto;font-size:24px;width:36px;min-width:36px;height:36px;justify-content:center}.river-main{flex:1;min-height:0;overflow:auto;padding:24px 24px 64px}.river-columns{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px}.river-side{min-width:0}.river-search{display:flex;gap:8px;margin-bottom:20px}.river-search input{width:100%;min-width:0;background:transparent;border:1px solid var(--l4);height:40px;padding:5px 8px}.river-tags{color:var(--l6);margin:-8px 0 24px;display:flex;gap:4px 12px;flex-wrap:wrap}.river-tags button{padding:0;font-style:italic}.river-post{position:relative;margin:0;padding:0;outline:none;overflow-wrap:anywhere}.river-post.selected{background:var(--l3);outline:none}.river-post:focus-visible{outline:none}.river-meta{color:var(--l6);display:flex;align-items:center;gap:6px;min-height:28px}.river-meta button{padding:0}.river-text{white-space:pre-wrap;font:400 14px/28px Inter,SourceHan,sans-serif;user-select:text}.river-quoted{padding-left:20px;position:relative}.river-quote-arrow{height:28px;margin-left:-20px;color:var(--l6);font:14px/28px JetBrains,SourceHan,monospace}.river-count{display:flex;color:var(--l6);height:28px;justify-content:space-between}.river-count button{padding:0}.river-hover{visibility:hidden}.river-post:hover>.river-count .river-hover,.river-post:focus-within>.river-count .river-hover{visibility:visible}.river-life{height:28px;width:100%;display:flex;align-items:center;margin-top:0;background:transparent;gap:0}.river-life i{height:2px;flex:1;min-width:0;background:var(--l5)}.river-life i.dead{background:var(--l6)}.river-thread-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.river-thread>.river-post:not(:first-of-type){margin-left:20px}.river-profile-head{margin:0 0 36px;color:var(--l6)}.river-profile-head strong{display:block;font:400 24px/56px JetBrains,monospace;color:var(--l5)}.river-profile-head p{margin:0}.river-profile-feed{max-width:640px}.river-compose{position:absolute;right:24px;top:62px;width:min(520px,calc(100% - 48px));max-height:calc(100% - 86px);background:var(--l2);border:1px solid var(--l4);padding:16px;z-index:10;display:flex;flex-direction:column}.river-compose header{display:flex;justify-content:space-between;color:var(--l6);flex-shrink:0}.river-app .river-compose textarea{font:400 14px/28px Inter,SourceHan,sans-serif;resize:none;background:transparent;border:0;outline:none;min-height:168px;height:224px;padding:8px 0;width:100%;color:var(--l5)}.river-compose footer{display:flex;justify-content:space-between;color:var(--l6);border-top:1px solid var(--l4);padding-top:8px}.river-compose footer button:not(:disabled){color:var(--l5)}.river-compose button:disabled{cursor:default}.river-carry{overflow:auto;max-height:150px;color:var(--l6);border-bottom:1px solid var(--l4)}.river-carry label{display:flex!important;gap:8px;margin:0!important;font-size:12px}.river-carry span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.river-empty{color:var(--l6);padding:24px 0}.rive-layout{display:flex;flex:1;min-height:0}.rive-list{width:100%;overflow:auto;padding:24px}.rive-layout.has-chat .rive-list{width:240px;border-right:1px solid var(--l4);flex-shrink:0}.river-app .rive-person{display:block;padding:8px 0 20px;width:100%;text-align:left}.rive-person span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rive-person .rive-preview{font-family:Inter,SourceHan,sans-serif;color:var(--l5)}.rive-unread{color:var(--red)}.rive-chat{flex:1;min-width:0;display:flex;flex-direction:column}.rive-chat-head{height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--l4);position:relative}.rive-chat-head small{color:var(--l6);font-size:12px}.rive-messages{padding:24px;overflow:auto;flex:1}.rive-message{width:72%;margin:0 0 28px;padding:0 8px 8px;border-bottom:1px solid var(--l6);position:relative;white-space:pre-wrap}.rive-message:after{content:'';position:absolute;bottom:-9px;left:-8px;width:16px;border-top:1px solid var(--l6);transform:rotate(-45deg)}.rive-message.mine{margin-left:auto}.rive-message.mine:after{left:auto;right:-8px;transform:rotate(45deg)}.rive-message time{display:block;color:var(--l6);font-size:12px}.rive-send{padding:12px 16px 16px;display:flex;flex-direction:column;border-top:1px solid var(--l4)}.river-app .rive-send textarea{font:14px/28px Inter,SourceHan,sans-serif;min-height:84px;resize:none;background:transparent;border:0;color:var(--l5);outline:none;padding:0}.rive-send footer{display:flex;justify-content:space-between}.rive-menu{position:absolute;right:8px;top:46px;width:164px;background:var(--l3);border:1px solid var(--l4);z-index:20;padding:8px}.rive-menu button{display:block;width:100%;text-align:left}.river-drop-target{background:var(--l3);outline:none}.river-single-tools{display:none}.river-app .river-status{font:12px/28px JetBrains,monospace;color:var(--l6)}
+@container river (max-width:798px){.river-columns{grid-template-columns:1fr}.river-columns>.river-side-right{display:none}.river-single-tools{display:flex}.river-main{padding:20px 24px 64px}.river-thread{display:block!important}}
+
+.rive-send{position:relative}.river-thread>.river-post:not(:first-of-type)>.river-count{margin-left:-20px}.river-thread>.river-post:not(:first-of-type)>.river-life{margin-left:-20px;width:calc(100% + 20px)}
+
+@container river (max-width:698px){.rive-layout.has-chat .rive-list{display:none}.rive-chat-head{background:var(--l3)}}
+
+.rive-attachments{display:flex;gap:8px;flex-wrap:wrap;max-height:168px;overflow:auto}.rive-file-card{display:flex;align-items:center;gap:12px;border:1px solid var(--l4);padding:8px 12px;max-width:100%;min-width:190px;white-space:normal;margin-bottom:8px;font:14px/28px Inter,SourceHan,sans-serif}.rive-file-card>svg{width:24px;height:24px;color:var(--l6)}.rive-file-card>span{min-width:0;overflow-wrap:anywhere;flex:1}.rive-file-card small{display:block;color:var(--l6);font:12px/18px JetBrains,monospace}.rive-file-card button{align-self:flex-start}.rive-drop-active{outline:none;background:var(--l3)}.rive-drop-active .rive-send{background:var(--l3)}.rive-file-picker{min-width:500px;min-height:360px}.rive-file-picker>.window-content{padding:0;display:flex;flex-direction:column;overflow:hidden;font:14px/28px JetBrains,SourceHan,monospace}.rive-picker-nav{display:flex;align-items:center;gap:16px;min-height:48px;padding:0 16px;border-bottom:1px solid var(--l4)}.rive-picker-nav span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rive-picker-list{flex:1;min-height:0;overflow:auto;padding:8px}.rive-picker-row{display:flex;align-items:center;width:100%;height:56px;gap:16px;padding:0 16px;color:var(--l6)}.rive-picker-row svg{width:24px;height:24px;flex-shrink:0}.rive-picker-row span{font-family:Inter,SourceHan,sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rive-picker-row.selected{background:var(--l3);color:var(--l5)}.rive-picker-footer{display:flex;align-items:center;gap:16px;padding:8px 16px;border-top:1px solid var(--l4)}.rive-picker-footer span{color:var(--l6);margin-right:auto}.rive-file-picker button:disabled{color:var(--l6);cursor:default}.rive-file-picker button:disabled:hover{background:none}
+
+/* Current post interactions and bottom-right writing entry. */
+.river-app .river-write{position:absolute;right:24px;bottom:24px;width:56px;height:56px;padding:0;background:var(--l5);color:var(--l1);display:grid;place-items:center;z-index:12}.river-app .river-write:hover{background:var(--l5);color:var(--l1)}.river-write>span{display:block;position:relative;width:30px;height:30px}.river-write>span:before,.river-write>span:after{content:'';position:absolute;background:currentColor}.river-write>span:before{width:30px;height:6px;left:0;top:12px}.river-write>span:after{height:30px;width:6px;top:0;left:12px}.river-compose{top:auto;bottom:88px;max-height:calc(100% - 112px)}.river-app .river-compose textarea{height:112px;min-height:56px;flex:none;padding:0;margin:8px 0;overflow-y:hidden}.river-compose footer{gap:16px;align-items:center;flex-shrink:0}.river-compose [data-word-count]{font:12px/18px JetBrains,monospace}.river-compose [data-publish]{white-space:nowrap}.river-quote-arrow{margin-left:0}.river-fragment{min-width:0}.river-text[data-read]{cursor:pointer}.river-count{justify-content:flex-start}.river-action .river-action-label{display:inline}.river-action.has-count .river-action-label{display:none}.river-action.has-count:hover .river-action-count,.river-action.has-count:focus-visible .river-action-count{display:none}.river-action.has-count:hover .river-action-label,.river-action.has-count:focus-visible .river-action-label{display:inline}.river-thread{max-width:720px}.canal-draft{flex:1;min-height:0;display:flex;flex-direction:column;gap:16px;padding:24px}.canal-draft header{font:14px/28px JetBrains,monospace}.canal-draft header span{color:var(--l6);margin-left:16px}.canal-draft input{background:transparent;border:0;border-bottom:1px solid var(--l4);padding:0 0 12px;font:24px/28px Inter,SourceHan,sans-serif}.river-app .canal-draft textarea{flex:1;min-height:112px;resize:none;border:0;background:transparent;padding:0;color:var(--l5);font:14px/28px Inter,SourceHan,sans-serif;outline:none}
+
+.river-detail-arrow{height:28px;color:var(--l6);font:14px/28px JetBrains,SourceHan,monospace}
+
+/* Writing entry: lower left; light writing surface with dark ink. */
+.river-app .river-write{left:24px;right:auto}.river-compose{left:24px;right:auto;background:var(--l5);color:var(--l1);border-color:var(--l5)}.river-compose header,.river-compose footer,.river-compose [data-word-count]{color:var(--l1)}.river-app .river-compose textarea{background:transparent;color:var(--l1);caret-color:var(--l1)}.river-compose footer{border-color:var(--l6)}.river-app .river-compose button,.river-compose footer button:not(:disabled){color:var(--l1)}.river-app .river-compose button:hover{background:var(--l1);color:var(--l5)}.river-app .river-compose button:disabled{color:var(--l6);background:transparent}.river-compose button:focus-visible,.river-compose textarea:focus-visible{outline-color:var(--l1)}
+
+/* Navigation has permanent geometry; labels only change visibility and ink. */
+.river-nav{gap:16px}.river-nav button{flex:0 0 56px;width:56px;min-width:56px;height:56px;padding:0;display:grid;grid-template-rows:30px 18px;align-content:center;justify-items:center;gap:0}.river-nav button[data-nav="river"]{flex-basis:96px;width:96px;min-width:96px}.river-nav svg{align-self:center}.river-nav .river-nav-label{display:block;visibility:hidden;white-space:nowrap;color:var(--l6);font:14px/18px JetBrains,SourceHan,monospace}.river-nav button:hover .river-nav-label,.river-nav button:focus-visible .river-nav-label,.river-nav button[aria-pressed="true"] .river-nav-label{visibility:visible}.river-nav button[aria-pressed="true"] .river-nav-label{color:var(--l5)}.river-mode-divider,.river-mode-other{color:var(--l6)}.river-compose{bottom:24px;max-height:calc(100% - 112px)}.river-app:has(.river-compose)>.river-write{visibility:hidden;pointer-events:none}.river-compose header{justify-content:flex-end;min-height:28px}.river-compose header>span{margin-right:auto}
+
+/* Repost arrow is part of the parent fragment action, not another row. */
+.river-action-arrow{display:inline}.river-life i{transform:translateY(-12px)}
+
+/* Author links use text emphasis rather than a button surface. */
+.river-app .river-meta button[data-person]{background:transparent}.river-app .river-meta button[data-person]:hover,.river-app .river-meta button[data-person]:active,.river-app .river-meta button[data-person]:focus-visible{background:transparent;color:var(--l5);text-decoration:underline;text-underline-offset:3px}
+
+/* All clickable identities share link ink, including the chat header and contacts. */
+.river-app button[data-person],.river-app .rive-person,.river-app .rive-person:hover,.river-app .rive-person:active,.river-app .rive-person:focus-visible{background:transparent}.river-app button[data-person]:hover,.river-app button[data-person]:active,.river-app button[data-person]:focus-visible{background:transparent;color:var(--l5);text-decoration:underline;text-underline-offset:3px}.rive-person .rive-contact-id{display:inline}.river-app .rive-person:hover,.river-app .rive-person:active,.river-app .rive-person:focus-visible{color:var(--l6)}.rive-person:hover .rive-contact-id,.rive-person:active .rive-contact-id,.rive-person:focus-visible .rive-contact-id{color:var(--l5);text-decoration:underline;text-underline-offset:3px}.rive-person[aria-pressed="true"] .rive-contact-id{color:var(--l5)}
+
+/* Rive conversation rows keep their shared hover/selection surface. */
+.river-app .rive-person:hover,.river-app .rive-person:active,.river-app .rive-person:focus-visible,.river-app .rive-person[aria-pressed="true"]{background:var(--l3)}.rive-person[aria-pressed="true"] .rive-contact-id{color:var(--l5);text-decoration:underline;text-underline-offset:3px}
+
+/* One continuous path joins each horizontal rule and its exact 45-degree tail. */
+.rive-message{border-bottom:0;overflow-wrap:anywhere}.rive-message:after{content:none}.rive-message>.rive-message-line{position:absolute;left:-6px;bottom:-14px;width:calc(100% + 6px);height:14px;display:block;overflow:visible;fill:none;stroke:var(--l6);stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;pointer-events:none}.rive-message-line path{vector-effect:non-scaling-stroke}.rive-message.mine>.rive-message-line{left:auto;right:-6px;transform:scaleX(-1)}
+
+/* Object selection uses surfaces; reading windows retain native text selection. */
+.river-fragment:hover,.river-fragment.selected,.river-fragment.dragging{background:var(--l3);outline:none;border:0}.rive-message{user-select:none;cursor:default}.rive-message.selected,.rive-message.dragging{background:var(--l3);outline:none}.rive-quote{padding:8px 12px;border-left:2px solid var(--l6);color:var(--l6);white-space:normal;margin:8px 0}.rive-quote-meta{font:12px/28px JetBrains,SourceHan,monospace;overflow-wrap:anywhere}.rive-quote-text{font:14px/28px Inter,SourceHan,sans-serif;white-space:pre-wrap;overflow-wrap:anywhere}.rive-send>.rive-quote{max-height:196px;overflow:auto;user-select:none}.rive-quote.truncated .rive-quote-text{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}.rive-forward-window>.window-content{display:flex;flex-direction:column;overflow:auto}.rive-forward-window .rive-forward-comment{height:112px;min-height:84px;resize:none;background:transparent}.rive-forward-window>.window-content>.rive-quote{flex:1;min-height:0;overflow:hidden}.rive-forward-window footer{display:flex;justify-content:flex-end;gap:16px}.rive-reader-window>.window-content{padding:24px;user-select:text}.rive-reader-text{white-space:pre-wrap;overflow-wrap:anywhere;font:14px/28px Inter,SourceHan,sans-serif;user-select:text}.rive-reader-window .window-title button{width:auto;padding:0 16px;color:var(--l5)}#gesture-action-hint{position:absolute;z-index:4001;pointer-events:none;background:var(--l5);color:var(--l1);font:14px/28px JetBrains,SourceHan,monospace;padding:0 8px;max-width:calc(100% - 8px)}
+
+#gesture-action-hint{white-space:pre;overflow:hidden;text-overflow:ellipsis}
+
+.river-life.expiring i:not(.dead){background:var(--red)}
+
+/* Writing entry and composer align flush with the application content corner. */
+.river-app .river-write{left:0;bottom:0}.river-compose{left:0;bottom:0}
+
+#gesture-action-hint.invalid{background:var(--l9)!important;color:var(--l5)!important;border:0!important;outline:0!important}
+#desktop .house-file-list .file.selected .paragraph-icon,#desktop .house-file-list .file.selected .paragraph-icon svg{color:var(--l6)!important}
+
+.rive-share-window .window-content{display:flex;flex-direction:column;gap:0;overflow:auto}
+.rive-share-window [data-share-search]{width:100%;min-height:28px;padding:0 8px;margin-bottom:8px;border:0}
+.rive-share-recipients{display:flex;flex-wrap:wrap;gap:0 1ch;line-height:28px;max-height:84px;overflow:auto;flex-shrink:0;min-height:28px;margin-bottom:12px}
+.rive-share-recipients button{padding:0;line-height:28px;height:28px;color:var(--l6);background:none!important}
+.rive-share-recipients button[aria-pressed=true]{color:var(--l5);text-decoration:underline}
+.rive-share-window [data-share-send]:disabled{opacity:.3;cursor:default}
+.rive-quote.pending-quote{position:relative;cursor:pointer;padding-right:28px}
+.pending-quote [data-cancel-quote]{display:none;position:absolute;right:0;top:0;width:28px;height:28px;padding:0;text-align:center;color:inherit}
+.pending-quote.selected{background:var(--l5);color:var(--l1)}
+.pending-quote.selected .rive-quote-meta{color:var(--l1)}
+.pending-quote.selected [data-cancel-quote]{display:block}
+.canal-draft>.rive-quote{max-height:168px;overflow:auto;flex-shrink:0}
+
+#desktop :is(.file,.archive-row,[role="option"]).selected.selected svg,#desktop .file.selected.selected .file-icon,#desktop .file.selected.selected .shortcut-icon{color:var(--l6)!important}
+
+#desktop .file.has-file-mark.selected.selected svg,#desktop .file.has-file-mark.selected.selected .file-icon,#desktop .file.has-file-mark.selected.selected .shortcut-icon{color:var(--file-mark)!important}
+
+/* Read message text directly; blank-space gestures still select message blocks. */
+.rive-message-body,.rive-message .rive-quote-text,.rive-message .rive-quote-meta,.rive-message>time{user-select:text;cursor:text}
+.rive-message-content{white-space:normal;max-height:168px;overflow:hidden}
+.rive-message-body{white-space:pre-wrap;font:14px/28px Inter,SourceHan,sans-serif}
+.rive-message-content>.rive-quote{margin:0;padding-top:0;padding-bottom:0}
+.rive-message-more{display:block;color:var(--l9);font:14px/28px JetBrains,monospace;cursor:default}
+.rive-message>.rive-message-line{left:0;width:100%}
+.rive-message.mine>.rive-message-line{left:0;right:auto;width:100%}
+.canal-draft>footer{display:flex;justify-content:flex-end;flex-shrink:0}
+
+.pending-quote .rive-quote-text,.pending-quote .rive-quote-meta{user-select:text;cursor:text}
+.rive-message ::selection,.pending-quote ::selection,.rive-reader-text::selection{background:var(--l5);color:var(--l1)}
+
+/* RIVER fills the window interior, including the shared resize gutter. */
+.river-window>.window-content{margin:0}
+
+.fixed-share-window{width:560px!important;min-width:560px!important;max-width:560px!important;height:520px!important;min-height:520px!important;max-height:520px!important;resize:none!important}
+.fixed-share-window>.window-content{margin:0}
+.river-compose>.rive-quote{max-height:168px;overflow:auto;color:var(--l1)}
+
+/* Selection fills the fold into a square-corner speech bubble. */
+.rive-message.selected>.rive-message-line{visibility:hidden}
+.rive-message.selected::after{content:'';position:absolute;left:0;right:auto;bottom:-14px;width:14px;height:14px;background:var(--l3);border:0;clip-path:polygon(0 0,100% 0,0 100%);transform:none;pointer-events:none}
+.rive-message.mine.selected::after{left:auto;right:0;transform:scaleX(-1)}
+
+/* Repost editing mirrors the carried fragments in the published block. */
+.river-app .river-compose.is-repost textarea{min-height:28px;margin:0;line-height:28px}
+.river-compose-chain{min-height:0;max-height:420px;overflow:auto;flex-shrink:1;color:var(--l6);margin-bottom:8px}
+.river-compose-arrow{height:28px;line-height:28px;font-family:JetBrains,monospace;color:var(--l6)}
+.river-compose-fragment .river-meta,.river-compose-fragment .river-text,.river-app .river-compose-fragment button:disabled{color:var(--l6)}
+.river-compose-fragment button:disabled{opacity:1;padding:0;cursor:default}
+.river-compose-close{position:static;width:28px;height:28px;opacity:1;flex-shrink:0}
+.pending-quote.selected{background:var(--l3);color:var(--l5)}
+.pending-quote.selected .rive-quote-meta{color:var(--l6)}
+.pending-quote [data-cancel-quote]{color:var(--l5)}
+
+.river-compose.is-repost footer{border-top-color:var(--l1)}
+
+.river-compose::selection,.river-compose ::selection{background-color:var(--l1);color:var(--l5);text-shadow:none}
+
+/* Match the first contact ID to the 28px line centered in the 48px chat header. */
+.rive-layout.has-chat .rive-list{padding-top:calc((48px - 1px - 28px)/2 - 8px)}
+
+/* Independent full-height contact and message scroll regions. */
+.river-app{flex:1;overflow:hidden}
+.rive-layout{overflow:hidden;align-items:stretch}
+.rive-list{height:100%;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+.rive-layout.has-chat .rive-list{border-right:0;padding-right:0}
+.rive-layout.has-chat .rive-chat{border-left:1px solid var(--l4)}
+.rive-chat{height:100%;min-height:0;overflow:hidden}
+.rive-chat-head,.rive-send{flex-shrink:0}
+.rive-messages{min-height:0;overflow-y:auto;overscroll-behavior:contain}
+
+
+#context-menu button[aria-pressed=true]{color:var(--l5);text-decoration:underline;text-underline-offset:3px}
+
+.river-compose footer [data-word-count]{flex:1;min-width:0}
+.river-compose footer [data-publish]{margin-left:auto}
+
+

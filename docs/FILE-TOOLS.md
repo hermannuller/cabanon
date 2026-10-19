@@ -1,0 +1,13 @@
+# File tools (2026-10-18)
+
+Batch UI follows the supplied Screenshot_1.jpg and BATCH-RENAME-SPEC.md. Two independent scroll areas use 14px type / 20px lines; a blank line separates files. Rules execute in their visual order and reorder with up/down CSS chevron buttons on the find header. The left column stays 330px wide while the normal window can resize/minimize/maximize. Card dragging does not reorder rules. Unconfigured cards do nothing. Illegal names disable Apply; duplicate requested names receive `_1`, `_2`, ... in the preview without overwriting occupied names; atomic commit revalidates before touching references or content.
+
+FIND operates on Unicode code points in the base name. CJK uses the explicit block ranges in batch-rename-model.js; dates accept exactly the four documented formats with calendar validation. CLEAN compresses identical adjacent characters only where FIND selects them. Output /q units are opaque to later FIND rules. Extensions, including .tar.gz, are preserved. Empty replacement deletes; generated names retain all shared filename constraints.
+
+Info aggregates unique roots and descendants without double counting, supports copying text, and omits DETAILS if calculation exceeds 200ms. Mixed read-only displays ≈; the first click exposes off without changing any files, the next toggles all on. Read-only applies to content editing, including open MARATHON documents and BERLIN drawing/saving. Moves and filesystem naming remain separate from content editing.
+
+Archives remain the existing application-internal format. New packing owns immutable entry/content snapshots, including nested folders, before removing originals. Moving into an archive does not also retain a recycle-bin duplicate. Snapshot membership must not be remapped when the former source is moved/renamed later. Copied archive membership arrays diverge when appended. Nested archived folders can be browsed without relying on originals.
+
+Checks: tmp/batch-rename-check.cjs, tmp/file-batch-tools-check.cjs, tmp/file-tools-interaction-check.cjs, tmp/right-file-actions-check.cjs, plus existing pointer/storage/New regression checks.
+
+All pointer gestures have a shared Escape transaction in gesture-cancel.js. It snapshots lightweight UI state at pointer-down, invokes owner cancellation and pointercancel cleanup, restores live values through registered rollback callbacks, and suppresses further movement/release/click actions until the next pointer-down. File drags restore spring-open navigation as well as selections. Both buttons spring-open valid folders after one second and retain their original source and move/copy action. Test: tmp/gesture-revision-check.cjs.

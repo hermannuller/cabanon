@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>段落 · Explorer</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="app"><aside><div class="brand"><b>¶</b><span>段落<small>EXPLORER LAB</small></span></div><div class="navlabel">工作空间</div><button class="nav active" id="home">▧　项目文件</button><button class="nav" id="upnav">↰　上一级文件夹</button><div class="side-bottom"><span class="green-dot"></span> 本地模拟空间<p>像编辑文字一样<br>整理你的文件。</p><small>实验原型 · 不影响磁盘文件</small></div></aside>
+<main><header><div><span class="eyebrow">A DIFFERENT WAY TO ORGANIZE</span><h1>文件，也可以是一段文字。</h1></div><button id="regenerate" class="subtle">⟳　重新生成 50 个文件</button></header>
+<section class="window"><div class="addressbar"><button id="back" title="后退">←</button><button id="up" title="上一级">↑</button><div id="breadcrumbs"></div><div class="searchwrap">⌕ <input id="search" placeholder="搜索当前文件夹" /></div></div>
+<div class="toolbar"><div class="actions"><button id="newfolder">＋ 新建文件夹</button><i></i><button id="cut" title="剪切 Ctrl+X">剪切</button><button id="paste" title="粘贴 Ctrl+V">粘贴</button><button id="undo" title="撤销 Ctrl+Z">↶ 撤销</button></div><div class="views"><button data-view="list">☷ 列表</button><button data-view="details">☰ 详细信息</button><button data-view="paragraph" class="active">¶ 段落</button></div><select id="sort" aria-label="排序"><option value="manual">手动排列</option><option value="name">按名称排序</option><option value="date">按日期排序</option><option value="size">按大小排序</option><option value="ext">按类型排序</option></select></div>
+<div id="modehint"><span>¶ 段落模式</span> 点击文字直接编辑 · 跨文件划选 · 拖动图标重新排列 <button id="help">操作指南 ↗</button></div>
+<div id="surface" tabindex="0" aria-label="文件区域"></div><textarea id="input" aria-label="文件名编辑输入" spellcheck="false"></textarea>
+<footer><span id="status"></span><span id="selectionstatus">自由排列 · 自动保存到此浏览器</span></footer></section>
+<div class="bottom-note"><span>¶ 把文件夹写成你想要的样子。</span><span>DOCX · XLSX · PPT · JPG · PDF</span></div></main></div>
+<div id="context" hidden></div><div id="toast" role="status"></div><div id="overlay" hidden></div><script src="app.js"></script></body></html>

@@ -1,0 +1,56 @@
+'use strict';
+function warning(message){const popup=document.createElement('div');popup.className='warning-popup';popup.setAttribute('role','alert');popup.textContent=message;popup.onclick=()=>popup.remove();$('#desktop').append(popup);return popup;}
+window.alert=warning;
+const shortcutDefinitions=[
+ ['close','Close current window','CTRL+W'],['quit','Quit current app (close all its windows)','CTRL+Q'],
+ ['search','Search current folder','ALT+F'],['new','New folder','ALT+N'],
+ ['copy','Copy selected files','CTRL+C'],['cut','Cut selected files','CTRL+X'],['paste','Paste files','CTRL+V'],['undo','Undo file operation','CTRL+Z'],
+ ['back','Back','ALT+ARROWLEFT'],['forward','Forward','ALT+ARROWRIGHT'],['up','Parent folder','ALT+ARROWUP'],
+ ['quick','Toggle pinned navigation','ALT'],['tree','Toggle folder tree','CTRL'],
+ ...['LEFT','RIGHT','UP','DOWN'].flatMap(direction=>[['select'+direction,'Select '+direction.toLowerCase(),'ARROW'+direction],['edge'+direction,({LEFT:'Select first item in row',RIGHT:'Select last item in row',UP:'Select first item',DOWN:'Select last item'}[direction]),'CTRL+ARROW'+direction]])
+];
+function shortcutValue(id){prefs.shortcuts ||= {};return prefs.shortcuts[id]||shortcutDefinitions.find(item=>item[0]===id)[2];}
+function normalizeShortcut(value){return value.toUpperCase().replace(/\s/g,'').replace(/CONTROL/g,'CTRL').replace(/←/g,'ARROWLEFT').replace(/→/g,'ARROWRIGHT').replace(/↑/g,'ARROWUP').replace(/↓/g,'ARROWDOWN');}
+function commitShortcut(id,input){const value=normalizeShortcut(input.value),previous=shortcutValue(id);const conflict=shortcutDefinitions.find(item=>item[0]!==id&&shortcutMatches(item[0],value));const native={'CTRL+Y':'Redo text','ALT+F4':'Exit HOME'};
+ if(conflict||native[value]){input.value=previous;warning('Shortcut '+value+' conflicts with "'+(conflict?.[1]||native[value])+'"');return;}
+ if(!/^(?:(?:CTRL|ALT|SHIFT)\+)*(?:[A-Z0-9]|ARROW(?:LEFT|RIGHT|UP|DOWN)|F\d{1,2}|ESCAPE|ENTER|DELETE|BACKSPACE|CTRL|ALT)$/.test(value)){input.value=previous;warning('Unrecognized shortcut: '+value);return;}
+ prefs.shortcuts[id]=value;persistProfiles();input.value=value;input.blur();
+}
+function renderFolderPointerHelp(article){
+ const heading=document.createElement('h2');heading.textContent='Folder selection and dragging';article.append(heading);
+ for(const text of [
+  'Clicking, starting a drag and dropping onto a target have separate hit areas. These rules apply to list, details and paragraph folder views, with either mouse button.',
+  'Left-click anywhere inside an option to select it, including its blank area. Right-click anywhere inside an option for its file menu, whether selected or not. Only true folder background opens the folder menu.',
+  'Drag start: on an unselected option, hold and move from its icon/name band: a continuous full-height rectangle from the option left edge to the visible text/icon right edge. Blank space above/below the text and between the icon and name is inside this band. On an already-selected L5 option, hold and move anywhere inside the L5 area to drag the selected files. Left dragging moves; right dragging copies.',
+  'Box selection: start from folder background or blank space inside an unselected option. Starting inside an already-selected L5 option drags files instead. A movement of at least 6px distinguishes dragging or box selection from a click; the pointer-down area determines the gesture.',
+  'Drop target: to put files into another folder or ZIP, release on that target’s icon or name. Its L5 blank area is not a folder or ZIP target, even when selected. Background dropping and sorting keep their normal rules.',
+  'Press Escape during dragging or box selection to cancel. Releasing afterward performs no action. Right dragging does not open a context menu.'
+ ]){const paragraph=document.createElement('p');paragraph.textContent=text;article.append(paragraph);}
+}
+function openHelp(){const win=createWindow('app:HELP!','HELP!','help','<div class="help-reader"><nav></nav><article></article></div>');const nav=win.querySelector('.help-reader nav'),article=win.querySelector('.help-reader article');nav.replaceChildren();
+ for(const name of ['Cabanon','Shortcuts','From','House','Apps','Uers']){const button=document.createElement('button');button.textContent=name;button.onclick=()=>{nav.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));article.replaceChildren();if(name==='House'){renderFolderPointerHelp(article);return;}if(name!=='Shortcuts')return;for(const [id,label]of shortcutDefinitions){const row=document.createElement('div');row.className='shortcut-row';const text=document.createElement('span');text.textContent=label;const input=document.createElement('input');input.value=shortcutValue(id);input.setAttribute('aria-label',label);input.oninput=()=>{input.value=input.value.toUpperCase();};input.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();commitShortcut(id,input);}};row.append(text,input);article.append(row);}const gestures=[['Invert selection in current window','HOLD CTRL + TAP SHIFT'],['Select range','SHIFT+CLICK'],['Toggle individual selection','CTRL+CLICK'],['Add range to selection','CTRL+SHIFT+CLICK'],['Open folder in a new window','CTRL+DOUBLE CLICK'],['Copy while dragging','RIGHT DRAG'],['Move while dragging','LEFT DRAG'],['Burn selected files','SHIFT+DELETE'],['Insert code line','ENTER'],['Join previous code line','BACKSPACE'],['Calculate','ENTER'],['Clear calculator','DELETE'],['Close current window','ESCAPE'],['Cancel uncommitted paragraph name','CTRL+Z']];for(const [label,key]of gestures){const row=document.createElement('div');row.className='shortcut-row';row.innerHTML=`<span>${label}</span><span>${key}</span>`;article.append(row);}};nav.append(button);}nav.firstElementChild.click();return win;}
+function migrateHelp(){normalizeApplicationCatalog(prefs);ensureEntries();prefs.helpSeeded=true;const name='/house/Cabanon.help!';if(!prefs.entries.some(entry=>entry.name===name))prefs.entries.push({name,parent:'/house',folder:false});if(!prefs.files.includes(name))prefs.files.push(name);prefs.fromFilePins ||= [];if(!prefs.helpFilePinned){if(!prefs.fromFilePins.includes(name))prefs.fromFilePins.push(name);prefs.helpFilePinned=true;}if(!prefs.helpAppMigrated){prefs.pins=['HELP!',...prefs.pins.filter(item=>item!=='HELP!')];prefs.helpAppMigrated=true;}persistProfiles();renderPins();renderAll();renderDesktop();}
+
+
+const appWithHelp=openApp;openApp=function(name){if(name==='HELP!')return openHelp();return appWithHelp(name);};migrateHelp();
+const profileWithHelp=refreshUserIcon;refreshUserIcon=function(){profileWithHelp();migrateHelp();};
+const createWithCodeBlank=createWindow;createWindow=function(...args){const win=createWithCodeBlank(...args),header=win.querySelector('.titlebar');if(!header.blankCodeReady){header.blankCodeReady=true;header.addEventListener('dblclick',e=>{if(e.target.closest('button,svg,.code-surface')||!win.dataset.codeFileKey&&!win.dataset.fileBrowser)return;e.preventDefault();e.stopPropagation();toggleCode(win);});}return win;};
+const toggleWithHiddenKeys=toggleCode;toggleCode=function(win,on=!win.classList.contains('code-mode')){toggleWithHiddenKeys(win,on);win.querySelectorAll('.titlebar>[data-win]').forEach(button=>button.disabled=on);};
+function closeShortcutWindow(win){if(!win)return;const button=win.querySelector('[data-win=close]');button.onclick();const next=[...windowMap.values()].filter(w=>!w.hidden).at(-1);if(next)focusWindow(next);renderTaskbar();}
+function runShortcut(id,event){const win=activeWindow,list=win&&!win.hidden?win.querySelector('.house-file-list'):findList(event.target),editing=event.target.closest('input,textarea,[contenteditable="true"]');
+ if(['copy','cut','paste','undo'].includes(id)&&editing)return false;
+ if(id==='close')closeShortcutWindow(win);else if(id==='quit'){if(win){const type=windowType(win.dataset.key,win);for(const [key,other]of [...windowMap])if(windowType(key,other)===type)closeShortcutWindow(other);}}
+ else if(id==='search'){if(!win?.dataset.fileBrowser)return false;win.querySelector('[data-folder-action=search]').click();}
+ else if(id==='new'){if(!win?.dataset.fileBrowser)return false;newFolderEntry(win.dataset.fileBrowser,null);}
+ else if(['back','forward','up'].includes(id)){if(!win?.dataset.fileBrowser)return false;folderHeaderAction(win,id);}
+ else if(['quick','tree'].includes(id)){if(!win?.dataset.fileBrowser||editing)return false;toggleFolderTools(win,id==='quick'?'quick':'tree');}
+ else if(['copy','cut','paste','undo'].includes(id)){if(!list)return false;if(id==='undo')undoFolderOperation();else if(id==='paste'){if(list.dataset.path)pasteSelectedFiles(list.dataset.path);}else copySelectedFiles(list,id==='cut');}
+ else if(id.startsWith('select')||id.startsWith('edge')){if(!list||editing)return false;const items=listItems(list).filter(item=>!item.hidden);if(!items.length)return true;const state=selectionState(list);let index=Math.max(0,items.findIndex(item=>itemName(item)===state.current));const direction=id.replace(/^(select|edge)/,'');const column=items.findIndex((item,i)=>i>0&&Math.abs(item.getBoundingClientRect().top-items[0].getBoundingClientRect().top)<1),rows=column>0?column:items.length;if(id.startsWith('edge')){if(direction==='UP')index=0;else if(direction==='DOWN')index=items.length-1;else{const row=index%rows;index=direction==='LEFT'?row:row+Math.floor((items.length-1-row)/rows)*rows;}}else index=Math.max(0,Math.min(items.length-1,index+({UP:-1,DOWN:1,LEFT:-rows,RIGHT:rows}[direction])));chooseItem(list,items[index],{shiftKey:event.shiftKey,ctrlKey:false});items[index].scrollIntoView({block:'nearest',inline:'nearest'});}
+ else return false;return true;
+}
+let loneShortcutModifier=null;
+window.addEventListener('keydown',event=>{if(event.key==='Control'||event.key==='Alt')return;loneShortcutModifier=null;const combo=settingShortcutEvent(event);let definition=shortcutDefinitions.find(item=>shortcutMatches(item[0],combo));if(!definition&&event.shiftKey&&event.key.startsWith('Arrow'))definition=shortcutDefinitions.find(item=>settingShortcutAliases(shortcutValue(item[0])).includes(combo.replace('SHIFT+','')));if(definition&&runShortcut(definition[0],event)){event.preventDefault();event.stopImmediatePropagation();loneCtrl=false;loneAlt=false;}},true);
+window.addEventListener('keyup',event=>{if(!['Control','Alt'].includes(event.key))return;event.stopImmediatePropagation();loneCtrl=false;loneAlt=false;loneShortcutModifier=null;if(CabanonModifierTap.allowed(event)){const value=event.key==='Control'?'CTRL':'ALT',definition=shortcutDefinitions.find(item=>shortcutMatches(item[0],value));if(definition)runShortcut(definition[0],event);}},true);
+window.addEventListener('keydown',event=>{if(event.target.closest('input,textarea,[contenteditable="true"]'))return;const combo=settingShortcutEvent(event);if(shortcutDefinitions.some(item=>item[2]===combo&&!shortcutMatches(item[0],combo))){event.preventDefault();event.stopImmediatePropagation();}},true);
+const toastWithWarnings=toast;toast=function(message){if(/conflict|invalid|denied|incorrect|unable|already linked|already exists/i.test(message))warning(message);else toastWithWarnings(message);};
+

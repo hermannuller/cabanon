@@ -1,0 +1,19 @@
+'use strict';
+function dragSummary(){const names=draggedFiles?.names||[],entries=names.map(name=>prefs.entries.find(e=>e.name===name));if(names.length===1)return names[0].split('/').at(-1);if(entries.length&&entries.every(e=>e?.folder))return '/ x'+names.length;const extensions=names.map((name,i)=>{if(entries[i]?.folder)return null;const base=name.split('/').at(-1),dot=base.lastIndexOf('.');return dot>0?base.slice(dot).toLowerCase():'';});if(extensions[0]&&extensions.every(ext=>ext===extensions[0]))return extensions[0]+' x'+names.length;return 'x'+names.length;}
+function fileDragLabel(target=''){return{source:dragSummary(),copy:draggedFiles?.action==='copy',target};}
+const destinationBeforeInsert=dropTarget;
+function dragInsideContent(event,item){return fileContentHit(event,item);}
+
+dropTarget=function(event){const desktop=event.target.closest('#files');if(desktop)return draggedFiles?.source==='@desktop'?{list:desktop,insert:true,path:'@desktop',label:'>'}:{blocked:true,label:"   X   "};if(draggedFiles?.source==='@desktop')return {blocked:true,label:"   X   "};const target=destinationBeforeInsert(event),item=event.target.closest('.house-file-list [data-entry]');if(target?.protected)return target;if(target&&(target.blocked||!item||!dragInsideContent(event,item)))return {list:target.list,blocked:false,insert:true,path:target.list.dataset.path,label:'>'};return target;};
+addEventListener('drop',event=>{if(!draggedFiles)return;const target=dropTarget(event);if(!target?.insert)return;event.preventDefault();event.stopImmediatePropagation();const list=target.list,rows=listItems(list),hit=event.target.closest('.file');let index=hit?rows.indexOf(hit):rows.length;
+ if(list.dataset.view==='paragraph'){
+  const editor=paragraphEditors.get(list),slot=editor?.slot(event.clientX,event.clientY);
+  if(slot){index=rows.findIndex(row=>row.dataset.paragraphId===slot.id)+(slot.after?1:0);if(target.path===draggedFiles.source&&draggedFiles.action!=='copy'){const names=new Set(draggedFiles.names),ids=editor.records.filter(record=>names.has(record.source)).map(record=>record.id);editor.reorder(ids,slot);draggedFiles=null;dropHint.hidden=true;clearDropFolder();return;}}
+ }else if(hit){const r=hit.getBoundingClientRect();if(event.clientY>r.top+r.height/2)index++;}
+ let names=[...draggedFiles.names];if(target.path!=='@desktop'&&(target.path!==draggedFiles.source||draggedFiles.action==='copy')){const before=new Set(prefs.entries),movingIds=new Set(names.map(name=>prefs.entries.find(e=>e.name===name)?.id));transferFiles(names,draggedFiles.source,target.path,{action:draggedFiles.action||'move'});const added=prefs.entries.filter(entry=>!before.has(entry)&&entry.parent===target.path);if(added.length)names=added.map(entry=>entry.name);else names=prefs.entries.filter(entry=>movingIds.has(entry.id)&&entry.parent===target.path).map(entry=>entry.name);}
+ const beforeNames=rows.slice(0,index).map(itemName).filter(name=>!names.includes(name)),afterNames=rows.slice(index).map(itemName).filter(name=>!names.includes(name));const order=[...beforeNames,...names,...afterNames];
+ if(target.path==='@desktop'){prefs.desktopOrder=order;prefs.desktopSort={key:'manual',direction:'down'};renderDesktop();}else{folderView(target.path).manualOrder=order;refreshBrowsers();renderDesktop();}persistProfiles();draggedFiles=null;dropHint.hidden=true;clearDropFolder();
+},true);
+const desktopWithManualOrder=renderDesktop;renderDesktop=function(){desktopWithManualOrder();if(prefs.desktopSort?.key!=='manual')return;const list=$('#files'),order=prefs.desktopOrder||[];[...list.children].sort((a,b)=>{const rank=name=>{const i=order.indexOf(name);return i<0?order.length:i;};return rank(a.dataset.file)-rank(b.dataset.file);}).forEach(row=>list.append(row));};
+const sortWithoutManual=sortFolder;sortFolder=function(path,id){delete folderView(path).manualOrder;return sortWithoutManual(path,id);};
+

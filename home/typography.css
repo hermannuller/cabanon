@@ -1,0 +1,40 @@
+/* Current typography specification, updated from 修改.xlsx on 2026-10-14. */
+body{line-height:28px}
+.window-content h1{font:400 36px/56px JetBrains,SourceHan,monospace}
+.window-content h2{font:400 14px/28px JetBrains,SourceHan,monospace}
+#power-screen h1{font:700 36px/56px JetBrains,SourceHan,monospace}
+#desktop #pinned .app-row{line-height:56px;padding-top:0;padding-bottom:0}
+#desktop .file,#desktop .folder-row,#desktop #app-grid .app-row{line-height:28px}
+#desktop #flyout button,#desktop #volume-percent,#desktop .window-setting-link,#desktop .running-list button,#desktop #context-menu>button{font:400 14px/28px JetBrains,SourceHan,monospace}
+#desktop #volume-shade{font:400 14px/28px JetBrains,SourceHan,monospace}
+.muted{font-size:14px;line-height:28px}
+#home-status{height:56px;font:400 14px/28px JetBrains,SourceHan,monospace}
+#status-ime,#status-time{line-height:28px}
+#desktop .synced-folder .sync-symbol{font:400 14px/28px JetBrains,SourceHan,monospace;color:var(--interaction-ink)}
+.window[data-key="system:settings"] h1,.window[data-key^="setting:"] h1,.window[data-key="widget-settings"] h1{font:400 14px/28px JetBrains,SourceHan,monospace}
+/* These compact remarks keep their own 12px/18px specification. */
+.widget-detail,.user-row small{font:400 12px/18px JetBrains,SourceHan,monospace}
+.sort-arrow{line-height:28px}
+.calc-keys button{font-size:24px}
+#search,#file-search{height:40px;box-sizing:border-box;padding:6px 8px;font:400 14px/28px JetBrains,SourceHan,monospace}
+
+/* Focus and committed selection never add a rectangular ring. The live marquee is independent. */
+#desktop :focus,#desktop :focus-visible,#desktop .selected,#desktop .dragging,#desktop [aria-selected="true"]{outline:none!important;outline-offset:0!important}
+
+
+/* Native text highlighting follows the Cabanon palette. */
+::selection{background-color:var(--l5);color:var(--l1);text-shadow:none}
+
+/* Close marks share the titlebar geometry without changing their button slots. */
+.cabanon-close-mark{position:relative;white-space:nowrap}
+.cabanon-close-source{visibility:hidden;pointer-events:none}
+.cabanon-close-mark>.cabanon-close-symbol{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);margin:0}
+
+/* Keep the 127px clock footprint while splitting the period and calendar. */
+#desktop #from .widget-clock-detail{justify-content:flex-start;gap:8px;text-align:left}
+#desktop #from .widget-period{display:block;flex:0 0 auto;font:700 36px/56px JetBrains,SourceHan,monospace}
+#desktop #from .widget-calendar{display:flex;flex:0 0 auto;flex-direction:column;align-items:flex-start;justify-content:center;font:400 12px/18px JetBrains,SourceHan,monospace;white-space:nowrap}
+#desktop #from .widget-calendar>span{display:block}
+
+/* From application labels retain their original 36px size; icon slots stay unchanged. */
+#desktop #from #pinned .app-row,#desktop #from #pinned .app-row>span:last-child{font-size:36px}

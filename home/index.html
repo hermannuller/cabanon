@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cabanon HOME</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="typography.css"><link rel="stylesheet" href="dtp-layout.css"><link rel="stylesheet" href="wall.css"><link rel="stylesheet" href="paragraph-browser.css"></head>
+<body>
+<main id="desktop" aria-label="Cabanon Desktop">
+  <div id="files" aria-label="Desktop files"></div>
+  <div id="windows"></div>
+  <section id="from" hidden aria-label="From panel">
+    <div class="resize north" data-resize="north"></div><div class="resize east" data-resize="east"></div><div class="resize corner" data-resize="both"></div>
+    <aside class="system">
+      <div class="clock"><time id="time"></time><div id="date"></div><div id="weekday"></div></div>
+      <button class="weather" id="weather"><strong>26°C</strong><span>Sunny</span></button>
+      <nav id="system-icons" aria-label="System controls"></nav>
+      <button id="all-toggle" class="icon-button" title="All apps" aria-label="All apps"></button>
+    </aside>
+    <section id="pinned" aria-label="Pinned apps"></section>
+    <section id="folders" aria-label="Pinned folders"></section>
+    <div id="file-results" hidden aria-label="File search results"></div>
+    <input id="file-search" aria-label="Search all files" placeholder="Search" autocomplete="off">
+    <div id="flyout" hidden></div>
+  </section>
+  <section id="all-apps" hidden aria-label="All apps"><header><button class="mark" id="all-back" aria-label="Back to From"></button><input id="search" aria-label="Search apps" placeholder="Search"><div id="app-sort" role="group" aria-label="Sort apps"><button data-sort="name" aria-label="Sort A-Z" title="A–Z" aria-pressed="true"></button><button data-sort="installed" aria-label="Sort by installation date" title="Installed: new to old" aria-pressed="false"></button><button data-sort="usage" aria-label="Sort by frequency" title="Usage: frequent to rare" aria-pressed="false"></button></div></header><div id="app-grid"></div><p id="no-results" hidden>No applications found.</p></section>
+  <button class="mark" id="start" aria-label="Open From" aria-expanded="false"></button>
+  <section id="power-screen" hidden><div><h1 id="power-title"></h1><p>Cabanon power state</p><button id="resume">Return to Cabanon</button><button id="exit-prototype">Exit HOME</button></div></section>
+</main>
+<script src="icon-assets.js"></script>
+<script src="save-button-label.js"></script>
+<script>for(const type of ["pointerdown","keydown"])window.addEventListener(type,()=>window.dismissWelcome?.(),{capture:true,passive:true});</script>
+<script src="right-drag-guard.js"></script>
+<script src="app.js"></script>
+<script src="gesture-cancel.js"></script>
+<script src="modifier-tap.js"></script>
+<script src="filename-rules.js"></script>
+<script src="file-storage.js"></script>
+<script src="features.js"></script>
+<script src="interactions.js"></script>
+<script src="icons.js"></script>
+<script src="desktop-apps.js"></script>
+<script src="window-resize.js"></script>
+<script src="taskbar.js"></script>
+<script src="widgets.js"></script>
+<link rel="stylesheet" href="css-icons.css">
+<script src="window-controls.js"></script>
+<script src="selection-shapes.js"></script>
+<script src="file-operations.js"></script>
+<script src="file-creation.js"></script>
+<script src="house-shell.js"></script>
+<script src="code-editor.js"></script>
+<script src="from-dismiss.js"></script>
+<script src="test-content.js"></script>
+<script src="archive-reader.js"></script>
+<script src="navigation-panel.js"></script>
+<script src="folder-labels.js"></script>
+<script src="app-list-actions.js"></script>
+<script src="file-code-panels.js"></script>
+<script src="folder-context.js"></script>
+<script src="folder-actions.js"></script>
+<script src="sync-links.js"></script>
+<script src="icon-state.js"></script>
+<script src="folder-navigation-keys.js"></script>
+<script src="menu-bounds.js"></script>
+<script src="window-move.js"></script>
+<script src="window-snap.js"></script>
+<script src="file-interaction-states.js"></script>
+<script src="file-drag-pointer.js"></script>
+<script src="settings-placeholder.js"></script>
+<script src="folder-header.js"></script>
+<script src="file-shortcuts.js"></script>
+<script src="exit-keys.js"></script>
+<script src="help-shortcuts.js"></script>
+<script src="search-context.js"></script>
+<script src="delete-desktop.js"></script>
+<script src="scrollbar-standard.js"></script>
+<script src="file-delete-menus.js"></script>
+<script src="linked-names.js"></script>
+<script src="window-selection.js"></script>
+<script src="drag-presentation.js"></script>
+<script src="power-menu.js"></script>
+<script src="selection-cleanup.js"></script>
+<script src="hover-placement.js"></script>
+<script src="drag-tether.js"></script>
+<script src="from-recents.js"></script>
+<script src="pin-destinations.js"></script>
+<script src="delete-shortcuts.js"></script>
+<script src="right-click-ranges.js"></script>
+<script src="dock-groups.js"></script>
+<script src="confirmation-standard.js"></script>
+<script src="focused-tree.js"></script>
+<script src="navigation-sides.js"></script>
+<script src="recent-history.js"></script>
+<script src="context-menus.js"></script>
+<script src="single-desktop.js"></script>
+<script src="file-removal-effects.js"></script>
+<script src="wall-model.js"></script>
+<script src="wall.js"></script>
+<script src="paragraph-browser.js"></script>
+<link rel="stylesheet" href="settings.css">
+<script src="settings.js"></script>
+<script src="settings-appearance.js"></script>
+<script src="settings-apps.js"></script>
+<script src="settings-share-roots.js"></script>
+<script src="timezone-data.js"></script>
+<script src="settings-timezones.js"></script>
+<script src="settings-revision.js"></script>
+<script src="settings-visual.js"></script>
+<script src="settings-organization.js"></script>
+<script src="save-state.js"></script>
+<script src="settings-init.js"></script>
+
+<link rel="stylesheet" href="river.css">
+<script src="river-model.js"></script>
+<script src="river-attachments.js"></script>
+<script src="rive-interactions.js"></script>
+<link rel="stylesheet" href="canal.css">
+<script src="canal-model.js"></script>
+<script src="canal.js"></script>
+<script src="river.js"></script>
+<link rel="stylesheet" href="marathon.css">
+<script src="marathon.js"></script>
+<link rel="stylesheet" href="app-motion-icons.css">
+<script src="application-catalog.js"></script>
+<script src="right-file-actions.js"></script>
+<script src="file-storage-integration.js"></script>
+<script src="batch-rename-model.js"></script>
+<link rel="stylesheet" href="file-tools.css">
+<script src="file-tools.js"></script>
+<script src="help-file-rules.js"></script>
+<link rel="stylesheet" href="help-editor.css">
+<link rel="stylesheet" href="save-file-dialog.css"><script src="save-file-dialog.js"></script><script src="help-editor.js"></script>
+<script src="drag-help.js"></script>
+<script src="colors-playback.js"></script>
+<link rel="stylesheet" href="txt.css">
+<script src="txt-encoding.js"></script><script src="txt.js"></script>
+</body></html>

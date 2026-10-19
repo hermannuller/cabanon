@@ -1,0 +1,2 @@
+'use strict';
+const switchBeforeConfirmation=switchUser;switchUser=function(target){if(target===activeProfile)return switchBeforeConfirmation(target);if(!profiles[target])return;switchBeforeConfirmation(target);const dialog=windowMap.get('system:switch');if(!dialog)return;const action=dialog.querySelector('#confirm-user').onclick;closeShortcutWindow(dialog);confirmRemoval('Switch to '+profiles[target].user,action);};

@@ -1,0 +1,21 @@
+/* Basic interface geometry; change this one value to adjust every stroke. */
+:root{--icon-stroke:2px}
+.css-icon{position:relative;display:inline-block;flex:0 0 auto;width:20px;height:20px;vertical-align:middle;color:inherit;pointer-events:none}
+.css-icon::before,.css-icon::after{content:'';position:absolute;box-sizing:border-box;pointer-events:none}
+.css-icon--min::before{left:15%;top:70%;width:70%;height:var(--icon-stroke);background:currentColor}
+.css-icon--max::before{left:15%;top:15%;width:70%;height:70%;border:var(--icon-stroke) solid currentColor}
+.css-icon--restore::before,.css-icon--restore::after{width:50%;height:50%;border:var(--icon-stroke) solid currentColor}
+.css-icon--restore::before{left:15%;top:35%}.css-icon--restore::after{left:35%;top:15%}
+.css-icon--close::before,.css-icon--close::after{left:50%;top:50%;width:80%;height:var(--icon-stroke);background:currentColor;transform:translate(-50%,-50%) rotate(45deg)}
+.css-icon--close::after{transform:translate(-50%,-50%) rotate(-45deg)}
+#desktop .css-icon.cabanon-close-symbol{width:20px!important;height:20px!important;min-width:20px;min-height:20px;max-width:none;max-height:none;color:inherit;pointer-events:none}
+.css-icon--back::before,.css-icon--forward::before,.css-icon--up::before{left:20%;top:calc(50% - var(--icon-stroke)/2);width:65%;height:var(--icon-stroke);background:currentColor}
+.css-icon--back::after,.css-icon--forward::after,.css-icon--up::after{left:20%;top:50%;width:40%;height:40%;border-left:var(--icon-stroke) solid currentColor;border-bottom:var(--icon-stroke) solid currentColor;transform:translateY(-50%) rotate(45deg)}
+.css-icon--forward{transform:rotate(180deg)}.css-icon--up{transform:rotate(90deg)}
+.css-icon--new::before{left:50%;top:50%;width:70%;height:var(--icon-stroke);background:currentColor;transform:translate(-50%,-50%)}
+.css-icon--new::after{left:50%;top:50%;width:var(--icon-stroke);height:70%;background:currentColor;transform:translate(-50%,-50%)}
+.css-icon--search::before{left:10%;top:10%;width:60%;height:60%;border:var(--icon-stroke) solid currentColor;border-radius:50%}
+.css-icon--search::after{left:65%;top:65%;width:35%;height:var(--icon-stroke);background:currentColor;transform-origin:left center;transform:rotate(45deg)}
+
+/* Full-opacity palette ink; no per-icon fading. */
+.css-icon,.css-icon::before,.css-icon::after{opacity:1;filter:none}

@@ -1,0 +1,29 @@
+# Installed dependencies and caches
+node_modules/
+**/node_modules/
+.cache/
+**/.openai/
+
+# Local test output and development scratch files
+/tmp/
+*.log
+*.tmp
+*.bak
+playwright-report/
+test-results/
+
+# Local credentials and machine-specific settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Packaged applications and local application data
+/release/
+/out/
+/user-data/
+/userdata/

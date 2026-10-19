@@ -1,0 +1,108 @@
+/* Approved DTP geometry. Colors, fonts and compact exceptions stay in existing stylesheets. */
+:root{--item-width:280px;--item-height:56px;--icon-size:40px;--dock-height:72px}
+/* Dim marked ink by color mixing, without per-icon opacity/filter layers. */
+#desktop .has-file-mark{--mark-brightness:60%}
+#desktop .has-file-mark:is(:hover,.selected,.context-icon-active){--mark-brightness:100%}
+#desktop :is(.has-file-mark,.house-file-list .file.has-file-mark)>:is(svg,.file-icon,.shortcut-icon){color:color-mix(in srgb,var(--file-mark) var(--mark-brightness),#000)!important}
+#desktop .has-file-mark>:is(.file-icon,.shortcut-icon)>svg{color:inherit!important}
+#desktop :is(.file,.folder-row){width:280px;height:56px;min-height:56px;display:flex;align-items:center;gap:16px;padding:0 14px 0 8px}
+#desktop :is(.file,.folder-row)>svg{width:24px;height:24px;flex:0 0 24px;margin:0 8px}
+#desktop :is(.file,.folder-row)>span:last-of-type{flex:0 1 202px;width:202px;min-width:0;height:36px;display:flex;align-items:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Use block text with a 36px line box so native ellipsis still works. */
+#desktop :is(.file,.folder-row)>span:last-of-type{display:block;line-height:36px}
+#desktop :is(#pinned,#app-grid) .app-row{width:280px;height:56px;min-height:56px;padding:0 0 0 8px;gap:22px;display:flex;align-items:center}
+#desktop :is(#pinned,#app-grid) .app-row>svg{width:36px;height:36px;flex:0 0 36px;margin:2px}
+#desktop :is(#pinned,#app-grid) .app-row>span:last-child{width:210px;min-width:0;flex:0 1 210px;height:36px;line-height:36px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#desktop #app-grid{grid-auto-columns:280px}
+#desktop #app-grid .app-row.pinned-icon::before{left:0}
+#desktop #from{padding:16px 32px 72px;grid-template-rows:minmax(0,1fr);column-gap:0}
+#desktop #from .system{position:relative;width:264px;display:block;border:0;min-height:0}
+#desktop #from #system-icons{position:absolute;left:0;top:56px;display:grid;grid-template-columns:40px 40px;grid-auto-rows:40px;gap:16px;margin:0;width:96px}
+#desktop #from #system-icons .icon-button{width:40px;height:40px;padding:0}
+#desktop #from #system-icons .icon-button>svg{width:36px;height:36px}
+#desktop #from #widgets{position:absolute;left:112px;top:56px;width:152px}
+#desktop #from .widget{width:152px;text-align:left}
+#desktop #from .widget-detail{justify-content:flex-start}
+#desktop #from #all-toggle{position:absolute;left:56px;bottom:0;margin:0;width:40px;height:40px;padding:0}
+#desktop #from #all-toggle>svg{width:36px;height:36px}
+#desktop #from #pinned{margin-left:24px;border:0}
+#desktop #from :is(#folders,#recent-files){width:280px;padding:0;overflow:hidden}
+#desktop #file-search{left:32px;top:16px;bottom:auto;right:auto;width:270px;height:40px}
+#desktop #search{width:270px;height:40px}
+#desktop #file-results{left:320px;right:32px;top:16px;bottom:72px;flex-direction:column}
+#desktop #start{left:16px;bottom:16px;width:40px;height:40px}
+#desktop #taskbar{left:72px;bottom:0;height:72px}
+#desktop #taskbar button{width:56px;height:56px;padding:8px}
+#desktop #taskbar button>svg{width:40px;height:40px}
+#desktop #taskbar button[data-type^="app:"]>svg{width:36px;height:36px;margin:2px 0}
+#desktop .house-file-list:not([data-view="details"]){grid-auto-columns:280px;column-gap:0}
+#desktop .house-file-list[data-view="details"] .file{display:grid;width:var(--detail-width);height:56px;padding:0;gap:0}
+#desktop .house-file-list[data-view="details"] .file>svg{margin-left:16px;margin-right:0}
+#desktop .house-file-list[data-view="details"] .file>span:last-of-type{width:auto;max-width:none;min-width:0;padding-left:8px}
+#desktop .synced-folder .sync-symbol,#desktop #folders .synced-folder .sync-symbol{left:28px;top:50%}
+#desktop>#files>.file{width:280px;height:56px;padding:0 14px 0 8px}
+
+/* Explicit From selectors supersede its former compact-icon rules. */
+#desktop #from :is(#folders .folder-row,#recent-files .file){gap:16px;padding:0 14px 0 8px}
+#desktop #from :is(#folders .folder-row,#recent-files .file)>svg{width:24px;height:24px;flex:0 0 24px;margin:0 8px}
+#desktop #from :is(#folders .folder-row,#recent-files .file)>span:last-of-type{width:202px;flex:0 1 202px;height:36px;line-height:36px}
+#desktop #app-grid{grid-template-rows:repeat(17,56px)}
+
+/* Dock glyphs share the From mark center (36px above the desktop bottom). */
+#desktop #taskbar{align-items:flex-start}
+#desktop #taskbar button{margin-top:8px}
+
+/* Selection is ink and underline; hover retains its own selection-area feedback. */
+#desktop .file.selected{background:transparent;color:var(--interaction-ink)}
+#desktop .file.selected>svg,#desktop .file.selected>.file-icon{color:var(--interaction-ink)!important}
+#desktop .file.selected>span:last-of-type{text-decoration:underline;text-underline-offset:3px}
+#desktop .file-removing{pointer-events:none}
+#desktop .file-removing>span:last-of-type{will-change:clip-path}
+#desktop .file-delete-text-done>svg,#desktop .file-delete-text-done>.file-icon{visibility:hidden}
+
+/* From list columns may use one more row in their former dock reserve. */
+#desktop #from :is(#pinned,#folders,#recent-files){margin-bottom:-56px}
+#desktop #file-results{bottom:16px}
+
+/* Main file views use a 40px left inset; folder border consumes 1px. */
+#desktop #all-apps{padding-left:40px}
+#desktop #windows .window[data-file-browser] .window-content,#desktop #windows .window[data-file-browser].tools-open .window-content{padding-left:39px}
+
+/* 2026-10-15: 32px view insets and the fixed-height From surface. */
+#desktop #all-apps{padding-left:32px}
+#desktop #windows .window[data-file-browser] .window-content,#desktop #windows .window[data-file-browser].tools-open .window-content{padding-left:31px}
+#desktop #from{height:600px;min-height:600px;max-height:600px;border-top:1px solid var(--l4);border-right:1px solid var(--l4);border-left:0;border-bottom:0;overflow:visible}
+#desktop #from :is(.north,.corner){display:none}
+#desktop #from .east,#desktop #from .east:hover{background:transparent}
+#desktop #from::after{display:none!important}
+#desktop #from::before{content:"";position:absolute;top:16px;bottom:16px;left:302px;width:1px;background:var(--l4);pointer-events:none}
+#desktop #from :is(#pinned,#folders,#recent-files,#file-results,#widgets){overflow:clip!important}
+#desktop #taskbar button,#desktop #taskbar button:hover{color:var(--l6)}
+#desktop #taskbar button.current,#desktop #taskbar button.current:hover{color:var(--l5)}
+#desktop #taskbar button>svg{color:inherit!important}
+#desktop #taskbar button::after{content:none;display:none}
+
+/* Align From rows/columns to the maximized folder's 56px/280px grid. */
+#desktop #from{padding-top:26px;padding-bottom:62px}
+#desktop #from .system{width:256px}
+#desktop #from #widgets{left:120px;width:127px}
+#desktop #from .widget{width:127px}
+#desktop #file-search{top:26px;width:263px}
+#desktop #file-results{left:312px;top:26px;bottom:6px}
+#desktop #from::before{left:295px;top:26px;bottom:6px}
+
+/* Folder selection uses an L5 surface with L2 ink. */
+#desktop .house-file-list .file.selected{background:var(--interaction-ink);color:var(--l2)}
+#desktop .house-file-list .file.selected>svg,#desktop .house-file-list .file.selected>.file-icon{color:var(--l2)!important}
+#desktop .house-file-list .file.selected>span:last-of-type{text-decoration:none}
+#desktop .file-creating>span:last-of-type{will-change:clip-path}
+
+/* Expand control hit/hover squares around the unchanged 40px glyph centers. */
+#desktop #from #system-icons{left:0;top:56px;width:112px;grid-template-columns:56px 56px;grid-auto-rows:56px;gap:0}
+#desktop #from #system-icons .icon-button{width:56px;height:56px;padding:8px}
+#desktop #from #all-toggle{left:56px;bottom:-16px;width:56px;height:56px;padding:8px}
+
+#desktop .house-file-list[data-view="paragraph"] .file-creating .paragraph-name{display:inline-block!important;vertical-align:baseline;will-change:clip-path}
+
+/* SVG and CSS app marks share the FROM square bottom baseline. */
+#desktop #taskbar button[data-type^="app:"]{margin-top:10px}
