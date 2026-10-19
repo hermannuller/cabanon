@@ -2,30 +2,31 @@
 #wallpaper-canvas{position:absolute;inset:0;width:1920px;height:1080px;pointer-events:none;z-index:0}#files{z-index:1}
 #desktop .window.wall-app{border:0;min-width:1920px;min-height:1080px;resize:none;background:var(--l1)}
 #desktop .wall-app>.titlebar,#desktop .wall-app>.window-resize{display:none}
-#desktop .wall-app>.window-content{padding:0;margin:0;overflow:hidden;position:relative;font-family:JetBrainsWall,monospace}
+#desktop .wall-app>.window-content{padding:0;margin:0;overflow:hidden;position:relative;font-family:JetBrainsWall,SourceHan,monospace}
 .wall-canvas{display:block;width:1920px;height:1080px;touch-action:none;outline:0;cursor:crosshair}
 .wall-app[data-wall-mode="phone"] .wall-canvas{position:absolute;left:50%;top:0;transform:translateX(-50%);width:498.461538px;height:1080px;outline:1px solid var(--l4)}
-.wall-letter-prompt{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.wall-letter-prompt[hidden]{display:none}.wall-letter-prompt span{display:grid;place-items:center;width:224px;height:224px;background:var(--l5);color:var(--l1);font:800 128px/1 JetBrainsWall,monospace}
+.wall-letter-prompt{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}.wall-letter-prompt[hidden]{display:none}.wall-letter-prompt span{display:grid;place-items:center;width:224px;height:224px;background:var(--l5);color:var(--l1);font:800 128px/1 JetBrainsWall,SourceHan,monospace}
 #desktop:has(.wall-app:not([hidden])):not(:has(#from:not([hidden])))>#taskbar,#desktop:has(.wall-app:not([hidden])):not(:has(#from:not([hidden])))>#start{visibility:hidden}
 #desktop:has(.wall-app:not([hidden])):not(:has(#from:not([hidden])))::before{display:none}
 #desktop .wall-controls{min-width:480px;max-width:480px;min-height:972px;max-height:972px;resize:none}
-#desktop .wall-controls>.window-content{padding:16px;margin:0;overflow:hidden;font:14px/28px JetBrains,monospace}
+#desktop .wall-controls>.window-content{padding:16px;margin:0;overflow:hidden;font:14px/28px JetBrains,SourceHan,monospace}
 .wall-settings{display:flex;flex-direction:column}.wall-setting{display:grid!important;grid-template-columns:128px 104px 28px 1fr;align-items:center;gap:8px;height:56px;min-height:56px;margin:0!important}
-.wall-setting>span:first-child{text-align:right}.wall-setting>button{text-align:right;height:40px;padding:0;font:14px/28px JetBrains,monospace;color:var(--l5)}
-#desktop .wall-setting input{width:104px;height:40px;min-width:0;background:var(--l3);border:1px solid var(--l4);color:var(--l5);padding:4px 8px;font:14px/28px JetBrains,monospace;appearance:textfield}
-#desktop .wall-setting select{grid-column:2/-1;width:160px;height:40px;background:var(--l3);border:1px solid var(--l4);color:var(--l5);padding:4px 8px;font:14px/28px JetBrains,monospace;color-scheme:dark}
+.wall-setting>span:first-child{text-align:right}.wall-setting>button{text-align:right;height:40px;padding:0;font:14px/28px JetBrains,SourceHan,monospace;color:var(--l5)}
+#desktop .wall-setting input{width:104px;height:40px;min-width:0;background:var(--l3);border:1px solid var(--l4);color:var(--l5);padding:4px 8px;font:14px/28px JetBrains,SourceHan,monospace;appearance:textfield}
+#desktop .wall-setting select{grid-column:2/-1;width:160px;height:40px;background:var(--l3);border:1px solid var(--l4);color:var(--l5);padding:4px 8px;font:14px/28px JetBrains,SourceHan,monospace;color-scheme:dark}
 #desktop .wall-brush select{grid-column:3/-1;width:104px}
-.wall-setting input::-webkit-inner-spin-button{appearance:none}.wall-setting input[aria-invalid=true]{border-color:var(--red)}.wall-setting small{color:var(--l6);font:14px/28px JetBrains,monospace;white-space:nowrap}
-.wall-palette{grid-column:2/-1;display:flex;gap:6px}.wall-palette button{position:relative;width:20px;height:40px;min-width:20px;padding:0;text-align:center;background:none!important;border:0;color:var(--wall-swatch)!important;font:14px/28px JetBrains,monospace}.wall-palette button::after{content:'.';position:absolute;left:0;right:0;top:14px;color:var(--l5);visibility:hidden}.wall-palette button[aria-pressed=true]::after{visibility:visible}
+.wall-setting input::-webkit-inner-spin-button{appearance:none}.wall-setting input[aria-invalid=true]{border-color:var(--red)}.wall-setting small{color:var(--l6);font:14px/28px JetBrains,SourceHan,monospace;white-space:nowrap}
+.wall-palette{grid-column:2/-1;display:flex;gap:6px}.wall-palette button{position:relative;width:20px;height:40px;min-width:20px;padding:0;text-align:center;background:none!important;border:0;color:var(--wall-swatch)!important;font:14px/28px JetBrains,SourceHan,monospace}.wall-palette button::after{content:'.';position:absolute;left:0;right:0;top:14px;color:var(--l5);visibility:hidden}.wall-palette button[aria-pressed=true]::after{visibility:visible}
 .wall-palette button>span{display:block;width:14px;height:14px;margin:0 auto;background:var(--wall-swatch);font-size:0}
-.wall-action{height:56px;min-height:56px;width:128px;text-align:right;padding:0;font:14px/28px JetBrains,monospace;color:var(--l5)}.wall-action:disabled{color:var(--l6);cursor:default;background:none}
-.wall-targets{display:flex;align-items:center;gap:8px;grid-column:2/-1;color:var(--l6)}.wall-targets button{width:auto;height:40px;padding:0 8px;text-align:center;font:14px/28px JetBrains,monospace;color:var(--l6)}.wall-targets button[aria-pressed="true"]{color:var(--l5)}
+.wall-action{height:56px;min-height:56px;width:128px;text-align:right;padding:0;font:14px/28px JetBrains,SourceHan,monospace;color:var(--l5)}.wall-action:disabled{color:var(--l6);cursor:default;background:none}
+.wall-targets{display:flex;align-items:center;gap:8px;grid-column:2/-1;color:var(--l6)}.wall-targets button{width:auto;height:40px;padding:0 8px;text-align:center;font:14px/28px JetBrains,SourceHan,monospace;color:var(--l6)}.wall-targets button[aria-pressed="true"]{color:var(--l5)}
 #desktop .wall-disabled,#desktop .wall-disabled input{color:var(--l6);cursor:default}
 #desktop .wall-file-dialog>.window-content{display:flex;flex-direction:column;overflow:hidden;padding:0;margin:0;min-height:0}
 .wall-file-dialog>.titlebar{position:relative}.wall-file-dialog.code-mode>.titlebar{height:var(--code-height,112px)}.wall-file-dialog .window-title{flex:0 1 auto;min-width:0;padding-right:8px}.wall-file-dialog .window-title span{max-width:20ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .wall-chooser-list{flex:1;min-height:0;display:grid;grid-auto-flow:column;grid-auto-columns:280px;gap:0;align-content:start;justify-content:start;margin:16px 8px 8px 31px;overflow:auto;outline:0;scrollbar-width:thin;scrollbar-color:var(--l4) transparent}
-#desktop .wall-chooser-list .file{width:280px;height:56px;padding:8px 16px;display:flex;gap:16px;align-items:center;text-align:left;font:14px/28px JetBrains,monospace;color:var(--l5);overflow:hidden}
+#desktop .wall-chooser-list .file{width:280px;height:56px;padding:8px 16px;display:flex;gap:16px;align-items:center;text-align:left;font:14px/28px JetBrains,SourceHan,monospace;color:var(--l5);overflow:hidden}
 .wall-chooser-list .file>svg{width:24px;height:24px;flex-shrink:0;color:var(--l6)}.wall-chooser-list .file>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #desktop .wall-chooser-list .file.selected{background:var(--l5);color:var(--l2);text-decoration:none}#desktop .wall-chooser-list .file.selected>svg{color:var(--l2)!important}
 .wall-picker-footer{height:42px;min-height:42px;display:flex;align-items:center;gap:16px;padding:0 16px;background:var(--l3);border-top:1px solid var(--l4)}
-#desktop .wall-picker-footer input{flex:1;min-width:0;height:32px;padding:0 8px;border:1px solid var(--l4);background:var(--l2);color:var(--l5);font:14px/28px JetBrains,monospace}.wall-picker-footer button{height:40px;padding:0 16px;font:14px/28px JetBrains,monospace}
+#desktop .wall-picker-footer input{flex:1;min-width:0;height:32px;padding:0 8px;border:1px solid var(--l4);background:var(--l2);color:var(--l5);font:14px/28px JetBrains,SourceHan,monospace}.wall-picker-footer button{height:40px;padding:0 16px;font:14px/28px JetBrains,SourceHan,monospace}
+

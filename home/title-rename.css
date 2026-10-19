@@ -1,0 +1,1 @@
+.window-title>span:has(.title-name-input){display:inline-flex;align-items:center;min-width:0;overflow:visible}.window-title .title-name-input{font:inherit;color:inherit;line-height:inherit;background:transparent;border:0;border-bottom:1px solid var(--l6);padding:0;width:18ch;min-width:3ch;max-width:30vw}.window-title .title-name-extension{flex:none;color:var(--l6)}

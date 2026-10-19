@@ -48,4 +48,4 @@ window.routeFileHeaderDrag=function(drag,event){
  CabanonDragFeedback.present(event,'info');drag.specialDrop=()=>showFileBatchInfo(names);return true;
 };
 
-for(const type of ['dragend','pointercancel','blur'])addEventListener(type,()=>document.querySelector('.header-new-menu')?.remove(),true);
+for(const type of ['dragend','pointercancel','blur'])addEventListener(type,event=>{if(type==='blur'&&event.target!==window)return;document.querySelector('.header-new-menu')?.remove();},true);

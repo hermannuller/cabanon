@@ -14,14 +14,25 @@ function quitCurrentProgram(){
  const current=activeWindow;if(!current||current.hidden)return;
  const type=exitProgramType(current);
  const targets=[...windowMap.values()].filter(win=>exitProgramType(win)===type);
- const leave=()=>{for(const win of targets.reverse())if(win.isConnected)closeShortcutWindow(win);for(const win of windowMap.values())win.hidden=true;activeWindow=null;closePanels();renderTaskbar();};
- if(targets.some(exitHasUnsaved)){
-  confirmRemoval('Something unsaved, still leave',leave);
-  const message=document.querySelector('.removal-confirmation p');if(message)message.textContent='Something unsaved, still leave?';
- }else leave();
+ // Close one document at a time through its own save/quit/cancel flow.
+ // Auxiliary BERLIN windows are closed by their owning document.
+ closeDocumentWindows(targets);
+}
+function closeDocumentWindows(targets){
+ window.dispatchEvent(new Event('document-close-cancel'));
+ const queue=targets.filter(win=>!win.dataset.wallAux).reverse();
+ let observer=null,stopped=false;
+ const stop=()=>{stopped=true;observer?.disconnect();window.removeEventListener('document-close-cancel',stop);};
+ const next=()=>{if(stopped)return;const win=queue.shift();if(!win){stop();closePanels();renderTaskbar();return;}if(!win.isConnected){next();return;}
+ observer=new MutationObserver(()=>{if(!win.isConnected){observer.disconnect();next();}});
+ observer.observe($('#windows'),{childList:true,subtree:true});
+ closeShortcutWindow(win);
+ if(!win.isConnected){observer.disconnect();next();}
+ };
+ window.addEventListener('document-close-cancel',stop);next();
 }
 window.addEventListener('keydown',event=>{
- if(event.key==='Escape'&&event.target.matches('.save-entry-rename'))return;
+ if(event.key==='Escape'&&event.target.matches('.save-entry-rename,.title-name-input'))return;
  window.dismissWelcome?.();
  const escape=event.key==='Escape'&&!event.ctrlKey&&!event.altKey&&!event.metaKey;
  const menuWasOpen=!context.hidden;if(menuWasOpen)closeContext();if(escape&&menuWasOpen){event.preventDefault();event.stopImmediatePropagation();return;}
@@ -33,3 +44,5 @@ window.addEventListener('keydown',event=>{
  const confirmation=document.querySelector('.removal-confirmation');if(confirmation){confirmation.querySelector('[data-close-choice=cancel],[data-answer=no]')?.click();return;}
  const win=activeWindow;if(win&&!win.hidden)closeShortcutWindow(win);
 },true);
+
+

@@ -26,9 +26,9 @@ function unsyncFolder(path){
 
 function showHeaderNew(win,button){
  document.querySelector('.header-new-menu')?.remove();const menu=document.createElement('div');menu.className='header-new-menu';
- for(const [suffix,glyph]of [['/','folder'],['.txt','text'],['.md','text'],['.tsv','grid'],['.mp3','headphones'],['.zip','zip']]){const item=document.createElement('button');item.dataset.newExtension=suffix;item.dataset.newPath=win.dataset.fileBrowser;item.innerHTML=icon(glyph)+`<span>${suffix}</span>`;item.onclick=()=>{menu.remove();newFolderEntry(win.dataset.fileBrowser,suffix==='/'?null:suffix.slice(1));};menu.append(item);}
+ for(const [suffix,glyph]of [['/','folder'],['.txt','text'],['.wall','wall'],['.help','help']]){const item=document.createElement('button');item.dataset.newExtension=suffix;item.dataset.newPath=win.dataset.fileBrowser;item.innerHTML=icon(glyph)+`<span>${suffix==='/'?suffix:suffix.slice(1)}</span>`;item.onclick=()=>{menu.remove();newFolderEntry(win.dataset.fileBrowser,suffix==='/'?null:suffix.slice(1));};menu.append(item);}
  $('#desktop').append(menu);const d=$('#desktop').getBoundingClientRect(),r=button.getBoundingClientRect(),scale=d.width/1920;menu.style.left=(r.left-d.left)/scale+'px';menu.style.top=(r.bottom-d.top)/scale+'px';fitMenuToDesktop(menu);
- button.onpointerleave=e=>{if(!pointerFileDrag?.started&&!menu.contains(e.relatedTarget))menu.remove();};menu.onpointerleave=e=>{if(!pointerFileDrag?.started&&!button.contains(e.relatedTarget))menu.remove();};
+ let closeTimer;const cancelClose=()=>clearTimeout(closeTimer);const scheduleClose=()=>{cancelClose();closeTimer=setTimeout(()=>{if(!pointerFileDrag?.started&&!menu.matches(':hover')&&!button.matches(':hover'))menu.remove();},160);};button.onpointerenter=()=>{cancelClose();if(!menu.isConnected)showHeaderNew(win,button);};menu.onpointerenter=cancelClose;button.onpointerleave=scheduleClose;menu.onpointerleave=scheduleClose;
 }
 
 

@@ -16,7 +16,7 @@ const solidAppPaths={
  user:'M16 2a7 7 0 1 1 0 14 7 7 0 0 1 0-14M3 31c0-17 26-17 26 0z',
  zip:'M4 1h24v30H4zM14 1v4h4V1zM10 5v4h4V5zM14 9v4h4V9zM10 13v4h4v-4zM14 17v4h4v-4zM12 23v5h6v-5z'
 };
-function appIcon(glyph){const motion=motionAppIcon(glyph);if(motion)return motion;if(glyph==='colors')return '<span class="software-icon colors-icon" aria-hidden="true"></span>';const custom=customIconMarkup(glyph,'solid');if(!custom&&glyph==='wall')return '<svg class="software-icon" viewBox="0 0 32 32" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.4"><path d="M3 23C28 1 2 2 22 26S32 8 9 6 2 29 28 13 12 1 7 23 30 28 24 4M2 13Q29 28 17 3Q4 1 29 24"/></svg>';return custom?custom.replace(/<svg\b/,'<svg class="software-icon"'):`<svg class="software-icon" viewBox="0 0 32 32" aria-hidden="true"><path fill-rule="evenodd" d="${solidAppPaths[glyph]||solidAppPaths.text}"/></svg>`;}
+function appIcon(glyph){if(glyph==='mail')return cicadaIcon();const motion=motionAppIcon(glyph);if(motion)return motion;if(glyph==='colors')return '<span class="software-icon colors-icon" aria-hidden="true"></span>';const custom=customIconMarkup(glyph,'solid');if(!custom&&glyph==='wall')return '<svg class="software-icon" viewBox="0 0 32 32" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:1.4"><path d="M3 23C28 1 2 2 22 26S32 8 9 6 2 29 28 13 12 1 7 23 30 28 24 4M2 13Q29 28 17 3Q4 1 29 24"/></svg>';return custom?custom.replace(/<svg\b/,'<svg class="software-icon"'):`<svg class="software-icon" viewBox="0 0 32 32" aria-hidden="true"><path fill-rule="evenodd" d="${solidAppPaths[glyph]||solidAppPaths.text}"/></svg>`;}
 // The from panel contains direct controls; only desktop recent-file entries carry shortcut signs.
 renderPins=function(){baseRenderPins();$('#pinned').querySelectorAll('[data-app]').forEach(button=>{const app=apps.find(item=>item.name===button.dataset.app);button.innerHTML=`${appIcon(app.glyph)}<span>${app.name}</span>`;});};
 const outlinedRenderAll=renderAll;
@@ -24,3 +24,4 @@ renderAll=function(){outlinedRenderAll();$('#app-grid').querySelectorAll('[data-
 const standardCreateWindow=createWindow;
 createWindow=function(key,title,glyph,content){const win=standardCreateWindow(key,title,glyph,content);if(key.startsWith('app:')){const app=apps.find(app=>app.name===canonicalAppName(key.slice(4))),mark=win.querySelector('.window-title > svg,.window-title > .colors-icon,.window-title > .app-motion');if(mark)mark.outerHTML=appIcon(app?.glyph||glyph);}return win;};
 renderPins();renderDesktop();
+

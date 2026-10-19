@@ -3,7 +3,7 @@ Object.assign(paths,{trash:'M5 8h22M11 8V3h10v5M8 8l2 22h12l2-22M13 12v13M19 12v
 const inputMethods=[{id:'pinyin',name:'Microsoft Pinyin',short:'PY'},{id:'us',name:'US English',short:'EN'}];
 function initInteractionPrefs(){prefs.systemOrder ||= ['network','volume','desktop','folder','settings','phone','user','power'];prefs.trash ||= [];prefs.uninstalled ||= [];prefs.input ||= {current:'pinyin',default:'pinyin',enabled:['pinyin','us'],width:'Half-width',language:'Chinese',showWidth:true,showLanguage:true};prefs.trashSettings ||= {days:30,maxMB:1024};}
 paths.help='M5 2h16l6 6v22H5zM21 2v7h6M16 13v7M16 25h.1';
-function ensureHelp(){if(isOwner()&&!prefs.helpSeeded){prefs.helpSeeded=true;if(!prefs.files.includes('Cabanon.help!'))prefs.files.push('Cabanon.help!');prefs.recents.unshift({name:'Cabanon.help!',lastUsed:Date.now()});}}
+function ensureHelp(){if(isOwner()&&!prefs.helpSeeded){prefs.helpSeeded=true;if(!prefs.files.includes('Cabanon.help'))prefs.files.push('Cabanon.help');prefs.recents.unshift({name:'Cabanon.help',lastUsed:Date.now()});}}
 ensureHelp();
 initInteractionPrefs();
 const status=document.createElement('div');status.id='home-status';status.innerHTML='<span id="status-extra"></span><span id="status-ime"></span><time id="status-time"></time>';$('#desktop').append(status);

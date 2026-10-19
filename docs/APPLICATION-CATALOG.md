@@ -1,6 +1,6 @@
 # Application catalog — 2026-10-17
 
-Exactly 23 applications: MARATHON, TXT, PNYX, Ur, RIVER, THEN, COLORS, EMPTY, BLIND, STUFF, BERLIN, PEOPLE, DATE, TYPE, WHERE, DIAL, OUTSIDE, NEWS, STOCKS, CALC, OURDESIGN, HELP!, μmail.
+Exactly 23 applications: MARATHON, TXT, PNYX, Ur, RIVER, THEN, COLORS, EMPTY, BLIND, STUFF, BERLIN, PEOPLE, DATE, TYPE, WHERE, DIAL, OUTSIDE, NEWS, STOCKS, CALC, OURDESIGN, HELP, μmail.
 
 ## Preserved implementations
 
@@ -8,7 +8,7 @@ Exactly 23 applications: MARATHON, TXT, PNYX, Ur, RIVER, THEN, COLORS, EMPTY, BL
 - CALQ → CALC: working calculator, fixed dimensions and window behavior.
 - WALL → BERLIN: canvas editor, wallpaper, saved artwork and .wall/.pwall formats.
 - STUFF: existing ZIP viewer and archive operations; app entry lists ZIP documents.
-- HELP → HELP!: existing reader and shortcuts. .help → .help! migrates filenames and references without changing document contents.
+- HELP → HELP: existing reader and shortcuts. .help → .help migrates filenames and references without changing document contents.
 - File browsing, document reading/editing, file operations, settings and system controls remain available.
 - Removed catalog shells: LOGIC and AIR-EAR; MAP is replaced by WHERE. Existing .gri/.ear files remain intact and readable through the generic file reader.
 
@@ -23,4 +23,4 @@ The marker is temporary pending the user’s icon font. No new bespoke applicati
 
 ## Validation
 
-Application entry points, 23-name whitelist, capitalization, preserved configuration migration, .help! ownership/parser, existing help document migration and all settings sections were checked in a browser with no runtime errors.
+Application entry points, 23-name whitelist, capitalization, preserved configuration migration, .help ownership/parser, existing help document migration and all settings sections were checked in a browser with no runtime errors.

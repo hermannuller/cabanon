@@ -8,7 +8,7 @@ Recognized formats do not imply that unfinished readers, codecs or archive engin
 
 .docx, .xlsx, .ppt, .jpg, .pdf, .png.
 
-These files are retained, but their extensions now show the unknown-file SVG. Existing old-format new-file/demo entries are not silently renamed or removed. .skch files and their icon were explicitly removed separately. .help is the old extension already migrated to .help!.
+These files are retained, but their extensions now show the unknown-file SVG. Existing old-format new-file/demo entries are not silently renamed or removed. .skch files and their icon were explicitly removed separately. .help is the old extension already migrated to .help.
 
 ## Matching and UI
 

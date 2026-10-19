@@ -173,7 +173,7 @@ builders[CTX.DESKTOP_BG] = () => {
   const dir = sort?.direction === 'up' ? ' \u2191' : ' \u2193';
   const items = [
     ['Paste', () => { if (fileClipboard.length) fileClipboard.forEach(entry => transferFiles([entry.name], entry.parent, '/house', { action: 'copy' })); }, fileClipboard.length === 0],
-    ['New', () => newFolderEntry('/house')],
+    ['New', (_event,button) => showNewTypes(button,'/house')],
     ['Name' + (sort?.key === 'name' ? dir : ''), () => toggleDesktopSort('name')],
     ['Type' + (sort?.key === 'type' ? dir : ''), () => toggleDesktopSort('type')],
     ['Date' + (sort?.key === 'date' ? dir : ''), () => toggleDesktopSort('date')],
@@ -207,7 +207,7 @@ builders[CTX.FOLDER_BG] = (event, info) => {
     ['More\u2026', () => moreSorting(path)],
     pasteItem(path),
     ['Undo', () => undoFolderOperation()],
-    ['New', () => newFolderEntry(path)],
+    ['New', (_event,button) => showNewTypes(button,path)],
     ['Info', () => folderInfo(path)],
   ];
   items._markNames = [path];
@@ -612,7 +612,7 @@ showContext = function(event, passthroughItems) {
     button.setAttribute('role', 'menuitem');
     if (danger) button.className = 'danger';
     if (typeof action === 'function') {
-      button.onclick = clickEvent => { const submenu = label.startsWith('Select') || (label === 'Link' && resolved?.names); if (!submenu) closeContext(); action(clickEvent, button); };
+      button.onclick = clickEvent => { const submenu = label==='New' || label.startsWith('Select') || (label === 'Link' && resolved?.names); if (!submenu) closeContext(); action(clickEvent, button); };
     }
     context.append(button);
   });

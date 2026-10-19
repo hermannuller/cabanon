@@ -60,7 +60,7 @@ function openHouse(){
  createWindow('house','HOUSE','folder',`<h1>HOUSE</h1>${prefs.files.length?prefs.files.map(file=>`<button class="file" data-file-open="${escapeHTML(file)}">${icon(glyphFor(file))}<span>${escapeHTML(file)}</span></button>`).join(''):'<p class="muted">No files found.</p>'}`);
 }
 openFile=function(name){
- if(fileLeafName(name).toLowerCase()==='cabanon.help!'){recordRecent('Cabanon.help!');return openHelp();}
+ if(fileLeafName(name).toLowerCase()==='cabanon.help'){recordRecent('Cabanon.help');return openHelp();}
  if(fileIsFolder(name)){createWindow('file:'+name,'HOUSE '+name,'folder',`<h1>${escapeHTML(name)}</h1>${prefs.files.filter(file=>!fileIsFolder(file)).map(file=>`<button class="file" data-file-open="${escapeHTML(file)}">${icon(glyphFor(file))}<span>${escapeHTML(file)}</span></button>`).join('')||'<p class="muted">No files found.</p>'}`);return;}
  recordRecent(name);createWindow('file:'+name,fileLeafName(name),glyphFor(name),`<h1>${escapeHTML(fileLeafName(name))}</h1>`);
 };
