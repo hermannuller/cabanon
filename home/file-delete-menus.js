@@ -12,7 +12,7 @@ showContext=function(event,items){
   return;
  }
  if(!entry||[...context.children].some(button=>/^(delete|enter password)/i.test(button.textContent)))return;
- const button=document.createElement('button');button.textContent='Delete';button.setAttribute('role','menuitem');button.onclick=()=>{closeContext();confirmRemoval('Delete',()=>{if(entry.folder)folderDelete([entry.name],false);else deleteFile(entry.name);});};context.insertBefore(button,context.querySelector('.mark-swatches'));
+ const button=document.createElement('button');button.textContent='Delete';button.setAttribute('role','menuitem');button.onclick=()=>{closeContext();confirmRemoval('Delete',()=>performFileRemoval([entry.name],()=>{if(entry.folder)folderDelete([entry.name],false);else deleteFile(entry.name);}));};context.insertBefore(button,context.querySelector('.mark-swatches'));
 };
 const deleteWithShortcuts=deleteFile;
 deleteFile=function(name){

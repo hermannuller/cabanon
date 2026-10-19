@@ -68,3 +68,11 @@ The user explicitly requires separate click and drag hit areas. Read ../docs/FIL
 - All current and future Cabanon file first-Save/Save-As windows must use openSaveFileDialog in save-file-dialog.js. See ../docs/SAVE-FILE-DIALOG.md. Filter to applicationFileFormats plus navigation folders; support Delete-to-recycle within the list. MARATHON/CANAL is excluded until separately specified.
 
 - Every on/off control uses the shared paintOnOffToggle/settingTextToggle rendering: literal on/off stays fixed, active text is L5 and inactive text L6, only colors change. No swapping single on/off labels or checkbox exceptions. Mixed bulk states keep both dim with aria-pressed=mixed; first click sets all off. Preserve label position.
+
+- Closing an editor with unsaved document content must use confirmDocumentClose: wanna save on line 1, filename plus ? on line 2, save / quit / cancel. Focus save by default. Only close after confirmed save success; failed save or cancelled Save As leaves the document open. TXT, HELP, BERLIN and MARATHON share this prompt. File-location pickers themselves do not prompt.
+
+- Every user-visible file deletion must call performFileRemoval before mutating entries, including Delete/Shift+Delete, paragraph selection removal, batch/right-box actions and save-picker Delete. Keep rows mounted until the animation promise settles. Source removal during move/archive operations stays synchronous and is not a deletion gesture.
+
+- Paragraph view override: Enter always inserts a line break before the current/selected file, irrespective of caret position; repeated Enter moves it down another row. Double click opens the file, never selects its base name. F2 base-name selection is removed; use single-click base text for editing and suffix/icon for whole-file selection.
+
+- Save-file picker override: single selection only, no Ctrl/Shift multi-select or Ctrl+A selection. Entry context menu contains exactly rename / delete (lowercase). Inline rename uses commitFileRename; deletion keeps the filename-erasure animation before removal.

@@ -8,6 +8,10 @@ TXT：先用左键选中一段文字，再按住右键拖动选中文字。原�
 拖到 canal 入口：打开 MARATHON 最近编辑的文档并插入引用。
 不拖动时，右键菜单也提供发表到 RIVER、发送到 rive、引用到 MARATHON。
 
+RIVER、rive、MARATHON → TXT
+按住右键拖到 TXT 正文区，在 TXT 当前光标位置插入 ID、时间和正文，全部是纯文本，没有引用框或特殊格式。
+MARATHON 有选中文字时拖出选区，没有选区时拖出整篇正文。原文保留，TXT 内可撤销；只读 TXT 不接收。
+
 RIVER：按住右键拖动帖子文字。
 拖到 rive 入口：打开分享窗口并选择收件人。
 拖到 canal 入口：作为引用带入新的 MARATHON 文章。

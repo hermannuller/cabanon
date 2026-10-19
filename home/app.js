@@ -9,7 +9,7 @@ const paths = {
  desktop:'M3 4h26v18H3zM10 28h12M16 22v6',
  folder:'M2 8V5h11l4 4h13v19H2z',
  settings:'M13 2h6l1 5 4 2 4-2 3 5-4 3v4l4 3-3 5-4-2-4 2-1 5h-6l-1-5-4-2-4 2-3-5 4-3v-4l-4-3 3-5 4 2 4-2zM21 17a5 5 0 1 1-10 0 5 5 0 0 1 10 0',
- phone:'M8 2h16v28H8zM14 26h4',
+ phone:'M8 2h16v28H8zM16 24v3',
  user:'M22 9a6 6 0 1 1-12 0 6 6 0 0 1 12 0M4 30q0-13 12-13t12 13z',
  power:'M16 2v14M9 6a12 12 0 1 0 14 0',
  headphones:'M3 20v-6a13 13 0 0 1 26 0v6M3 16h6v13H3zM23 16h6v13h-6z',
@@ -57,7 +57,7 @@ function normalizeApplicationCatalog(profile){
  profile.appCatalogVersion=2;
 }
 apps.forEach(app=>{app.installed=Date.UTC(2026,9,16);app.baseUsage=0;});
-const sampleFiles = ['/cabanon','newta.show','ssc.md','samura.tsv','mart001.zip','/samura','mya.txt','m01.mp3','/Helllooo','Dario.txt','notes.txt','/books','/jobs','draft.md','sounds.mp3','index.tsv','/archive','readme.txt','plan.md','/some','letter.txt','newta.zip','/desktop','work.tsv','journal.txt','/projects','ideas.md'];
+const sampleFiles = ['/cabanon','/samura','/Helllooo','/books','/jobs','/archive','/desktop','/projects'];
 // Supported formats are independent of the single default app selected in Setting.
 const applicationFileFormats=Object.freeze({MARATHON:['.txt','.md','.html'],TXT:['.txt'],PNYX:['.show'],Ur:['.tsv'],RIVER:[],THEN:['.plan'],COLORS:['.mp3','.flac','.wav','.srt','.vtt','.lrc'],EMPTY:['.mp3','.flac','.wav','.srt','.vtt','.lrc'],BLIND:['.html'],STUFF:['.zip','.7z','.tar.gz','.bz2','.xz','.rar'],BERLIN:['.wall','.pwall'],CARE:['.vcf'],DATE:['.ics'],TYPE:['.ttf','.otf','.woff2'],WHERE:[],DIAL:[],OUTSIDE:[],NEWS:['.rss','.xml'],STOCKS:[],CALC:[],OutDesign:['.out'],'HELP!':['.help!'],CICADA:[]});
 const knownFileExtensions=Object.freeze([...new Set(Object.values(applicationFileFormats).flat())].sort((a,b)=>b.length-a.length));
@@ -154,7 +154,7 @@ function positionFlyout(button){
 const originalShowFlyout=showFlyout;
 showFlyout=function(kind,button){originalShowFlyout(kind,button);positionFlyout(button);};
 new ResizeObserver(()=>{if(flyoutSource){const button=document.querySelector(`[data-system="${flyoutSource}"]`);if(button)positionFlyout(button);}}).observe($('#from'));
-$('#system-icons').onclick=event=>{const button=event.target.closest('[data-system]');if(!button)return;const kind=button.dataset.system;if(kind==='desktop'){closePanels();windowMap.forEach(win=>win.hidden=true);activeWindow=null;}else if(kind==='folder')openApp('FILE');else if(kind==='settings')openSettings();else if(kind==='network')openSystem('NETWORK');else if(kind==='phone')openSystem('PHONE');else if(kind==='user')openUsers();else showFlyout(kind,button);};
+$('#system-icons').onclick=event=>{const button=event.target.closest('[data-system]');if(!button)return;const kind=button.dataset.system;if(kind==='desktop'){closePanels();windowMap.forEach(win=>win.hidden=true);activeWindow=null;}else if(kind==='folder')openFolderBrowser('/house');else if(kind==='settings')openSettings();else if(kind==='network')openSystem('NETWORK');else if(kind==='phone')openSystem('PHONE');else if(kind==='user')openUsers();else showFlyout(kind,button);};
 $('#flyout').onpointerleave=()=>{$('#flyout').hidden=true;flyoutSource=null;};
 $('#system-icons').addEventListener('pointerleave',event=>{if(!$('#flyout').contains(event.relatedTarget)){$('#flyout').hidden=true;flyoutSource=null;}});
 document.addEventListener('click',event=>{const app=event.target.closest('[data-app]');if(app)openApp(app.dataset.app);const folder=event.target.closest('[data-folder]');if(folder)openFile(folder.dataset.folder);const network=event.target.closest('[data-network]');if(network){prefs.network=network.dataset.network;save();showFlyout('network',document.querySelector('[data-system=network]'));}const system=event.target.closest('[data-open]');if(system)openSystem(system.dataset.open);const power=event.target.closest('[data-power]');if(power)powerAction(power.dataset.power);if(event.target===$('#desktop'))closePanels();});

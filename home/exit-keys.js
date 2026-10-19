@@ -21,6 +21,7 @@ function quitCurrentProgram(){
  }else leave();
 }
 window.addEventListener('keydown',event=>{
+ if(event.key==='Escape'&&event.target.matches('.save-entry-rename'))return;
  window.dismissWelcome?.();
  const escape=event.key==='Escape'&&!event.ctrlKey&&!event.altKey&&!event.metaKey;
  const menuWasOpen=!context.hidden;if(menuWasOpen)closeContext();if(escape&&menuWasOpen){event.preventDefault();event.stopImmediatePropagation();return;}
@@ -29,6 +30,6 @@ window.addEventListener('keydown',event=>{
  event.preventDefault();event.stopImmediatePropagation();if(event.repeat)return;
  if(escape&&window.CabanonDragFeedback?.cancelActive())return;
  if(quit){if(!document.querySelector('.removal-confirmation'))quitCurrentProgram();return;}
- const confirmation=document.querySelector('.removal-confirmation');if(confirmation){confirmation.querySelector('[data-answer=no]')?.click();return;}
+ const confirmation=document.querySelector('.removal-confirmation');if(confirmation){confirmation.querySelector('[data-close-choice=cancel],[data-answer=no]')?.click();return;}
  const win=activeWindow;if(win&&!win.hidden)closeShortcutWindow(win);
 },true);

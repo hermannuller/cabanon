@@ -61,11 +61,11 @@ function wallCanEnter(path,action){
  if(!isOwner()&&prefs.folderPermissions?.[path]==='owner'){warning('Access denied.');return false;}
  return true;
 }
-function wallSaveTo(state,path,name){
+function wallSaveTo(state,path,name,onSaved){
  name=CabanonFilenames.require(name);if(name===null)return;
  if(state.model.settings.mode==='phone'&&!name.toLowerCase().endsWith('.pwall'))name=name.replace(/\.[^.]*$/,'')+'.pwall';
  name=CabanonFilenames.require(name);if(name===null)return;
- if(!wallCanEnter(path,()=>wallSaveTo(state,path,name)))return;
+ if(!wallCanEnter(path,()=>wallSaveTo(state,path,name,onSaved)))return;
  const existing=prefs.entries.find(e=>e.parent===path&&CabanonFilenames.key(fileLeafName(e.name))===CabanonFilenames.key(name));
  if(existing?.readOnly){warning('Read only');return;}
  if(existing?.folder){warning('A folder already uses this name.');return;}
@@ -77,11 +77,11 @@ function wallSaveTo(state,path,name){
    if(!entry){entry=CabanonCreation.create(path,{name,extension:knownFileExtension(name).slice(1),metadata:{wall:true},reveal:false});if(!entry)return;}
    const data=JSON.stringify(state.model.serialize());entry.wall=true;entry.modified=Date.now();entry.size=new TextEncoder().encode(data).length;(prefs.content ||= {})[entry.name]=data;state.file=entry.name;state.modeFiles[state.model.settings.mode]=entry.name;prefs.wallLastFile=entry.name;noteFileMutationPath(path);persistProfiles();refreshBrowsers([path]);
   });
-  wallRemember(state);recordRecent(state.file);wallClose(state.picker);state.picker=null;
+  wallRemember(state);recordRecent(state.file);wallClose(state.picker);state.picker=null;onSaved?.();
  };
  if(existing&&existing.name!==state.file)confirmRemoval('Replace '+name,commit);else commit();
 }
-function wallSave(state,as=false){if(as){wallPicker(state,'save');return;}if(typeof wallUpdateSaveButton==='function'){wallUpdateSaveButton(state);if(!state.wallDirty)return;}const entry=prefs.entries.find(e=>e.name===state.file&&!e.folder);if(entry)wallSaveTo(state,entry.parent,fileLeafName(entry.name));else wallPicker(state,'save');}
+function wallSave(state,as=false,onSaved){if(as){wallPicker(state,'save',onSaved);return;}if(typeof wallUpdateSaveButton==='function'){wallUpdateSaveButton(state);if(!state.wallDirty)return;}const entry=prefs.entries.find(e=>e.name===state.file&&!e.folder);if(entry)wallSaveTo(state,entry.parent,fileLeafName(entry.name),onSaved);else wallPicker(state,'save',onSaved);}
 function wallAux(win){win.dataset.ownerApp='BERLIN';win.dataset.wallAux='true';win.querySelectorAll('[data-win=min],[data-win=max]').forEach(node=>node.remove());renderTaskbar();}
 function wallSyncControls(){
  const win=wallState?.controls;if(!win?.isConnected)return;const model=wallState.model;
@@ -124,9 +124,9 @@ function wallControls(state,x,y){
  });wallSyncControls();
 }
 function wallPickerFilter(name,value){value=value.trim().toLowerCase();if(!value||value==='.*all')return true;name=name.toLowerCase();if(value.startsWith('*.'))return name.endsWith(value.slice(1));if(value.startsWith('.'))return name.endsWith(value);return name===value;}
-function wallPicker(state,mode){
+function wallPicker(state,mode,onSaved){
  wallClose(state.picker);
- if(mode==='save'){const source=prefs.entries.find(e=>e.name===state.file);const win=openSaveFileDialog({key:'wall:picker:save',initialPath:source?.parent||'/house',filename:state.file?fileLeafName(state.file):wallDefaultName(state),extensions:applicationFileFormats.BERLIN,onSave:(path,name)=>wallSaveTo(state,path,name)});state.picker=win;wallAux(win);win.dataset.wallPicker='save';return win;}
+ if(mode==='save'){const source=prefs.entries.find(e=>e.name===state.file);const win=openSaveFileDialog({key:'wall:picker:save',initialPath:source?.parent||'/house',filename:state.file?fileLeafName(state.file):wallDefaultName(state),extensions:applicationFileFormats.BERLIN,onSave:(path,name)=>wallSaveTo(state,path,name,onSaved)});state.picker=win;wallAux(win);win.dataset.wallPicker='save';return win;}
  const win=createWindow('wall:picker:'+mode,'/house','folder','<div class="wall-chooser-list" role="listbox" tabindex="0"></div><footer class="wall-picker-footer"><input aria-label="'+(mode==='save'?'File name':'File filter')+'"><button>'+mode+'</button></footer>');
  state.picker=win;wallAux(win);win.classList.add('wall-file-dialog');win.dataset.wallPicker=mode;win.dataset.codeFileKey='wall:picker';win.wallHistory={paths:['/house'],index:0};win.wallPath='/house';win.wallSelected=null;
  const bar=document.createElement('div');bar.className='folder-header-actions';
@@ -169,7 +169,7 @@ function openWall(restore=true){
  if(!model)try{model=prefs.wallDraft?new WallDocument(prefs.wallDraft):new WallDocument();}catch{model=new WallDocument();}
  const win=createWindow('app:BERLIN','BERLIN','wall','<canvas class="wall-canvas" width="1920" height="1080" tabindex="0" aria-label="BERLIN character canvas"></canvas><div class="wall-letter-prompt" hidden><span></span></div>');win.classList.add('wall-app');win.dataset.ownerApp='BERLIN';Object.assign(win.style,{left:'0px',top:'0px',width:'1920px',height:'1080px'});
  const canvas=win.querySelector('canvas'),state={win,canvas,model,cache:new Map(),dirty:new Set(),full:true,frame:0,file,modeFiles:{[model.settings.mode]:file},modeDrafts:{},controls:null,picker:null,last:null,pointer:null,undo:null,strokeBefore:null,strokeChanged:false};wallState=state;
- const close=win.querySelector('[data-win=close]'),previous=close.onclick;close.onclick=()=>{wallHideLetter(state);wallRemember(state);if(state.frame)cancelAnimationFrame(state.frame);wallOwnedClose();wallState=null;previous();renderTaskbar();};
+ const close=win.querySelector('[data-win=close]'),previous=close.onclick;close.onclick=()=>{const finish=()=>{wallHideLetter(state);wallRemember(state);if(state.frame)cancelAnimationFrame(state.frame);wallOwnedClose();wallState=null;previous();renderTaskbar();};wallUpdateSaveButton(state,state.model.serialize());if(state.wallDirty)confirmDocumentClose(state.file?fileLeafName(state.file):'new',done=>wallSave(state,false,done),finish);else finish();};
  const index=event=>{const rect=canvas.getBoundingClientRect();return state.model.hit((event.clientX-rect.left)*state.model.canvasWidth/rect.width,(event.clientY-rect.top)*state.model.canvasHeight/rect.height);};
  function paintStroke(next){const changed=state.model.stroke(state.last,next);if(changed.length&&!state.strokeChanged){wallSetUndo(state,state.strokeBefore);state.strokeChanged=true;}wallQueue(state,changed);state.last=next;}
  canvas.addEventListener('pointerdown',event=>{if(event.button!==0||prefs.entries.find(e=>e.name===state.file)?.readOnly)return;event.preventDefault();focusWindow(win);canvas.focus({preventScroll:true});state.pointer=event.pointerId;state.last=index(event);state.strokeBefore=wallCapture(state);const before=state.strokeBefore,undo=state.undo,tools={brush:state.model.brush,bucket:state.model.bucket,color:state.model.color};window.CabanonGestureCancel?.rollback(()=>{state.model=new WallDocument(before.document);Object.assign(state.model,tools);state.undo=undo;state.cache.clear();prefs.wallpaper=before.wallpaper;wallQueue(state);wallDesktop();wallRemember(state);wallSyncControls();});state.strokeChanged=false;canvas.setPointerCapture(event.pointerId);paintStroke(state.last);});

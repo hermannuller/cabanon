@@ -56,6 +56,8 @@
 #desktop .file.selected{background:transparent;color:var(--interaction-ink)}
 #desktop .file.selected>svg,#desktop .file.selected>.file-icon{color:var(--interaction-ink)!important}
 #desktop .file.selected>span:last-of-type{text-decoration:underline;text-underline-offset:3px}
+#desktop #files .file.selected>span:last-of-type{text-decoration:none}
+#desktop .warning-popup{background:var(--l9);color:var(--l5)}
 #desktop .file-removing{pointer-events:none}
 #desktop .file-removing>span:last-of-type{will-change:clip-path}
 #desktop .file-delete-text-done>svg,#desktop .file-delete-text-done>.file-icon{visibility:hidden}

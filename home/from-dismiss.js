@@ -1,4 +1,6 @@
 'use strict';
+window.addEventListener('contextmenu',event=>{if(!event.target.closest('#start'))return;event.preventDefault();event.stopImmediatePropagation();closeContext();},true);
+window.addEventListener('contextmenu',event=>{if(!event.target.closest('#system-icons'))return;event.preventDefault();event.stopImmediatePropagation();closeContext();openSettings('welcome','greeting');},true);
 function dismissFrom(){ $('#from').hidden=true;$('#flyout').hidden=true;flyoutSource=null;$('#start').setAttribute('aria-expanded','false'); }
 document.addEventListener('click',event=>{
  if($('#from').hidden||event.target.closest('#start'))return;
