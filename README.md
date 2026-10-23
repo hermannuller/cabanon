@@ -1,12 +1,11 @@
 # Cabanon
 
-Cabanon 是一个使用 Electron 构建的桌面环境原型。主要界面、应用和交互代码位于 `home/`。
+Cabanon is a mobile/desktop operating system prototype built with Electron. The main interface, application, and interaction code are located in `home/`。
 
-目前包含文件夹与虚拟文件管理、TXT 纯文本编辑器、BERLIN 壁纸编辑器、HELP 文档，以及 RIVER、rive、CANAL 和 MARATHON 的原型功能。尚未完成的应用保留占位入口。
+It includes features such as folder and virtual file management, a TXT plain text editor, the BERLIN wallpaper editor, a HELP documentation app, as well as prototype functionality for RIVER, rive, CANAL, and MARATHON. Incomplete applications retain placeholder entry points.
 
-## 启动
-
-安装 Node.js 后，在项目目录运行：
+## Getting Started
+After installing Node.js, run the following commands in the project directory:
 
 ```sh
 cd home
@@ -14,17 +13,17 @@ npm install
 npm start
 ```
 
-Windows 上完成依赖安装后，也可双击 `home/start.cmd`。程序使用 PowerShell 辅助处理 Windows 键。
+The application uses PowerShell to help handle the Windows key.
 
-## 目录
+## index
 
-- `home/`：Electron 应用、界面、字体和图标。
-- `docs/`：功能规范、交互约定和界面参考。
-- 根目录的 Markdown 文件：设计方案与规范。
-- `paragraph-explorer/`：早期独立段落文件管理器原型。
+- `home/`: Electron app, user interface, fonts, and icons.
+- `docs/`: Feature specifications, interaction conventions, and UI references.
+- Markdown files in the root directory: Design plans and specifications.
+- `paragraph-explorer/`: An early standalone paragraph file manager prototype.
 
-## 数据
+## DATA
 
-虚拟文件、账户设置和草稿保存在本机应用存储中，与源码仓库分开。上传代码不会备份这些个人数据。Windows 默认数据目录为 `%APPDATA%\Cabanon OS Prototype`。
+Virtual files, account settings, and drafts are saved in local application storage, separate from the source code repository. Uploading code will not back up this personal data. The default data directory on Windows is `%APPDATA%\Cabanon OS Prototype`。
 
-RIVER、rive 等交互目前属于本机原型，不代表已经接入真实在线服务。当前项目仍在开发中。
+Interactions such as RIVER and rive are currently local prototypes and do not represent connections to live online services. The project is actively under development.
