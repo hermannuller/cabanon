@@ -33,7 +33,7 @@ function renderDesktop(){
 }
 function recordRecent(name){name=fileCanonicalName(name);if(fileIsFolder(name))return;prefs.recents=prefs.recents.filter(item=>item.name!==name);prefs.recents.unshift({name,lastUsed:Date.now()});if(!prefs.files.includes(name))prefs.files.push(name);persistProfiles();renderDesktop();}
 const baseRenderPins=renderPins;
-renderPins=function(){baseRenderPins();$('#pinned').querySelectorAll('[data-app]').forEach(button=>{const app=apps.find(app=>app.name===button.dataset.app);button.innerHTML=`${shortcutGlyph(app.glyph)}<span>${app.name}</span>`;});$('#folders').querySelectorAll('[data-folder]').forEach(button=>{button.innerHTML=`${shortcutGlyph('folder')}<span>${escapeHTML(button.dataset.folder)}</span>`;});};
+renderPins=function(){baseRenderPins();$('#pinned').querySelectorAll('[data-app]').forEach(button=>{const app=apps.find(app=>app.name===button.dataset.app);button.innerHTML=`${shortcutGlyph(app.glyph)}<span>${escapeHTML(appLabel(app.name))}</span>`;});$('#folders').querySelectorAll('[data-folder]').forEach(button=>{button.innerHTML=`${shortcutGlyph('folder')}<span>${escapeHTML(button.dataset.folder)}</span>`;});};
 function refreshUserIcon(){const button=$('[data-system=user]');button.innerHTML=icon(isOwner()?'owner':'user');button.title=isOwner()?'Owner':'Guest';button.setAttribute('aria-label',button.title);}
 function switchUser(target){
  if(target===activeProfile){openAccount();return;}

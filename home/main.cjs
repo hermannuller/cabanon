@@ -56,6 +56,20 @@ app.whenReady().then(() => {
   const win = new BrowserWindow({ icon: path.join(__dirname, 'from-app.png'), width: 1920, height: 1080, fullscreen: true, frame: false, backgroundColor: '#0e100f', webPreferences: { preload: path.join(__dirname, 'preload.cjs'), contextIsolation: true, nodeIntegration: false, sandbox: true } });
   mainWindow = win;
   win.removeMenu();
+  // Consume F8 before Chromium can interpret F1 as Help or F8 as debugging.
+  let deviceKeyHeld = false;
+  win.webContents.on('before-input-event', (event, input) => {
+    if (input.key === 'F8') {
+      deviceKeyHeld = input.type === 'keyDown';
+      event.preventDefault();
+    } else if (deviceKeyHeld && ['F1', 'F2'].includes(input.key)) {
+      event.preventDefault();
+      if (input.type === 'keyDown' && !input.isAutoRepeat) {
+        win.webContents.executeJavaScript("window.dispatchEvent(new CustomEvent('cabanon-device-mode',{detail:" + JSON.stringify(input.key === 'F1' ? 'pc' : 'phone') + "}))").catch(console.error);
+      }
+    }
+  });
+  win.on('blur', () => { deviceKeyHeld = false; });
   win.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
   win.webContents.on('will-navigate', event => event.preventDefault());
   ipcMain.on('home:close', () => win.close());

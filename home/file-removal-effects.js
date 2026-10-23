@@ -1,4 +1,5 @@
 'use strict';
+const FILE_REMOVAL_CHARACTER_MS=10;
 const pendingFileRemovals=new Set(),fileRemovalEffects=new Set();
 function cancelPendingFileRemovals(){if(!fileRemovalEffects.size)return false;for(const effect of fileRemovalEffects){effect.cancelled=true;for(const {animation}of effect.animations)animation.cancel();}return true;}
 let removalMeasureCanvas;
@@ -11,7 +12,7 @@ function performFileRemoval(names,action){
   const text=label.textContent,chars=removalSegmenter?[...removalSegmenter.segment(text)].map(part=>part.segment):Array.from(text);if(!chars.length)continue;
   const style=getComputedStyle(label),width=label.getBoundingClientRect().width;measure.font=style.fontWeight+' '+style.fontSize+' '+style.fontFamily;const spacing=parseFloat(style.letterSpacing)||0,frames=[];
   for(let count=chars.length;count>=0;count--){const remaining=chars.slice(0,count).join(''),ink=count?measure.measureText(remaining).width+Math.max(0,count-1)*spacing:0;frames.push({clipPath:'inset(0 '+Math.max(0,width-Math.min(width,ink))+'px 0 0)',offset:(chars.length-count)/chars.length,easing:'steps(1,end)'});}
-  row.classList.add('file-removing');decorated.push(row);const animation=label.animate(frames,{duration:chars.length*10,fill:'forwards'});animations.push({animation,row});
+  row.classList.add('file-removing');decorated.push(row);const animation=label.animate(frames,{duration:chars.length*FILE_REMOVAL_CHARACTER_MS,fill:'forwards'});animations.push({animation,row});
  }
  if(!animations.length)return action();
  const effect={animations,cancelled:false,profile:activeProfile};fileRemovalEffects.add(effect);

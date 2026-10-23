@@ -9,13 +9,13 @@ function exitHasUnsaved(win){
  if([...win.querySelectorAll('button')].some(button=>!button.disabled&&(/^(save|save id|save changes)$/i.test(button.textContent.trim()))))return true;
  return !!win.querySelector('.setting-dialog')&&exitDrafts.has(win)&&exitDrafts.get(win)!==exitDraftSignature(win);
 }
-function exitProgramType(win){const key=win.dataset.key;return key.startsWith('wall:')||win.dataset.ownerApp==='BERLIN'?'app:BERLIN':key.startsWith('setting-dialog:')?'system:settings':windowType(key,win);}
+function exitProgramType(win){const key=win.dataset.key;return key.startsWith('wall:')||win.dataset.ownerApp==='WALL'?'app:WALL':key.startsWith('setting-dialog:')?'system:settings':windowType(key,win);}
 function quitCurrentProgram(){
  const current=activeWindow;if(!current||current.hidden)return;
  const type=exitProgramType(current);
  const targets=[...windowMap.values()].filter(win=>exitProgramType(win)===type);
  // Close one document at a time through its own save/quit/cancel flow.
- // Auxiliary BERLIN windows are closed by their owning document.
+ // Auxiliary WALL windows are closed by their owning document.
  closeDocumentWindows(targets);
 }
 function closeDocumentWindows(targets){

@@ -78,3 +78,9 @@ The user explicitly requires separate click and drag hit areas. Read ../docs/FIL
 - Save-file picker override: single selection only, no Ctrl/Shift multi-select or Ctrl+A selection. Entry context menu contains exactly rename / delete (lowercase). Inline rename uses commitFileRename; deletion keeps the filename-erasure animation before removal.
 
 - Title rename: double-click only the rendered name text of a real file or folder to edit inline. Software titles and blank/icon hit areas keep their existing behavior; /house is fixed. Lock the original file extension outside the editable input. Enter commits through commitFileRename, Escape cancels, read-only/collisions remain enforced. Preserve stable IDs, content and descendant paths. Shared implementation: title-rename.js/css.
+
+- Application display names have one source: application-names.js. Keep IDs, saved keys and routing stable; all PC/Phone labels, search/sort names, titles and authored app messages use appLabel/appText. Future renames edit only registry values, never global text replacement. Do not rewrite user files. Regression: tmp/application-names-check.cjs.
+
+- All Cabanon UI controls use square corners. Rounded geometry is permitted only within intentionally drawn symbols, not button/input surfaces. Phone Home short tap always restores normal home at scroll zero; search keyboard pointer events must not reach homepage gesture recognition.
+
+- Software-level changes are shared by PC and Phone: display names, canonical icons, action availability and removal policy must use one source and update both surfaces. Only layout/typography may be device-specific unless the user explicitly requests an exception. applicationNoRemove in application-names.js is the shared no-remove table (initially TIME, DATE); all software menus place remove last and protected software must also reject direct uninstall/removal gestures. See ../docs/APPLICATION-CATALOG.md.

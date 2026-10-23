@@ -74,16 +74,4 @@
 /* COLORS is the playback-only exception, independent of focus and hover. */
 :root.colors-playing :is(#from #pinned,#taskbar) .colors-icon{animation:colors-gently-shift 12s linear infinite}
 @media(prefers-reduced-motion:reduce){:root.colors-playing :is(#from #pinned,#taskbar) .colors-icon{animation:none;background:#da766e}}
-/* CICADA: bare daily silhouette; hover previews incoming-mail ripples. */
-.cicada-icon{pointer-events:none;overflow:hidden;fill:none!important;stroke:none!important}
-.cicada-mail{display:none}
-:is([data-app="CICADA"],#taskbar>button,.window-title):hover>.cicada-icon .cicada-normal{display:none}
-:is([data-app="CICADA"],#taskbar>button,.window-title):hover>.cicada-icon .cicada-mail{display:inline}
-.cicada-ring{transform-origin:18px 18px;animation:cicada-ripple 3s linear infinite paused}
-.cicada-ring:nth-child(1){animation-delay:-2s}.cicada-ring:nth-child(2){animation-delay:-1s}
-:is([data-app="CICADA"],#taskbar>button,.window-title):hover>.cicada-icon .cicada-ring{animation-play-state:running}
-@keyframes cicada-ripple{0%{transform:scale(0);opacity:.7}100%{transform:scale(22.08);opacity:0}}
-/* Match the shared icon palette; the authored white/black are palette inks. */
-.cicada-icon{color:var(--l6)!important}
-:is([data-app="CICADA"],[data-setting-app="CICADA"],#taskbar>button,.window-title):hover .cicada-icon{color:var(--l5)!important}
 

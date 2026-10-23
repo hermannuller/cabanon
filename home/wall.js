@@ -82,7 +82,7 @@ function wallSaveTo(state,path,name,onSaved){
  if(existing&&existing.name!==state.file)confirmRemoval('Replace '+name,commit);else commit();
 }
 function wallSave(state,as=false,onSaved){if(as){wallPicker(state,'save',onSaved);return;}if(typeof wallUpdateSaveButton==='function'){wallUpdateSaveButton(state);if(!state.wallDirty)return;}const entry=prefs.entries.find(e=>e.name===state.file&&!e.folder);if(entry)wallSaveTo(state,entry.parent,fileLeafName(entry.name),onSaved);else wallPicker(state,'save',onSaved);}
-function wallAux(win){win.dataset.ownerApp='BERLIN';win.dataset.wallAux='true';win.querySelectorAll('[data-win=min],[data-win=max]').forEach(node=>node.remove());renderTaskbar();}
+function wallAux(win){win.dataset.ownerApp='WALL';win.dataset.wallAux='true';win.querySelectorAll('[data-win=min],[data-win=max]').forEach(node=>node.remove());renderTaskbar();}
 function wallSyncControls(){
  const win=wallState?.controls;if(!win?.isConnected)return;const model=wallState.model;
  for(const input of win.querySelectorAll('[data-wall-field]')){const key=input.dataset.wallField;input.value=key==='brush'||key==='bucket'?model[key]:model.settings[key];input.removeAttribute('aria-invalid');}
@@ -100,7 +100,7 @@ function wallControls(state,x,y){
  const target='<div class="wall-setting"><span>for</span><div class="wall-targets"><button data-wall-mode="pc" aria-label="PC wallpaper">PC</button><span aria-hidden="true">/</span><button data-wall-mode="phone" aria-label="Phone wallpaper">PHONE</button></div></div>';
  const brush='<label class="wall-setting wall-brush"><span>brush</span><input type="text" data-wall-field="brush" aria-label="brush"><select data-wall-field="brushSize" aria-label="brush size">'+[1,3,5,7,9].map(size=>'<option value="'+size+'">'+size+'×'+size+'</option>').join('')+'</select></label>';
  const html='<div class="wall-settings">'+target+field('margin','margin','px','<400')+brush+'<div class="wall-setting"><button data-wall-action="bucket">bucket!</button><input type="text" data-wall-field="bucket" aria-label="bucket"><span></span><small></small></div>'+weight+field('fontSize','font size','px','<73')+field('spacing','spacing','%','<10000')+field('height','height','','<1000')+'<div class="wall-setting"><span>color</span><div class="wall-palette">'+colors+'</div></div>'+field('opacity','opacity','%','0–100')+['undo','as my desk!','save','save as...','open...','quit'].map((text,i)=>'<button class="wall-action" data-wall-action="'+['undo','desk','save','save-as','open','quit'][i]+'">'+text+'</button>').join('')+'</div>';
- const win=createWindow('wall:controls','BERLIN','wall',html);state.controls=win;wallAux(win);win.classList.add('wall-controls');win.dataset.fixedSize='true';win.querySelectorAll('.window-resize').forEach(node=>node.remove());Object.assign(win.style,{width:'480px',height:'972px',left:Math.max(0,Math.min(1440,x))+'px',top:Math.max(0,Math.min(108,y))+'px'});
+ const win=createWindow('wall:controls',appLabel('WALL'),'wall',html);state.controls=win;wallAux(win);win.classList.add('wall-controls');win.dataset.fixedSize='true';win.querySelectorAll('.window-resize').forEach(node=>node.remove());Object.assign(win.style,{width:'480px',height:'972px',left:Math.max(0,Math.min(1440,x))+'px',top:Math.max(0,Math.min(108,y))+'px'});
  win.querySelector('.window-title').ondblclick=e=>e.stopPropagation();
  for(const input of win.querySelectorAll('[data-wall-field]')){
   const key=input.dataset.wallField;
@@ -126,7 +126,7 @@ function wallControls(state,x,y){
 function wallPickerFilter(name,value){value=value.trim().toLowerCase();if(!value||value==='.*all')return true;name=name.toLowerCase();if(value.startsWith('*.'))return name.endsWith(value.slice(1));if(value.startsWith('.'))return name.endsWith(value);return name===value;}
 function wallPicker(state,mode,onSaved){
  wallClose(state.picker);
- if(mode==='save'){const source=prefs.entries.find(e=>e.name===state.file);const win=openSaveFileDialog({key:'wall:picker:save',initialPath:source?.parent||'/house',filename:state.file?fileLeafName(state.file):wallDefaultName(state),extensions:applicationFileFormats.BERLIN,onSave:(path,name)=>wallSaveTo(state,path,name,onSaved)});state.picker=win;wallAux(win);win.dataset.wallPicker='save';return win;}
+ if(mode==='save'){const source=prefs.entries.find(e=>e.name===state.file);const win=openSaveFileDialog({key:'wall:picker:save',initialPath:source?.parent||'/house',filename:state.file?fileLeafName(state.file):wallDefaultName(state),extensions:applicationFileFormats.WALL,onSave:(path,name)=>wallSaveTo(state,path,name,onSaved)});state.picker=win;wallAux(win);win.dataset.wallPicker='save';return win;}
  const win=createWindow('wall:picker:'+mode,'/house','folder','<div class="wall-chooser-list" role="listbox" tabindex="0"></div><footer class="wall-picker-footer"><input aria-label="'+(mode==='save'?'File name':'File filter')+'"><button>'+mode+'</button></footer>');
  state.picker=win;wallAux(win);win.classList.add('wall-file-dialog');win.dataset.wallPicker=mode;win.dataset.codeFileKey='wall:picker';win.wallHistory={paths:['/house'],index:0};win.wallPath='/house';win.wallSelected=null;
  const bar=document.createElement('div');bar.className='folder-header-actions';
@@ -157,7 +157,7 @@ function wallPicker(state,mode,onSaved){
   list.style.gridTemplateRows='repeat('+Math.max(1,Math.floor(list.clientHeight/56))+',56px)';
  }
  input.oninput=()=>{if(mode==='open'){win.wallSelected=null;render();}};
- function commit(){if(mode==='save'){if(win.querySelector('footer button').disabled)return;wallSaveTo(state,win.wallPath,input.value);return;}const entry=prefs.entries.find(e=>e.parent===win.wallPath&&e.name===(win.wallSelected||input.value.trim())&&wallSupported(e));if(entry)wallOpenEntry(entry);else warning('Select a WALL file.');}
+ function commit(){if(mode==='save'){if(win.querySelector('footer button').disabled)return;wallSaveTo(state,win.wallPath,input.value);return;}const entry=prefs.entries.find(e=>e.parent===win.wallPath&&e.name===(win.wallSelected||input.value.trim())&&wallSupported(e));if(entry)wallOpenEntry(entry);else warning(appText('Select a WALL file.'));}
  input.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();e.stopPropagation();commit();}};win.querySelector('footer button').onclick=commit;list.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();const entry=prefs.entries.find(item=>item.name===win.wallSelected);if(entry?.folder)navigate(folderPath(entry.name));else commit();}};
  observeWindowResize(win,list,()=>{list.style.gridTemplateRows='repeat('+Math.max(1,Math.floor(list.clientHeight/56))+',56px)';});render();input.focus();return win;
 }
@@ -165,9 +165,9 @@ function openWall(restore=true){
  if(wallState?.win.isConnected){wallState.win.hidden=false;focusWindow(wallState.win);return wallState;}
  let model,file=null;const last=restore?(prefs.wallLastFile?prefs.entries.find(e=>e.name===prefs.wallLastFile&&wallSupported(e)):prefs.entries.filter(e=>e.wall&&e.modified&&wallSupported(e)).sort((a,b)=>b.modified-a.modified)[0]):null;
  if(last&&!wallCanEnter(last.parent,()=>openWall()))return;
- if(last){try{model=new WallDocument(JSON.parse(prefs.content?.[last.name]||''));file=last.name;prefs.wallLastFile=file;persistProfiles();}catch{warning('Unable to open the last saved WALL file.');}}
+ if(last){try{model=new WallDocument(JSON.parse(prefs.content?.[last.name]||''));file=last.name;prefs.wallLastFile=file;persistProfiles();}catch{warning(appText('Unable to open the last saved WALL file.'));}}
  if(!model)try{model=prefs.wallDraft?new WallDocument(prefs.wallDraft):new WallDocument();}catch{model=new WallDocument();}
- const win=createWindow('app:BERLIN','BERLIN','wall','<canvas class="wall-canvas" width="1920" height="1080" tabindex="0" aria-label="BERLIN character canvas"></canvas><div class="wall-letter-prompt" hidden><span></span></div>');win.classList.add('wall-app');win.dataset.ownerApp='BERLIN';Object.assign(win.style,{left:'0px',top:'0px',width:'1920px',height:'1080px'});
+ const win=createWindow('app:WALL','WALL','wall','<canvas class="wall-canvas" width="1920" height="1080" tabindex="0" aria-label="WALL character canvas"></canvas><div class="wall-letter-prompt" hidden><span></span></div>');win.querySelector('.wall-canvas').setAttribute('aria-label',appLabel('WALL')+' character canvas');win.querySelector('.wall-canvas').setAttribute('aria-label',appLabel('WALL')+' character canvas');win.classList.add('wall-app');win.dataset.ownerApp='WALL';Object.assign(win.style,{left:'0px',top:'0px',width:'1920px',height:'1080px'});
  const canvas=win.querySelector('canvas'),state={win,canvas,model,cache:new Map(),dirty:new Set(),full:true,frame:0,file,modeFiles:{[model.settings.mode]:file},modeDrafts:{},controls:null,picker:null,last:null,pointer:null,undo:null,strokeBefore:null,strokeChanged:false};wallState=state;
  const close=win.querySelector('[data-win=close]'),previous=close.onclick;close.onclick=()=>{const finish=()=>{wallHideLetter(state);wallRemember(state);if(state.frame)cancelAnimationFrame(state.frame);wallOwnedClose();wallState=null;previous();renderTaskbar();};wallUpdateSaveButton(state,state.model.serialize());if(state.wallDirty)confirmDocumentClose(state.file?fileLeafName(state.file):'new'+(state.model.settings.mode==='phone'?'.pwall':'.wall'),done=>wallSave(state,false,done),finish);else finish();};
  const index=event=>{const rect=canvas.getBoundingClientRect();return state.model.hit((event.clientX-rect.left)*state.model.canvasWidth/rect.width,(event.clientY-rect.top)*state.model.canvasHeight/rect.height);};
@@ -178,12 +178,12 @@ function openWall(restore=true){
  for(const name of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(name,release);
  wallQueue(state);canvas.focus({preventScroll:true});renderTaskbar();return state;
 }
-const wallPriorApp=openApp;openApp=function(name){if(name!=='BERLIN')return wallPriorApp(name);if(prefs.uninstalled.includes(name))return;prefs.usage.BERLIN=(prefs.usage.BERLIN||0)+1;persistProfiles();closePanels();openWall();};
+const wallPriorApp=openApp;openApp=function(name){if(name!=='WALL')return wallPriorApp(name);if(prefs.uninstalled.includes(name))return;prefs.usage.WALL=(prefs.usage.WALL||0)+1;persistProfiles();closePanels();openWall();};
 const wallPriorFile=openFile;openFile=function(name,...args){const entry=prefs.entries.find(e=>e.name===name);if(entry&&wallSupported(entry))return wallOpenEntry(entry);return wallPriorFile(name,...args);};
 const wallPriorCode=toggleCode;toggleCode=function(win,on=!win.classList.contains('code-mode')){if(!win.dataset.wallPicker)return wallPriorCode(win,on);win.classList.toggle('code-mode',on);if(on){win.querySelector('.code-line').textContent=win.wallPath;win.resizeCode();win.querySelector('.code-line').focus();}else win.querySelector('.wall-chooser-list').focus({preventScroll:true});};
 const wallPriorGroups=taskGroups;taskGroups=function(){const groups=wallPriorGroups();for(const [type,members]of groups){const filtered=members.filter(item=>!item.win.dataset.wallAux);if(filtered.length)groups.set(type,filtered);else groups.delete(type);}return groups;};
 const wallPriorWindowType=windowType;windowType=function(key,win){return win.dataset.ownerApp?'app:'+win.dataset.ownerApp:wallPriorWindowType(key,win);};
-const wallPriorTaskbar=renderTaskbar;renderTaskbar=function(){wallPriorTaskbar();if(activeWindow?.dataset.wallAux&&!activeWindow.hidden){const button=taskbar.querySelector('[data-type="app:BERLIN"]');button?.classList.add('current');button?.setAttribute('aria-pressed','true');}};
+const wallPriorTaskbar=renderTaskbar;renderTaskbar=function(){wallPriorTaskbar();if(activeWindow?.dataset.wallAux&&!activeWindow.hidden){const button=taskbar.querySelector('[data-type="app:WALL"]');button?.classList.add('current');button?.setAttribute('aria-pressed','true');}};
 const wallPriorFocus=focusWindow;focusWindow=function(win){wallPriorFocus(win);if(win===wallState?.win)for(const panel of windowMap.values())if(panel.dataset.wallAux&&!panel.hidden)panel.style.zIndex=++zIndex;};
 const wallPriorMove=startWindowMove;startWindowMove=function(win,handle,event){return win.dataset.fixedSize?moveWithoutSnap(win,handle,event):wallPriorMove(win,handle,event);};
 window.addEventListener('contextmenu',event=>{
@@ -195,7 +195,7 @@ window.addEventListener('contextmenu',event=>{
 window.addEventListener('pointerdown',event=>{if(event.button===0||event.button===2)wallHideLetter(wallState);},true);
 window.addEventListener('keydown',event=>{
  const saveState=wallState;if(saveState&&(activeWindow===saveState.win||activeWindow===saveState.controls)&&event.ctrlKey&&!event.altKey&&!event.metaKey&&['s','o'].includes(event.key.toLowerCase())){event.preventDefault();event.stopImmediatePropagation();if(event.key.toLowerCase()==='s')wallSave(saveState,event.shiftKey);else wallPicker(saveState,'open');return;}
- const undoState=wallState;if(undoState&&activeWindow?.dataset.ownerApp==='BERLIN'&&event.ctrlKey&&!event.shiftKey&&!event.altKey&&!event.metaKey&&event.key.toLowerCase()==='z'&&!event.target.closest('input,textarea,[contenteditable="true"]')){event.preventDefault();event.stopImmediatePropagation();if(undoState.pointer===null)wallUndo(undoState);return;}
+ const undoState=wallState;if(undoState&&activeWindow?.dataset.ownerApp==='WALL'&&event.ctrlKey&&!event.shiftKey&&!event.altKey&&!event.metaKey&&event.key.toLowerCase()==='z'&&!event.target.closest('input,textarea,[contenteditable="true"]')){event.preventDefault();event.stopImmediatePropagation();if(undoState.pointer===null)wallUndo(undoState);return;}
  const state=wallState;if(!state||activeWindow!==state.win||event.target.closest('input,textarea,[contenteditable="true"]'))return;
  if(event.ctrlKey||event.altKey||event.metaKey||wallLetters(event.key).length!==1)return;
  event.preventDefault();state.model.brush=event.key;wallShowLetter(state,event.key);wallSyncControls();wallRemember(state);

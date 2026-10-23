@@ -221,9 +221,10 @@ builders[CTX.FROM_APP] = (event, info) => {
   return [
     ['Open', () => openApp(name)],
     [pinned ? 'Unlink' : 'Link', () => { if (pinned) { prefs.pins = prefs.pins.filter(i => i !== name); } else { prefs.pins.push(name); } persistProfiles(); renderPins(); }],
-    ['Reinstall', () => { closePanels(); reinstallApp(name); }],
+    ['remove', () => { closePanels(); removeApplication(name); }],
     ['Info', () => showInfo(name)],
     ['Setting', () => openSpecificSettings(name)],
+    ...(canRemoveApplication(name)?[['remove', () => { closePanels(); removeApplication(name); }]]:[]),
   ];
 };
 
@@ -354,9 +355,10 @@ builders[CTX.ALL_APP] = (event, info) => {
   return [
     ['Open', () => { closePanels(); openApp(name); }],
     [pinned ? 'Unlink' : 'Link', () => { if (pinned) prefs.pins = prefs.pins.filter(i => i !== name); else prefs.pins.push(name); persistProfiles(); renderPins(); }],
-    ['Reinstall', () => { closePanels(); reinstallApp(name); }],
+    ['remove', () => { closePanels(); removeApplication(name); }],
     ['Info', () => showInfo(name)],
     ['Setting', () => openSpecificSettings(name)],
+    ...(canRemoveApplication(name)?[['remove', () => { closePanels(); removeApplication(name); }]]:[]),
   ];
 };
 

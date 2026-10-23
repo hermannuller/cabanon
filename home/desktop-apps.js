@@ -3,8 +3,8 @@ $('#file-search').setAttribute('aria-label','Search applications and files');
 $('#file-search').oninput=()=>{
  initInteractionPrefs();const query=$('#file-search').value.trim().toLowerCase();$('#from').classList.toggle('searching-files',Boolean(query));const results=$('#file-results');results.hidden=!query;
  const parsed=fileSearchQuery(query),files=[...new Set([...prefs.files,...prefs.folders])].filter(name=>fileSearchMatch(name,parsed));
- const software=parsed.color?[]:apps.filter(app=>!prefs.uninstalled.includes(app.name)&&app.name.toLowerCase().includes(query));
- results.innerHTML=software.map(app=>`<button class="file search-software" data-app="${app.name}">${appIcon(app.glyph)}<span>${app.name}</span></button>`).join('')+files.map(name=>`<button class="file" data-search-file="${escapeHTML(name)}">${icon(glyphFor(name))}<span>${escapeHTML(name)}</span></button>`).join('')||'<p class="muted">No results found.</p>';
+ const software=parsed.color?[]:apps.filter(app=>!prefs.uninstalled.includes(app.name)&&appLabel(app.name).toLowerCase().includes(query));
+ results.innerHTML=software.map(app=>`<button class="file search-software" data-app="${app.name}">${appIcon(app.glyph)}<span>${escapeHTML(appLabel(app.name))}</span></button>`).join('')+files.map(name=>`<button class="file" data-search-file="${escapeHTML(name)}">${icon(glyphFor(name))}<span>${escapeHTML(name)}</span></button>`).join('')||'<p class="muted">No results found.</p>';
 };
 const priorOpenApp=openApp;
 openApp=function(name){if(name!=='CALC'){priorOpenApp(name);return;}prefs.usage.CALC=(prefs.usage.CALC||0)+1;persistProfiles();openCalculator();};
