@@ -153,3 +153,5 @@
 
 
 #desktop button.save-clean:disabled{color:var(--l6)!important;cursor:default}
+
+#context-menu button.application-remove,#context-menu button.application-remove:hover,#context-menu button.application-remove:focus{background:var(--red);color:var(--l5)}

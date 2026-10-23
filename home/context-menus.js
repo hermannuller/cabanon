@@ -221,7 +221,6 @@ builders[CTX.FROM_APP] = (event, info) => {
   return [
     ['Open', () => openApp(name)],
     [pinned ? 'Unlink' : 'Link', () => { if (pinned) { prefs.pins = prefs.pins.filter(i => i !== name); } else { prefs.pins.push(name); } persistProfiles(); renderPins(); }],
-    ['remove', () => { closePanels(); removeApplication(name); }],
     ['Info', () => showInfo(name)],
     ['Setting', () => openSpecificSettings(name)],
     ...(canRemoveApplication(name)?[['remove', () => { closePanels(); removeApplication(name); }]]:[]),
@@ -355,7 +354,6 @@ builders[CTX.ALL_APP] = (event, info) => {
   return [
     ['Open', () => { closePanels(); openApp(name); }],
     [pinned ? 'Unlink' : 'Link', () => { if (pinned) prefs.pins = prefs.pins.filter(i => i !== name); else prefs.pins.push(name); persistProfiles(); renderPins(); }],
-    ['remove', () => { closePanels(); removeApplication(name); }],
     ['Info', () => showInfo(name)],
     ['Setting', () => openSpecificSettings(name)],
     ...(canRemoveApplication(name)?[['remove', () => { closePanels(); removeApplication(name); }]]:[]),
@@ -613,6 +611,7 @@ showContext = function(event, passthroughItems) {
     button.textContent = label;
     button.setAttribute('role', 'menuitem');
     if (danger) button.className = 'danger';
+    if(label==='remove'&&(resolved?.type===CTX.FROM_APP||resolved?.type===CTX.ALL_APP))button.classList.add('application-remove');
     if (typeof action === 'function') {
       button.onclick = clickEvent => { const submenu = label==='New' || label.startsWith('Select') || (label === 'Link' && resolved?.names); if (!submenu) closeContext(); action(clickEvent, button); };
     }

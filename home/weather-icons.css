@@ -1,0 +1,7 @@
+.weather-symbol{width:28px;height:28px;flex-shrink:0;pointer-events:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+#widgets [data-widget="weather"] .widget-detail{gap:8px}
+.phone-widget-icon.weather-symbol{width:24px;height:24px}
+.weather-main .phone-widget-icon.weather-symbol{width:36px;height:36px}
+#desktop #from [data-widget="weather"] .widget-value{display:flex;align-items:center;gap:14px;font-size:28px;font-weight:100;line-height:44px}
+#desktop #from [data-widget="weather"] .weather-symbol{width:36px;height:36px}
+#phone{--weather-paper:var(--l1)}

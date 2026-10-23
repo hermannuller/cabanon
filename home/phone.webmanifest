@@ -1,0 +1,12 @@
+{
+  "id": "/phone/",
+  "name": "Cabanon Phone",
+  "short_name": "Cabanon",
+  "start_url": "/phone/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0e100f",
+  "theme_color": "#0e100f",
+  "icons": [{"src":"/from-app.png","sizes":"256x256","type":"image/png","purpose":"any"}]
+}

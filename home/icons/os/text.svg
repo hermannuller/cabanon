@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" data-authored-icon="text" aria-hidden="true" style="fill:currentColor;stroke:currentColor;stroke-width:1;stroke-linejoin:round;paint-order:stroke fill;pointer-events:none"><polygon style="fill:none;stroke:currentColor;stroke-linejoin:bevel;stroke-miterlimit:10;;stroke-width:2.5" points="7,2 7,34.9 24.2,34.9 24.2,27.8 31.3,27.8 31.3,2 "/>
+<line style="fill:none;stroke:currentColor;stroke-linejoin:bevel;stroke-miterlimit:10;;stroke-width:2.5" x1="24.2" y1="34.9" x2="31.3" y2="27.7"/>
+<g>
+	<path d="M14.3,16h-1.1V7.8h-2.9v-1h6.9v1h-2.9V16z"/>
+	<path d="M24.7,11.1l3.1,4.8h-1.3L24,12L21.7,16h-1.3l3.1-4.9l-2.9-4.3h1.3l2.3,3.5l2.2-3.5h1.3L24.7,11.1z"/>
+	<path d="M14.3,29.6h-1.1v-8.1h-2.9v-1h6.9v1h-2.9V29.6z"/>
+</g></svg>

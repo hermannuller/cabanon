@@ -23,7 +23,7 @@ const paths = {
  chat:'M2 3h28v20H11l-9 7zM7 9h18M7 16h12',
  zip:'M4 2h24v28H4zM14 2v4h4v4h-4v4h4v4h-4v4h4v6h-4'
 };
-const icon = name => motionAppIcon(name)||(name==='colors'?'<span class="colors-icon" aria-hidden="true"></span>':customIconMarkup(name,'outline')||`<svg viewBox="0 0 32 32" aria-hidden="true"><path d="${paths[name] || paths.text}"/></svg>`);
+const icon = name => motionAppIcon(name)||(name==='colors'?'<span class="colors-icon" aria-hidden="true"></span>':customIconMarkup(name==='volume'&&typeof prefs!=='undefined'&&prefs.volume===0?'mute':name,'outline')||`<svg viewBox="0 0 32 32" aria-hidden="true"><path d="${paths[name] || paths.text}"/></svg>`);
 const apps = [
  ['MARATHON','text'],['TXT','text'],['POINT','text'],['Ur','text'],['RIVER','river'],['THEN','text'],['COLORS','text'],['EMPTY','unfinished'],['LINE','blind'],['ZIP','zip'],['WALL','wall'],['CARE','user'],['DATE','text'],['TYPE','text'],['WHERE','globe'],['DIAL','text'],['WEATHER','text'],['NEWS','text'],['STOCKS','text'],['CALC','calculator'],['OutDesign','text'],['HELP','help'],['ASTRO','unfinished'],['TIME','unfinished']
 ].map(([name,glyph])=>({name,glyph:({MARATHON:'marathon',LINE:'blind',POINT:'pnyx',DIAL:'dial',Ur:'ur',WALL:'berlin',WHERE:'where',EMPTY:'empty','HELP':'help-app'})[name]||(name==='COLORS'?'colors':['MARATHON','RIVER','ZIP','WALL','CALC','HELP','TXT'].includes(name)?glyph:'unfinished'),implemented:['MARATHON','RIVER','ZIP','WALL','CALC','HELP','TXT'].includes(name)}));
@@ -136,7 +136,7 @@ $('#files').ondblclick=event=>{const item=event.target.closest('[data-file]');if
 function updateTime(){const now=new Date();$('#time').textContent=now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});$('#date').textContent=`${String(now.getFullYear()).slice(2)}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getDate()).padStart(2,'0')}`;$('#weekday').textContent=now.toLocaleDateString('en-US',{weekday:'long'});}
 updateTime();
 const systemItems=[['network','Network'],['volume','Volume'],['desktop','Desktop'],['folder','File manager'],['settings','Settings'],['phone','Phone'],['user','Users'],['power','Power']];
-$('#system-icons').innerHTML=systemItems.map(([name,title])=>`<button class="icon-button" data-system="${name}" aria-label="${title}" title="${title}">${icon(name)}</button>`).join('');
+$('#system-icons').innerHTML=systemItems.map(([name,title])=>`<button class="icon-button" data-system="${name}" aria-label="${title}" title="${title}">${icon(name==='folder'?'house':name)}</button>`).join('');
 function showFlyout(kind,button){
  const fly=$('#flyout');flyoutSource=kind;fly.hidden=false;
  if(kind==='network'){
@@ -145,7 +145,7 @@ function showFlyout(kind,button){
   const outputs=['Headphone Realtek 23026','SONOS KV455','Norik Display'];
   fly.innerHTML=`<div class="volume-row">${icon('volume')}<div id="volume-shade" role="slider" tabindex="0" aria-label="Volume" aria-valuemin="0" aria-valuemax="100"></div><span id="volume-percent"></span></div>${outputs.map((name,index)=>`<button data-output="${name}" class="${(prefs.output||outputs[0])===name?'chosen':''}" aria-pressed="${(prefs.output||outputs[0])===name}" title="${['Wired','Bluetooth','Device'][index]}">${icon(['wired','bluetooth','desktop'][index])}<span>${name}</span></button>`).join('')}`;
   const shade=$('#volume-shade');
-  const paint=()=>{const steps=Math.max(0,Math.min(20,Math.round(prefs.volume/5)));prefs.volume=steps*5;shade.textContent='▓'.repeat(steps)+'░'.repeat(20-steps);shade.setAttribute('aria-valuenow',prefs.volume);$('#volume-percent').textContent=prefs.volume+'%';};
+  const paint=()=>{const steps=Math.max(0,Math.min(20,Math.round(prefs.volume/5)));prefs.volume=steps*5;shade.textContent='▓'.repeat(steps)+'░'.repeat(20-steps);shade.setAttribute('aria-valuenow',prefs.volume);$('#volume-percent').textContent=prefs.volume+'%';const volumeButton=$('[data-system=volume]');if(volumeButton)volumeButton.innerHTML=icon('volume');const volumeMark=shade.parentElement.querySelector('svg');if(volumeMark)volumeMark.outerHTML=icon('volume');};
   const change=event=>{const rect=shade.getBoundingClientRect();prefs.volume=Math.max(0,Math.min(20,Math.round((event.clientX-rect.left)/rect.width*20)))*5;paint();save();};
   paint();
   shade.onpointerdown=event=>{if(event.button!==0)return;event.preventDefault();const before=prefs.volume;window.CabanonGestureCancel?.rollback(()=>{prefs.volume=before;paint();save();});shade.setPointerCapture(event.pointerId);change(event);};

@@ -1,0 +1,21 @@
+/* Shared information-widget typography for FROM and Phone. */
+:root{--info-widget-width:168px;--info-widget-large:28px;--info-widget-small:14px;--info-widget-tracking:normal}
+#phone{--phone-label-width:var(--info-widget-width);--phone-font-large:var(--info-widget-large)}
+#phone .phone-widget,#desktop #from .widget{letter-spacing:var(--info-widget-tracking);word-spacing:normal}
+#phone .phone-widget{font-size:var(--info-widget-small)}
+#desktop #from .system{width:297px}
+#desktop #from #widgets,#desktop #from .widget{width:var(--info-widget-width)}
+#desktop #from .widget{padding:6px 0 0;text-align:left;font:400 var(--info-widget-small)/20px JetBrains,SourceHan,monospace}
+#desktop #from .widget-value,#desktop #from [data-widget="weather"] .widget-value{height:50px;display:flex;align-items:flex-start;gap:14px;font:100 var(--info-widget-large)/44px JetBrains,monospace;letter-spacing:var(--info-widget-tracking)}
+#desktop #from .widget-detail{height:56px;align-items:flex-start;padding-top:6px;justify-content:flex-start;font:400 var(--info-widget-small)/20px JetBrains,SourceHan,monospace}
+#desktop #from .widget-calendar{font:400 var(--info-widget-small)/20px JetBrains,SourceHan,monospace}
+#desktop #from .widget-period{font:100 var(--info-widget-large)/44px JetBrains,monospace}
+#desktop #from::before{left:336px}
+#desktop #file-search{width:304px}
+#desktop #file-results{left:353px}
+
+#desktop #from #widgets{max-height:calc(100% - 56px);overflow-y:auto!important;scrollbar-width:thin}
+#desktop #from .shared-info-widget{display:block;padding:0;font:400 14px/20px JetBrains,SourceHan,monospace;letter-spacing:normal}
+#desktop #from .shared-info-widget .phone-widget-big{font:100 28px/44px JetBrains,monospace}
+#desktop #from .shared-info-widget .phone-widget-icon.weather-symbol{width:24px;height:24px}
+#desktop #from .shared-info-widget .weather-main .weather-symbol{width:36px;height:36px}

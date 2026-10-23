@@ -7,6 +7,7 @@
  root.innerHTML='<header class="phone-status"><time></time><span class="phone-battery"></span></header><main class="phone-page"></main><article class="phone-app" hidden></article><section class="phone-search" hidden><div class="phone-search-bar"><input class="phone-search-input" placeholder="Search" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div><div class="phone-search-results"></div><div class="phone-keyboard" hidden></div></section><footer class="phone-footer"><button class="phone-group-target" aria-label="Group or ungroup" hidden><span class="phone-group-mark" aria-hidden="true"></span></button><button class="phone-home" aria-label="Home"></button></footer>';
  document.body.append(root);
  const chevron=document.createElement('div');chevron.className='phone-chevron';chevron.setAttribute('aria-hidden','true');root.append(chevron);const reachBlank=document.createElement('button');reachBlank.className='phone-reach-blank';reachBlank.setAttribute('aria-label','Restore full screen');reachBlank.hidden=true;reachBlank.onclick=()=>restoreShift();root.append(reachBlank);
+ root.querySelector('.phone-battery').outerHTML=icon('battery').replace('<svg ','<svg class="phone-battery" ');
  const page=root.querySelector('.phone-page'), appView=root.querySelector('.phone-app');
  const pullHint=document.createElement('div');pullHint.className='phone-pull-hint';pullHint.textContent='↓ Search';pullHint.hidden=true;root.append(pullHint);
  function paintPull(distance){const value=Math.max(0,Math.min(distance,SEARCH_DRAG+ROW));root.classList.toggle('pulling',value>0);page.style.translate=value?'0 '+value+'px':'';pullHint.hidden=!value;pullHint.style.height=value+'px';}
@@ -41,7 +42,7 @@
   if(elapsed>=1000+(longest+1)*FILE_REMOVAL_CHARACTER_MS){stopIconPreview();render();}
  }
  function previewIcons(){stopIconPreview();iconPreviewAt=performance.now();render();const tick=()=>{paintIconPreview();if(iconPreviewAt!==null)iconFrame=requestAnimationFrame(tick);};iconFrame=requestAnimationFrame(tick);}
- const phoneApps=()=>[...apps.filter(a=>!(prefs.uninstalled||[]).includes(a.name)),{name:'/HOUSE',glyph:'folder',path:'/house'}];
+ const phoneApps=()=>[...apps.filter(a=>!(prefs.uninstalled||[]).includes(a.name)),{name:'/HOUSE',glyph:'house',path:'/house'}];
  function state(){
   const s=prefs.phone ||= {items:[]};s.items ||= [];
   phoneApps().forEach((app,i)=>{if(s.items.some(item=>item.id===app.name))return;let col=Math.floor(i/15),row=i%15;if(col>1){const ends=[0,1].map(c=>Math.max(0,...s.items.filter(item=>!item.removed&&item.col===c).map(item=>item.row+item.size)));col=ends[0]<=ends[1]?0:1;row=ends[col];}s.items.push({id:app.name,col,row,size:1,pinned:false,removed:false});});
@@ -66,7 +67,7 @@
  function pinSpot(item,size=item.size){const row=Math.max(0,Math.min(LIMIT-size,Math.round(visibleRow(item))));if(freePinned(item,item.col,row,size))return{col:item.col,row};for(let r=0;r<=LIMIT-size;r++)for(let c=0;c<2;c++)if(freePinned(item,c,r,size))return{col:c,row:r};return null;}
  function closeMenu(){root.querySelector('.phone-menu')?.remove();}
  function closeDialog(){root.querySelector('.phone-dialog-shade')?.remove();}
- function notice(text,action){closeMenu();closeDialog();render();const shade=document.createElement('div');shade.className='phone-dialog-shade';shade.innerHTML='<div class="phone-dialog" role="alertdialog" aria-modal="true"><p></p><div></div></div>';shade.querySelector('p').textContent=text;const controls=shade.querySelector('div>div');for(const [label,fn]of action?[['yes',()=>{closeDialog();action();}],['no',closeDialog]]:[['ok',closeDialog]]){const b=document.createElement('button');b.textContent=label;b.onclick=fn;controls.append(b);}root.append(shade);}
+ function notice(text,action){closeMenu();closeDialog();render();const shade=document.createElement('div');shade.className='phone-dialog-shade';shade.innerHTML='<div class="phone-dialog" role="alertdialog" aria-modal="true"><p></p><div></div></div>';shade.querySelector('p').textContent=text;const controls=shade.querySelector('.phone-dialog > div');controls.className='phone-dialog-actions';for(const [label,fn]of action?[['YES',()=>{closeDialog();action();}],['NO',closeDialog]]:[['OK',closeDialog]]){const b=document.createElement('button');b.textContent=label;b.onclick=fn;controls.append(b);}if(action){controls.classList.add('two-options');const labels=document.createElement('span');labels.className='phone-dialog-option-labels';labels.setAttribute('aria-hidden','true');labels.textContent='YES'+' '.repeat(10)+'NO';controls.append(labels);}root.append(shade);}
  function capacity(){notice('pinned '+LIMIT+' is max, unpin some apps or make x2/x3/x4 be smaller.');}
  function pin(item){
   closeMenu();if(item.pinned){changeLayout(()=>{item.pinned=false;item.row+=Math.round(scroll/ROW);item.size=1;});return;}
@@ -83,7 +84,7 @@
   }
  }
 
- function remove(item){if(!item.members&&!canRemoveApplication(item.id))return;closeMenu();notice('remove '+name(item)+'?',()=>changeLayout(()=>{item.removed=true;item.pinned=false;if(!item.members&&item.id!=='/HOUSE')uninstallApplication(item.id);}));}
+ function remove(item){if(!item.members&&!canRemoveApplication(item.id))return;closeMenu();notice('remove '+name(item)+'?',()=>{if(!item.members){if(item.id!=='/HOUSE')uninstallApplication(item.id);return;}changeLayout(()=>{item.removed=true;item.pinned=false;});});}
  function renameGroup(item){
   closeMenu();closeDialog();const shade=document.createElement('div');shade.className='phone-dialog-shade';
   const form=document.createElement('form');form.className='phone-rename';form.setAttribute('aria-label','Rename group');
@@ -108,15 +109,15 @@
    const el=document.createElement('div');el.className='phone-container'+(item.pinned?' pinned':'')+(selected.has(item.id)?' selected':'');el.dataset.id=item.id;el.dataset.col=item.col;el.style.left=(LEFT+item.col*COL)+'px';el.style.top=(visibleRow(item)*ROW)+'px';el.style.setProperty('--rows',item.size);el.style.setProperty('--pin-inset',(LEFT+item.col*COL-item.col*W/2)+'px');el.style.setProperty('--selection-inset',(LEFT+item.col*COL-item.col*W/2)+'px');
    const label=document.createElement('span');label.className='phone-name';paintName(label,item);el.append(label);if(iconPreviewAt!==null){const mark=document.createElement('span');mark.className='phone-preview-icon';mark.innerHTML=item.members?'<span class="phone-group-mark"></span>':appIcon(phoneApps().find(a=>a.name===item.id)?.glyph||'folder');el.append(mark);}
    if(item.id==='RIVER'){const count=document.createElement('span');count.className='phone-river-count';count.textContent='99';count.setAttribute('aria-hidden','true');el.append(count);}
-   const content=CabanonPhoneWidgets.markup(item,state().widgetData);
+   const content=CabanonWidgets.markup(item);
    if(content){el.classList.add('has-widget');const body=document.createElement('div');body.className='phone-widget';body.innerHTML=content;el.append(body);el.setAttribute('aria-label',name(item));}
    page.append(el);el.style.setProperty('--label-width',(label.getBoundingClientRect().right-el.getBoundingClientRect().left)/scale+'px');
   }
   if(iconPreviewAt!==null)paintIconPreview();
   positionMenu();
  }
- function fit(){scale=Math.min(innerWidth/W,innerHeight/H);root.style.transform=`translate(-50%,-50%) scale(${scale})`;root.style.top='50%';}
- function applyShift(){root.classList.toggle('shifted',shifted);root.style.top='50%';root.style.setProperty('--reach-offset',SHIFT_Y+'px');reachBlank.hidden=!shifted;}
+ function fit(){const v=window.CabanonPhoneWeb?.viewport()||{width:innerWidth,height:innerHeight,left:0,top:0};scale=Math.min(v.width/W,v.height/H);root.style.transform=`translate(-50%,-50%) scale(${scale})`;root.style.left=(v.left+v.width/2)+'px';root.style.top=(v.top+v.height/2)+'px';}
+ function applyShift(){root.classList.toggle('shifted',shifted);fit();root.style.setProperty('--reach-offset',SHIFT_Y+'px');reachBlank.hidden=!shifted;}
  function doShift(){shifted=true;applyShift();}
  function restoreShift(){if(!shifted)return;shifted=false;applyShift();}
  function openSearch(){resetPull();clearTimeout(wheelTimer);shiftState=0;inputTools.hidden=false;searching=true;searchQuery='';searchInput.value='';searchView.hidden=false;keyboard.hidden=false;renderKeyboard();renderSearchResults();setTimeout(()=>{if(searching)searchInput.focus();},50);}

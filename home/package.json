@@ -3,6 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "main": "main.cjs",
-  "scripts": { "start": "electron ." },
-  "devDependencies": { "electron": "^44.7.0" }
+  "scripts": {
+    "start": "electron .",
+    "phone:serve": "node ../serve-phone.cjs",
+    "phone:start": "node ../serve-phone.cjs --background",
+    "phone:stop": "node ../serve-phone.cjs --stop"
+  },
+  "devDependencies": {
+    "electron": "^44.7.0"
+  }
 }

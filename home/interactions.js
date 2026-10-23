@@ -8,7 +8,7 @@ ensureHelp();
 initInteractionPrefs();
 const status=document.createElement('div');status.id='home-status';status.innerHTML='<span id="status-extra"></span><span id="status-ime"></span><time id="status-time"></time>';$('#desktop').append(status);
 const extras=document.createElement('nav');extras.id='extra-system';extras.innerHTML=`<button class="icon-button" data-system="trash" title="Recycle bin" aria-label="Recycle bin">${icon('trash')}</button><button class="icon-button" data-system="input" title="Input method" aria-label="Input method">${icon('input')}</button>`;$('.system').insertBefore(extras,$('#system-icons'));
-function updateStatus(){initInteractionPrefs();const markup=(prefs.network==='Offline'?icon('offline'):'')+(prefs.updateAvailable?icon('update'):'');const extra=$('#status-extra');if(extra.innerHTML!==markup)extra.innerHTML=markup;}
+function updateStatus(){initInteractionPrefs();const volume=$('[data-system=volume]');if(volume)volume.innerHTML=icon('volume');const markup=(prefs.network==='Offline'?icon('offline'):'')+(prefs.updateAvailable?icon('update'):'');const extra=$('#status-extra');if(extra.innerHTML!==markup)extra.innerHTML=markup;}
 updateStatus();
 function applySystemOrder(){initInteractionPrefs();prefs.systemOrder.forEach(name=>{const button=$(`[data-system="${name}"]`);if(button&&button.parentElement===$('#system-icons'))$('#system-icons').append(button);});}
 const priorRefreshUser=refreshUserIcon;refreshUserIcon=function(){priorRefreshUser();initInteractionPrefs();ensureHelp();renderDesktop();applySystemOrder();updateStatus();};
@@ -59,7 +59,8 @@ function closeContext(){context.hidden=true;}
 function showContext(event,items){event.preventDefault();context.replaceChildren();items.forEach(([label,action,danger])=>{const button=document.createElement('button');button.textContent=label;button.setAttribute('role','menuitem');if(danger)button.className='danger';button.onclick=()=>{closeContext();action();};context.append(button);});context.hidden=false;const rect=$('#desktop').getBoundingClientRect(),scale=rect.width/1920;context.style.left=Math.max(0,Math.min(1920-context.offsetWidth,(event.clientX-rect.left)/scale))+'px';context.style.top=Math.max(0,Math.min(1080-context.offsetHeight,(event.clientY-rect.top)/scale))+'px';}
 document.addEventListener('pointerdown',event=>{if(!context.contains(event.target))closeContext();});
 const priorClosePanels=closePanels;closePanels=function(){priorClosePanels();closeContext();};
-function uninstallApplication(name){name=canonicalAppName(name);if(!canRemoveApplication(name)||!apps.some(app=>app.name===name))return;prefs.uninstalled=[...new Set([...(prefs.uninstalled||[]),name])];prefs.pins=prefs.pins.filter(id=>id!==name);if(prefs.settings?.startup)prefs.settings.startup=prefs.settings.startup.filter(id=>id!==name);if(prefs.phone?.items)for(const item of prefs.phone.items)if(item.id===name){item.removed=true;item.pinned=false;}persistProfiles();if(typeof flushProfiles==='function')flushProfiles();renderPins();renderAll();renderTaskbar();window.CabanonPhone?.render();}
+// Prototype removal: confirmation only. Never mutate installation, layout or user data.
+function uninstallApplication(name){name=canonicalAppName(name);if(!canRemoveApplication(name)||!apps.some(app=>app.name===name))return false;return true;}
 function removeApplication(name){name=canonicalAppName(name);if(!canRemoveApplication(name))return;closePanels();confirmRemoval('remove '+appLabel(name),()=>uninstallApplication(name));document.querySelector('.removal-confirmation')?.classList.add('application-removal');}
 // Pointer-based sorting: a short move remains a click; dragging suppresses the ensuing click.
 let drag=null,suppressClick=false;
