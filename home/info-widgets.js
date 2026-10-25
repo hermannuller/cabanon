@@ -28,7 +28,7 @@ window.CabanonWidgets=(()=>{
  }
  function set(id,records){store()[id]=records;persistProfiles();window.dispatchEvent(new Event('cabanon-widgets-change'));}
 
- function updateTime(root){for(const el of root.querySelectorAll('.phone-live-time')){el.textContent=timeText();el.dateTime=new Date(Math.floor(nowDate().getTime()/1000)*1000).toISOString();}}
+ function updateTime(root){for(const el of root.querySelectorAll('.phone-live-time')){el.textContent=timeText();if(el.closest('#phone'))window.CabanonPhoneTypography?.clock(el);el.dateTime=new Date(Math.floor(nowDate().getTime()/1000)*1000).toISOString();}}
  function defaults(id){
   const now=nowDate(),zone={timeZone:prefs.settings?.clock?.zone},date=now.toLocaleDateString('en-CA',zone),day=now.toLocaleDateString('en-GB',{...zone,day:'2-digit'}),weekday=now.toLocaleDateString('en-GB',{...zone,weekday:'short'});
   if(id==='TIME')return [line('<time class="phone-widget-big phone-live-time" datetime="'+new Date(Math.floor(nowDate().getTime()/1000)*1000).toISOString()+'">'+timeText()+'</time>','','time-main')];

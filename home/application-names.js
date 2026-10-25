@@ -12,3 +12,6 @@ for(const [id,label]of Object.entries(applicationNames))if(id!=='/HOUSE'&&!valid
 // Shared PC/Phone no-remove table. Add stable application IDs here.
 const applicationNoRemove=Object.freeze({TIME:true,DATE:true});
 function canRemoveApplication(id){return !applicationNoRemove[canonicalAppName(id)];}
+
+// Authored PDF icon identities shared by PC and Phone; application IDs remain stable.
+const applicationPdfIcons=Object.freeze({RIVER:'river',THEN:'plan',TXT:'txt',Ur:'sheet',POINT:'point',COLORS:'colors',WEATHER:'weather',TIME:'time',DATE:'date',STOCKS:'stocks',MARATHON:'marathon',DIAL:'radio',TYPE:'translation',WHERE:'where',OutDesign:'outdesign','/HOUSE':'house'});

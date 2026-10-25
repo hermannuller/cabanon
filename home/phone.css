@@ -1,7 +1,7 @@
 @font-face{font-family:JetBrains;src:url('fonts/JetBrainsMono-Variable.ttf') format('truetype');font-weight:100 800;font-style:normal;font-display:swap}
 /* Phone owns its type scale; palette and application identities stay shared. */
 body.phone-mode>#desktop{display:none!important}
-#phone{--phone-font-large:28px;--phone-label-width:168px;position:absolute;width:393px;height:760px;left:50%;top:50%;transform-origin:center;background:var(--l1);color:var(--l5);font:400 14px/28px JetBrains,SourceHan,monospace;overflow:hidden;touch-action:none;user-select:none}
+#phone{--phone-font-large:28px;--phone-label-width:168px;position:absolute;width:414px;height:896px;left:50%;top:50%;transform-origin:center;background:var(--l1);color:var(--l5);font:400 14px/28px JetBrains,SourceHan,monospace;overflow:hidden;touch-action:none;user-select:none}
 #phone[hidden]{display:none!important}
 #phone.shifted{overflow:hidden}
 #phone:before,#phone:after{content:'';position:absolute;top:0;bottom:0;width:1px;background:var(--l6);z-index:100;pointer-events:none}
@@ -11,7 +11,7 @@ body.phone-mode>#desktop{display:none!important}
 .phone-battery{width:24px;height:10px;border:1px solid currentColor;position:relative}
 .phone-battery:before{content:'';position:absolute;inset:1px 5px 1px 1px;background:currentColor}
 .phone-battery:after{content:'';position:absolute;right:-3px;top:2px;width:2px;height:4px;background:currentColor}
-.phone-page{position:absolute;left:0;right:0;top:32px;height:672px;overflow:hidden}
+.phone-page{position:absolute;left:0;right:0;top:32px;height:808px;overflow:hidden}
 .phone-container{position:absolute;width:var(--phone-label-width);height:calc(var(--rows,1)*56px);color:var(--l5);overflow:visible;isolation:isolate}
 .phone-name{display:inline-block;vertical-align:top;white-space:pre;height:56px;font:700 var(--phone-font-large)/56px JetBrains,SourceHan,monospace;padding:0;max-width:100%;overflow:hidden}
 .phone-container.pinned{z-index:20;background:var(--l1)}
@@ -43,13 +43,13 @@ body.phone-mode>#desktop{display:none!important}
 .phone-swipe{position:absolute;top:0;left:0;height:56px;display:flex;align-items:center;font:14px/28px JetBrains,monospace;white-space:pre;pointer-events:none;background:var(--l1)}
 .phone-swipe.remove{left:auto;right:0;background:var(--red);color:var(--l5)}
 .phone-footer{position:absolute;top:704px;bottom:0;left:0;width:100%;z-index:80;background:var(--l1)}
-.phone-home{position:absolute;left:145.5px;top:0;width:102px;height:56px;background:transparent;padding:0;border:0;cursor:pointer}
+.phone-home{position:absolute;left:156px;top:0;width:102px;height:56px;background:transparent;padding:0;border:0;cursor:pointer}
 .phone-home:hover{background:transparent}
 .phone-home:before{content:'';position:absolute;left:50px;top:11px;width:2px;height:34px;background:var(--l5)}
 .phone-app{position:absolute;inset:32px 0 56px;padding:0 20.4px;overflow:auto;touch-action:pan-y;background:var(--l1);z-index:40}
 .phone-app h1{font:700 var(--phone-font-large)/56px JetBrains,SourceHan,monospace;margin:0 0 28px;overflow-wrap:anywhere}
 .phone-app p{font:14px/28px JetBrains,SourceHan,monospace;margin:0;white-space:pre-wrap}
-.phone-menu{position:absolute;z-index:70;width:196.5px;box-sizing:border-box;background:var(--l3);padding:0;color:var(--l5)}
+.phone-menu{position:absolute;z-index:70;width:207px;box-sizing:border-box;background:var(--l3);padding:0;color:var(--l5)}
 .phone-menu button{display:block;width:100%;padding:0 14px;font:14px/28px JetBrains,monospace;min-height:42px}
 .phone-menu .remove{background:var(--red);color:var(--l5)}
 .phone-sizes{display:grid;grid-template-columns:1fr 1fr;height:56px}
@@ -64,11 +64,11 @@ body.phone-mode>#desktop{display:none!important}
 .phone-group-target[hidden]{display:none}
 
 .phone-page.editing .phone-container.selected{color:var(--l5)}
-.phone-page.editing .phone-container.selected:before{content:"";position:absolute;left:calc(-1 * var(--selection-inset));top:0;width:196.5px;height:100%;background:var(--l4);z-index:-1;pointer-events:none}
+.phone-page.editing .phone-container.selected:before{content:"";position:absolute;left:calc(-1 * var(--selection-inset));top:0;width:207px;height:100%;background:var(--l4);z-index:-1;pointer-events:none}
 .phone-container.drag-source{visibility:hidden}
 .phone-drag-list{position:absolute;z-index:90;opacity:.5;color:var(--l6);pointer-events:none}
 .phone-drag-list .phone-name{display:block;position:relative;isolation:isolate;width:var(--phone-label-width);max-width:none;overflow:visible;color:var(--l5)}
-.phone-drag-list .phone-name:after{content:"";position:absolute;left:calc(-1 * var(--selection-inset));top:0;width:196.5px;height:100%;background:var(--l4);z-index:-1;pointer-events:none}
+.phone-drag-list .phone-name:after{content:"";position:absolute;left:calc(-1 * var(--selection-inset));top:0;width:207px;height:100%;background:var(--l4);z-index:-1;pointer-events:none}
 .phone-group-member{display:block;color:inherit;background:transparent;border:0;text-align:left}
 .phone-sort{position:absolute;height:56px;padding:0;border:0;background:var(--l1);color:var(--l6);display:flex;align-items:center;justify-content:center;gap:6px;font:14px/14px JetBrains,monospace}
 .phone-sort[hidden]{display:none}
@@ -77,8 +77,8 @@ body.phone-mode>#desktop{display:none!important}
 .phone-sort-arrow{font-size:28px;line-height:28px}
 .phone-sort-name{left:184.8px;top:-56px;width:16.8px;gap:0;flex-direction:column}
 .phone-sort-name .phone-sort-words{flex-direction:row}.phone-sort-name .phone-sort-arrow{font-size:20px;line-height:24px}
-.phone-sort-installed{left:0;top:0;width:145.5px}
-.phone-sort-usage{left:247.5px;top:0;width:145.5px}
+.phone-sort-installed{left:0;top:0;width:156px}
+.phone-sort-usage{left:258px;top:0;width:156px}
 .phone-page.icon-preview .phone-name{font-size:14px;font-weight:400;line-height:56px;padding-left:44px;box-sizing:border-box}
 .phone-page.icon-preview .phone-name.group-name:before{display:none}
 .phone-page.icon-preview .phone-widget{visibility:hidden}
@@ -204,18 +204,18 @@ body.phone-mode>#desktop{display:none!important}
 /* Multitasking: the name band starts at the bottom of home row ten. */
 .phone-multitask{position:absolute;inset:32px 0 0;z-index:110;background:var(--l1);overflow:hidden;touch-action:none}
 .phone-task-cards{position:absolute;inset:0 0 168px;overflow:hidden}
-.phone-task-card{position:absolute;inset:0 auto 0 0;width:393px;background:var(--l1);overflow:hidden;touch-action:none;animation:phone-task-enter 180ms ease-out}
-.phone-task-card.next{left:262px;border-left:1px solid var(--l4);z-index:2;animation:phone-task-preview-enter 180ms ease-out}
-.phone-task-body{width:393px;height:100%;padding:0 16.8px;overflow:hidden;font:14px/28px JetBrains,SourceHan,monospace;pointer-events:none}
+.phone-task-card{position:absolute;inset:0 auto 0 0;width:414px;background:var(--l1);overflow:hidden;touch-action:none;animation:phone-task-enter 180ms ease-out}
+.phone-task-card.next{left:276px;border-left:1px solid var(--l4);z-index:2;animation:phone-task-preview-enter 180ms ease-out}
+.phone-task-body{width:414px;height:100%;padding:0 16.8px;overflow:hidden;font:14px/28px JetBrains,SourceHan,monospace;pointer-events:none}
 .phone-task-body h1{font:700 28px/56px JetBrains,SourceHan,monospace;text-transform:uppercase;margin:0 0 28px}
 .phone-task-body p{white-space:pre-wrap;margin:0}
-.phone-task-rail{position:absolute;top:560px;left:0;right:0;height:calc(56px * var(--task-rows,3));border-top:1px solid var(--l4);overflow:hidden;background:var(--l1)}
+.phone-task-rail{position:absolute;top:696px;left:0;right:0;height:calc(56px * var(--task-rows,3));border-top:1px solid var(--l4);overflow:hidden;background:var(--l1)}
 .phone-multitask[data-rows="2"]{--task-rows:2}
 .phone-multitask[data-rows="1"]{--task-rows:1}
 .phone-task-name{position:absolute;height:56px;padding:0;white-space:nowrap;font:700 28px/56px JetBrains,SourceHan,monospace;color:var(--l6);background:transparent}
 .phone-task-name.current{color:var(--l5)}
 #phone .phone-task-name:hover{background:transparent}
-.phone-task-axis{position:absolute;top:560px;bottom:0;left:196.5px;width:1px;background:var(--l5);pointer-events:none}
+.phone-task-axis{position:absolute;top:696px;bottom:0;left:207px;width:1px;background:var(--l5);pointer-events:none}
 .phone-task-empty{padding:28px 16.8px;color:var(--l6);font:14px/28px JetBrains,SourceHan,monospace}
 @keyframes phone-task-enter{from{translate:-24px 0;opacity:.65}to{translate:0 0;opacity:1}}
 @keyframes phone-task-preview-enter{from{translate:131px 0}to{translate:0 0}}
@@ -226,16 +226,16 @@ body.phone-mode>#desktop{display:none!important}
 /* Fixed guide edges and a separate Home row below the 42px name rows. */
 #phone:before,#phone:after{z-index:1000}
 .phone-task-cards{bottom:182px}
-.phone-task-rail{top:546px;height:calc(42px * var(--task-rows,3))}
+.phone-task-rail{top:682px;height:calc(42px * var(--task-rows,3))}
 .phone-task-name{height:42px;line-height:42px}
-.phone-task-axis{top:546px;bottom:56px}
-.phone-task-home{position:absolute;bottom:0;left:145.5px;width:102px;height:56px;padding:0;background:var(--l1);z-index:8}
+.phone-task-axis{top:682px;bottom:56px}
+.phone-task-home{position:absolute;bottom:0;left:156px;width:102px;height:56px;padding:0;background:var(--l1);z-index:8}
 .phone-task-home:before{content:'';position:absolute;top:11px;left:50px;width:2px;height:34px;background:var(--l5)}
 .phone-task-card,.phone-task-card.next{animation:none;transition:translate 100ms ease-out}
 @keyframes phone-task-name-rise{from{translate:0 42px;opacity:0}to{translate:0 0;opacity:1}}
 
 /* The selection axis is one continuous extension of the Home mark. */
-.phone-task-axis{left:195.5px;width:2px;bottom:11px}
+.phone-task-axis{left:206px;width:2px;bottom:11px}
 .phone-task-home{background:transparent}
 .phone-task-home:before{left:50px;width:2px}
 
