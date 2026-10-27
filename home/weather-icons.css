@@ -1,4 +1,4 @@
-.weather-symbol{width:28px;height:28px;flex-shrink:0;pointer-events:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.weather-symbol{width:28px;height:28px;flex-shrink:0;pointer-events:none;stroke-width:2px;stroke-linecap:round;stroke-linejoin:round}
 #widgets [data-widget="weather"] .widget-detail{gap:8px}
 .phone-widget-icon.weather-symbol{width:24px;height:24px}
 .weather-main .phone-widget-icon.weather-symbol{width:36px;height:36px}

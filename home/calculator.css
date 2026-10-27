@@ -1,0 +1,23 @@
+@font-face{font-family:MiSans;src:url('fonts/MiSans-Medium.ttf') format('truetype');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:FiraCode;src:url('fonts/FiraCode-Variable.ttf') format('truetype');font-weight:300 700;font-style:normal;font-display:swap}
+.cbn-calculator-host{padding:0;overflow:hidden;flex:1;min-height:0}
+.cbn-calculator-surface{display:flex;flex-direction:column}
+.cbn-calculator-surface>.quick-tool-header{display:none}
+.cbn-calculator{display:flex;flex-direction:column;height:100%;min-height:0;background:#000;color:var(--l5);font-family:FiraCode,monospace;font-weight:500;outline:none}
+.cbn-calc-screen{display:flex;flex-direction:column;justify-content:flex-end;flex:1;min-height:180px;padding:16px 12px 24px;box-sizing:border-box;overflow:hidden}
+.cbn-calc-expression{font:500 35px/48px MiSans,sans-serif;color:var(--l6);text-align:right;white-space:pre;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;min-height:48px}
+.cbn-calc-result{display:block;width:100%;font:500 80px/112px MiSans,sans-serif;color:var(--l5);text-align:right;white-space:pre;overflow:hidden;min-height:112px;cursor:copy}
+.cbn-calculator,.cbn-calculator button,.cbn-calc-expression,.cbn-calc-result{font-weight:500;font-variation-settings:'wght' 500;font-synthesis:none}
+.cbn-calc-keys{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(6,80px);gap:1px;background:#000;flex:none}
+.cbn-calc-key{height:80px;min-width:0;margin:0;padding:0;border:0;border-radius:0;background:var(--l3);color:var(--l5);font:500 42px/80px FiraCode,monospace;text-align:center;touch-action:none;--phone-button-bg:var(--l3)}
+.cbn-calc-key.cbn-calc-advanced{font-size:64px;font-style:italic;color:var(--orange)}
+.cbn-calc-key svg{display:inline-block;width:42px;height:42px;vertical-align:middle;pointer-events:none}
+#phone .cbn-calc-key:hover{background:var(--l3);color:var(--l5)}
+#phone .cbn-calc-key.cbn-calc-advanced:hover{color:var(--orange)}
+#phone .cbn-calculator-host{width:100%;height:100%}
+#phone .phone-tool.cbn-calculator-surface{overflow:hidden}
+.window[data-key='quick:CALC']{min-height:720px;height:720px;width:440px}
+.window[data-key='quick:CALC'] .window-content{padding:0;overflow:hidden}
+
+#phone .phone-task-body:has(.cbn-calculator){padding:0}
+#phone .phone-task-body:has(.cbn-calculator)>.quick-tool-header{display:none}

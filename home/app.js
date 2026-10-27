@@ -25,10 +25,11 @@ const paths = {
 };
 const icon = name => motionAppIcon(name)||(name==='colors'?'<span class="colors-icon" aria-hidden="true"></span>':customIconMarkup(name==='volume'&&typeof prefs!=='undefined'&&prefs.volume===0?'mute':name,'outline')||`<svg viewBox="0 0 32 32" aria-hidden="true"><path d="${paths[name] || paths.text}"/></svg>`);
 const apps = [
- ['MARATHON','text'],['TXT','text'],['POINT','text'],['Ur','text'],['RIVER','river'],['THEN','text'],['COLORS','text'],['EMPTY','unfinished'],['LINE','blind'],['ZIP','zip'],['WALL','wall'],['CARE','user'],['DATE','text'],['TYPE','text'],['WHERE','globe'],['DIAL','text'],['WEATHER','text'],['NEWS','text'],['STOCKS','text'],['CALC','calculator'],['OutDesign','text'],['HELP','help'],['ASTRO','unfinished'],['TIME','unfinished']
+ ['MARATHON','text'],['TXT','text'],['POINT','text'],['Ur','text'],['RIVER','river'],['THEN','text'],['COLORS','text'],['EMPTY','unfinished'],['LINE','blind'],['ZIP','zip'],['WALL','wall'],['CARE','user'],['DATE','text'],['TYPE','text'],['WHERE','globe'],['DIAL','text'],['WEATHER','text'],['STOCKS','text'],['CALC','calculator'],['OutDesign','text'],['HELP','help'],['ASTRO','unfinished'],['TIME','unfinished']
 ].map(([name,glyph])=>({name,glyph:({MARATHON:'marathon',LINE:'blind',POINT:'pnyx',DIAL:'dial',Ur:'ur',WALL:'berlin',WHERE:'where',EMPTY:'empty','HELP':'help-app'})[name]||(name==='COLORS'?'colors':['MARATHON','RIVER','ZIP','WALL','CALC','HELP','TXT'].includes(name)?glyph:'unfinished'),implemented:['MARATHON','RIVER','ZIP','WALL','CALC','HELP','TXT'].includes(name)}));
 for(const app of apps)if(applicationPdfIcons[app.name])app.glyph='pdf-'+applicationPdfIcons[app.name];
-const appNameMigration=Object.freeze({CALQ:'CALC',WALL:'WALL',ART:'WALL',HELP:'HELP','HELP!':'HELP','HELP！':'HELP',ZIP:'ZIP',MAP:'WHERE',OURDESIGN:'OutDesign',PEOPLE:'CARE'});
+for(const [id,definition]of Object.entries(quickToolApplications))if(!apps.some(app=>app.name===id))apps.push({name:id,glyph:'quick-'+definition[1],implemented:true});
+const appNameMigration=Object.freeze({NEWS:'LINE',CALQ:'CALC',WALL:'WALL',ART:'WALL',HELP:'HELP','HELP!':'HELP','HELP！':'HELP',ZIP:'ZIP',MAP:'WHERE',OURDESIGN:'OutDesign',PEOPLE:'CARE'});
 const renamedApplications=Object.freeze({BERLIN:'WALL',BLIND:'LINE',STUFF:'ZIP',OUTSIDE:'WEATHER',PNYX:'POINT'});
 function canonicalAppName(name){return Object.keys(applicationNames).find(id=>appLabel(id).toLowerCase()===String(name).toLowerCase())||renamedApplications[String(name).toUpperCase()]||appNameMigration[name]||apps.find(app=>app.name.toLowerCase()===String(name).toLowerCase())?.name||name;}
 function removeSketchFiles(profile){
@@ -67,7 +68,8 @@ function normalizeApplicationCatalog(profile){
    if(!item.members.length){removed.add(item.id);changed=true;}
   }}
   profile.phone.items=profile.phone.items.filter(item=>!removed.has(item.id));
-  for(const item of profile.phone.items)item.id=canonicalAppName(item.id);
+  for(const item of profile.phone.items){item.id=canonicalAppName(item.id);if(item.members)item.members=[...new Set(item.members.map(canonicalAppName))];}
+  profile.phone.items=profile.phone.items.filter((item,index,all)=>all.findIndex(other=>other.id===item.id)===index);
   if(profile.phone.widgetData)for(const id of Object.keys(profile.phone.widgetData))if(!names.has(canonicalAppName(id)))delete profile.phone.widgetData[id];
  }
  const usage={};for(const [oldName,count]of Object.entries(profile.usage||{})){const name=canonicalAppName(oldName);if(names.has(name))usage[name]=(usage[name]||0)+(Number(count)||0);}profile.usage=usage;
@@ -78,7 +80,7 @@ function normalizeApplicationCatalog(profile){
 apps.forEach((app,index)=>{app.installed=Date.UTC(2026,9,16)+index*86400000;app.baseUsage=0;});
 const sampleFiles = ['/cabanon','/samura','/Helllooo','/books','/jobs','/archive','/desktop','/projects'];
 // Supported formats are independent of the single default app selected in Setting.
-const applicationFileFormats=Object.freeze({MARATHON:['.txt','.md','.html'],TXT:['.txt'],POINT:['.show'],Ur:['.tsv'],RIVER:[],THEN:['.plan'],COLORS:['.mp3','.flac','.wav','.srt','.vtt','.lrc'],EMPTY:['.mp3','.flac','.wav','.srt','.vtt','.lrc'],LINE:['.html'],ZIP:['.zip','.7z','.tar.gz','.bz2','.xz','.rar'],WALL:['.wall','.pwall'],CARE:['.vcf'],DATE:['.ics'],TYPE:['.ttf','.otf','.woff2'],WHERE:[],DIAL:[],WEATHER:[],NEWS:['.rss','.xml'],STOCKS:[],CALC:[],OutDesign:['.out'],'HELP':['.help'],ASTRO:[]});
+const applicationFileFormats=Object.freeze({MARATHON:['.txt','.md','.html'],TXT:['.txt'],POINT:['.show'],Ur:['.tsv'],RIVER:[],THEN:['.plan'],COLORS:['.mp3','.flac','.wav','.srt','.vtt','.lrc'],EMPTY:['.mp3','.flac','.wav','.srt','.vtt','.lrc'],LINE:['.html'],ZIP:['.zip','.7z','.tar.gz','.bz2','.xz','.rar'],WALL:['.wall','.pwall'],CARE:['.vcf'],DATE:['.ics'],TYPE:['.ttf','.otf','.woff2'],WHERE:[],DIAL:[],WEATHER:[],LINE:['.rss','.xml'],STOCKS:[],CALC:[],OutDesign:['.out'],'HELP':['.help'],ASTRO:[]});
 const knownFileExtensions=Object.freeze([...new Set(Object.values(applicationFileFormats).flat())].sort((a,b)=>b.length-a.length));
 function knownFileExtension(name){const lower=String(name).toLowerCase();return knownFileExtensions.find(extension=>lower.endsWith(extension))||'';}
 function fileIsFolder(name){const entry=prefs.entries?.find(e=>e.name===name);return entry?!!entry.folder:String(name).startsWith('/');}

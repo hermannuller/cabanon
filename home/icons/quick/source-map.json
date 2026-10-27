@@ -1,0 +1,771 @@
+{
+  "source": "C:\\Users\\cgwma\\Desktop\\p-page-1lin.pdf",
+  "icons": [
+    {
+      "name": "flight",
+      "sourcePage": 3,
+      "sourceRegion": [
+        33,
+        55,
+        76,
+        90
+      ],
+      "paths": 6,
+      "file": "quick/flight.svg",
+      "sharedScale": 0.870859376511952,
+      "sourceCenter": [
+        53.82205864994003,
+        72.66754999999995
+      ]
+    },
+    {
+      "name": "hotspot",
+      "sourcePage": 3,
+      "sourceRegion": [
+        129,
+        49,
+        171,
+        89
+      ],
+      "paths": 5,
+      "file": "quick/hotspot.svg",
+      "sharedScale": 0.9279982531797586,
+      "sourceCenter": [
+        150.1563,
+        68.84462163522906
+      ]
+    },
+    {
+      "name": "vpn",
+      "sourcePage": 3,
+      "sourceRegion": [
+        223,
+        55,
+        264,
+        89
+      ],
+      "paths": 7,
+      "file": "quick/vpn.svg",
+      "sharedScale": 0.8692984250357941,
+      "sourceCenter": [
+        242.66580000000002,
+        72.23874999999998
+      ]
+    },
+    {
+      "name": "else",
+      "sourcePage": 3,
+      "sourceRegion": [
+        314,
+        55,
+        339,
+        73
+      ],
+      "paths": 3,
+      "file": "quick/else.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        325.90865,
+        64.757
+      ]
+    },
+    {
+      "name": "cellular",
+      "sourcePage": 3,
+      "sourceRegion": [
+        42,
+        112,
+        67,
+        141
+      ],
+      "paths": 4,
+      "file": "quick/cellular.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        53.894,
+        122.95399999999995
+      ]
+    },
+    {
+      "name": "silent",
+      "sourcePage": 3,
+      "sourceRegion": [
+        132,
+        113,
+        169,
+        142
+      ],
+      "paths": 8,
+      "file": "quick/silent.svg",
+      "sharedScale": 0.8511082816669493,
+      "sourceCenter": [
+        150.1563,
+        127.23769999999996
+      ]
+    },
+    {
+      "name": "rotation",
+      "sourcePage": 3,
+      "sourceRegion": [
+        224,
+        112,
+        260,
+        143
+      ],
+      "paths": 3,
+      "file": "quick/rotation.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        241.1988,
+        127.23769999999996
+      ]
+    },
+    {
+      "name": "vibrate",
+      "sourcePage": 3,
+      "sourceRegion": [
+        313,
+        113,
+        341,
+        141
+      ],
+      "paths": 3,
+      "file": "quick/vibrate.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        326.7894,
+        127.23769999999996
+      ]
+    },
+    {
+      "name": "wifi",
+      "sourcePage": 3,
+      "sourceRegion": [
+        43,
+        169,
+        66,
+        192
+      ],
+      "paths": 6,
+      "file": "quick/wifi.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        53.893699999999995,
+        180.64409999999992
+      ]
+    },
+    {
+      "name": "mode",
+      "sourcePage": 3,
+      "sourceRegion": [
+        132,
+        163,
+        158,
+        191
+      ],
+      "paths": 1,
+      "file": "quick/mode.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        144.40429999999998,
+        177.06119999999993
+      ]
+    },
+    {
+      "name": "volume",
+      "sourcePage": 3,
+      "sourceRegion": [
+        317,
+        167,
+        342,
+        192
+      ],
+      "paths": 4,
+      "file": "quick/volume.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        328.99422837054556,
+        178.7394
+      ]
+    },
+    {
+      "name": "bluetooth",
+      "sourcePage": 3,
+      "sourceRegion": [
+        43,
+        220,
+        65,
+        250
+      ],
+      "paths": 1,
+      "file": "quick/bluetooth.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        53.894,
+        235.08509999999995
+      ]
+    },
+    {
+      "name": "theme",
+      "sourcePage": 3,
+      "sourceRegion": [
+        131,
+        220,
+        161,
+        250
+      ],
+      "paths": 4,
+      "file": "quick/theme.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        146.3057,
+        234.71749999999997
+      ]
+    },
+    {
+      "name": "brightness",
+      "sourcePage": 3,
+      "sourceRegion": [
+        264,
+        218,
+        298,
+        255
+      ],
+      "paths": 8,
+      "file": "quick/brightness.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        280.80715,
+        233.98435
+      ]
+    },
+    {
+      "name": "flashlight",
+      "sourcePage": 3,
+      "sourceRegion": [
+        32,
+        287,
+        76,
+        307
+      ],
+      "paths": 3,
+      "file": "quick/flashlight.svg",
+      "sharedScale": 0.8585858585858586,
+      "sourceCenter": [
+        53.894000000000005,
+        297.36164999999994
+      ]
+    },
+    {
+      "name": "level",
+      "sourcePage": 3,
+      "sourceRegion": [
+        128,
+        286,
+        172,
+        307
+      ],
+      "paths": 2,
+      "file": "quick/level.svg",
+      "sharedScale": 0.8585858585858587,
+      "sourceCenter": [
+        150.1563,
+        297.3615
+      ]
+    },
+    {
+      "name": "scan",
+      "sourcePage": 3,
+      "sourceRegion": [
+        226,
+        281,
+        259,
+        314
+      ],
+      "paths": 9,
+      "file": "quick/scan.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        242.6659,
+        297.46639999999996
+      ]
+    },
+    {
+      "name": "calculator",
+      "sourcePage": 3,
+      "sourceRegion": [
+        311,
+        282,
+        343,
+        314
+      ],
+      "paths": 10,
+      "file": "quick/calculator.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        326.7892,
+        297.0005
+      ]
+    },
+    {
+      "name": "stopwatch",
+      "sourcePage": 3,
+      "sourceRegion": [
+        37,
+        336,
+        73,
+        374
+      ],
+      "paths": 5,
+      "file": "quick/stopwatch.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        53.967349999999996,
+        356.11709999999994
+      ]
+    },
+    {
+      "name": "alarm",
+      "sourcePage": 3,
+      "sourceRegion": [
+        129,
+        331,
+        168,
+        374
+      ],
+      "paths": 8,
+      "file": "quick/alarm.svg",
+      "sharedScale": 0.9353404639288692,
+      "sourceCenter": [
+        150.2815,
+        352.82179999999994
+      ]
+    },
+    {
+      "name": "timer",
+      "sourcePage": 3,
+      "sourceRegion": [
+        226,
+        340,
+        260,
+        374
+      ],
+      "paths": 4,
+      "file": "quick/timer.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        242.66589999999997,
+        357.32399999999996
+      ]
+    },
+    {
+      "name": "compass",
+      "sourcePage": 3,
+      "sourceRegion": [
+        310,
+        340,
+        343,
+        374
+      ],
+      "paths": 3,
+      "file": "quick/compass.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        326.7894,
+        357.32399999999996
+      ]
+    },
+    {
+      "name": "translation",
+      "sourcePage": 3,
+      "sourceRegion": [
+        34,
+        393,
+        73,
+        431
+      ],
+      "paths": 6,
+      "file": "quick/translation.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        53.89415,
+        412.25014999999996
+      ]
+    },
+    {
+      "name": "wallet",
+      "sourcePage": 3,
+      "sourceRegion": [
+        127,
+        393,
+        173,
+        431
+      ],
+      "paths": 3,
+      "file": "quick/wallet.svg",
+      "sharedScale": 0.8695852334196953,
+      "sourceCenter": [
+        150.40555,
+        411.844
+      ]
+    },
+    {
+      "name": "cast",
+      "sourcePage": 3,
+      "sourceRegion": [
+        210,
+        393,
+        269,
+        434
+      ],
+      "paths": 2,
+      "file": "quick/cast.svg",
+      "sharedScale": 0.8293896667805045,
+      "sourceCenter": [
+        242.666,
+        412.499
+      ]
+    },
+    {
+      "name": "previous",
+      "sourcePage": 3,
+      "sourceRegion": [
+        39,
+        455,
+        69,
+        482
+      ],
+      "paths": 2,
+      "file": "quick/previous.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        53.894349999999996,
+        468.5310999999999
+      ]
+    },
+    {
+      "name": "play",
+      "sourcePage": 3,
+      "sourceRegion": [
+        100,
+        453,
+        119,
+        484
+      ],
+      "paths": 1,
+      "file": "quick/play.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        109.5236,
+        468.5028
+      ]
+    },
+    {
+      "name": "next",
+      "sourcePage": 3,
+      "sourceRegion": [
+        148,
+        455,
+        179,
+        482
+      ],
+      "paths": 2,
+      "file": "quick/next.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        163.5856,
+        468.53119999999996
+      ]
+    },
+    {
+      "name": "recognition",
+      "sourcePage": 3,
+      "sourceRegion": [
+        232,
+        453,
+        258,
+        476
+      ],
+      "paths": 2,
+      "file": "quick/recognition.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        244.7273,
+        465.28189999999995
+      ]
+    },
+    {
+      "name": "settings",
+      "sourcePage": 3,
+      "sourceRegion": [
+        44,
+        611,
+        77,
+        645
+      ],
+      "paths": 8,
+      "file": "quick/settings.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        60.4714,
+        628.3616
+      ]
+    },
+    {
+      "name": "phone",
+      "sourcePage": 3,
+      "sourceRegion": [
+        128,
+        610,
+        167,
+        648
+      ],
+      "paths": 1,
+      "file": "quick/phone.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        146.6351433063271,
+        629.2301566936728
+      ]
+    },
+    {
+      "name": "messages",
+      "sourcePage": 3,
+      "sourceRegion": [
+        216,
+        613,
+        259,
+        645
+      ],
+      "paths": 1,
+      "file": "quick/messages.svg",
+      "sharedScale": 0.8990190116079215,
+      "sourceCenter": [
+        237.1772,
+        629.2298
+      ]
+    },
+    {
+      "name": "assistant",
+      "sourcePage": 3,
+      "sourceRegion": [
+        311,
+        612,
+        344,
+        645
+      ],
+      "paths": 3,
+      "file": "quick/assistant.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        327.6472,
+        628.3188
+      ]
+    },
+    {
+      "name": "radio",
+      "sourcePage": 2,
+      "sourceRegion": [
+        342,
+        48,
+        373,
+        77
+      ],
+      "paths": 4,
+      "file": "quick/radio.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        357.5426,
+        62.361999999999966
+      ]
+    },
+    {
+      "name": "countdown-pause",
+      "sourcePage": 2,
+      "sourceRegion": [
+        281,
+        268,
+        329,
+        316
+      ],
+      "paths": 3,
+      "file": "quick/countdown-pause.svg",
+      "sharedScale": 0.7677369823420503,
+      "sourceCenter": [
+        305.1152,
+        292.2175
+      ]
+    },
+    {
+      "name": "countdown-close",
+      "sourcePage": 2,
+      "sourceRegion": [
+        330,
+        268,
+        378,
+        316
+      ],
+      "paths": 3,
+      "file": "quick/countdown-close.svg",
+      "sharedScale": 0.7507839067261396,
+      "sourceCenter": [
+        354.2963,
+        292.2175
+      ]
+    },
+    {
+      "name": "flight-off",
+      "sourcePage": 4,
+      "sourceRegion": [
+        33,
+        55,
+        76,
+        90
+      ],
+      "paths": 6,
+      "file": "quick/flight-off.svg",
+      "sharedScale": 0.870859376511952,
+      "sourceCenter": [
+        53.82205864994003,
+        72.66754999999995
+      ]
+    },
+    {
+      "name": "hotspot-off",
+      "sourcePage": 4,
+      "sourceRegion": [
+        129,
+        49,
+        171,
+        89
+      ],
+      "paths": 4,
+      "file": "quick/hotspot-off.svg",
+      "sharedScale": 0.9279982531797586,
+      "sourceCenter": [
+        150.1563,
+        68.84462163522906
+      ]
+    },
+    {
+      "name": "vpn-off",
+      "sourcePage": 4,
+      "sourceRegion": [
+        223,
+        55,
+        264,
+        89
+      ],
+      "paths": 8,
+      "file": "quick/vpn-off.svg",
+      "sharedScale": 0.8692984250357941,
+      "sourceCenter": [
+        242.66580000000002,
+        72.23874999999998
+      ]
+    },
+    {
+      "name": "cellular-off",
+      "sourcePage": 4,
+      "sourceRegion": [
+        42,
+        112,
+        67,
+        141
+      ],
+      "paths": 4,
+      "file": "quick/cellular-off.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        53.894,
+        122.95399999999995
+      ]
+    },
+    {
+      "name": "silent-off",
+      "sourcePage": 4,
+      "sourceRegion": [
+        131,
+        109,
+        170,
+        145
+      ],
+      "paths": 6,
+      "file": "quick/silent-off.svg",
+      "sharedScale": 0.8511082816669493,
+      "sourceCenter": [
+        150.1563,
+        127.23769999999996
+      ]
+    },
+    {
+      "name": "rotation-off",
+      "sourcePage": 4,
+      "sourceRegion": [
+        223,
+        109,
+        260,
+        145
+      ],
+      "paths": 5,
+      "file": "quick/rotation-off.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        241.1988,
+        127.23769999999996
+      ]
+    },
+    {
+      "name": "vibrate-off",
+      "sourcePage": 4,
+      "sourceRegion": [
+        309,
+        109,
+        345,
+        145
+      ],
+      "paths": 5,
+      "file": "quick/vibrate-off.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        326.7894,
+        127.23769999999996
+      ]
+    },
+    {
+      "name": "wifi-off",
+      "sourcePage": 4,
+      "sourceRegion": [
+        43,
+        169,
+        66,
+        192
+      ],
+      "paths": 6,
+      "file": "quick/wifi-off.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        53.893699999999995,
+        180.64409999999992
+      ]
+    },
+    {
+      "name": "bluetooth-off",
+      "sourcePage": 4,
+      "sourceRegion": [
+        43,
+        220,
+        65,
+        250
+      ],
+      "paths": 1,
+      "file": "quick/bluetooth-off.svg",
+      "sharedScale": 1,
+      "sourceCenter": [
+        53.894,
+        235.08509999999995
+      ]
+    }
+  ],
+  "sizing": "Native PDF geometry capped at 34px artwork inside 36px; on/off states share a center and scale; cubic extrema included."
+}

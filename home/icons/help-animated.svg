@@ -1,22 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" aria-hidden="true" data-help-animation="true" style="fill:currentColor;stroke:none;stroke-width:1"><rect width="36" height="36" style="fill:currentColor"/><g style="fill:var(--l1);color:var(--l1)" class="help-icon-frame help-icon-frame-1">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" aria-hidden="true" data-help-animation="true" style="fill:currentColor;stroke:none;stroke-width:1"><rect x=".5" y=".5" width="35" height="35" style="fill:none;stroke:var(--l5);stroke-width:1"/><g style="fill:var(--l5);color:var(--l5)" class="help-icon-frame help-icon-frame-1">
 
 <circle cx="18" cy="18.99" r="2.89"/>
 <path d="M22.25,36h-8.49v-9.66c0-2.17,1.76-3.93,3.93-3.93h0.62c2.17,0,3.93,1.76,3.93,3.93V36z"/>
 <line style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;" x1="12.95" y1="24.5" x2="5.94" y2="31.52"/>
 <line style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;" x1="23.05" y1="24.5" x2="30.06" y2="31.52"/>
-</g><g style="fill:var(--l1);color:var(--l1)" class="help-icon-frame help-icon-frame-2">
+</g><g style="fill:var(--l5);color:var(--l5)" class="help-icon-frame help-icon-frame-2">
 
 <circle cx="18" cy="18.99" r="2.89"/>
 <path d="M22.25,36h-8.49v-9.66c0-2.17,1.76-3.93,3.93-3.93h0.62c2.17,0,3.93,1.76,3.93,3.93V36z"/>
 <line style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;" x1="12.95" y1="24.5" x2="5.94" y2="17.28"/>
 <line style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;" x1="23.05" y1="24.5" x2="30.06" y2="17.28"/>
-</g><g style="fill:var(--l1);color:var(--l1)" class="help-icon-frame help-icon-frame-3">
+</g><g style="fill:var(--l5);color:var(--l5)" class="help-icon-frame help-icon-frame-3">
 
 <circle cx="18" cy="18.99" r="2.89"/>
 <path d="M22.25,36h-8.49v-9.66c0-2.17,1.76-3.93,3.93-3.93h0.62c2.17,0,3.93,1.76,3.93,3.93V36z"/>
 <line style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;" x1="12.95" y1="24.5" x2="12.95" y2="13.86"/>
 <line style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-miterlimit:10;" x1="23.05" y1="24.5" x2="34.12" y2="24.5"/>
-</g><g style="fill:var(--l1);color:var(--l1)" class="help-icon-frame help-icon-frame-4">
+</g><g style="fill:var(--l5);color:var(--l5)" class="help-icon-frame help-icon-frame-4">
 
 <circle cx="18" cy="18.99" r="2.89"/>
 <path d="M22.25,36h-8.49v-9.66c0-2.17,1.76-3.93,3.93-3.93h0.62c2.17,0,3.93,1.76,3.93,3.93V36z"/>

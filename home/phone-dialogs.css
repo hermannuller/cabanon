@@ -1,0 +1,12 @@
+/* Phone dialog dimensions are logical points, centered on the full 414x896 canvas. */
+#phone .phone-dialog-shade{position:absolute;inset:0;top:0;bottom:0;display:grid;place-items:center;z-index:1200;background:linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)) left top/100% calc(100% - 56px) no-repeat,linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)) left bottom/33.333333% 56px no-repeat,linear-gradient(rgba(0,0,0,.5),rgba(0,0,0,.5)) right bottom/33.333333% 56px no-repeat}
+#phone .phone-standard-dialog{width:288px;max-width:288px;padding:0;margin:0;box-sizing:border-box;border:0;border-radius:0;background:var(--l6);text-align:center;color:var(--l5);font:400 14px/18px JetBrains,SourceHan,monospace;overflow-wrap:anywhere}
+#phone .phone-standard-dialog *{font-family:JetBrains,SourceHan,monospace;font-size:14px;font-weight:400;color:var(--l5);box-sizing:border-box}
+#phone .phone-standard-dialog>p{padding:12px 12px 6px;margin:0;line-height:18px;white-space:pre-wrap}
+#phone .phone-standard-dialog .phone-dialog-actions{display:flex;flex-direction:column;margin:0;padding:0;gap:0;width:100%}
+#phone .phone-standard-dialog .phone-dialog-actions button{display:block;flex:none;width:100%;height:30px;min-height:30px;line-height:30px;text-align:center;padding:0;margin:0;background:transparent;border:0;border-radius:0}
+#phone .phone-standard-dialog .phone-dialog-actions .phone-dialog-yes{background:var(--l9,var(--red))}
+#phone .phone-standard-dialog .phone-dialog-actions button:focus-visible{outline:1px solid var(--l5);outline-offset:-1px}
+#phone .phone-standard-dialog.phone-rename input{display:block;width:calc(100% - 24px);height:30px;line-height:30px;margin:0 12px 6px;padding:0 4px;border:1px solid var(--l4);background:var(--l1);font:400 14px/18px JetBrains,SourceHan,monospace}
+#phone .phone-standard-dialog.phone-rename p[role=status]:empty{display:none}
+#phone .phone-standard-dialog.phone-rename p[role=status]{min-height:0;padding:0 12px 6px;line-height:18px}

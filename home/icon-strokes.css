@@ -1,0 +1,24 @@
+/* Shared outline ink for Phone and PC; fills and geometry remain authored. */
+:root{--icon-stroke:2px}
+:is(#desktop,#phone) svg,:is(#desktop,#phone) svg :is(path,rect,circle,ellipse,line,polyline,polygon){stroke-width:var(--icon-stroke)!important}
+:is(#desktop,#phone) svg :is(path,rect,circle,ellipse,line,polyline,polygon){vector-effect:non-scaling-stroke}
+#phone .phone-pin-line{height:1px}
+#phone .phone-footer-ring,#phone .quick-else-dots i:last-child{border:0;box-shadow:inset 0 0 0 var(--icon-stroke) currentColor}
+#phone .quick-sun-ray{height:var(--icon-stroke);transform-origin:0 1px}
+#phone .quick-slider-thumb:after{width:var(--icon-stroke);left:-1px}
+#phone .phone-home:before,#phone .phone-task-home:before{width:2px!important;left:calc(50% - 1px)}
+
+/* Home right-hand identity icons only; controls and other surfaces stay 2px. */
+#phone .phone-scroll-endpoint{--icon-stroke:1px}
+
+:is(#desktop,#phone) svg[data-help-animation]>rect{stroke-width:1px!important}
+
+svg[data-cbn-icon="quick-calculator"]{overflow:visible}
+
+svg:is([data-cbn-icon="pdf-astro"],[data-cbn-icon="pdf-zip"]){overflow:visible}
+
+:is(#desktop,#phone) svg[data-compass-dial],:is(#desktop,#phone) svg[data-compass-dial] :is(path,circle){stroke-width:1px!important}
+
+/* Home circular actions; the TIMER orange progress disc keeps its authored fill. */
+#phone .quick-home-timer button svg:not([data-countdown-progress]),
+#phone .quick-home-timer button svg:not([data-countdown-progress]) :is(path,circle,rect,line,polyline,polygon,g){fill:none!important;stroke:var(--l5)!important;stroke-width:1px!important}

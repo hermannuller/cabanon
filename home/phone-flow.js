@@ -3,9 +3,40 @@
 (() => {
  const ROW=56,THRESHOLD=20.4,EPS=1e-6;
  class PhoneFlow {
-  constructor(items,offset=0){this.offset=offset;this.columns=[0,1].map(col=>({pins:[],moving:[]}));
-   for(const item of items){const c=this.columns[item.col];if(!c)continue;const record={id:item.id,y:item.row*ROW-(item.pinned?0:offset),height:item.size*ROW};(item.pinned?c.pins:c.moving).push(record);}
-   for(const c of this.columns){c.pins.sort((a,b)=>a.y-b.y);const merged=[];for(const p of c.pins){const last=merged.at(-1);if(last&&p.y<=last.y+last.height+EPS)last.height=Math.max(last.y+last.height,p.y+p.height)-last.y;else merged.push({...p});}c.barriers=merged;}
+  constructor(items,offset=0,fixedSlots=false,viewport=784){this.viewport=viewport;this.fixedSlots=fixedSlots;this.offset=offset;this.columns=[0,1].map(col=>({pins:[],moving:[]}));
+   for(const item of items){const c=this.columns[item.col];if(!c)continue;const record={id:item.id,y:item.pinned?(item.pinTop??item.row*ROW):item.row*ROW-offset,height:item.size*ROW};(item.pinned?c.pins:c.moving).push(record);}
+   for(const c of this.columns){c.pins.sort((a,b)=>a.y-b.y);const merged=[];for(const p of c.pins){const last=merged.at(-1);if(last&&p.y<=last.y+last.height+EPS)last.height=Math.max(last.y+last.height,p.y+p.height)-last.y;else merged.push({...p});}c.barriers=merged;}if(this.fixedSlots)this.packSlots();
+  }
+  project(c,y){
+   for(const pin of c.pins)if(y>=pin.y-EPS)y+=pin.height;else break;
+   return y;
+  }
+  unproject(c,y){let removed=0;for(const pin of c.pins)if(y>=pin.y+pin.height-EPS)removed+=pin.height;else break;return y-removed;}
+  packSlots(){
+   for(const c of this.columns){
+    c.pins.sort((a,b)=>a.y-b.y);
+    c.moving.sort((a,b)=>a.y-b.y).forEach((item,index)=>{item.logical=index*ROW;item.y=this.project(c,item.logical-this.offset);});
+   }
+  }
+  fragments(id){
+   for(const c of this.columns){
+    const pin=c.pins.find(i=>i.id===id);if(pin)return [{top:pin.y,cutTop:0,cutBottom:0}];
+    const item=c.moving.find(i=>i.id===id);if(!item)continue;
+    const start=item.logical-this.offset,end=start+item.height,result=[];let skipped=0,lower=-Infinity;
+    for(const pin of c.pins){
+     const boundary=pin.y-skipped;
+     const a=Math.max(start,lower),b=Math.min(end,boundary);
+     if(b>a+EPS)result.push({top:start+skipped,cutTop:a-start,cutBottom:end-b});
+     lower=boundary;skipped+=pin.height;
+    }
+    const a=Math.max(start,lower);if(end>a+EPS)result.push({top:start+skipped,cutTop:a-start,cutBottom:0});
+    return result;
+   }return [];
+  }
+  clipBottom(id){
+   for(const c of this.columns){const item=c.moving.find(i=>i.id===id);if(!item)continue;
+    const pin=c.pins.find(p=>p.y>=item.y-EPS);return pin?Math.max(0,item.y+item.height-pin.y):0;
+   }return 0;
   }
   top(id){for(const c of this.columns){const item=[...c.pins,...c.moving].find(i=>i.id===id);if(item)return item.y;}return null;}
   snapshot(){return JSON.parse(JSON.stringify({offset:this.offset,columns:this.columns}));}
@@ -28,6 +59,7 @@
    c.moving.push(...dragged);this.snap(c.pins.includes(target)?col:-1);
   }
   snap(skipColumn=-1){
+   if(this.fixedSlots){this.packSlots();return;}
    for(const [col,c] of this.columns.entries()){
     if(col===skipColumn)continue;
     const sorted=[...c.moving].sort((a,b)=>a.y-b.y),occupied=new Set();
@@ -50,7 +82,7 @@
     }
    }
   }
-  move(delta){if(!delta)return;this.offset+=delta;const direction=delta>0?-1:1;for(const c of this.columns)this.advance(c,Math.abs(delta),direction);}
+  move(delta){if(!delta)return;this.offset+=delta;if(this.fixedSlots){for(const c of this.columns)for(const item of c.moving)item.y=this.project(c,item.logical-this.offset);return;}const direction=delta>0?-1:1;for(const c of this.columns)this.advance(c,Math.abs(delta),direction);}
   advance(c,distance,direction){
    // Down is the same algorithm under vertical reflection. No per-direction
    // animation, pause, cluster state, or changes to any neighboring item.

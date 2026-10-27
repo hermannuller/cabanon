@@ -15,7 +15,7 @@ body.phone-mode>#desktop{display:none!important}
 .phone-container{position:absolute;width:var(--phone-label-width);height:calc(var(--rows,1)*56px);color:var(--l5);overflow:visible;isolation:isolate}
 .phone-name{display:inline-block;vertical-align:top;white-space:pre;height:56px;font:700 var(--phone-font-large)/56px JetBrains,SourceHan,monospace;padding:0;max-width:100%;overflow:hidden}
 .phone-container.pinned{z-index:20;background:var(--l1)}
-.phone-page.editing .phone-container.pinned:not(.has-widget) .phone-name{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px;text-decoration-skip-ink:none}
+.phone-page.editing .phone-container.pinned:not(.has-widget) .phone-name{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-skip-ink:none}
 .phone-page.editing .phone-container{color:var(--l6)}
 .phone-page.editing .phone-container.pinned:before{content:"";position:absolute;left:calc(-1 * var(--pin-inset));top:0;height:100%;width:var(--pin-inset);background:var(--l3);z-index:-1;pointer-events:none}
 .phone-page .phone-container.dragging{opacity:.5;z-index:60;pointer-events:none;background:transparent}
