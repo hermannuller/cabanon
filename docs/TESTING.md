@@ -3,6 +3,10 @@
 The repository has no build step and no test framework. Checks are small Node scripts in
 `tmp/` (scratch, not committed) driven by `tools/run-checks.cjs`.
 
+For the 2026-10-29 interaction review — which failures are real bugs, which are stale
+fixtures, and which need a design decision — see
+[INTERACTION-AUDIT.md](INTERACTION-AUDIT.md).
+
 ## Levels
 
 | Command | Scope | Requirements |
