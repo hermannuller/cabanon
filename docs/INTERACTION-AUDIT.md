@@ -14,7 +14,7 @@
 ## 一、结论摘要
 
 34 个脚本里 **17 通过 / 17 失败**。失败中只有 **1 个高置信真实问题**（批量改名拖拽排序），
-4 个需要人工确认，其余 12 个是测试过期或设计待定。
+3 个需要人工确认，其余 13 个是测试过期或设计待定。
 
 核心契约仍然成立：整行点击/右键命中区、右键框选五动作、选中行拖拽、Alt/Ctrl/FROM 选区形状、
 标题改名、段落点击编辑与 Enter、无效文件名警告、窗口吸附、RIVER→TXT 入站拖拽。
@@ -73,13 +73,15 @@
   条目找不到时 `open`/`to desk` 自然无反应。
 - 结论：fixture 过期的可能性较大；但 `toDesktop` 的 0 计数没有同类解释，需要人工点一遍确认。
 
-### 4. 段落视图的空白区与已选中拖拽（中，**定/旧**）
+### 4. 段落视图的「空白处点击」（低，**旧**）
 
-- 现象：`file-click-drag-split-check` 的「段落行空白处点击应选中」和
-  `selected-row-drag-check` 的「段落已选中行空白区起拖」都失败。
-- 背景：[docs/FOLDER-SPLIT.md](docs/FOLDER-SPLIT.md#L20) 已记录该断言在 HEAD 上就失败；
-  AGENTS 的命中区表也写明「paragraph items may have no internal right-side blank width」。
-- 需要你定：段落行是否保留整行空白/内外边距？保留 → 改代码；不保留 → 删掉这两条断言。
+- 实测（Electron 里量的）：段落行 box 宽 90px = 名字 59px + 间隙 7px + 图标 24px，高 56px；
+  行内没有列表视图那种右侧空白，`fileContentHit` 覆盖整行高度和图标/文字间隙。
+- 旧测试在行内找不到「空白点」，就退到 `(right-2, top+2)` 点击。该点落在图标上方约 16px 的
+  垂直留白里，段落视图按文本处理：出现插入光标、不选中。点图标本身正常整选
+  （实测 `editorSelected=1`、`caretVisible=false`）。
+- 判定：测试假设了列表视图的整行矩形选区，不是「点击失效」。除非希望段落行整 56px 高度都算整选，
+  否则删掉这两条断言即可；要改则动 `paragraph-browser.js` 的 pointerdown，属于设计变更。
 
 ### 5. 弹簧打开偶发失败（中，**待**）
 
@@ -103,7 +105,7 @@
 | `on-off-standard-test` | 在 `row` 里找 `.setting-switch-gap`，部分开关不是 `settingTextToggle` 结构 |
 | `menu-bounds-smoke` | 假设 `#context-menu` 常驻，实际按需创建 |
 | `river-check` / `self-drop-check` / `file-paragraph-drag-check` | 没有关闭 welcome 遮罩，点击被挡住（真实用户点击会消失） |
-| `file-click-drag-split-check` | 除段落空白断言外均 PASS，见上文第 4 条 |
+| `file-click-drag-split-check` | 除段落「空白点击」外均 PASS；段落行是内容宽度，没有该测试假设的空白带 |
 | `home-smoke` | 期望 42 个桌面条目，当前默认布局不同 |
 | `file-operations-regression` | 1500 文件粘贴场景的计数假设过期 |
 | `file-batch-tools-check` | 期望 Info 里的 `≈` 标记，表格已不渲染 |
@@ -113,7 +115,7 @@
 
 ## 五、设计待定（需要你一句话）
 
-1. **段落行是否保留整行空白区**（影响点击/拖拽/框选三条规则与两个测试）。
+1. **段落行图标上下的垂直留白**是否也算「点图标整选」；目前按文本处理（出光标）。
 2. **手机首屏第一个应用**：RIVER 还是 MARATHON？
 3. **Info 表格的 `≈` 标记**是否保留。
 4. **welcome 遮罩**：真实交互是「任意指针/键盘关闭」，自动化脚本不点击所以看起来像卡住；确认保持现状即可。
