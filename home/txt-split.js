@@ -113,6 +113,7 @@ function txtKeys(event){
 function txtShell(){
  const win=createWindow('txt:'+crypto.randomUUID(),'TXT','text','<div class="txt-panes"></div>');
  win.classList.add('txt-window');win.dataset.ownerApp='TXT';Object.assign(win.style,{width:'820px',height:'680px'});
+ const spacer=document.createElement('span');spacer.className='txt-title-spacer';spacer.setAttribute('aria-hidden','true');win.querySelector('.window-title').after(spacer);
  txtBind(win);return win;
 }
 let txtPaneGesture=null;
