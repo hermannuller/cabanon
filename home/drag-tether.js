@@ -19,7 +19,8 @@ function automaticDragLabel(event){const t=event.target;if(event.button===2&&t.c
  if(t.closest('#files [data-file]'))return 'Still here';
  if(t.closest('#system-icons [data-system],#pinned [data-app],#folders [data-folder],[data-widget]'))return {silent:true};
  if(t.closest('#volume-shade,.setting-percent-shade:not([aria-disabled="true"])'))return 'Adjust';
- if(t.closest('.wall-canvas'))return 'Draw';return null;
+ // WALL paints its own strokes; a tether line or "Draw" hint would sit on the canvas.
+ return null;
 }
 addEventListener('pointerdown',event=>{if(![0,2].includes(event.button))return;const label=automaticDragLabel(event);automaticGesture=label?{x:event.clientX,y:event.clientY,label,paragraph:!!event.target.closest('.house-file-list[data-view="paragraph"]'),button:event.button,started:false}:null;},true);
 addEventListener('pointermove',event=>{let g=automaticGesture;if(!g&&pointerFileDrag?.started)g=automaticGesture={x:pointerFileDrag.x,y:pointerFileDrag.y,label:fileDragLabel(),button:pointerFileDrag.button||0,started:false,paragraph:false};if(!g)return;if(!(event.buttons&(g.button===2?2:1))){automaticGesture=null;return clearDragTether();}if(g.paragraph&&g.button===0&&!pointerFileDrag?.started&&!(typeof paragraphGesture!=='undefined'&&paragraphGesture?.drag))return;if(!g.started){if(Math.hypot(event.clientX-g.x,event.clientY-g.y)<6)return;g.started=true;CabanonDragFeedback.begin(g,{clientX:g.x,clientY:g.y});}const label=sharedGesture?.label||(g.label==='file'?fileDragLabel():g.label);CabanonDragFeedback.update(g,event,label);},true);
