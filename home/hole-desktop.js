@@ -16,10 +16,14 @@ function holeEnsure(){
 function holeNormalizePrefs(){
  if((prefs.desktopLinks||[]).length||(prefs.desktopOrder||[]).length||prefs.desktopSort){prefs.desktopLinks=[];prefs.desktopOrder=[];delete prefs.desktopSort;}
 }
+function holePlacement(){
+ const saved=prefs.holePosition||{};
+ return {x:Math.max(0,Math.min(1640,Number.isFinite(saved.x)?saved.x:20)),y:Math.max(0,Math.min(952,Number.isFinite(saved.y)?saved.y:16))};
+}
 function holeRow(){
  const row=document.createElement('button');row.className='file';row.dataset.file=HOLE_PATH;row.dataset.hole='true';row.title=HOLE_PATH;
- row.innerHTML=icon('hole')+'<span>'+escapeHTML(HOLE_LABEL)+'</span>';row.style.left='20px';row.style.top='16px';
- row.onclick=()=>openFolderBrowser(HOLE_PATH);return row;
+ const place=holePlacement();
+ row.innerHTML=icon('hole')+'<span>'+escapeHTML(HOLE_LABEL)+'</span>';row.style.left=place.x+'px';row.style.top=place.y+'px';return row;
 }
 function holePinRow(item,entry){
  const row=document.createElement('button');row.className='file';row.dataset.file=entry.name;row.title=entry.name;
