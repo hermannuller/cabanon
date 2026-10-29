@@ -6,17 +6,21 @@ addEventListener('pointercancel',cancelPointerFileDrag,true);addEventListener('b
 
 // Releasing a single dragged folder on empty desktop space opens a window there.
 // Valid drop targets (folder rows, archives, headers) are handled before this runs.
-function openDraggedFolderWindow(drag,event){
- const names=draggedFiles?.names||[];if(names.length!==1)return false;
- const entry=prefs.entries.find(item=>item.name===names[0]&&item.folder);if(!entry)return false;
- const source=drag.list.closest('.window');if(!source||!source.isConnected)return false;
+function folderWindowTarget(drag,event){
+ const names=draggedFiles?.names||[];if(names.length!==1)return null;
+ const entry=prefs.entries.find(item=>item.name===names[0]&&item.folder);if(!entry)return null;
+ const source=drag.list.closest('.window');if(!source||!source.isConnected)return null;
  const rect=source.getBoundingClientRect();
- if(event.clientX>=rect.left&&event.clientX<=rect.right&&event.clientY>=rect.top&&event.clientY<=rect.bottom)return false;
+ if(event.clientX>=rect.left&&event.clientX<=rect.right&&event.clientY>=rect.top&&event.clientY<=rect.bottom)return null;
  const target=document.elementFromPoint(event.clientX,event.clientY),desktop=document.querySelector('#desktop');
- if(!target||!desktop.contains(target))return false;
- if(!['desktop','files','windows'].includes(target.id))return false;
- if(target.closest('.window,#from,#taskbar,#all-apps,.removal-confirmation,#context-menu,#power-screen,#setting-welcome,#flyout,#task-popup,.file'))return false;
- const win=openFolderBrowser(entry.name,true);if(!win)return false;
+ if(!target||!desktop.contains(target))return null;
+ if(!['desktop','files','windows'].includes(target.id))return null;
+ if(target.closest('.window,#from,#taskbar,#all-apps,.removal-confirmation,#context-menu,#power-screen,#setting-welcome,#flyout,#task-popup,.file'))return null;
+ return{entry,desktop};
+}
+function openDraggedFolderWindow(drag,event){
+ const found=folderWindowTarget(drag,event);if(!found)return false;
+ const {entry,desktop}=found,win=openFolderBrowser(entry.name,true);if(!win)return false;
  const box=desktop.getBoundingClientRect(),scale=box.width/1920||1,width=win.offsetWidth||900,height=win.offsetHeight||650;
  win.style.left=Math.round(Math.min(1920-width,Math.max(0,(event.clientX-box.left)/scale)))+'px';
  win.style.top=Math.round(Math.min(1080-height,Math.max(0,(event.clientY-box.top)/scale)))+'px';
@@ -31,7 +35,7 @@ addEventListener('pointermove',event=>{
  if(drag.action==='delete'){window.CabanonDragFeedback?.present(event,dragSummary()+' > Delete');return;}
  const target=document.elementFromPoint(event.clientX,event.clientY),archive=target?.closest('.archive-list'),rive=target&&window.riveFileDropTarget?.(target),hit=target?dropTarget({target,clientX:event.clientX,clientY:event.clientY}):null;const blocked=archive?!canAddToArchive(archive.dataset.archive,draggedFiles.names):!rive&&(!hit||hit.blocked);drag.blocked=blocked;
  if(target){target.dispatchEvent(new DragEvent('dragover',{bubbles:true,cancelable:true,clientX:event.clientX,clientY:event.clientY,dataTransfer:drag.transfer}));}
- if(blocked)window.CabanonDragFeedback?.present(event,"   X   ");
+ if(blocked){const opens=Boolean(folderWindowTarget(drag,event));window.CabanonDragFeedback?.present(event,opens?'open new':"   X   ");}
 },true);
 addEventListener('pointerup',event=>{const drag=pointerFileDrag;if(!drag)return;clearTimeout(drag.headerTimer);clearTimeout(drag.folderTimer);pointerFileDrag=null;if(drag.started){const target=document.elementFromPoint(event.clientX,event.clientY);if(drag.specialDrop)drag.specialDrop();else if(drag.action==='delete')rightRemoveFiles([...draggedFiles.names]);else if(target&&!drag.blocked)target.dispatchEvent(new DragEvent('drop',{bubbles:true,cancelable:true,clientX:event.clientX,clientY:event.clientY,dataTransfer:drag.transfer}));else openDraggedFolderWindow(drag,event);suppressFileClick=true;setTimeout(()=>suppressFileClick=false,0);window.dispatchEvent(new Event('dragend'));draggedFiles=null;dropHint.hidden=true;$('#desktop').classList.remove('file-pointer-drag');}},true);
 
