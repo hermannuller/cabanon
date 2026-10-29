@@ -115,7 +115,7 @@ window.addEventListener('DOMContentLoaded',()=>{
  closeDocumentWindows=function(windows){for(const win of windows)while(folderSplits.has(win)){const before=folderSplits.get(win).panes.length;closeFolderPane(win);if(folderSplits.get(win)?.panes.length===before)break;}return closeDocuments(windows);};
  shortcutDefinitions.push(['splitWindow','Add folder to window group / open new window','CTRL+T']);
  const run=runShortcut;
- runShortcut=function(id,event){if(id!=='splitWindow')return run(id,event);const win=activeWindow;if(!win?.dataset.fileBrowser||win.hidden||document.body.classList.contains('phone-mode'))return false;if(!event.repeat){const state=folderSplits.get(win);if(state?.panes.length===4)openFolderBrowser(win.dataset.fileBrowser,true);else if(state)addFolderPane(win);else splitFolderWindow(win);}return true;};
+ runShortcut=function(id,event){if(id==='splitWindow'&&activeWindow?.classList.contains('txt-window')){window.CabanonTxtSplit?.split(activeWindow);return true;}if(id!=='splitWindow')return run(id,event);const win=activeWindow;if(!win?.dataset.fileBrowser||win.hidden||document.body.classList.contains('phone-mode'))return false;if(!event.repeat){const state=folderSplits.get(win);if(state?.panes.length===4)openFolderBrowser(win.dataset.fileBrowser,true);else if(state)addFolderPane(win);else splitFolderWindow(win);}return true;};
 });
 
 function setFolderPaneRatio(state,axis,value){

@@ -1,0 +1,8 @@
+.txt-window .window-content{position:relative}
+.txt-panes{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);overflow:hidden}
+.txt-pane{position:relative;min-width:0;min-height:0;overflow:hidden;background:var(--l1)}
+.txt-pane>.txt-app{height:100%}
+.window.txt-split .txt-pane>.txt-app>.txt-toolbar{padding-right:46px}
+.txt-pane:not(.txt-pane-current){--l5:var(--l6);--interaction-ink:var(--l6)}
+.txt-pane>.txt-app>.txt-toolbar{background:var(--l2)}
+.txt-pane .txt-find{top:36px}

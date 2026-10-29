@@ -15,6 +15,7 @@
   { "name": "file hit contract", "file": "file-hit-contract-check.cjs" },
   { "name": "paragraph icon column", "file": "paragraph-icon-column-check.cjs" },
   { "name": "txt text drag", "file": "txt-text-drag-check.cjs" },
+  { "name": "txt panes", "file": "txt-panes-check.cjs" },
   { "name": "wall no tether", "file": "wall-no-tether-check.cjs" },
   { "name": "txt file drop", "file": "txt-file-drop-check.cjs" },
   { "name": "wall hole", "file": "desktop-hole-check.cjs" },
