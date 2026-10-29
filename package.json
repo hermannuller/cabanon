@@ -1,0 +1,23 @@
+{
+  "name": "cabanon",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cabanon — a text-and-icon operating system prototype built with Electron.",
+  "scripts": {
+    "start": "node tools/launch.cjs",
+    "start:where": "node tools/launch.cjs --where",
+    "phone:serve": "node serve-phone.cjs",
+    "phone:start": "node serve-phone.cjs --background",
+    "phone:stop": "node serve-phone.cjs --stop",
+    "check": "node tools/check-source.cjs",
+    "test": "node tools/check-source.cjs && node tools/run-checks.cjs --unit",
+    "test:ui": "node tools/run-checks.cjs --ui",
+    "test:all": "node tools/run-checks.cjs --all",
+    "test:list": "node tools/run-checks.cjs --list",
+    "clean:tmp": "node tools/clean-tmp.cjs",
+    "clean:tmp:apply": "node tools/clean-tmp.cjs --apply"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

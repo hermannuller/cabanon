@@ -17,7 +17,7 @@ The Phone route always starts in Phone mode, even if a saved desktop mode was pr
 - The server reads the current source files without a build. Reload to see source changes; if a Home Screen window is retained by iOS, close and reopen it.
 - Safe areas and the visual viewport are respected. Search keeps the existing on-screen Phone keyboard; name-edit inputs can use the iOS keyboard.
 - To stop: double-click `stop-phone-web.cmd`.
-- Terminal equivalents: `node serve-phone.cjs --background` and `node serve-phone.cjs --stop`. Foreground mode is `node serve-phone.cjs` and stops with Ctrl+C.
+- Terminal equivalents: `npm run phone:serve` (foreground), `npm run phone:start` and `npm run phone:stop`; the raw scripts are `node serve-phone.cjs`, `node serve-phone.cjs --background` and `node serve-phone.cjs --stop`. Foreground mode stops with Ctrl+C.
 - Optional port: set `CABANON_PHONE_PORT` before launch. Default 8787.
 - If Safari cannot connect, verify the same non-guest Wi-Fi and PC wake state. If Windows asks about Node.js network access, allow the private/home network. Router client isolation or a VPN may prevent devices from reaching each other.
 

@@ -1,6 +1,8 @@
 # Application catalog — 2026-10-22
 
-Exactly 24 applications: MARATHON, TXT, POINT, Ur, RIVER, THEN, COLORS, EMPTY, LINE, ZIP, WALL, CARE, DATE, TYPE, WHERE, DIAL, WEATHER, NEWS, STOCKS, CALC, OutDesign, HELP, ASTRO, TIME.
+Exactly 23 applications: MARATHON, TXT, POINT, Ur, RIVER, THEN, COLORS, EMPTY, LINE, ZIP, WALL, CARE, DATE, TYPE, WHERE, DIAL, WEATHER, STOCKS, CALC, OutDesign, HELP, ASTRO, TIME.
+
+`home/app.js` is the live registry; this list is a snapshot and may lag it. NEWS was renamed to LINE (see `appNameMigration` in `home/app.js`), so LINE appears once and NEWS no longer exists in the catalog.
 
 ## Preserved implementations
 

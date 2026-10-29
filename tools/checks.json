@@ -1,0 +1,20 @@
+[
+  { "name": "calculator engine", "file": "calculator-engine-check.cjs" },
+  { "name": "internet time", "file": "internet-time-test.cjs" },
+  { "name": "selection origin unit", "file": "selected-row-drag-unit.cjs" },
+  { "name": "wall model", "file": "wall-model-test.cjs" },
+  { "name": "drag label unit", "file": "drag-label-unit.cjs" },
+
+  { "name": "folder split", "file": "folder-split-check.cjs" },
+  { "name": "folder grid", "file": "folder-grid-check.cjs" },
+  { "name": "folder pane swap", "file": "folder-pane-swap-check.cjs" },
+  { "name": "folder group transfer", "file": "folder-group-transfer-check.cjs" },
+  { "name": "folder new window", "file": "folder-new-window-check.cjs" },
+  { "name": "folder close controls", "file": "folder-close-controls-check.cjs" },
+  { "name": "dock window groups", "file": "dock-window-groups-check.cjs" },
+  { "name": "file hit contract", "file": "file-hit-contract-check.cjs" },
+  { "name": "save close prompt", "file": "save-close-check.cjs" },
+  { "name": "rename syntax", "file": "rename-syntax-audit.cjs" },
+  { "name": "application names", "file": "application-names-check.cjs" },
+  { "name": "new entry names", "file": "new-names-thin-file-icons-check.cjs" }
+]

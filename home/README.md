@@ -2,9 +2,9 @@
 
 ## 启动
 
-双击当前目录的 `start.cmd`。默认使用当前目录安装的 Electron；若尚未安装，会使用相邻 `blind` 项目的 Electron。没有找到时，可在当前目录执行 `npm install`。
+双击 `start.cmd`（Windows），或在仓库根目录执行 `npm start`（Windows / Linux / macOS）。启动器依次查找本目录、仓库根目录和相邻 `blind` 项目里的 Electron，也可以用 `CABANON_ELECTRON` 指定；`npm run start:where` 会打印最终使用的二进制。尚未安装时，先在本目录执行 `npm install`。
 
-程序全屏启动，Alt+F4 关闭。当前没有额外快捷键，也未接管 Windows 键。
+程序全屏启动，Alt+F4 关闭。主要快捷键：`F8`+`F1` 桌面、`F8`+`F2` 手机；`Ctrl+N` 在当前文件夹开新窗口、`Ctrl+T` 拆分窗口、`Ctrl+W` 关闭、`Ctrl+Q` 退出应用；`Alt+F` 搜索、`Alt+N` 新建文件夹、`Alt+←/→/↑` 导航；`Ctrl+Z` 撤销文件操作。Windows 下由辅助进程接管 Windows 键作为 FROM 键，Linux 侧尚未验证。
 
 桌面逻辑尺寸固定1920×1080。在不同分辨率屏幕上等比显示，空余部分为背景色。
 
@@ -22,6 +22,12 @@
 - 设置中的“运行中的窗口”可恢复最小化的窗口。“桌面”入口隐藏所有窗口。
 - 主用户入口与账户设置占位，ID可保存。
 - 字体随项目附带：JetBrains Mono Regular / Bold、Inter Regular、思源黑体。from大字36px Bold；展开列表16px Regular；文件名14px Inter。
+- 文件夹窗口可用 `Ctrl+T` 拆分为最多 4 个窗格；窗格可拖拽互换、拖入其他窗口合并、单独关闭，分隔条可拖动或按方向键缩放。
+- 新建文件/文件夹自动命名为 `new`、`new_1`…（扩展名前编号），Welcome 文本只用于启动画面。
+
+## 手机版
+
+Phone 界面与桌面共用同一份源码和数据模型：运行中按 `F8`+`F2` 切换。也可以在仓库根目录执行 `npm run phone:serve`，同一 Wi-Fi 的手机浏览器打开 `http://<局域网IP>:8787/phone/`，按 Safari「添加到主屏幕」即可。手机浏览器使用自己的本地存储，不与桌面配置同步；详见上级目录 `docs/PHONE-WEB-APP.md`。
 
 ## 当前边界
 
