@@ -139,7 +139,7 @@ $('#files').onclick=event=>{const item=event.target.closest('[data-file]');docum
 $('#files').ondblclick=event=>{const item=event.target.closest('[data-file]');if(item)openFile(item.dataset.file);};
 function updateTime(){const now=new Date();$('#time').textContent=now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});$('#date').textContent=`${String(now.getFullYear()).slice(2)}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getDate()).padStart(2,'0')}`;$('#weekday').textContent=now.toLocaleDateString('en-US',{weekday:'long'});}
 updateTime();
-const systemItems=[['network','Network'],['volume','Volume'],['desktop','Desktop'],['folder','File manager'],['settings','Settings'],['phone','Phone'],['user','Users'],['power','Power']];
+const systemItems=[['network','Network'],['volume','Volume'],['desktop','on the wall'],['folder','File manager'],['settings','Settings'],['phone','Phone'],['user','Users'],['power','Power']];
 $('#system-icons').innerHTML=systemItems.map(([name,title])=>`<button class="icon-button" data-system="${name}" aria-label="${title}" title="${title}">${icon(name==='folder'?'house':name)}</button>`).join('');
 function showFlyout(kind,button){
  const fly=$('#flyout');flyoutSource=kind;fly.hidden=false;

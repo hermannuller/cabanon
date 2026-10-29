@@ -73,7 +73,7 @@ $('#file-search').oninput=()=>{
 };
 powerAction=function(action){closePanels();$('#power-title').textContent=action;$('#power-screen').hidden=false;if(action==='Restart'){windowMap.forEach(win=>win.remove());windowMap.clear();activeWindow=null;}};
 $('#power-screen p').textContent='';$('#resume').textContent='Return to Cabanon';$('#exit-prototype').textContent='Exit';
-const englishLabels={network:'Network',volume:'Volume',desktop:'Desktop',folder:'House',settings:'Settings',phone:'Phone',user:'Users',power:'Power'};
+const englishLabels={network:'Network',volume:'Volume',desktop:'on the wall',folder:'House',settings:'Settings',phone:'Phone',user:'Users',power:'Power'};
 Object.entries(englishLabels).forEach(([key,label])=>{const button=$(`[data-system=${key}]`);button.title=label;button.setAttribute('aria-label',label);});
 const baseOpenSettings=openSettings;
 openSettings=function(){baseOpenSettings();const win=windowMap.get('system:settings');const translations={'Pinned folders':'Pinned folders','One folder per line ':'One folder per line ','Save folders':'Save folders','Running windows':'Running windows','No other windows':'No other windows.','Fixed 1920 x 1080 canvas.':'Fixed 1920 × 1080 canvas.'};const walker=document.createTreeWalker(win,NodeFilter.SHOW_TEXT);let node;while(node=walker.nextNode()){if(translations[node.nodeValue])node.nodeValue=translations[node.nodeValue];}};

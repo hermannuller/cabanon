@@ -105,7 +105,7 @@ function showLinkDestinations(button, names) {
   if (existing) existing.remove();
   const menu = document.createElement('div');
   menu.className = 'pin-destinations';
-  for (const [label, dest] of [['here', 'here'], ['from page', 'from'], ['desktop', 'desktop']]) {
+  for (const [label, dest] of [['here', 'here'], ['from page', 'from'], ['wall', 'desktop']]) {
     const item = document.createElement('button');
     item.textContent = label;
     item.onclick = () => { closeContext(); pinDestination(names, dest); };
@@ -178,7 +178,7 @@ builders[CTX.DESKTOP_BG] = () => {
     ['Type' + (sort?.key === 'type' ? dir : ''), () => toggleDesktopSort('type')],
     ['Date' + (sort?.key === 'date' ? dir : ''), () => toggleDesktopSort('date')],
     ['Size' + (sort?.key === 'size' ? dir : ''), () => toggleDesktopSort('size')],
-    ['Clear all\u2026', () => confirmRemoval('Clear all desktop shortcuts', () => { prefs.desktopLinks = []; prefs.desktopOrder = []; persistProfiles(); renderDesktop(); })],
+    ['Clear all\u2026', () => confirmRemoval('Clear all wall shortcuts', () => { prefs.desktopLinks = []; prefs.desktopOrder = []; persistProfiles(); renderDesktop(); })],
     ['Display setting', () => openSpecificSettings('display')],
   ];
   return items;
@@ -234,7 +234,7 @@ builders[CTX.FROM_FILE] = (event, info) => {
   ['open',()=>openFile(name)],
   ['open path',()=>{const entry=renameSource(name);if(entry)openFolderBrowser(entry.parent);}],
   ['unpin',()=>{prefs.fromFilePins=(prefs.fromFilePins||[]).filter(n=>n!==name);prefs.recents=prefs.recents.filter(record=>record.name!==name);persistProfiles();renderPins();}],
-  ['to desk',()=>toDesktop(name)],
+  ['to wall',()=>toDesktop(name)],
   ['info',()=>showInfo(name)]
  ];
 };
@@ -243,7 +243,7 @@ builders[CTX.FROM_FOLDER] = (event, info) => {
  return [
   ['open',()=>openFile(name)],
   ['unpin',()=>{prefs.folders=prefs.folders.filter(n=>folderPath(n)!==folderPath(name));persistProfiles();renderPins();}],
-  ['to desk',()=>toDesktop(name)],
+  ['to wall',()=>toDesktop(name)],
   ['info',()=>showInfo(name)]
  ];
 };

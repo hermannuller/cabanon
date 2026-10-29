@@ -9,7 +9,7 @@ const settingSections=[
  ['power','Power',[['basic','Basic'],['saving','Energy saving'],['screen','Turn screen off']]],
  ['internet','Internet',[['ethernet','Ethernet'],['wifi','Wi-Fi'],['hotspot','Personal hotspot']]],
  ['modes','Modes',[['silent','Silent'],['airplane','Airplane'],['night','Night']]],
- ['visual','Visual',[['wallpaper','Desktop'],['brightness','Brightness'],['theme','Theme'],['font','Font and size']]],
+ ['visual','Visual',[['wallpaper','Wall'],['brightness','Brightness'],['theme','Theme'],['font','Font and size']]],
  ['shortcuts','Shortcuts',[['scheme','Shortcut scheme']]],
  ['sharing','Sharing',[['connect','Connect to //share']]],
  ['cabanon','Cabanon',[['updates','Automatic updates'],['history','Update history'],['reinstall','Reinstall'],['factory','Factory reset'],['controls','Basic controls']]],

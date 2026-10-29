@@ -92,7 +92,7 @@ Ctrl树分支线条不可压缩，只截断文件名；Ctrl面板在左、Alt面
 
 ## 2026-10-15: simplified desktop and grid
 - Normal row grid: 56px; former 26px compact rows: 28px. Fonts and other existing special line heights stay unchanged.
-- File/folder menus use Pin (From homepage) and To desk; no in-folder link creation or destination submenu.
+- File/folder menus use Pin (From homepage) and To wall; no in-folder link creation or destination submenu.
 - Desktop holds one movable reference, initially upper-left. Its menu contains only Open and Delete; Delete removes the reference only. Replacing a different item requires the red Yes/No confirmation.
 - Recent activity appears in From only. Legacy in-folder shortcut records are retired without deleting their targets.
 
@@ -104,7 +104,7 @@ Ctrl树分支线条不可压缩，只截断文件名；Ctrl面板在左、Alt面
 - File/folder row 280×56px, icon selection square 56×56px, SVG maximum 40×40px with 8px inset. File text box 202×36px starting 64px from the row left. App text box 210×36px starting 70px from the row left. Fonts/colors remain unchanged.
 - From: left inset 32px; control block 96px wide, 16px gap, widget block 152px wide, then 24px gap. App rows begin at x320; folders and files follow in 280px columns. Top inset 16px. Search occupies the top of the left block.
 - Bottom 72px is reserved for the dock. Desktop item bounds and the visual density preview respect this area.
-- Temporary desktop density preview shows 6×17 visual samples without creating files/references or changing history. Exit preview restores the one-item desktop; To desk also exits preview. Preview dismissal lasts for this app session.
+- Temporary desktop density preview shows 6×17 visual samples without creating files/references or changing history. Exit preview restores the one-item desktop; To wall also exits preview. Preview dismissal lasts for this app session.
 
 - DTP revision: file/folder glyphs return to 24×24px, centered in the existing 56px icon selection area. Software and From basic-control glyphs stay 40×40px. Row/text geometry is retained.
 
