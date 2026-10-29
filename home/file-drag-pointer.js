@@ -3,6 +3,25 @@
 let pointerFileDrag=null;
 function cancelPointerFileDrag(){clearTimeout(pointerFileDrag?.headerTimer);clearTimeout(pointerFileDrag?.folderTimer);pointerFileDrag=null;draggedFiles=null;dropHint.hidden=true;$('#desktop').classList.remove('file-pointer-drag');clearDropFolder();window.CabanonDragFeedback?.end();}
 addEventListener('pointercancel',cancelPointerFileDrag,true);addEventListener('blur',cancelPointerFileDrag);
+
+// Releasing a single dragged folder on empty desktop space opens a window there.
+// Valid drop targets (folder rows, archives, headers) are handled before this runs.
+function openDraggedFolderWindow(drag,event){
+ const names=draggedFiles?.names||[];if(names.length!==1)return false;
+ const entry=prefs.entries.find(item=>item.name===names[0]&&item.folder);if(!entry)return false;
+ const source=drag.list.closest('.window');if(!source||!source.isConnected)return false;
+ const rect=source.getBoundingClientRect();
+ if(event.clientX>=rect.left&&event.clientX<=rect.right&&event.clientY>=rect.top&&event.clientY<=rect.bottom)return false;
+ const target=document.elementFromPoint(event.clientX,event.clientY),desktop=document.querySelector('#desktop');
+ if(!target||!desktop.contains(target))return false;
+ if(!['desktop','files','windows'].includes(target.id))return false;
+ if(target.closest('.window,#from,#taskbar,#all-apps,.removal-confirmation,#context-menu,#power-screen,#setting-welcome,#flyout,#task-popup,.file'))return false;
+ const win=openFolderBrowser(entry.name,true);if(!win)return false;
+ const box=desktop.getBoundingClientRect(),scale=box.width/1920||1,width=win.offsetWidth||900,height=win.offsetHeight||650;
+ win.style.left=Math.round(Math.min(1920-width,Math.max(0,(event.clientX-box.left)/scale)))+'px';
+ win.style.top=Math.round(Math.min(1080-height,Math.max(0,(event.clientY-box.top)/scale)))+'px';
+ focusWindow(win);return true;
+}
 addEventListener('pointerdown',event=>{const list=event.target.closest('.house-file-list'),item=event.target.closest('[data-entry],[data-file]');if(![0,2].includes(event.button)||!list||!item||!fileDragStartHit(event,item)||list.dataset.view==='paragraph'&&event.button===0)return;pointerFileDrag={list,item,x:event.clientX,y:event.clientY,started:false,button:event.button,action:event.button===2?rightFilePreferences().drag:'move',pointerId:event.pointerId,transfer:new DataTransfer()};},true);
 addEventListener('dragstart',event=>{if(pointerFileDrag)event.preventDefault();},true);
 addEventListener('pointermove',event=>{
@@ -14,7 +33,7 @@ addEventListener('pointermove',event=>{
  if(target){target.dispatchEvent(new DragEvent('dragover',{bubbles:true,cancelable:true,clientX:event.clientX,clientY:event.clientY,dataTransfer:drag.transfer}));}
  if(blocked)window.CabanonDragFeedback?.present(event,"   X   ");
 },true);
-addEventListener('pointerup',event=>{const drag=pointerFileDrag;if(!drag)return;clearTimeout(drag.headerTimer);clearTimeout(drag.folderTimer);pointerFileDrag=null;if(drag.started){const target=document.elementFromPoint(event.clientX,event.clientY);if(drag.specialDrop)drag.specialDrop();else if(drag.action==='delete')rightRemoveFiles([...draggedFiles.names]);else if(target&&!drag.blocked)target.dispatchEvent(new DragEvent('drop',{bubbles:true,cancelable:true,clientX:event.clientX,clientY:event.clientY,dataTransfer:drag.transfer}));suppressFileClick=true;setTimeout(()=>suppressFileClick=false,0);window.dispatchEvent(new Event('dragend'));draggedFiles=null;dropHint.hidden=true;$('#desktop').classList.remove('file-pointer-drag');}},true);
+addEventListener('pointerup',event=>{const drag=pointerFileDrag;if(!drag)return;clearTimeout(drag.headerTimer);clearTimeout(drag.folderTimer);pointerFileDrag=null;if(drag.started){const target=document.elementFromPoint(event.clientX,event.clientY);if(drag.specialDrop)drag.specialDrop();else if(drag.action==='delete')rightRemoveFiles([...draggedFiles.names]);else if(target&&!drag.blocked)target.dispatchEvent(new DragEvent('drop',{bubbles:true,cancelable:true,clientX:event.clientX,clientY:event.clientY,dataTransfer:drag.transfer}));else openDraggedFolderWindow(drag,event);suppressFileClick=true;setTimeout(()=>suppressFileClick=false,0);window.dispatchEvent(new Event('dragend'));draggedFiles=null;dropHint.hidden=true;$('#desktop').classList.remove('file-pointer-drag');}},true);
 
 
 

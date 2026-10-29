@@ -10,6 +10,7 @@
   { "name": "folder pane swap", "file": "folder-pane-swap-check.cjs" },
   { "name": "folder group transfer", "file": "folder-group-transfer-check.cjs" },
   { "name": "folder new window", "file": "folder-new-window-check.cjs" },
+  { "name": "folder drag-out window", "file": "folder-drag-window-check.cjs" },
   { "name": "folder close controls", "file": "folder-close-controls-check.cjs" },
   { "name": "dock window groups", "file": "dock-window-groups-check.cjs" },
   { "name": "file hit contract", "file": "file-hit-contract-check.cjs" },

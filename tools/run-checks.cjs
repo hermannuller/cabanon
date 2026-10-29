@@ -26,11 +26,11 @@ function allChecks() {
     .map(name => ({ name: name.replace(/\.cjs$/, ''), file: name }));
 }
 
-// A check needs a live browser when it asks test-env for Playwright or Electron.
+// A check needs a live browser when it pulls Playwright or Electron from test-env.
 function needsUi(check) {
   try {
     const source = fs.readFileSync(path.join(tmpDir, check.file), 'utf8');
-    return /test-env\.cjs['"]\)\.(?:playwright|electronPath)/.test(source);
+    return /test-env\.cjs/.test(source) && /\b(?:playwright|electronPath)\b/.test(source);
   } catch {
     return false;
   }
