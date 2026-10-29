@@ -17,7 +17,7 @@ PC and Phone load the same registry: home/icons/manifest.json → home/icon-asse
 | `river` | `home/icons/river.svg` |
 | `blind` | `home/icons/blind-icon.svg` |
 | `marathon` | `home/icons/marathon-icon.svg` |
-| `wall` | `home/icons/wall-file-icon.svg` |
+| `wall` | `home/icons/pdf/wall.svg` |
 | `grid` | `home/icons/tsv-file-icon.svg` |
 | `ur` | `home/icons/ur-icon.svg` |
 | `where` | `home/icons/where-icon.svg` |
@@ -61,3 +61,9 @@ Latest override: only the ten FROM system controls (trash, input, network, volum
 applicationPdfIcons in application-names.js maps stable software IDs to these shared manifest keys. Both PC appIcon and Phone resolve the same SVG. Phone groups use pdf-group; cloud weather uses pdf-weather while other weather conditions retain their corresponding weather glyphs. Pause/close and translation are registered as reusable assets; software identifiers and names remain unchanged.
 
 Weather APP icon override: authored eight-point outline with a central large circle, 36px canvas and 1px stroke. The original PDF cloud mark is superseded; actual weather-condition symbols in the information widget remain separate.
+
+## Authored PDF icons
+
+19 vector assets were extracted directly from cbn-p.pdf into home/icons/pdf/. source-map.json records original page, source bounds and path counts. No bitmap tracing or redrawing. All strokes are 1px on a 36px canvas; solid paths and authored fills (including COLORS and OUTDESIGN) remain filled.
+
+applicationPdfIcons in application-names.js maps stable software IDs to these shared manifest keys. Both PC appIcon and Phone resolve the same SVG. Phone groups use pdf-group; cloud weather uses pdf-weather while other weather conditions retain their corresponding weather glyphs. Pause/close and translation are registered as reusable assets; software identifiers and names remain unchanged.
