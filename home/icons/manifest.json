@@ -45,6 +45,8 @@
   "mute.outline": "os/mute.svg",
   "text.solid": "os/text.svg",
   "text.outline": "os/text.svg",
+  "txt-file.solid": "os/txt-file.svg",
+  "txt-file.outline": "os/txt-file.svg",
   "user.solid": "os/user.svg",
   "user.outline": "os/user.svg",
   "network.solid": "os/network.svg",

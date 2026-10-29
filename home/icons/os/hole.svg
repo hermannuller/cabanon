@@ -1,1 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" data-authored-icon="hole" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;pointer-events:none"><rect x="2" y="2" width="32" height="32"/><circle cx="18" cy="18" r="8"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" data-authored-icon="hole" aria-hidden="true" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;pointer-events:none;overflow:visible">
+  <path fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" d="M4.138 19.971C4.138 11.143 11.295 3.987 20.123 3.987C28.951 3.987 36.108 11.143 36.108 19.971C36.108 28.8 28.951 35.956 20.123 35.956C11.295 35.956 4.138 28.8 4.138 19.971Z"/>
+  <path fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke" d="M0.743 0.634H39.221V39.112H0.743Z"/>
+</svg>
