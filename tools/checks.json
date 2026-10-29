@@ -17,6 +17,7 @@
   { "name": "paragraph icon column", "file": "paragraph-icon-column-check.cjs" },
   { "name": "txt text drag", "file": "txt-text-drag-check.cjs" },
   { "name": "wall no tether", "file": "wall-no-tether-check.cjs" },
+  { "name": "txt file drop", "file": "txt-file-drop-check.cjs" },
   { "name": "save close prompt", "file": "save-close-check.cjs" },
   { "name": "rename syntax", "file": "rename-syntax-audit.cjs" },
   { "name": "application names", "file": "application-names-check.cjs" },
