@@ -73,15 +73,17 @@
   条目找不到时 `open`/`to desk` 自然无反应。
 - 结论：fixture 过期的可能性较大；但 `toDesktop` 的 0 计数没有同类解释，需要人工点一遍确认。
 
-### 4. 段落视图的「空白处点击」（低，**旧**）
+### 4. 段落视图的图标列（已解决，选 B）
 
 - 实测（Electron 里量的）：段落行 box 宽 90px = 名字 59px + 间隙 7px + 图标 24px，高 56px；
   行内没有列表视图那种右侧空白，`fileContentHit` 覆盖整行高度和图标/文字间隙。
 - 旧测试在行内找不到「空白点」，就退到 `(right-2, top+2)` 点击。该点落在图标上方约 16px 的
-  垂直留白里，段落视图按文本处理：出现插入光标、不选中。点图标本身正常整选
-  （实测 `editorSelected=1`、`caretVisible=false`）。
-- 判定：测试假设了列表视图的整行矩形选区，不是「点击失效」。除非希望段落行整 56px 高度都算整选，
-  否则删掉这两条断言即可；要改则动 `paragraph-browser.js` 的 pointerdown，属于设计变更。
+  垂直留白里，当时按文本处理：出现插入光标、不选中。
+- 决定（2026-10-29）：采用 B —— 只要 x 落在「名字右缘 → 图标右缘」之间（含 7px 间隙），
+  无论 y 在 56px 行的哪个高度，都按点图标处理：整选该文件并进入可拖状态；点名字文字仍插入光标。
+  这样图标上下的留白不会再把意图「点图标」的操作变成插光标。
+- 实现：[home/paragraph-browser.js](home/paragraph-browser.js#L160) 的 `iconHit` 判定。
+- 回归：`tmp/paragraph-icon-column-check.cjs`；`file-click-drag-split` 与 `selected-row-drag` 现已全绿。
 
 ### 5. 弹簧打开偶发失败（中，**待**）
 
@@ -105,7 +107,6 @@
 | `on-off-standard-test` | 在 `row` 里找 `.setting-switch-gap`，部分开关不是 `settingTextToggle` 结构 |
 | `menu-bounds-smoke` | 假设 `#context-menu` 常驻，实际按需创建 |
 | `river-check` / `self-drop-check` / `file-paragraph-drag-check` | 没有关闭 welcome 遮罩，点击被挡住（真实用户点击会消失） |
-| `file-click-drag-split-check` | 除段落「空白点击」外均 PASS；段落行是内容宽度，没有该测试假设的空白带 |
 | `home-smoke` | 期望 42 个桌面条目，当前默认布局不同 |
 | `file-operations-regression` | 1500 文件粘贴场景的计数假设过期 |
 | `file-batch-tools-check` | 期望 Info 里的 `≈` 标记，表格已不渲染 |
@@ -115,10 +116,9 @@
 
 ## 五、设计待定（需要你一句话）
 
-1. **段落行图标上下的垂直留白**是否也算「点图标整选」；目前按文本处理（出光标）。
-2. **手机首屏第一个应用**：RIVER 还是 MARATHON？
-3. **Info 表格的 `≈` 标记**是否保留。
-4. **welcome 遮罩**：真实交互是「任意指针/键盘关闭」，自动化脚本不点击所以看起来像卡住；确认保持现状即可。
+1. **手机首屏第一个应用**：RIVER 还是 MARATHON？
+2. **Info 表格的 `≈` 标记**是否保留。
+3. **welcome 遮罩**：真实交互是「任意指针/键盘关闭」，自动化脚本不点击所以看起来像卡住；确认保持现状即可。
 
 ## 六、建议顺序
 

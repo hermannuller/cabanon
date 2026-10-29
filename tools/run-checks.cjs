@@ -70,6 +70,8 @@ if (checks.some(check => check.ui) && !resolveElectron()) {
 
 const timeout = Number((args.find(argument => argument.startsWith('--timeout=')) || '').split('=')[1]) || 300000;
 const retries = Number((args.find(argument => argument.startsWith('--retry=')) || '').split('=')[1]) || 0;
+// A closing Electron window can steal focus from the next check and cancel its drag.
+const settle = Number((args.find(argument => argument.startsWith('--settle=')) || '').split('=')[1]) || 400;
 const bail = flags.has('--bail');
 
 function runCheck(file) {
@@ -121,6 +123,7 @@ function runCheck(file) {
     const ms = Date.now() - started;
     results.push({ name: check.name, state, ms });
     console.log(`  ${state === 'pass' ? 'PASS' : state.toUpperCase()}  ${check.name}  ${(ms / 1000).toFixed(1)}s`);
+    if (index < checks.length - 1) await new Promise(resolve => setTimeout(resolve, settle));
     if (state !== 'pass' && bail) break;
   }
 

@@ -18,11 +18,12 @@ fixtures, and which need a design decision — see
 | `npm run test:list` | Print the curated checks, marking `unit` or `ui` | Node only |
 
 Filters match filenames: `node tools/run-checks.cjs folder- split`.
-Other flags: `--bail` (stop on first failure), `--timeout=300000`, `--retry=1`.
+Other flags: `--bail` (stop on first failure), `--timeout=300000`, `--retry=1`,
+`--settle=400` (pause between checks so a closing window cannot steal focus).
 
 UI checks launch a fullscreen Electron window and are focus-sensitive: another window
-stealing focus cancels the drag under test. Run them sequentially (the runner does) and
-use `--retry=1` for the occasional focus flake.
+stealing focus cancels the drag under test. Run them sequentially (the runner does), keep
+the default settle delay, and use `--retry=1` if a machine still flakes.
 
 ## Environment
 
@@ -65,8 +66,7 @@ when touching the matching feature; do not add them to `checks.json` until they 
 | `river-check.cjs` | Welcome overlay stays open and blocks the first click |
 | `phone-prototype-check.cjs` | Expects MARATHON first; phone now opens RIVER |
 | `saved-button-state-check.cjs` | HELP and MARATHON pass; the WALL save state stays `save` |
-| `folder-group-transfer-check.cjs` | Flaky in a suite run (focus loss), passes alone and with `--retry=1` |
 
 The 2026-10-29 folder-group batch (`folder-split`, `folder-grid`, `folder-pane-swap`,
 `folder-group-transfer`, `folder-new-window`, `folder-close-controls`, `dock-window-groups`)
-passes and is in the curated list.
+passes and is in the curated list; `folder-group-transfer` needs the settle delay above.

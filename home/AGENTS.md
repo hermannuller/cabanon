@@ -73,7 +73,7 @@ The user explicitly requires separate click and drag hit areas. Read ../docs/FIL
 
 - Every user-visible file deletion must call performFileRemoval before mutating entries, including Delete/Shift+Delete, paragraph selection removal, batch/right-box actions and save-picker Delete. Keep rows mounted until the animation promise settles. Source removal during move/archive operations stays synchronous and is not a deletion gesture.
 
-- Paragraph view override: Enter always inserts a line break before the current/selected file, irrespective of caret position; repeated Enter moves it down another row. Double click opens the file, never selects its base name. F2 base-name selection is removed; use single-click base text for editing and suffix/icon for whole-file selection.
+- Paragraph view override: Enter always inserts a line break before the current/selected file, irrespective of caret position; repeated Enter moves it down another row. Double click opens the file, never selects its base name. F2 base-name selection is removed; use single-click base text for editing. The whole icon column — from the name's right edge through the 24px icon, including the gap, at any height inside the 56px row — selects the whole file, so padding above or below the glyph cannot place a caret. Test tmp/paragraph-icon-column-check.cjs.
 
 - Save-file picker override: single selection only, no Ctrl/Shift multi-select or Ctrl+A selection. Entry context menu contains exactly rename / delete (lowercase). Inline rename uses commitFileRename; deletion keeps the filename-erasure animation before removal.
 
