@@ -96,6 +96,7 @@
 /* Folder selection uses an L5 surface with L2 ink. */
 #desktop .house-file-list .file.selected{background:var(--interaction-ink);color:var(--l2)}
 #desktop .house-file-list .file.selected>svg,#desktop .house-file-list .file.selected>.file-icon{color:var(--l2)!important}
+#desktop #files .file.selected{background:var(--interaction-ink);color:var(--l2)}
 #desktop .house-file-list .file.selected>span:last-of-type{text-decoration:none}
 #desktop .file-creating>span:last-of-type{will-change:clip-path}
 

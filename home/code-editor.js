@@ -6,11 +6,14 @@ function setupCodeEditor(win){
  const rows=document.createElement('div');rows.className='code-rows';const exclusion=document.createElement('span');exclusion.className='code-control-exclusion';exclusion.setAttribute('aria-hidden','true');rows.append(exclusion);shell.append(rows);old.replaceWith(shell);
  const resize=document.createElement('div');resize.className='code-height-handle';win.querySelector('.titlebar').append(resize);
  const rowHTML=(text,index)=>{const row=document.createElement('div');row.className='code-row';const number=document.createElement('span');number.className='code-number';number.textContent=String(index+1)+'.';const input=document.createElement('div');input.className='code-line';input.contentEditable='true';input.spellcheck=false;input.setAttribute('role','textbox');input.setAttribute('aria-label','Code line '+(index+1));input.textContent=text;row.append(number,input);return row;};
- const lines=(old.value||win.dataset.fileBrowser).split('\n');lines.forEach((text,index)=>rows.append(rowHTML(text,index)));
+ const initial=win.dataset.fileBrowser?(folderSplits.get(win)?.panes.map(pane=>pane.folderPath).join(' ^ ')||win.dataset.fileBrowser):old.value;
+ const lines=(initial||'').split('\n');if(win.dataset.fileBrowser&&lines.length===1)lines.push('');lines.forEach((text,index)=>rows.append(rowHTML(text,index)));
  function renumber(){[...rows.querySelectorAll('.code-row')].forEach((row,index)=>{row.querySelector('.code-number').textContent=(index+1)+'.';row.querySelector('.code-line').setAttribute('aria-label','Code line '+(index+1));});}
  function sizeEditor(){const visual=rows.scrollHeight;const desired=Math.max(112,Math.min(224,visual));const cap=Math.max(28,win.clientHeight-56);win.style.setProperty('--code-height',Math.min(cap,win.codeManualHeight||desired)+'px');}
  function caretTo(line,end=false){line.focus();const range=document.createRange();range.selectNodeContents(line);range.collapse(!end);const selection=getSelection();selection.removeAllRanges();selection.addRange(range);}
- rows.addEventListener('input',()=>{renumber();sizeEditor();});
+ let executeLine=null;
+ rows.addEventListener('beforeinput',event=>{const line=event.target.closest('.code-line');executeLine=win.dataset.fileBrowser&&!event.isComposing&&event.inputType==='insertText'&&event.data==='>'&&line===[...rows.querySelectorAll('.code-line')][1]&&line.textContent===''?line:null;});
+ rows.addEventListener('input',()=>{renumber();sizeEditor();const line=executeLine;executeLine=null;if(line?.textContent==='>')window.CabanonFolderCode?.execute(win,rows.querySelector('.code-line').textContent);});
  rows.addEventListener('keydown',event=>{
   const line=event.target.closest('.code-line');if(!line)return;const row=line.parentElement;
   if(event.key==='Enter'){

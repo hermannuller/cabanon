@@ -5,3 +5,9 @@
 .txt-window .window-title{flex:0 1 auto;min-width:0;max-width:calc(100% - 360px);padding-right:8px}.txt-window .window-title>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.txt-window .titlebar>.txt-toolbar{flex:0 0 auto;margin-right:auto;padding:0;gap:0;height:40px;min-height:40px}.txt-window .titlebar>.txt-toolbar button{height:40px;min-height:40px;font:400 12px/28px JetBrains,SourceHan,monospace}.txt-app,.txt-window .window-content textarea.txt-editor,.txt-find{background:var(--l2)}.txt-find{top:28px}
 .txt-status{gap:8px}.txt-status select,.txt-status button{font:inherit;color:inherit;background:transparent;border:0;padding:0 4px;height:28px}.txt-status select:hover,.txt-status button:hover{background:var(--l3)}.txt-status select option{background:var(--l2);color:var(--l5)}
 .txt-window .titlebar>.txt-toolbar [data-save-as]{margin-left:12px}.txt-find [data-close-find]{font-size:22px;line-height:32px}
+.txt-window .window-title>span{display:block;min-width:0;max-width:20ch}
+.txt-window .txt-header-actions{margin-right:0}
+.txt-window .titlebar>.txt-toolbar{margin-right:0}
+.txt-window:not(.active) .window-content textarea.txt-editor{color:var(--l6)}
+.txt-pane-name{display:none}
+.txt-split .txt-pane-name{display:block;position:absolute;left:0;top:0;max-width:calc(100% - 200px);height:36px;padding:4px 8px;color:var(--l6);font:400 12px/28px JetBrains,SourceHan,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none;z-index:6}

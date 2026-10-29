@@ -32,7 +32,7 @@ function txtPrepare(win){
   const state=txtStates(win)[0];if(state)state.pane=pane;
  }
  for(const state of txtStates(win))if(!state.pane)state.pane=txtPanes(win)[0];
- txtBind(win);return win;
+ CabanonTXT.attachHeader(win);txtBind(win);return win;
 }
 function txtDivider(body,area){
  const divider=document.createElement('div');divider.className='folder-pane-divider';divider.style.gridArea=area;body.append(divider);return divider;
@@ -52,7 +52,7 @@ function txtLayout(win){
  if(count===3){area(panes[0],'1/1/2/2');area(panes[1],'1/3/2/4');area(panes[2],'3/1/4/4');txtDivider(body,'1/2/2/3');txtDivider(body,'2/1/3/4');}
  if(count===4){area(panes[0],'1/1/2/2');area(panes[1],'1/3/2/4');area(panes[2],'3/1/4/2');area(panes[3],'3/3/4/4');txtDivider(body,'1/2/3/3');txtDivider(body,'2/1/3/4');}
  for(const pane of panes){
-  const button=document.createElement('button');button.className='folder-pane-close txt-pane-close';button.textContent='×';button.title='Close pane';button.setAttribute('aria-label','Close pane');
+  const button=document.createElement('button');button.className='folder-pane-close txt-pane-close';button.innerHTML=cssIcon('close','window-control-symbol cabanon-close-symbol');button.title='Close pane';button.setAttribute('aria-label','Close pane');
   button.onclick=event=>{event.stopPropagation();txtClosePane(win,pane);};pane.append(button);
  }
 }
@@ -103,7 +103,6 @@ function txtKeys(event){
  if(event.target.closest('input,textarea'))event.stopPropagation();
  if(event.ctrlKey||event.metaKey){const key=event.key.toLowerCase();
   if(key==='s'){event.preventDefault();event.shiftKey?CabanonTXT.saveAs(state):CabanonTXT.saveCurrent(state);}
-  if(key==='o'){event.preventDefault();CabanonTXT.importText(state);}
   if(key==='f'||key==='h'){event.preventDefault();CabanonTXT.toggleFind(state,key==='h');}
  }
  if(event.key==='F3'){event.preventDefault();CabanonTXT.findNext(state,event.shiftKey);}
@@ -114,7 +113,7 @@ function txtShell(){
  const win=createWindow('txt:'+crypto.randomUUID(),'TXT','text','<div class="txt-panes"></div>');
  win.classList.add('txt-window');win.dataset.ownerApp='TXT';Object.assign(win.style,{width:'820px',height:'680px'});
  const spacer=document.createElement('span');spacer.className='txt-title-spacer';spacer.setAttribute('aria-hidden','true');win.querySelector('.window-title').after(spacer);
- txtBind(win);return win;
+ CabanonTXT.attachHeader(win);txtBind(win);return win;
 }
 let txtPaneGesture=null;
 function txtPaneDropTarget(gesture,event){

@@ -1,7 +1,7 @@
 'use strict';
 // The wall holds exactly one protected temp folder and one optional pin.
-const HOLE_PATH='/house/hole';
-const HOLE_LABEL='hole-in-the-wall';
+const HOLE_PATH='/house/holle';
+const HOLE_LABEL='holle';
 function holeEnsure(){
  let entry=prefs.entries.find(item=>item.name===HOLE_PATH);
  if(!entry){
@@ -18,7 +18,7 @@ function holeNormalizePrefs(){
 }
 function holePlacement(){
  const saved=prefs.holePosition||{};
- return {x:Math.max(0,Math.min(1640,Number.isFinite(saved.x)?saved.x:20)),y:Math.max(0,Math.min(952,Number.isFinite(saved.y)?saved.y:16))};
+ return {x:Math.max(0,Math.min(1640,Number.isFinite(saved.x)?saved.x:20)),y:Math.max(0,Math.min(1024,Number.isFinite(saved.y)?saved.y:16))};
 }
 function holeRow(){
  const row=document.createElement('button');row.className='file';row.dataset.file=HOLE_PATH;row.dataset.hole='true';row.title=HOLE_PATH;
@@ -46,8 +46,9 @@ function wallDesktopMenu(){
  const hidden=!!prefs.desktopHidden;
  const items=[
   ['Setting wall',()=>openSettings('visual','wallpaper')],
-  ['open hole',()=>openFolderBrowser(HOLE_PATH)],
+  ['open holle',()=>openFolderBrowser(HOLE_PATH)],
   [hidden?'Show':'Hidden',()=>{prefs.desktopHidden=!hidden;persistProfiles();renderDesktop();}],
+  ['return',()=>{prefs.holePosition={x:20,y:16};if(prefs.desktopItem){prefs.desktopItem.x=32;prefs.desktopItem.y=88;}persistProfiles();renderDesktop();}],
  ];
  if(prefs.desktopItem)items.push(['unpin',()=>clearDesktopItem()]);
  return items;
@@ -62,11 +63,13 @@ commitFileRename=function(sources,values,options={}){
  return holeCommitRename(sources,values,options);
 };
 const holeDeleteFile=deleteFile;
-deleteFile=function(name){if(name===HOLE_PATH){warning(HOLE_LABEL+' cannot be deleted.');return;}return holeDeleteFile(name);};
+deleteFile=function(name){if(name===HOLE_PATH)return;return holeDeleteFile(name);};
+const holeFolderDelete=folderDelete;
+folderDelete=function(names,burn){const rest=names.filter(name=>folderPath(name)!==HOLE_PATH);if(rest.length)return holeFolderDelete(rest,burn);};
 const holeRemoval=performFileRemoval;
 performFileRemoval=function(names,action){
  const list=[...(names||[])];if(!list.includes(HOLE_PATH))return holeRemoval(list,action);
- const rest=list.filter(name=>name!==HOLE_PATH);warning(HOLE_LABEL+' cannot be deleted.');
+ const rest=list.filter(name=>name!==HOLE_PATH);
  return rest.length?holeRemoval(rest,action):Promise.resolve();
 };
 const holeTransfer=transferFiles;

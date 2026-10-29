@@ -11,7 +11,7 @@ function configureFolder(win,path){
  const header=win.querySelector('.window-title');header.ondblclick=event=>{if(event.target.closest('svg'))return;event.stopPropagation();toggleCode(win);};
  const svg=header.querySelector('svg');svg.style.cursor='pointer';svg.onpointerdown=event=>event.stopPropagation();svg.onclick=event=>{event.stopPropagation();copyPathText(win.dataset.fileBrowser);};
  if(!win.querySelector('.code-exit')){const exit=document.createElement('button');exit.className='code-exit';exit.innerHTML=closeMark();exit.title='Exit code';exit.onclick=()=>toggleCode(win,false);win.querySelector('.titlebar').insertBefore(exit,win.querySelector('[data-win=min]'));}
- if(!win.querySelector('.house-code')){const editor=document.createElement('textarea');editor.className='house-code';editor.spellcheck=false;editor.setAttribute('aria-label','Folder code');win.querySelector('.titlebar').append(editor);}
+ if(!win.querySelector('.house-code,.code-surface')){const editor=document.createElement('textarea');editor.className='house-code';editor.spellcheck=false;editor.setAttribute('aria-label','Folder code');win.querySelector('.titlebar').append(editor);}
  const list=win.querySelector('.house-file-list');list.dataset.path=path;drawBrowser(win,path);return win;
 }
 function toggleCode(win,on=!win.classList.contains('code-mode')){

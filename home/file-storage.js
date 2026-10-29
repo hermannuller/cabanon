@@ -15,11 +15,29 @@ const CabanonStorage=(()=>{
  return state.data;}
  function install(profile){let state=states.get(profile);const descriptor=Object.getOwnPropertyDescriptor(profile,'content');if(!state||descriptor?.get!==state.getter){state={data:profile.content||{},aliases:new Set(),entries:null,count:-1};state.getter=()=>aliases(profile,state);states.set(profile,state);Object.defineProperty(profile,'content',{configurable:true,enumerable:true,get:state.getter,set:value=>{state.data=value||{};state.aliases=new Set();state.entries=null;aliases(profile,state,true);}});}aliases(profile,state,true);}
 
+ function migrateHolle(profile){
+  if(profile.hollePathVersion===1)return;
+  const old='/house/hole',next='/house/holle',entries=profile.entries;
+  if(entries.some(e=>e.folder&&e.name===old)){
+   const content={...profile.content},map=new Map(),occupied=entries.some(e=>CabanonFilenames.key(e.name)===CabanonFilenames.key(next));
+   const conflict=occupied?entries.find(e=>CabanonFilenames.key(e.name)===CabanonFilenames.key(next)):null;
+   const displaced=conflict?'/house/'+CabanonFilenames.unique('holle',candidate=>entries.some(e=>e.parent==='/house'&&CabanonFilenames.key(leaf(e.name))===CabanonFilenames.key(candidate)),conflict.folder):null;
+   const change=value=>typeof value!=='string'?value:value===old||value.startsWith(old+'/')?next+value.slice(old.length):conflict&&(value===conflict.name||value.startsWith(conflict.name+'/'))?displaced+value.slice(conflict.name.length):value;
+   // Snapshot every new location before changing the conflict entry's name.
+   const changes=entries.map(e=>({e,name:change(e.name),parent:change(e.parent)}));
+   for(const {e,name}of changes)map.set(e.name,name);
+   for(const {e,name,parent}of changes)Object.assign(e,{name,parent});
+   remap(profile,map);
+   if(profile.legacyFileIds)profile.legacyFileIds=Object.fromEntries(Object.entries(profile.legacyFileIds).map(([key,id])=>[map.get(key)||key,id]));
+   profile.content=content;
+  }
+  profile.hollePathVersion=1;
+ }
  function prepare(profile){if(!profile||typeof profile!=='object')return;profile.entries ||= (profile.files||[]).map(name=>({name,parent:'/house',folder:name.startsWith('/')}));if(profile.fileStorageVersion!==1){const raw=profile.content||{},map=new Map();profile.legacyFileIds ||= {};for(const e of profile.entries){const old=e.name;e.parent=path(e.parent||'/house');e.name=e.folder?path(e.name):e.parent+'/'+leaf(e.name);e.id ||= (e.folder?'folder:':'file:')+crypto.randomUUID();map.set(old,e.name);profile.legacyFileIds[old]=e.id;}remap(profile,map);const data={};for(const [key,value]of Object.entries(raw)){const mapped=map.get(key)||key,e=entry(profile,mapped);data[e&&!e.folder?e.id:key]=value;}profile.content=data;profile.fileStorageVersion=1;}
  // Support old bundled seeds that still supply an unqualified name.
  for(const e of profile.entries){e.readOnly ??= false;e.parent=path(e.parent||'/house');if(!e.name.startsWith('/')){const old=e.name;e.name=e.parent+'/'+e.name;remap(profile,new Map([[old,e.name]]));}e.id ||= (e.folder?'folder:':'file:')+crypto.randomUUID();}profile.files=[...new Set((profile.files||[]).concat(profile.entries.map(e=>e.name)))];install(profile);
  if(!profile.marathonFileIdentityVersion&&profile.user){const key='cabanon-river:'+profile.user,raw=localStorage.getItem(key);if(raw)try{const data=JSON.parse(raw);let changed=false;for(const work of data.canal?.items||[])if(work.sourceFile&&!work.sourceId){const source=entry(profile,work.sourceFile);if(source){work.sourceId=source.id;work.sourceFile=source.name;changed=true;}}if(changed){const backup='cabanon-file-storage-backup-river-v1:'+profile.user;if(!localStorage.getItem(backup))localStorage.setItem(backup,raw);localStorage.setItem(key,JSON.stringify(data));}}catch(error){console.error('Unable to migrate linked manuscripts',error);}profile.marathonFileIdentityVersion=1;}
- return profile;}
+ migrateHolle(profile);return profile;}
  function resolve(name,parent){prepare(prefs);return entry(prefs,name,parent)?.name||(String(name).startsWith('/')?path(name):(parent||'/house')+'/'+name);}
  function refresh(){prepare(prefs);}
  function moved(map){

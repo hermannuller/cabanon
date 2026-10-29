@@ -3,7 +3,7 @@ function currentSelectionList(event){if(event.target.closest('input,textarea,[co
 function selectCurrentFiles(list,invert=false){const items=listItems(list).filter(item=>!item.hidden),state=selectionState(list),previous=state.selected;state.selected=new Set(items.map(itemName).filter(name=>!invert||!previous.has(name)));paintSelection(list);list.focus({preventScroll:true});}
 shortcutDefinitions.push(['selectAll','Select all files in current window','CTRL+A']);
 shortcutDefinitions.push(['openSelected','Open selected file or folder','ENTER']);
-const runBeforeSelection=runShortcut;runShortcut=function(id,event){if(!['selectAll','openSelected'].includes(id))return runBeforeSelection(id,event);const list=currentSelectionList(event);if(!list)return false;if(id==='openSelected'){const selected=[...selectionState(list).selected];if(selected.length===1){const row=listItems(list).find(item=>itemName(item)===selected[0]&&!item.hidden);if(row)openFile(selected[0],{sourceList:list});}return true;}selectCurrentFiles(list);return true;};
+const runBeforeSelection=runShortcut;runShortcut=function(id,event){if(!['selectAll','openSelected'].includes(id))return runBeforeSelection(id,event);const list=currentSelectionList(event);if(!list)return false;if(id==='openSelected'){const selected=[...selectionState(list).selected];if(selected.length===1){const row=listItems(list).find(item=>itemName(item)===selected[0]&&!item.hidden);if(row&&!(list.id==='files'&&selected[0]==='/house/holle'))openFile(selected[0],{sourceList:list});}return true;}selectCurrentFiles(list);return true;};
 let inverseSelectionGesture=null;
 window.addEventListener('keydown',event=>{
  if(fileGesture?.mode==='box'&&fileGesture.moved){inverseSelectionGesture=null;return;}
