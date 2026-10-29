@@ -64,7 +64,7 @@ when touching the matching feature; do not add them to `checks.json` until they 
 | `gesture-revision-check.cjs` | Reads a drag origin that is now `undefined` |
 | `river-check.cjs` | Welcome overlay stays open and blocks the first click |
 | `phone-prototype-check.cjs` | Expects MARATHON first; phone now opens RIVER |
-| `saved-button-state-check.cjs` | HELP and MARATHON pass; the BERLIN save state stays `save` |
+| `saved-button-state-check.cjs` | HELP and MARATHON pass; the WALL save state stays `save` |
 | `folder-group-transfer-check.cjs` | Flaky in a suite run (focus loss), passes alone and with `--retry=1` |
 
 The 2026-10-29 folder-group batch (`folder-split`, `folder-grid`, `folder-pane-swap`,

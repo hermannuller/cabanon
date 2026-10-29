@@ -20,7 +20,7 @@ Deletion records retain entry metadata and ID for restoration. Restoring into a 
 
 - tmp/scoped-files-check.cjs: independently edit/open same-name files; move collision; independent copy IDs; reload; delete/restore.
 - tmp/scoped-file-migration-check.cjs: legacy profile/guest/content/empty file/archive/order/pins/desktop migration and snapshots; recursive folder copy and rename; persistence.
-- tmp/scoped-file-editors-check.cjs: same-name MARATHON and BERLIN files; editor links after move; tree paths; account switching.
+- tmp/scoped-file-editors-check.cjs: same-name MARATHON and WALL files; editor links after move; tree paths; account switching.
 - tmp/filename-spec-check.cjs and tmp/filename-storage-boundaries-check.cjs: naming validation and file/folder collisions.
 - Existing click/drag/box/context and right-action regression checks remain applicable.
 

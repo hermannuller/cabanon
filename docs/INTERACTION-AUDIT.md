@@ -37,7 +37,7 @@
 | `warning-dismiss-check` | `please name it.` 的 L5 文本与任意点击关闭 |
 | `snap-smoke` | 贴边/四角吸附、左右拖拽、预览、72px 预留、最大化还原 |
 | `rename-syntax-audit` | 40 条改名语法，模型 + 真实键盘 + 提交 |
-| `save-close-check` | TXT/HELP/BERLIN/MARATHON 关闭前保存、Enter 默认、取消保留 |
+| `save-close-check` | TXT/HELP/WALL/MARATHON 关闭前保存、Enter 默认、取消保留 |
 | `application-names-check` | 应用改名在手机/桌面/设置/标题的单源同步 |
 | `new-names-thin-file-icons-check` | `new`/`new_1` 命名、复合扩展名、2px 描边、Save As 默认 |
 
@@ -55,9 +55,9 @@
   另外 `update()` 是否用旧的 `sources` 重排需要确认。
 - 影响：批量改名的核心交互之一失效，属于用户可感知的功能缺失。优先修。
 
-### 2. BERLIN 保存后按钮没有回到 `saved`（中，**待**）
+### 2. WALL 保存后按钮没有回到 `saved`（中，**待**）
 
-- 现象：`saved-button-state-check` 中 HELP 与 MARATHON 通过，BERLIN 在 `fontSize` 改成 30 并点保存后，
+- 现象：`saved-button-state-check` 中 HELP 与 MARATHON 通过，WALL 在 `fontSize` 改成 30 并点保存后，
   按钮仍是 `save`（应为 `saved` 且禁用）。
 - 规范：全局保存约定（AGENTS），`setFileSaveButton` + 真实文档签名。
 - 可能原因：WALL 的字段是 `input` 事件实时应用（[home/wall.js](home/wall.js#L105-L108)），
@@ -109,7 +109,7 @@
 | `file-batch-tools-check` | 期望 Info 里的 `≈` 标记，表格已不渲染 |
 | `filename-spec-check` | 找 `[data-rename]`，改名入口已换 |
 | `phone-prototype-check` | 期望首个应用 MARATHON，实际 RIVER |
-| `saved-button-state-check` | HELP/MARATHON 正常，仅 BERLIN 需按第 2 条确认 |
+| `saved-button-state-check` | HELP/MARATHON 正常，仅 WALL 需按第 2 条确认 |
 
 ## 五、设计待定（需要你一句话）
 
@@ -121,7 +121,7 @@
 ## 六、建议顺序
 
 1. 修批量改名拖拽排序（唯一高置信真实问题，约 30–60 分钟含回归）。
-2. 手动复现 BERLIN 保存态，确定是时序还是 bug。
+2. 手动复现 WALL 保存态，确定是时序还是 bug。
 3. 手动点一遍 FROM 的 `open` 与 `to desk`，必要时修 fixture 或代码。
 4. 给出「段落行空白区」的取舍，再动命中区相关代码。
 5. 最后批量修测试里的旧名称/旧扩展名/大写 NO，让失败数回落。

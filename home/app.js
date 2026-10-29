@@ -26,10 +26,11 @@ const paths = {
 const icon = name => motionAppIcon(name)||(name==='colors'?'<span class="colors-icon" aria-hidden="true"></span>':customIconMarkup(name==='volume'&&typeof prefs!=='undefined'&&prefs.volume===0?'mute':name,'outline')||`<svg viewBox="0 0 32 32" aria-hidden="true"><path d="${paths[name] || paths.text}"/></svg>`);
 const apps = [
  ['MARATHON','text'],['TXT','text'],['POINT','text'],['Ur','text'],['RIVER','river'],['THEN','text'],['COLORS','text'],['EMPTY','unfinished'],['LINE','blind'],['ZIP','zip'],['WALL','wall'],['CARE','user'],['DATE','text'],['TYPE','text'],['WHERE','globe'],['DIAL','text'],['WEATHER','text'],['STOCKS','text'],['CALC','calculator'],['OutDesign','text'],['HELP','help'],['ASTRO','unfinished'],['TIME','unfinished']
-].map(([name,glyph])=>({name,glyph:({MARATHON:'marathon',LINE:'blind',POINT:'pnyx',DIAL:'dial',Ur:'ur',WALL:'berlin',WHERE:'where',EMPTY:'empty','HELP':'help-app'})[name]||(name==='COLORS'?'colors':['MARATHON','RIVER','ZIP','WALL','CALC','HELP','TXT'].includes(name)?glyph:'unfinished'),implemented:['MARATHON','RIVER','ZIP','WALL','CALC','HELP','TXT'].includes(name)}));
+].map(([name,glyph])=>({name,glyph:({MARATHON:'marathon',LINE:'blind',POINT:'pnyx',DIAL:'dial',Ur:'ur',WALL:'wall',WHERE:'where',EMPTY:'empty','HELP':'help-app'})[name]||(name==='COLORS'?'colors':['MARATHON','RIVER','ZIP','WALL','CALC','HELP','TXT'].includes(name)?glyph:'unfinished'),implemented:['MARATHON','RIVER','ZIP','WALL','CALC','HELP','TXT'].includes(name)}));
 for(const app of apps)if(applicationPdfIcons[app.name])app.glyph='pdf-'+applicationPdfIcons[app.name];
 for(const [id,definition]of Object.entries(quickToolApplications))if(!apps.some(app=>app.name===id))apps.push({name:id,glyph:'quick-'+definition[1],implemented:true});
 const appNameMigration=Object.freeze({NEWS:'LINE',CALQ:'CALC',WALL:'WALL',ART:'WALL',HELP:'HELP','HELP!':'HELP','HELP！':'HELP',ZIP:'ZIP',MAP:'WHERE',OURDESIGN:'OutDesign',PEOPLE:'CARE'});
+// Legacy display names from older profiles; canonical names live in application-names.js.
 const renamedApplications=Object.freeze({BERLIN:'WALL',BLIND:'LINE',STUFF:'ZIP',OUTSIDE:'WEATHER',PNYX:'POINT'});
 function canonicalAppName(name){return Object.keys(applicationNames).find(id=>appLabel(id).toLowerCase()===String(name).toLowerCase())||renamedApplications[String(name).toUpperCase()]||appNameMigration[name]||apps.find(app=>app.name.toLowerCase()===String(name).toLowerCase())?.name||name;}
 function removeSketchFiles(profile){

@@ -2,7 +2,7 @@
 
 All current and future applications saving Cabanon files must use `openSaveFileDialog` from `home/save-file-dialog.js` for first Save and Save As. Do not implement an application-specific location/name picker. MARATHON's CANAL workflow is excluded pending its own design.
 
-- BERLIN folder structure: folder icon/current folder in title, back/forward/up/new-folder controls, editable path through the shared title code mode, scrolling 56px icon/name file rows.
+- WALL folder structure: folder icon/current folder in title, back/forward/up/new-folder controls, editable path through the shared title code mode, scrolling 56px icon/name file rows.
 - Default size 760 × 560; resizable, with a close control. No minimize/maximize controls.
 - Footer: filename input, lowercase `save`, `cancel`; neutral background and hover-only button backgrounds.
 - Show folders for navigation and only the requesting application's supported file extensions, supplied via `applicationFileFormats`.

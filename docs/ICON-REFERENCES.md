@@ -18,7 +18,6 @@ PC and Phone load the same registry: home/icons/manifest.json → home/icon-asse
 | `blind` | `home/icons/blind-icon.svg` |
 | `marathon` | `home/icons/marathon-icon.svg` |
 | `wall` | `home/icons/wall-file-icon.svg` |
-| `berlin` | `home/icons/berlin-icon.svg` |
 | `grid` | `home/icons/tsv-file-icon.svg` |
 | `ur` | `home/icons/ur-icon.svg` |
 | `where` | `home/icons/where-icon.svg` |

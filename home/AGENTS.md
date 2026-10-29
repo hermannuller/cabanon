@@ -34,7 +34,7 @@ The user explicitly requires separate click and drag hit areas. Read ../docs/FIL
 
 - PNYX and DIAL use the shared CSS app-motion icons (app-motion-icons.css); COLORS remains a CSS color square with a 12-second cycle. Animate only while their containing app button/title is hovered. Leaving pauses at the current phase and reentering resumes; never restore automatic idle animation. Keep these marks consistent in FROM, search, window titles and the taskbar, with pointer-events:none so existing app gestures remain available. Regression: tmp/app-motion-icons-check.cjs.
 
-- User-supplied SVGs replace MARATHON, BLIND, BERLIN, Ur and WHERE app marks and wall/grid file marks. See icons/manifest.json; keep software BERLIN/Ur distinct from their wall/tsv file glyphs. Imported SVG style classes must be localized inline to prevent Illustrator st0/st1 class collisions.
+- User-supplied SVGs replace MARATHON, BLIND, WALL, Ur and WHERE app marks and wall/grid file marks. See icons/manifest.json; keep software WALL/Ur distinct from their wall/tsv file glyphs. Imported SVG style classes must be localized inline to prevent Illustrator st0/st1 class collisions.
 
 - Authored MARATHON and BLIND SVG details remain hover animated: enlarged 1.8×13 caret blinks; BLIND line wipes left-to-right. WHERE reveals its dashed route through two bends before showing the destination cross, on hover only. HELP uses inherited icon-color square (brightens on hover like other app icons) / L1 figure with four 500ms frames. SVG detail animations pause/resume with hover; do not replace them with static imports. Regression: tmp/icon-animation-revision-check.cjs.
 
@@ -57,7 +57,7 @@ The user explicitly requires separate click and drag hit areas. Read ../docs/FIL
 
 - RIVER big + (.river-write) is an explicit Repost drop target in both one- and two-column layouts. On valid Repost release, focus the compose textarea immediately. Suppress empty-draft hover activation during mouse dragging. A hidden right column does not count as cross-side dropping; single-column users can use + or the unchanged Repost button. Test tmp/river-plus-repost-check.cjs.
 
-- Global Save convention, including all future save controls: after successful Save, display lowercase saved, L6 gray, disabled/non-clickable. Any change to the saved content restores lowercase save and enables it; unchanged view/focus changes do not. Cancellation/failure must not mark saved. Use shared setFileSaveButton from save-button-label.js and real document signatures/success paths, not a generic click timer. Applied to HELP, BERLIN and MARATHON; test tmp/saved-button-state-check.cjs.
+- Global Save convention, including all future save controls: after successful Save, display lowercase saved, L6 gray, disabled/non-clickable. Any change to the saved content restores lowercase save and enables it; unchanged view/focus changes do not. Cancellation/failure must not mark saved. Use shared setFileSaveButton from save-button-label.js and real document signatures/success paths, not a generic click timer. Applied to HELP, WALL and MARATHON; test tmp/saved-button-state-check.cjs.
 
 - FROM right-side pinned/recent files use exactly these context actions/order: open, open path, unpin, to desk, info. FROM pinned folders use open, unpin, to desk, info (no open path). open path opens the containing folder; unpin removes list membership/history only, never the source entry; to desk uses the existing desktop-link policy. Do not replay FROM file menus as generic folder entries or append generic Pin/To desk actions. Test tmp/from-pin-menus-check.cjs.
 
@@ -69,7 +69,7 @@ The user explicitly requires separate click and drag hit areas. Read ../docs/FIL
 
 - Every on/off control uses the shared paintOnOffToggle/settingTextToggle rendering: literal on/off stays fixed, active text is L5 and inactive text L6, only colors change. No swapping single on/off labels or checkbox exceptions. Mixed bulk states keep both dim with aria-pressed=mixed; first click sets all off. Preserve label position.
 
-- Closing an editor with unsaved document content must use confirmDocumentClose: wanna save on line 1, filename plus ? on line 2, save / quit / cancel. Focus save by default. Only close after confirmed save success; failed save or cancelled Save As leaves the document open. TXT, HELP, BERLIN and MARATHON share this prompt. File-location pickers themselves do not prompt.
+- Closing an editor with unsaved document content must use confirmDocumentClose: wanna save on line 1, filename plus ? on line 2, save / quit / cancel. Focus save by default. Only close after confirmed save success; failed save or cancelled Save As leaves the document open. TXT, HELP, WALL and MARATHON share this prompt. File-location pickers themselves do not prompt.
 
 - Every user-visible file deletion must call performFileRemoval before mutating entries, including Delete/Shift+Delete, paragraph selection removal, batch/right-box actions and save-picker Delete. Keep rows mounted until the animation promise settles. Source removal during move/archive operations stays synchronous and is not a deletion gesture.
 
