@@ -72,7 +72,7 @@
 
 /* 2026-10-15: 32px view insets and the fixed-height From surface. */
 #desktop #all-apps{padding-left:32px}
-#desktop #windows .window[data-file-browser] .window-content,#desktop #windows .window[data-file-browser].tools-open .window-content{padding-left:31px}
+#desktop #windows .window[data-file-browser] .window-content,#desktop #windows .window[data-file-browser].tools-open .window-content{padding-left:0}
 #desktop #from{height:600px;min-height:600px;max-height:600px;border-top:1px solid var(--l4);border-right:1px solid var(--l4);border-left:0;border-bottom:0;overflow:visible}
 #desktop #from :is(.north,.corner){display:none}
 #desktop #from .east,#desktop #from .east:hover{background:transparent}

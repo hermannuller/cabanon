@@ -79,7 +79,9 @@ let loneCtrl=false;
 // Shared validation: an extension alone is not a file name.
 function hasFileBaseName(name,folder=false){return CabanonFilenames.validate(name,folder).error!=='name';}
 function pleaseNameIt(){const existing=document.querySelector('.name-required-popup');if(existing)return existing;const popup=warning('please name it.');popup.classList.add('name-required-popup');return popup;}
-function newEntryBaseName(){return prefs.newEntryBaseName??'Let there be light';}
+function newEntryBaseName(){return 'new';}
+// Keep the legacy welcome preference independent of automatic file names.
+function welcomeText(){return prefs.newEntryBaseName??'Let there be light';}
 function defaultNewEntryName(extension='txt'){return CabanonFilenames.normalize(newEntryBaseName())+(extension?'.'+extension.replace(/^\./,''):'');}
 function newFolderEntry(path,extension='txt'){return CabanonCreation.create(path,{folder:extension===null,extension})?.name;}
 

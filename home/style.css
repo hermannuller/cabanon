@@ -127,6 +127,9 @@
 /* From file and folder entries use the regular 56px selection row. */
 #from #folders .folder-row,#from #recent-files .file{height:56px;min-height:56px;padding:8px;line-height:28px}
 #task-popup .task-group-count{font:400 12px/28px JetBrains,SourceHan,monospace;color:var(--l5);padding:0 8px}
+#task-popup .task-window-row{display:flex;align-items:center;max-width:480px}
+#task-popup .task-window-open{flex:1;min-width:0;width:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#task-popup .task-window-close{flex:0 0 28px;width:28px;padding:0;text-align:center}
 /* All yes/no confirmations share one red surface and one text standard. */
 .removal-confirmation [role="alertdialog"],.removal-confirmation p,.removal-confirmation button{font:400 14px/28px JetBrains,SourceHan,monospace;color:var(--l5)}
 .window[data-navigation-mode="tree"]>.house-navigation{display:flex;flex-direction:column;overflow:hidden;padding:8px}

@@ -146,11 +146,12 @@
  function colorsAction(action){if(local().demo&&!playlist.length){const d=local().demoMusic;if(action==='next'){d.index=(d.index+1)%3;d.position=0;d.lyrics='';}else d.playing=!d.playing;save();}else if(action==='next')playTrack(track+1);else if(music.paused)music.play().catch(e=>message(e.message));else music.pause();repaint();api.render();}
  function colorsHomeMarkup(){const state=homeMusicState();if(!state)return '';return '<div class="quick-home-timer phone-colors-row"><div class="phone-colors-playing"><div class="phone-colors-title phone-colors-marquee"><span></span></div><div class="phone-colors-detail"><span></span></div><div class="phone-colors-bars" aria-hidden="true">'+Array.from({length:state.playing?6:1},()=>'<i></i>').join('')+'</div></div><button data-colors-action="toggle" aria-label="'+(state.playing?'Pause music':'Play music')+'">'+colorsControlIcon(state.playing?'pause':'play')+'</button><button data-colors-action="next" aria-label="Next song">'+colorsControlIcon('next')+'</button></div>';}
  const colorsScrolls=new Map();let colorsWaveAt=0;
- function scrollColorsText(host,text,now){
+ function scrollColorsText(host,text,now,playing=true){
   const key=host.classList.contains('phone-colors-title')?'title:':'lyrics:',id=key+text;let state=colorsScrolls.get(key);
   if(!state||state.id!==id){state={id,start:now};colorsScrolls.set(key,state);}
   const track=host.firstElementChild;
   if(track.dataset.text!==text){track.dataset.text=text;track.replaceChildren();for(let i=0;i<2;i++){const copy=mk('span','',text+'\u00a0\u00a0\u00a0\u00a0');if(i)copy.setAttribute('aria-hidden','true');track.append(copy);}}
+  if(!playing){state.start=now;track.style.transform='translateX(0px)';return;}
   const width=track.firstElementChild.getBoundingClientRect().width/(root.getBoundingClientRect().width/414),duration=width/28*1000,phase=(now-state.start)%(2000+duration),offset=phase<2000?0:(phase-2000)*.028;
   track.style.transform='translateX('+(-offset)+'px)';
  }
@@ -159,7 +160,7 @@
   if(state){let lyric=state.lyrics;if(Array.isArray(lyric))lyric=lyric.filter(line=>Number(line.time)<=state.position).at(-1)?.text||'';
    const wave=now-colorsWaveAt>=90;
    for(const host of hosts){if((root.classList.contains('phone-name-entering')||root.classList.contains('phone-page-exiting')))continue;
-    const control=host.parentElement.querySelector('[data-colors-action=toggle]');if(control&&control.dataset.playing!==String(state.playing)){control.dataset.playing=String(state.playing);control.innerHTML=colorsControlIcon(state.playing?'pause':'play');control.setAttribute('aria-label',state.playing?'Pause music':'Play music');}host.dataset.playing=String(state.playing);scrollColorsText(host.querySelector('.phone-colors-title'),state.title+(state.artist?' - '+state.artist:''),now);
+    const control=host.parentElement.querySelector('[data-colors-action=toggle]');if(control&&control.dataset.playing!==String(state.playing)){control.dataset.playing=String(state.playing);control.innerHTML=colorsControlIcon(state.playing?'pause':'play');control.setAttribute('aria-label',state.playing?'Pause music':'Play music');}host.dataset.playing=String(state.playing);scrollColorsText(host.querySelector('.phone-colors-title'),state.title+(state.artist?' - '+state.artist:''),now,state.playing);
     const detail=host.querySelector('.phone-colors-detail');detail.classList.toggle('phone-colors-marquee',!!lyric);detail.classList.toggle('is-time',!lyric);
     if(lyric)scrollColorsText(detail,String(lyric),now);else{detail.firstElementChild.style.transform='';detail.firstElementChild.dataset.text='';detail.firstElementChild.textContent=format(state.position*1000).replace(/^00:/,'')+' / '+format(state.duration*1000).replace(/^00:/,'');}
     const bars=host.querySelector('.phone-colors-bars'),count=state.playing?6:1;while(bars.children.length<count)bars.append(mk('i'));while(bars.children.length>count)bars.lastElementChild.remove();if(wave||!state.playing)for(const bar of bars.children){bar.style.height='1px';bar.style.background=state.playing?'hsl('+Math.floor(Math.random()*360)+' 85% 65%)':'var(--l6)';}

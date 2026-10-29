@@ -3,7 +3,7 @@
 const paragraphEditors=new WeakMap(),paragraphLiveEditors=new Set(),paragraphIconGaps=new Map();
 let paragraphTextClipboard=null,paragraphGesture=null,paragraphContextEditor=null;
 function paragraphSilent(action){const previous=undoReplay;undoReplay=true;try{return action();}finally{flushFileUndo();undoReplay=previous;}}
-function paragraphActive(){const list=activeWindow?.querySelector('.house-file-list[data-view="paragraph"]');return list?paragraphEditors.get(list):null;}
+function paragraphActive(){const list=activeWindow?.querySelector('.house-file-list');return list?.dataset.view==='paragraph'?paragraphEditors.get(list):null;}
 function paragraphRename(entry,leaf){
  const checked=CabanonFilenames.require(leaf,entry.folder);if(checked===null)throw Error('Invalid file name.');leaf=checked;
  const old=entry.name,next=entry.parent+'/'+leaf;
@@ -28,7 +28,7 @@ function paragraphRename(entry,leaf){
 class ParagraphBrowser{
  constructor(win,list,path){
   this.win=win;this.list=list;this.path=syncPath(path);this.records=[];this.rows=new Map();this.aliases=new Map();this.anchor=null;this.focus=null;this.selected=new Set();this.armed=false;this.working=false;this.geometry=null;
-  this.input=document.createElement('textarea');this.input.className='paragraph-input';this.input.spellcheck=false;this.input.setAttribute('aria-label','Edit paragraph file names');win.querySelector('.window-content').append(this.input);
+  this.input=document.createElement('textarea');this.input.className='paragraph-input';this.input.spellcheck=false;this.input.setAttribute('aria-label','Edit paragraph file names');(list.closest('.folder-pane')||win.querySelector('.window-content')).append(this.input);
   this.input.addEventListener('compositionstart',()=>this.composing=true);
   this.input.addEventListener('beforeinput',event=>{if(event.isComposing||this.composing)return;if(event.inputType==='insertText'){event.preventDefault();this.edit(event.data||'');}else if(event.inputType==='deleteContentBackward'||event.inputType==='deleteContentForward'){event.preventDefault();this.edit('',event.inputType==='deleteContentBackward',event.inputType==='deleteContentForward');}});
   this.input.addEventListener('compositionend',event=>{this.composing=false;this.edit(event.data||'');this.input.value='';});this.input.addEventListener('input',()=>{if(!this.composing)this.input.value='';});
@@ -50,7 +50,7 @@ class ParagraphBrowser{
   this.records=entries.map(entry=>{let record=old.get(entry.name)||oldEntries.get(entry);if(!record){const name=entry.name.split('/').at(-1);record={id:this.aliases.get(entry.name)||crypto.randomUUID(),source:entry.name,name,saved:name};}else if(record.name===record.saved){record.name=record.saved=entry.name.split('/').at(-1);}record.entry=entry;record.source=entry.name;this.aliases.set(entry.name,record.id);return record;});
   const ids=new Set(this.records.map(r=>r.id));this.selected=new Set([...this.selected].filter(id=>ids.has(id)));if(this.focus&&!ids.has(this.focus.id))this.focus=this.anchor=null;
   for(const point of [this.anchor,this.focus])if(point)point.pos=Math.min(point.pos,this.find(point.id)?.name.length||0);
-  this.win.querySelector('.house-empty').hidden=this.records.length>0;this.render();
+  (this.list.closest('.folder-pane')||this.win).querySelector('.house-empty').hidden=this.records.length>0;this.render();
  }
  range(){if(!this.anchor||!this.focus)return null;const a=this.records.findIndex(r=>r.id===this.anchor.id),b=this.records.findIndex(r=>r.id===this.focus.id);return a<0||b<0?null:{a,b,lo:Math.min(a,b),hi:Math.max(a,b),start:Math.min(this.anchor.pos,this.focus.pos),end:Math.max(this.anchor.pos,this.focus.pos)};}
  updateSelection(){this.selected.clear();const r=this.range();if(!r)return;if(r.a!==r.b)this.records.slice(r.lo,r.hi+1).forEach(f=>this.selected.add(f.id));else if(r.start===0&&r.end===this.find(this.anchor.id).name.length&&r.end>0)this.selected.add(this.anchor.id);}
@@ -60,7 +60,7 @@ class ParagraphBrowser{
   return escapeHTML(record.name);
  }
  render(){
-  const view=this.view(),wanted=[],live=new Set(),range=this.range(),cutNames=new Set(folderCut?fileClipboard.map(item=>item.name):[]),query=fileSearchQuery(this.win.querySelector('.folder-local-search')?.value||'');this.list.dataset.view='paragraph';this.list.dataset.path=this.path;
+  const view=this.view(),wanted=[],live=new Set(),range=this.range(),cutNames=new Set(folderCut?fileClipboard.map(item=>item.name):[]),query=fileSearchQuery((this.list.closest('.folder-pane')||this.win).querySelector('.folder-local-search')?.value||'');this.list.dataset.view='paragraph';this.list.dataset.path=this.path;
   for(const record of this.records){
    live.add(record.id);let row=this.rows.get(record.id);
    if(!row){row=document.createElement('span');row.className='file paragraph-file';row.setAttribute('role','option');row.dataset.paragraphId=record.id;row.innerHTML='<span class="paragraph-name"></span><span class="paragraph-icon file-icon"></span>';this.rows.set(record.id,row);}
@@ -85,7 +85,7 @@ class ParagraphBrowser{
   this.caret.hidden=!(this.focus&&this.anchor&&this.focus.id===this.anchor.id&&this.focus.pos===this.anchor.pos&&!this.selected.size);
   if(!this.caret.hidden){const text=this.rows.get(this.focus.id)?.querySelector('.paragraph-text'),node=text?.firstChild;if(node?.nodeType===Node.TEXT_NODE){const range=document.createRange();range.setStart(node,Math.min(this.focus.pos,node.length));range.collapse(true);const rect=range.getBoundingClientRect(),box=this.list.getBoundingClientRect(),scale=$('#desktop').getBoundingClientRect().width/1920;this.caret.style.left=((rect.left-box.left)/scale+this.list.scrollLeft)+'px';this.caret.style.top=((rect.top-box.top)/scale+this.list.scrollTop)+'px';}else this.caret.hidden=true;}
  }
- revealCaret(){const row=this.rows.get(this.focus?.id);if(!row||row.hidden)return;const target=this.caret&&!this.caret.hidden?this.caret.getBoundingClientRect():row.getBoundingClientRect(),box=this.list.getBoundingClientRect(),scale=$('#desktop').getBoundingClientRect().width/1920;this.list.scrollBy({left:(target.left<box.left?target.left-box.left:target.right>box.right?target.right-box.right:0)/scale,top:(target.top<box.top?target.top-box.top:target.bottom>box.bottom?target.bottom-box.bottom:0)/scale,behavior:'instant'});const content=this.win.querySelector('.window-content').getBoundingClientRect();this.input.style.left=Math.max(0,(target.left-content.left)/scale)+'px';this.input.style.top=Math.max(0,(target.bottom-content.top)/scale)+'px';}
+ revealCaret(){const row=this.rows.get(this.focus?.id);if(!row||row.hidden)return;const target=this.caret&&!this.caret.hidden?this.caret.getBoundingClientRect():row.getBoundingClientRect(),box=this.list.getBoundingClientRect(),scale=$('#desktop').getBoundingClientRect().width/1920;this.list.scrollBy({left:(target.left<box.left?target.left-box.left:target.right>box.right?target.right-box.right:0)/scale,top:(target.top<box.top?target.top-box.top:target.bottom>box.bottom?target.bottom-box.bottom:0)/scale,behavior:'instant'});const content=(this.list.closest('.folder-pane')||this.win.querySelector('.window-content')).getBoundingClientRect();this.input.style.left=Math.max(0,(target.left-content.left)/scale)+'px';this.input.style.top=Math.max(0,(target.bottom-content.top)/scale)+'px';}
  commit(id=this.focus?.id){
   const record=this.find(id);if(!record||record.name===record.saved)return true;
   const result=CabanonFilenames.validate(record.name,record.entry.folder);if(result.error){record.error=CabanonFilenames.message(result.error);this.render();if(result.error==='name')pleaseNameIt();else warning(record.error);return false;}const name=result.name;
@@ -146,7 +146,7 @@ const pasteSelectedFilesBase=pasteSelectedFiles;
 pasteSelectedFiles=function(path){const editor=paragraphActive();return editor&&editor.path===syncPath(path)&&(document.activeElement===editor.input||paragraphContextEditor===editor)?editor.paste():pasteSelectedFilesBase(path);};
 const paragraphDrawBase=drawBrowser;drawBrowser=function(win,path){const list=win.querySelector('.house-file-list');if(!list)return paragraphDrawBase(win,path);let editor=paragraphEditors.get(list);if(editor?.working)return;if(folderView(syncPath(path)).mode==='paragraph'){
  if(editor&&editor.path!==syncPath(path)){editor.commit();editor.destroy();paragraphEditors.delete(list);editor=null;list.replaceChildren();}
- if(!editor){editor=new ParagraphBrowser(win,list,path);paragraphEditors.set(list,editor);paragraphSilent(()=>{editor.refresh();persistProfiles();});}else{if(!editor.input.isConnected)win.querySelector('.window-content').append(editor.input);paragraphLiveEditors.add(editor);editor.refresh();}return;
+ if(!editor){editor=new ParagraphBrowser(win,list,path);paragraphEditors.set(list,editor);paragraphSilent(()=>{editor.refresh();persistProfiles();});}else{if(!editor.input.isConnected)(list.closest('.folder-pane')||win.querySelector('.window-content')).append(editor.input);paragraphLiveEditors.add(editor);editor.refresh();}return;
  }if(editor){editor.commit();editor.destroy();list.replaceChildren();paragraphEditors.delete(list);}return paragraphDrawBase(win,path);};
 const paragraphUndoBase=undoFolderOperation;undoFolderOperation=function(){if(cancelPendingFileRemovals())return;flushFileUndo();const item=folderUndo.at(-1);if(!item?.paragraph)return paragraphUndoBase();folderUndo.pop();const editor=item.editor,state=item.state;paragraphSilent(()=>{restoreFileSnapshot(state.files);if(editor.win.isConnected){editor.records=state.records.map(r=>({...r}));editor.anchor=state.anchor;editor.focus=state.focus;editor.selected=new Set(state.selected);editor.armed=state.armed;editor.rows.clear();editor.list.replaceChildren();for(const r of editor.records)editor.aliases.set(r.source,r.id);}refreshBrowsers();renderDesktop();renderPins();persistProfiles();});if(editor.win.isConnected&&editor.list.dataset.view==='paragraph'){editor.render();editor.input.focus({preventScroll:true});}};
 const paragraphSortBase=sortFolder;sortFolder=function(path,id){const editor=[...paragraphLiveEditors].find(e=>e.path===syncPath(path));if(editor&&!editor.commit())return;const view=folderView(path);

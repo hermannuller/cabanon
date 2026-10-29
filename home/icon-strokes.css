@@ -2,6 +2,11 @@
 :root{--icon-stroke:2px}
 :is(#desktop,#phone) svg,:is(#desktop,#phone) svg :is(path,rect,circle,ellipse,line,polyline,polygon){stroke-width:var(--icon-stroke)!important}
 :is(#desktop,#phone) svg :is(path,rect,circle,ellipse,line,polyline,polygon){vector-effect:non-scaling-stroke}
+/* File/folder outlines use 2px, without adding strokes to filled contours. */
+:is(#desktop,#phone) :is(.file,.folder-row,.archive-row,.rename-preview-item,.save-file-list,.wall-chooser-list,.rive-picker-list,[data-wall-entry],[data-rive-file]){--icon-stroke:2px}
+/* Authored OS silhouettes already contain their outline as a filled contour.
+   Do not draw a second stroke around that contour or the filled text details. */
+:is(#desktop,#phone) :is(.file,.folder-row,.archive-row,.rename-preview-item,.save-file-list,.wall-chooser-list,.rive-picker-list,[data-wall-entry],[data-rive-file]) svg[data-authored-icon] :is(path,rect,circle,ellipse,polygon):not([fill="none"]):not([style*="fill:none"]):not([style*="fill: none"]){stroke:none!important}
 #phone .phone-pin-line{height:1px}
 #phone .phone-footer-ring,#phone .quick-else-dots i:last-child{border:0;box-shadow:inset 0 0 0 var(--icon-stroke) currentColor}
 #phone .quick-sun-ray{height:var(--icon-stroke);transform-origin:0 1px}

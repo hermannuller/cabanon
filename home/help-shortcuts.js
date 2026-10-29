@@ -3,7 +3,7 @@ function warning(message){document.querySelector('.warning-popup')?.remove();con
 window.alert=warning;
 const shortcutDefinitions=[
  ['close','Close current window','CTRL+W'],['quit','Quit current app (close all its windows)','CTRL+Q'],
- ['search','Search current folder','ALT+F'],['new','New folder','ALT+N'],
+ ['search','Search current folder','ALT+F'],['new','New folder','ALT+N'],['newWindow','New window for current folder','CTRL+N'],
  ['copy','Copy selected files','CTRL+C'],['cut','Cut selected files','CTRL+X'],['paste','Paste files','CTRL+V'],['undo','Undo file operation','CTRL+Z'],
  ['back','Back','ALT+ARROWLEFT'],['forward','Forward','ALT+ARROWRIGHT'],['up','Parent folder','ALT+ARROWUP'],
  ['quick','Toggle pinned navigation','ALT'],['tree','Toggle folder tree','CTRL'],
@@ -42,6 +42,7 @@ function runShortcut(id,event){const win=activeWindow,list=win&&!win.hidden?win.
  if(id==='close')closeShortcutWindow(win);else if(id==='quit'){if(win){quitCurrentProgram();}}
  else if(id==='search'){if(!win?.dataset.fileBrowser)return false;win.querySelector('[data-folder-action=search]').click();}
  else if(id==='new'){if(!win?.dataset.fileBrowser)return false;newFolderEntry(win.dataset.fileBrowser,null);}
+ else if(id==='newWindow'){if(!win?.dataset.fileBrowser||win.hidden)return false;openFolderBrowser(win.dataset.fileBrowser,true);}
  else if(['back','forward','up'].includes(id)){if(!win?.dataset.fileBrowser)return false;folderHeaderAction(win,id);}
  else if(['quick','tree'].includes(id)){if(!win?.dataset.fileBrowser||editing)return false;toggleFolderTools(win,id==='quick'?'quick':'tree');}
  else if(['copy','cut','paste','undo'].includes(id)){if(!list)return false;if(id==='undo')undoFolderOperation();else if(id==='paste'){if(list.dataset.path)pasteSelectedFiles(list.dataset.path);}else copySelectedFiles(list,id==='cut');}
