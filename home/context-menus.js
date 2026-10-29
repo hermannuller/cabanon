@@ -578,7 +578,6 @@ showContext = function(event, passthroughItems) {
   if(window.CabanonRightGesture?.suppress()){event.preventDefault();closeContext();return;}
   event.preventDefault();
   let resolved = resolveContext(event);
-  if(resolved?.type===CTX.DESKTOP_BG){closeContext();openSettings('visual','wallpaper');return;}
   const pointerRow=event.target.closest(fileContextRows),onContent=!pointerRow||fileClickHit(event,pointerRow);
   if(!onContent)passthroughItems=null;
   // Locked folder check — override with password prompt

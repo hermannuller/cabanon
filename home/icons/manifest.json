@@ -27,6 +27,8 @@
   "trash.outline": "os/trash.svg",
   "folder.solid": "os/folder.svg",
   "folder.outline": "os/folder.svg",
+  "hole.solid": "os/hole.svg",
+  "hole.outline": "os/hole.svg",
   "house.solid": "pdf/house.svg",
   "house.outline": "pdf/house.svg",
   "input.solid": "os/input.svg",
