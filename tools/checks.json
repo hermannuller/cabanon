@@ -15,6 +15,7 @@
   { "name": "dock window groups", "file": "dock-window-groups-check.cjs" },
   { "name": "file hit contract", "file": "file-hit-contract-check.cjs" },
   { "name": "paragraph icon column", "file": "paragraph-icon-column-check.cjs" },
+  { "name": "txt text drag", "file": "txt-text-drag-check.cjs" },
   { "name": "save close prompt", "file": "save-close-check.cjs" },
   { "name": "rename syntax", "file": "rename-syntax-audit.cjs" },
   { "name": "application names", "file": "application-names-check.cjs" },
