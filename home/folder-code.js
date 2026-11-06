@@ -1,6 +1,7 @@
 'use strict';
-// The second, empty code line accepts one typed > as a one-shot command.
+// The explicit run button executes the first code line.
 window.CabanonFolderCode=(()=>{
+ function codeWarning(message){const popup=warning(message);popup?.classList.add('code-warning');return popup;}
  function plan(source){
   if(/[\x00-\x1f\u0085\u2028\u2029]/.test(String(source)))throw new Error(CabanonFilenames.message('characters'));
   const parts=String(source).split('^');
@@ -35,19 +36,19 @@ window.CabanonFolderCode=(()=>{
  }
  function keepEditor(win){
   toggleCode(win,true);
-  const line=win.querySelectorAll('.code-line')[1];if(!line)return;
+  const line=win.querySelector('.code-line');if(!line)return;
   line.focus({preventScroll:true});const range=document.createRange();range.selectNodeContents(line);range.collapse(false);const selection=getSelection();selection.removeAllRanges();selection.addRange(range);
  }
  function execute(win,source){
   if(!win?.dataset.fileBrowser||!win.isConnected)return false;
   let commands;
-  try{commands=plan(source);}catch(error){warning(error.message);return false;}
+  try{commands=plan(source);}catch(error){codeWarning(error.message);return false;}
   // Validate access before any creation or changes to the pane group.
   for(const command of commands){
    const path=command.create?command.parent:command.path,locked=lockedAncestor(path);
    if(locked){requestFolderAccess(locked,()=>execute(win,source));return false;}
-   if(!isOwner()&&prefs.folderPermissions[path]==='owner'){warning('Access denied');return false;}
-   if(command.create&&prefs.entries.find(entry=>entry.name===path)?.readOnly){warning('Read only');return false;}
+   if(!isOwner()&&prefs.folderPermissions[path]==='owner'){codeWarning('Access denied');return false;}
+   if(command.create&&prefs.entries.find(entry=>entry.name===path)?.readOnly){codeWarning('Read only');return false;}
   }
   for(const editor of typeof paragraphLiveEditors!=='undefined'?paragraphLiveEditors:[])if(editor.win===win&&!editor.commit())return false;
   const paths=[];

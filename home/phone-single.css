@@ -49,7 +49,7 @@
 #phone .phone-info-medium{position:absolute;top:var(--medium-baseline,35px);left:0;font:200 35px/35px MiSans,sans-serif;white-space:nowrap}
 #phone .phone-info-small{position:absolute;top:var(--small-baseline,46px);left:0;font:400 14px/14px MiSans,sans-serif;white-space:nowrap}
 #phone .phone-widget-news{font:400 14px/18px MiSans,sans-serif;max-height:54px;-webkit-line-clamp:3;overflow:hidden}
-#phone .phone-river-count{height:16px;min-width:16px;padding:0 2px;background:var(--l9);color:var(--l5);font:400 12px/16px MiSans,sans-serif;z-index:5;box-sizing:border-box}
+#phone .phone-river-count{height:16px;min-width:16px;padding:0 2px;background:transparent;color:var(--green);font:400 12px/16px MiSans,sans-serif;z-index:5;box-sizing:border-box}
 
 /* Reference: weather, clock and date each occupy one 56px row. */
 #phone .phone-weather-reference{display:flex;align-items:center;gap:8px;position:relative}
@@ -64,7 +64,7 @@
 
 #phone .phone-compact-feed{display:flex;flex-direction:column;height:56px;padding:0;overflow:hidden;justify-content:flex-start}
 #phone .phone-feed-line{flex:0 0 18px;height:18px;max-height:18px;font:400 14px/18px MiSans,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:clip}
-#phone .phone-quote-up{color:var(--green)}
+#phone .phone-quote-up{color:var(--green-ink,var(--green))}
 #phone .phone-quote-down{color:var(--red)}
 #phone .phone-news-line{max-width:10ch}
 
@@ -84,7 +84,7 @@
 
 /* News width: nine 60px monospaced capitals, within the phone content area. */
 #phone .phone-news-line{display:flex;gap:8px;max-width:100%;white-space:nowrap}
-#phone .phone-news-age{font:400 14px/18px JetBrains,monospace;color:var(--l6);flex:none}
+#phone .phone-news-age{font:400 14px/18px JetBrains,monospace;color:var(--l5);flex:none}
 #phone .phone-news-title{font:400 14px/18px MiSans,sans-serif;min-width:0;flex:0 1 auto;overflow:hidden;white-space:nowrap}
 #phone .phone-sort{top:-56px;align-items:flex-start;padding-top:4px;box-sizing:border-box}
 #phone .phone-sort-name{left:179px;width:56px;align-items:center;justify-content:flex-start}
@@ -102,7 +102,7 @@
 #phone .phone-scroll-icon{right:0;width:var(--icon-backplate-width,80px)}
 #phone .phone-scroll-endpoint{left:0;width:100%;background:var(--l1);justify-content:flex-end;padding-right:12px;box-sizing:border-box;overflow:hidden}
 
-#phone .phone-group-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex:0 0 36px;color:var(--l5)}
+#phone .phone-group-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;flex:0 0 36px;color:var(--l4)}
 #phone .phone-placeholder-icon{width:36px;height:36px;flex:0 0 36px}
 
 #phone .phone-keyboard .phone-key,#phone .phone-keyboard-row:last-child .phone-key{font-size:28px}
@@ -117,7 +117,7 @@
 
 /* Row-attached icons pulse when their centers cross the screen middle line. */
 #phone .phone-scroll-icon{overflow:visible}
-#phone .phone-scroll-endpoint{transition:none;color:var(--l5)}
+#phone .phone-scroll-endpoint{transition:none;color:var(--l4)}
 #phone .phone-group-prefix{align-items:flex-start;position:relative}
 #phone .phone-group-prefix>svg{margin-top:calc(var(--phone-cap-top,6px) - 1px)}
 #phone .phone-scroll-group{align-items:flex-start;padding-top:calc(var(--phone-cap-top,6px) - 1px)}
@@ -128,7 +128,7 @@
 
 #phone .phone-todo-time{font-family:JetBrains,monospace}
 
-#phone .phone-todo-task{color:var(--l6);font-weight:400}
+#phone .phone-todo-task{color:var(--l5);font-weight:400}
 
 /* Pin changes only the decoration; retain the same type scale. */
 #phone .phone-container.pinned > .phone-name{font-style:normal;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-skip-ink:none}
@@ -136,15 +136,15 @@
 #phone .phone-group-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
 #phone .phone-page>.phone-container{z-index:1}
 #phone .phone-page>.phone-container.pinned{z-index:20}
-#phone .phone-group-title{position:absolute;left:10px;width:380.4px;height:56px;z-index:30;padding:0;border:0;background:var(--l1);color:var(--l5);text-align:left}
+#phone .phone-group-title{position:absolute;left:10px;width:380.4px;height:56px;z-index:30;padding:0;border:0;background:var(--l1);color:var(--l4);text-align:left}
 #phone .phone-group-title .phone-name{font:700 60px/56px JetBrainsNL,monospace}
 #phone .phone-group-surface{position:absolute;left:0;right:0;background:var(--l1);z-index:1;pointer-events:none}
-#phone .phone-container.group-drop-hover{outline:1px solid var(--l5);outline-offset:-1px}
+#phone .phone-container.group-drop-hover{outline:1px solid var(--l4);outline-offset:-1px}
 
 /* Group marks share the T cap box, with square edges and no CARE rescaling. */
 #phone svg[data-phone-group-shape]{width:36px;height:56px;flex:0 0 36px;max-height:none;margin-top:0}
 #phone .phone-scroll-group{padding-top:0}
-#phone .phone-group-dissolve{position:absolute;right:10px;top:0;width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:transparent;padding:0;border:0;color:var(--l5)}
+#phone .phone-group-dissolve{position:absolute;right:10px;top:0;width:56px;height:56px;display:flex;align-items:center;justify-content:center;background:transparent;padding:0;border:0;color:var(--l4)}
 #phone .phone-group-dissolve[hidden]{display:none}
 #phone.group-open .phone-footer-ring{display:none}
 #phone .quick-entry-back{display:none;font:400 28px/56px JetBrains,monospace}
@@ -187,14 +187,13 @@
 
 #phone .phone-page.editing .phone-background-icons>.phone-scroll-endpoint{opacity:var(--home-dim,.5)!important}
 
-.phone-pull-search-hint{position:absolute;left:10px;font:400 14px/56px JetBrains,monospace;color:var(--l5);pointer-events:none;z-index:40}
+.phone-pull-search-hint{position:absolute;left:10px;font:400 14px/56px JetBrains,monospace;color:var(--l4);pointer-events:none;z-index:40}
 #phone .phone-exit-copy{visibility:visible!important;pointer-events:none;z-index:60}
 #phone.phone-page-exiting{pointer-events:none}
 
 .phone-key-ink{display:contents}
 
-/* Weather artwork remains transparent on Home and selection backgrounds. */
-#phone .phone-weather-condition{--weather-paper:transparent}
+
 
 
 
@@ -219,9 +218,9 @@
 #phone .phone-multitask[data-rows='0'] .phone-task-rail{border-top:0}
 
 
-#phone .phone-task-close-all{position:absolute;left:0;bottom:0;width:138px;height:56px;display:flex;align-items:center;justify-content:center;padding:0;background:transparent;color:var(--l5);z-index:9}
+#phone .phone-task-close-all{position:absolute;left:0;bottom:0;width:138px;height:56px;display:flex;align-items:center;justify-content:center;padding:0;background:transparent;color:var(--l4);z-index:9}
 #phone .phone-task-close-all svg{width:36px;height:36px;flex:none}
 #phone .phone-task-close-all:disabled{opacity:.4}
 #phone .phone-multitask.leaving .phone-task-close-all{visibility:hidden}
 #phone .phone-task-confirm{inset:0 0 56px;z-index:30}
-#phone svg[data-task-close-all],#phone svg[data-task-close-all] path{fill:none!important;stroke:var(--l5)!important;stroke-width:1px!important}
+#phone svg[data-task-close-all],#phone svg[data-task-close-all] path{fill:none!important;stroke:var(--l4)!important;stroke-width:1px!important}

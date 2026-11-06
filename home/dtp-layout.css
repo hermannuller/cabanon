@@ -57,7 +57,7 @@
 #desktop .file.selected>svg,#desktop .file.selected>.file-icon{color:var(--interaction-ink)!important}
 #desktop .file.selected>span:last-of-type{text-decoration:underline;text-underline-offset:3px}
 #desktop #files .file.selected>span:last-of-type{text-decoration:none}
-#desktop .warning-popup{background:var(--l9);color:var(--l5)}
+#desktop .warning-popup{background:var(--l7);color:var(--l4)}
 #desktop .file-removing{pointer-events:none}
 #desktop .file-removing>span:last-of-type{will-change:clip-path}
 #desktop .file-delete-text-done>svg,#desktop .file-delete-text-done>.file-icon{visibility:hidden}
@@ -73,14 +73,14 @@
 /* 2026-10-15: 32px view insets and the fixed-height From surface. */
 #desktop #all-apps{padding-left:32px}
 #desktop #windows .window[data-file-browser] .window-content,#desktop #windows .window[data-file-browser].tools-open .window-content{padding-left:0}
-#desktop #from{height:600px;min-height:600px;max-height:600px;border-top:1px solid var(--l4);border-right:1px solid var(--l4);border-left:0;border-bottom:0;overflow:visible}
+#desktop #from{height:600px;min-height:600px;max-height:600px;border-top:1px solid var(--l3);border-right:1px solid var(--l3);border-left:0;border-bottom:0;overflow:visible}
 #desktop #from :is(.north,.corner){display:none}
 #desktop #from .east,#desktop #from .east:hover{background:transparent}
 #desktop #from::after{display:none!important}
-#desktop #from::before{content:"";position:absolute;top:16px;bottom:16px;left:302px;width:1px;background:var(--l4);pointer-events:none}
+#desktop #from::before{content:"";position:absolute;top:16px;bottom:16px;left:302px;width:1px;background:var(--l3);pointer-events:none}
 #desktop #from :is(#pinned,#folders,#recent-files,#file-results,#widgets){overflow:clip!important}
-#desktop #taskbar button,#desktop #taskbar button:hover{color:var(--l6)}
-#desktop #taskbar button.current,#desktop #taskbar button.current:hover{color:var(--l5)}
+#desktop #taskbar button,#desktop #taskbar button:hover{color:var(--l5)}
+#desktop #taskbar button.current,#desktop #taskbar button.current:hover{color:var(--l4)}
 #desktop #taskbar button>svg{color:inherit!important}
 #desktop #taskbar button::after{content:none;display:none}
 

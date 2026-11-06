@@ -5,7 +5,7 @@ function placeHoverMenu(menu,button){
  const desktop=$('#desktop'),bounds=desktop.getBoundingClientRect(),scale=bounds.width/1920;
  const set=(key,value)=>{if(menu.style[key]!==value)menu.style[key]=value;};
  set('maxWidth',desktop.clientWidth+'px');set('maxHeight',desktop.clientHeight+'px');set('translate','none');set('right','auto');set('bottom','auto');
- const anchor=button.getBoundingClientRect(),dock=menu===taskPopup;const x=Math.max(0,Math.min(desktop.clientWidth-menu.offsetWidth,((dock?anchor.left:anchor.right)-bounds.left)/scale)),y=Math.max(0,Math.min(desktop.clientHeight-menu.offsetHeight,(anchor.top-bounds.top)/scale-(dock?menu.offsetHeight:0)));
+ const anchor=button.getBoundingClientRect(),dock=menu===taskPopup,below=menu.classList.contains('header-new-menu');const x=Math.max(0,Math.min(desktop.clientWidth-menu.offsetWidth,((dock||below?anchor.left:anchor.right)-bounds.left)/scale)),y=Math.max(0,Math.min(desktop.clientHeight-menu.offsetHeight,((below?anchor.bottom:anchor.top)-bounds.top)/scale-(dock?menu.offsetHeight:0)));
  const parent=menu.offsetParent||desktop,origin=parent.getBoundingClientRect();
  set('left',((bounds.left-origin.left)/scale+x-parent.clientLeft+parent.scrollLeft)+'px');set('top',((bounds.top-origin.top)/scale+y-parent.clientTop+parent.scrollTop)+'px');
  set('overflowY',menu.scrollHeight>menu.clientHeight?'auto':'visible');

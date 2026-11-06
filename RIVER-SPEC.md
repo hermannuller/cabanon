@@ -16,7 +16,7 @@ Updated 2026-10-17. This is a local interaction prototype inside Cabanon HOME, n
 - A repost renews every upstream post on that chain, including ancestry omitted from the three-message display. Other branches are unaffected.
 - Expired posts disappear from views. An explicitly deleted upstream message should instead show an author-deleted marker; a deletion control is not yet exposed.
 - Search supports normal text and strict remaining lifetime queries such as `-30d<`.
-- Public composer opens by hovering/clicking a 56px square at the bottom right, 24px inset, with L5 background and a large dark cross. It grows with input up to the available height; closing keeps a local draft. Ctrl/Cmd+Enter sends or performs the over-limit canal handoff.
+- Public composer opens by hovering/clicking a 56px square at the bottom right, 24px inset, with L4 background and a large dark cross. It grows with input up to the available height; closing keeps a local draft. Ctrl/Cmd+Enter sends or performs the over-limit canal handoff.
 - `rive` is private messaging. Responsive list/chat layout, history search, local messages, local drafts, pin/mute/remove/block demonstrations and Cabanon file references are present. Group creation and contact sharing are explicit placeholders.
 - Private-message forgetting is intentionally undecided and is not implemented.
 - `canal` is permanent writing and reading. Its final layout is undecided; this preview implements an editable, automatically saved title/body draft reached through the public composer.
@@ -51,7 +51,7 @@ These rules supersede the earlier carry checkboxes and ordinary arrow/count butt
 - Every visible message fragment has its own Repost action. With no descendant reposts it reads `Repost`; otherwise it reads `(N)` and changes to `Repost` on hover or keyboard focus. Clicking it targets exactly that fragment and retains its underlying ancestry automatically. No carry checkboxes remain.
 - Original detail is single-column. The selected post is at the top with all its descendants underneath in reverse chronological order, flat and indented, with standalone `↖` relationship rows. Counts contain no arrow.
 - Canal draft fields autosave per Cabanon identity. The handoff preserves the raw input, including whitespace; prior nonempty blog drafts are retained in local draft history before replacement. No canal publication flow is implied.
-- Browser validation covers the button's exact 56px dimensions, L5 fill and bottom/right insets; staircase coordinates; counter hover; per-fragment targeting and ancestry; single-column detail; removal of selection boxes/checkboxes; textarea growth; 1000/1001 character boundaries; handoff and draft persistence after reload; attachment picker regression; and composer bounds at 500px.
+- Browser validation covers the button's exact 56px dimensions, L4 fill and bottom/right insets; staircase coordinates; counter hover; per-fragment targeting and ancestry; single-column detail; removal of selection boxes/checkboxes; textarea growth; 1000/1001 character boundaries; handoff and draft persistence after reload; attachment picker regression; and composer bounds at 500px.
 
 ## Homepage search removal
 
@@ -59,12 +59,12 @@ These rules supersede the earlier carry checkboxes and ordinary arrow/count butt
 
 ## Writing entry position correction
 
-- The 56px writing entry is at the lower left, 24px inset, superseding lower-right placement. The hover composer opens above it with an L5 light surface and L1 dark text/caret/buttons. Automatic growth and 1000-character canal handoff remain unchanged.
+- The 56px writing entry is at the lower left, 24px inset, superseding lower-right placement. The hover composer opens above it with an L4 light surface and L1 dark text/caret/buttons. Automatic growth and 1000-character canal handoff remain unchanged.
 
 ## Composer overlay and navigation revision
 
 - The light composer replaces/overlays the lower-left 56px square at the same 24px bottom/left inset. The square is hidden while the composer is open and restored on close. Ordinary composition has no river heading; repost composition retains its target context.
-- Navigation uses fixed slots: the feed mode gets 96px and the other icons 56px. Labels always reserve their line. Inactive labels are invisible, hover labels use L6, and selected labels use L5. Feed labels are flow/care or care/flow, with the first word emphasized and the other word/slash in L6.
+- Navigation uses fixed slots: the feed mode gets 96px and the other icons 56px. Labels always reserve their line. Inactive labels are invisible, hover labels use L5, and selected labels use L4. Feed labels are flow/care or care/flow, with the first word emphasized and the other word/slash in L5.
 - Flow uses the supplied band logo. Care uses two staggered rows containing eight squares. Switching mode changes the glyph and label content without changing any icon position or slot dimensions.
 
 ## Inline repost arrow and lifetime offset
@@ -74,9 +74,9 @@ These rules supersede the earlier carry checkboxes and ordinary arrow/count butt
 
 ## Identity link treatment
 
-- Every clickable identity in public feeds, details, search results, carried posts and chat headers uses transparent background, L5 emphasis and an underline on hover/press/keyboard focus. Contact-list rows also remain transparent, with the ID alone underlined; timestamps and message previews do not receive an underline. Static profile headings remain text.
+- Every clickable identity in public feeds, details, search results, carried posts and chat headers uses transparent background, L4 emphasis and an underline on hover/press/keyboard focus. Contact-list rows also remain transparent, with the ID alone underlined; timestamps and message previews do not receive an underline. Static profile headings remain text.
 
-- Rive contact-list exception: the complete conversation row keeps its L3 hover/pressed/selected background; the ID retains L5 emphasis and underline. Other clickable identity labels remain transparent.
+- Rive contact-list exception: the complete conversation row keeps its L2 hover/pressed/selected background; the ID retains L4 emphasis and underline. Other clickable identity labels remain transparent.
 
 ## Rive message grouping and connected rules
 
@@ -106,7 +106,7 @@ These rules supersede the earlier carry checkboxes and ordinary arrow/count butt
 
 ## Lifetime visual samples and warning color
 
-- Remaining lifetime at 30 days or less uses L9 red for alive segments; spent segments remain L6 gray. At 31 days and above alive segments use L5. Existing 2px height and 8px upward offset remain unchanged.
+- Remaining lifetime at 30 days or less uses L8 red for alive segments; spent segments remain L5 gray. At 31 days and above alive segments use L4. Existing 2px height and 8px upward offset remain unchanged.
 - Added seven standalone timestamp-based visual examples (365, 270, 180, 90, 30, 14, 3 days), once per local identity. Real posts and existing chains are unchanged. The 30-day sample is approximately 37px red out of a 451px bar (8.22%).
 
 - Writing entry and both ordinary/repost composers now sit flush at the application content bottom-left corner (left 0, bottom 0), superseding the 24px inset.
@@ -114,7 +114,7 @@ These rules supersede the earlier carry checkboxes and ordinary arrow/count butt
 ## 2026-10-17: Share, Pub and cancellable quotes
 
 - Right-drag any public fragment on home, detail or profile: default Repost; onto rive navigation Share; onto canal navigation Pub.
-- Share opens a forwarding window with ID search, recent recipients in 28px lines (up to three visible rows), optional comment and a read-only original preview. IDs are selectable together; selected IDs use L5 plus underline. Searching/adding an ID selects it and replaces an unselected visible recent ID when the list is full. Confirmation sends to every chosen recipient in the local prototype.
+- Share opens a forwarding window with ID search, recent recipients in 28px lines (up to three visible rows), optional comment and a read-only original preview. IDs are selectable together; selected IDs use L4 plus underline. Searching/adding an ID selects it and replaces an unselected visible recent ID when the list is full. Confirmation sends to every chosen recipient in the local prototype.
 - Pub switches to the canal blog draft with the selected fragment as a read-only quote. Existing draft title/body are retained.
 - Pending Rive quotes can be selected (light background and top-right ×), cancelled with ×, or right-dragged back into the message area/outside the RIVER window to cancel (`cancel quote`). They can also be dragged to contacts, rive Share or canal Pub using the same routes as messages.
 - Quote text and sender/time remain immutable. Reply text is written above it.
@@ -134,7 +134,7 @@ These rules supersede the earlier carry checkboxes and ordinary arrow/count butt
 ## Unified Share and context clicks
 
 - Public River and private Rive sharing use one fixed 560×520 window named `share to`. It has only a close control; resize handles and minimize/maximize controls are removed. Double-clicking the title does not maximize it.
-- Sharing to a contact uses this same searchable multi-recipient window, with that ID preselected using L5 and an underline. The separate single-contact forwarding window is removed.
+- Sharing to a contact uses this same searchable multi-recipient window, with that ID preselected using L4 and an underline. The separate single-contact forwarding window is removed.
 - Releasing a right click on Rive messages shows `copy`, `share`, `repost`; on public River fragments it shows `copy`, `share`, `quote`. Copy copies original text; share opens the unified dialog; Rive repost prepares a public draft with an immutable quoted source; River quote prepares its existing repost draft.
 - Right drag and context click are mutually exclusive. An early global guard suppresses context-menu events for completed right drags, including file/paragraph copying, messages, normal titlebars and code-mode window movement. A subsequent ordinary right click works normally.
 
@@ -142,27 +142,27 @@ These rules supersede the earlier carry checkboxes and ordinary arrow/count butt
 
 - Rive right click: `copy / share / quote`; quote stages the selected messages in the current chat input.
 - River right click: `copy / share / repost`; repost opens the existing public repost composer. The previously reversed menu actions and private-to-public repost draft route are removed.
-- Selected Rive messages hide the thin fold and use an L3 rectangular fill with a solid 14px 45-degree tail, without an outline. Left messages have a bottom-left tail; right messages mirror it at bottom-right. Deselecting restores the thin fold without changing layout.
+- Selected Rive messages hide the thin fold and use an L2 rectangular fill with a solid 14px 45-degree tail, without an outline. Left messages have a bottom-left tail; right messages mirror it at bottom-right. Deselecting restores the thin fold without changing layout.
 
 ## WYSIWYG repost composer and quiet quote selection
 
 - Repost composer starts directly with a one-line, growing text input; no Repost/author heading or reserved header row. Below the input it previews the exact carried-fragment sequence for the new post, with dedicated downward-arrow rows and successive 20px indents. The maximum-three-message rule matches published posts, including carrying original plus immediate source for deeper chains. Preview metadata uses absolute timestamps.
 - Source content is read-only and cannot navigate away from the draft. The close control is shown on composer hover without reserving a header row.
-- Selecting a pending Rive quote uses L3 gray rather than inverted light fill; its top-right close control uses L5.
+- Selecting a pending Rive quote uses L2 gray rather than inverted light fill; its top-right close control uses L4.
 
-- Repost composer palette: immutable carried text/metadata/arrows use L6 gray; editable text, bottom separator and send use L1 dark ink on the L5 composer background.
+- Repost composer palette: immutable carried text/metadata/arrows use L5 gray; editable text, bottom separator and send use L1 dark ink on the L4 composer background.
 
 - With a chat open, the contact list starts higher so its first ID shares the chat-header ID text baseline. Contact rows retain their existing 84px (3×28px) rhythm.
 
 ## Contact/chat split and independent scrolling
 
-- A 1px L4 divider runs down the chat area's left edge from beneath the search area to the window bottom, meeting the header underline. Contact-row selection reaches that divider with no right padding.
+- A 1px L3 divider runs down the chat area's left edge from beneath the search area to the window bottom, meeting the header underline. Contact-row selection reaches that divider with no right padding.
 - Contact and message lists have bounded, independent scroll regions with scroll chaining disabled. Contacts extend to the bottom of the window; their native scrollbar is hidden so the selection fill stays flush with the divider. Contact scroll position survives local rerenders.
 - Left message previews prepend `Me: ` when the latest message was sent by the current user, including attachment/quote-only messages.
 
 ## Contact controls, profile privacy and history
 
-- One contact menu is used by the chat-header ellipsis and by releasing a right click on a contact-list ID or chat-header ID. Order: profile, make group…, share, pin, chat only, mute, clear, remove, block. Active pin/chat only/mute use L5 and underline.
+- One contact menu is used by the chat-header ellipsis and by releasing a right click on a contact-list ID or chat-header ID. Order: profile, make group…, share, pin, chat only, mute, clear, remove, block. Active pin/chat only/mute use L4 and underline.
 - Chat only is a per-recipient outgoing privacy setting. In the local prototype, switching to that recipient identity and opening the owner's profile shows only the owner ID and back arrow. Owner profile posts/description/join date/writing entry are hidden in that view. Blocking also restricts that recipient's profile view. This is prototype identity data, not a deployed server authorization layer.
 - Profile and detail navigation keep a view history, including current chat, filters, thread and scroll positions. Back restores the previous Rive/River/detail view. The profile arrow has no River label.
 - Right-click/release in the message-list background shows select all / clear. Select all uses the existing message selection set, so copying, sharing and multi-message quoting still work normally. Dragging instead of clicking does not open this menu.

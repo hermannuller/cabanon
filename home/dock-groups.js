@@ -26,8 +26,8 @@ showTaskGroup=function(type,button){
  const count=document.createElement('div');count.className='task-group-count';count.textContent=items.length+' '+(items.length===1?'window':'windows');taskPopup.append(count);
  for(const item of items){
   const row=document.createElement('div');row.className='task-window-row';
-  const open=document.createElement('button');open.className='task-window-open';open.classList.toggle('chosen',item.current);open.textContent=item.label;open.title=item.label;open.onclick=()=>{if(activateDockItem(item))taskPopup.hidden=true;};
-  const close=document.createElement('button');close.className='task-window-close';close.textContent='×';close.title='Close '+item.label;close.setAttribute('aria-label',close.title);close.onclick=event=>{event.stopPropagation();closeDockItem(item,type);};
+  const open=document.createElement('button');open.className='task-window-open runtime-state';open.dataset.runtimeActive=String(item.current);open.setAttribute('aria-current',String(item.current));open.textContent=item.label;open.title=item.label;open.onclick=()=>{if(activateDockItem(item))taskPopup.hidden=true;};
+  const close=document.createElement('button');close.className='task-window-close';close.innerHTML=cssIcon('close','window-control-symbol cabanon-close-symbol');close.title='Close '+item.label;close.setAttribute('aria-label',close.title);close.onclick=event=>{event.stopPropagation();closeDockItem(item,type);};
   row.append(open,close);taskPopup.append(row);
  }
  taskPopup.hidden=!items.length;placeHoverMenu(taskPopup,button);

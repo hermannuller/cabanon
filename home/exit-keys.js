@@ -32,6 +32,9 @@ function closeDocumentWindows(targets){
  window.addEventListener('document-close-cancel',stop);next();
 }
 window.addEventListener('keydown',event=>{
+ // The themed native picker owns its keys until it closes. Preserve browser
+ // defaults (especially Escape) without also closing the containing window.
+ if(event.target.closest?.('select:open')){event.stopImmediatePropagation();return;}
  if(event.key==='Escape'&&event.target.matches('.save-entry-rename,.title-name-input'))return;
  window.dismissWelcome?.();
  const escape=event.key==='Escape'&&!event.ctrlKey&&!event.altKey&&!event.metaKey;
@@ -42,6 +45,9 @@ window.addEventListener('keydown',event=>{
  if(escape&&window.CabanonPhoneDialogs?.cancel?.())return;
  if(escape&&window.CabanonPhoneMultitask?.dismissConfirmation?.())return;
  if(escape&&window.CabanonQuick?.dismissPicker?.())return;
+ if(escape&&window.CabanonHelpEditor?.dismissFileMenu?.())return;
+ if(escape&&window.CabanonTxtMenus?.dismissTransient?.())return;
+ if(escape&&window.CabanonHelpEditor?.dismissSearch?.())return;
  if(escape&&window.CabanonDragFeedback?.cancelActive())return;
  if(quit){if(!document.querySelector('.removal-confirmation'))quitCurrentProgram();return;}
  const confirmation=document.querySelector('.removal-confirmation');if(confirmation){confirmation.querySelector('[data-close-choice=cancel],[data-answer=no]')?.click();return;}

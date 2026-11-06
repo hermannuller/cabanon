@@ -3,7 +3,7 @@ function helpRuleSection(article,title,paragraphs,rows){const heading=document.c
 function renderRenameHelp(article){
  helpRuleSection(article,'Rename',[
   'Select files, then Ctrl+Enter. One file is renamed in place; Enter commits and Escape cancels. Multiple files open the batch window. Rules edit the base name; file extensions, including .tar.gz, remain unchanged.',
-  'The left column contains rules, executed from top to bottom. + adds a rule; the up/down buttons beside find change its position. Editing a rule activates it. The right column previews original and resulting names. Changed results use L5; originals use L6. OK applies valid changes; cancel discards them.',
+  'The left column contains rules, executed from top to bottom. + adds a rule; the up/down buttons beside find change its position. Editing a rule activates it. The right column previews original and resulting names. Changed results use L4; originals use L5. OK applies valid changes; cancel discards them.',
   'Hold a file icon in the right preview with the left mouse button and drag vertically to reorder the files. Text is not a reorder handle. The new order controls /q numbering and automatic duplicate suffixes. Reordering changes only this batch, not the folder’s sort order. Escape during dragging restores the previous order.'
  ]);
  helpRuleSection(article,'FIND: what to match',[
@@ -29,7 +29,7 @@ function renderRenameHelp(article){
 const folderHelpBeforeMouseRules=renderFolderPointerHelp;
 renderFolderPointerHelp=function(article){folderHelpBeforeMouseRules(article);
  helpRuleSection(article,'Mouse operations in folders',[],[
-  ['Left click','Select the whole option, including padding. Shift selects a range; Ctrl toggles one file; Ctrl+Shift adds a range.'],['Right click','Selected or unselected file: the whole option, including blank padding. Only actual folder background opens the folder menu. Any key closes the menu; right-click modifiers do not add separate menu actions.'],['Left drag','Move/sort selected files. An already-selected L5 option is a full drag handle; otherwise start on its icon/name.'],['Right drag','Copy and keep originals. Same start/target hit areas as left dragging. Icon/name means a continuous full-height band from option left to the visible text/icon right edge; the width is limited, not the height. A moved right gesture never opens a context menu.'],['Left whitespace box','Select. Ctrl appends; after drawing a rectangle, Shift temporarily shears it with a fixed width. Releasing Shift restores the rectangle.'],['Alt + left whitespace box','Radial sweep: fixed origin, union of swept triangles. Retracing does not erase earlier area.'],['FROM + left whitespace box','Free lasso: follows the mouse trajectory and closes it to the starting point. It is not the radial triangle union. FROM takes priority over Alt.'],['Right whitespace box','Execute the chosen RIGHT! action on release: move into a new folder (>/), copy into one (+>/), move into a new ZIP (> zip), copy into one (+> zip), or delete. Ctrl appends the existing selection.'],['Shift + delete box','When RIGHT! uses delete, holding Shift changes it to burn with a red confirmation. Shift+Delete also burns selected files.'],['Folder / ZIP destination','Only the target icon/name is active. Its selected L5 padding never expands the destination. Background dropping/sorting remains separate.'],['Escape','Cancel a drag or selection and restore its previous state. Releasing afterward performs no action.']
+  ['Left click','Select the whole option, including padding. Shift selects a range; Ctrl toggles one file; Ctrl+Shift adds a range.'],['Right click','Selected or unselected file: the whole option, including blank padding. Only actual folder background opens the folder menu. Any key closes the menu; right-click modifiers do not add separate menu actions.'],['Left drag','Move/sort selected files. An already-selected L4 option is a full drag handle; otherwise start on its icon/name.'],['Right drag','Copy and keep originals. Same start/target hit areas as left dragging. Icon/name means a continuous full-height band from option left to the visible text/icon right edge; the width is limited, not the height. A moved right gesture never opens a context menu.'],['Left whitespace box','Select. Ctrl appends; after drawing a rectangle, Shift temporarily shears it with a fixed width. Releasing Shift restores the rectangle.'],['Alt + left whitespace box','Radial sweep: fixed origin, union of swept triangles. Retracing does not erase earlier area.'],['FROM + left whitespace box','Free lasso: follows the mouse trajectory and closes it to the starting point. It is not the radial triangle union. FROM takes priority over Alt.'],['Right whitespace box','Execute the chosen RIGHT! action on release: move into a new folder (>/), copy into one (+>/), move into a new ZIP (> zip), copy into one (+> zip), or delete. Ctrl appends the existing selection.'],['Shift + delete box','When RIGHT! uses delete, holding Shift changes it to burn with a red confirmation. Shift+Delete also burns selected files.'],['Folder / ZIP destination','Only the target icon/name is active. Its selected L4 padding never expands the destination. Background dropping/sorting remains separate.'],['Escape','Cancel a drag or selection and restore its previous state. Releasing afterward performs no action.']
  ]);
  helpRuleSection(article,'Navigation while dragging',[
   'Hover a valid target folder for one second to enter it; repeat to continue through folders. Hover ←, → or ↑ for one second to navigate without releasing. Invalid self/descendant targets cannot be entered.',
@@ -70,27 +70,27 @@ function folderPointerHelpTopic(){return{id:'cabanon-folder-pointer-ranges-v1',t
  '',
  '1. 左键单击选择',
  '未选中：整个选项框。',
- '已选中的 L5 选项：整个选项框。',
+ '已选中的 L4 选项：整个选项框。',
  '',
  '2. 右键单击文件菜单',
  '未选中：整个选项框，包括文件名右侧的空白。',
- '已选中的 L5 选项：整个 L5 区域。',
+ '已选中的 L4 选项：整个 L4 区域。',
  '',
  '3. 左键按住移动',
  '未选中：从图标文字区域起拖。',
- '已选中的 L5 选项：整个 L5 区域都能起拖。',
+ '已选中的 L4 选项：整个 L4 区域都能起拖。',
  '',
  '4. 右键按住移动',
  '未选中：从图标文字区域起拖。',
- '已选中的 L5 选项：整个 L5 区域都能起拖。',
+ '已选中的 L4 选项：整个 L4 区域都能起拖。',
  '',
  '5. 左右键框选起点',
  '未选中：选项内图标文字区域右侧的空白，或文件夹真正的空白背景。',
- '已选中的 L5 选项：L5 内不框选，移动会拖拽选中的文件。要框选，请从 L5 之外的空白开始。',
+ '已选中的 L4 选项：L4 内不框选，移动会拖拽选中的文件。要框选，请从 L4 之外的空白开始。',
  '',
  '6. 拖入文件夹／ZIP 的行为目标',
  '无论目标是否选中：仅目标的图标文字区域有效。',
- '即使目标显示 L5 底色，文件名右侧的 L5 空白也不是进入文件夹或加入 ZIP 的目标。这里说的是放下鼠标的位置，不是拖拽起点。',
+ '即使目标显示 L4 底色，文件名右侧的 L4 空白也不是进入文件夹或加入 ZIP 的目标。这里说的是放下鼠标的位置，不是拖拽起点。',
  '',
  '点击与移动分开判断',
  '按下时记录位置，移动达到 6px 才进入拖拽或框选；未达到阈值按单击处理。起点决定本次操作，划过其他文件不会把框选改成拖拽。',

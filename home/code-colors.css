@@ -1,0 +1,12 @@
+/* Code is an independent environment. None of these colors reference L roles. */
+:root{--code-background:#0e100f;--code-surface:#1d1d1b;--code-border:#414342;--code-text:#edff35;--code-error:#c5173e;--code-notice-text:#fefbe3}
+#desktop .window.code-mode>.titlebar,#desktop .window.code-mode :is(.code-surface,.house-code){background:var(--code-background)!important}
+#desktop .window.code-mode :is(.code-line:not(.error),.house-code,.code-number){color:var(--code-text)!important;caret-color:var(--code-text)}
+#desktop .window.code-mode .code-line.error{color:var(--code-error)!important}
+#desktop .window.code-mode:not(.active) :is(.code-line:not(.error),.code-number){color:color-mix(in srgb,var(--code-text) 50%,transparent)!important}
+#desktop .window.code-mode .code-surface ::selection{background:var(--code-text);color:var(--code-background);text-shadow:none}
+#desktop .window.code-mode .code-height-handle{background:var(--code-border)!important}
+#desktop .window.code-mode .code-actions button{background:var(--code-surface)!important;color:var(--code-text)!important}
+#desktop .window.code-mode .code-actions button:hover{background:var(--code-text)!important;color:var(--code-background)!important}
+#desktop .window.code-mode .code-actions button.code-close:hover{background:var(--code-error)!important;color:var(--code-notice-text)!important}
+#desktop .warning-popup.code-warning{background:var(--code-error);color:var(--code-notice-text)}

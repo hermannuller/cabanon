@@ -51,7 +51,7 @@ Demo mode is on by default and visibly marked DEMO. Toggle it in else or Detaile
 - Quick row 1 is 56px; every later grid row is 84px. Remove the independent blank spacer; music uses two rows. Keep the 56px Home footer.
 - Music pause uses two filled rectangles from PDF page 4, separate from timer pause.
 - RADIO divider terminates at its frame sides.
-- During home scrolling, marks move at their app row position. The active row contains y=392px (between rows 7/8); it and three neighbors each way use L5 at 100/70/45/15 percent opacity. Other marks are transparent. Existing 1s hold + 1s fade remains.
+- During home scrolling, marks move at their app row position. The active row contains y=392px (between rows 7/8); it and three neighbors each way use L4 at 100/70/45/15 percent opacity. Other marks are transparent. Existing 1s hold + 1s fade remains.
 - Active/paused countdown replaces its row logo with opaque black pause/cancel controls. Their diameter follows MiSans Thin 60px zero ink height, with non-scaling 1px strokes.
 - Group prefix occupies 1ch; left and right three-square marks align artwork top to app capital top.
 - MARATHON catalog/icon already existed; one-time migration restores its hidden/removed home entry and old uninstalled flag. PDF PLAN maps to TODO; TOOL is a group, TRANSL has an existing tool entry. No additional standalone PDF app is missing.

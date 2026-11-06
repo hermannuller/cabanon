@@ -1,0 +1,33 @@
+.window.where-window{min-width:420px;min-height:400px}
+.where-window>.window-content{padding:0;overflow:hidden;display:flex}
+.where-app{display:flex;flex-direction:column;min-width:0;min-height:0;width:100%;height:100%;background:var(--l1);color:var(--l4);font:400 14px/26px JetBrains,SourceHan,monospace}
+.where-search{display:flex;align-items:center;gap:12px;padding:10px 16px;background:var(--l2);flex-shrink:0}
+.where-search input{width:100%;min-width:0;flex:1;background:var(--l1);color:var(--l4);border:0;padding:4px 8px;font:inherit;height:36px;outline-offset:2px}
+.where-search button{font:inherit;white-space:nowrap;background:none;border:0;color:var(--l5);padding:4px 0}
+.where-search button:hover{color:var(--l4)}
+.where-search input[aria-invalid=true]{outline:1px solid var(--red,var(--l7));outline-offset:-1px}
+.where-search input::-webkit-search-cancel-button{display:none}
+.where-feedback{flex-shrink:0;padding:4px 16px;color:var(--l5);font-size:12px;line-height:22px;overflow-wrap:anywhere}
+.where-feedback[data-error=true]{color:var(--red,var(--l7))}
+.where-results{flex-shrink:0;max-height:216px;overflow-y:auto;background:var(--l1);padding:0 8px}
+.where-results[hidden]{display:none}
+.where-result,.where-example{display:flex;align-items:baseline;gap:12px;width:100%;min-height:36px;padding:4px 8px;text-align:left;background:none;border:0;color:var(--l4);font:inherit;overflow-wrap:anywhere}
+.where-result:hover,.where-result:focus,.where-example:hover,.where-example:focus{background:var(--l2)}
+.where-result>span:first-child{flex:1;min-width:0}
+.where-result small{font:400 12px/22px JetBrains,SourceHan,monospace;color:var(--l5);white-space:nowrap}
+.where-leg{padding:4px 8px;overflow-wrap:anywhere}
+.where-leg small{display:block;color:var(--l5);font:400 12px/22px JetBrains,SourceHan,monospace}
+.where-map-host{flex:1;min-height:180px;min-width:0;overflow:hidden}
+.where-app .where-map{font-family:JetBrains,SourceHan,monospace}
+.where-app .where-map .place-label{font-family:Inter,SourceHan,sans-serif}
+.where-app .where-map header{display:none}
+.where-app .where-map footer{font-size:11px;line-height:20px;gap:0 10px}
+.where-app .where-map .where-north{background:var(--l1);padding:2px;width:max-content;height:auto;right:auto;pointer-events:none}
+#phone .phone-app.where-phone{padding:0;overflow:hidden}
+#phone .where-app{height:100%;touch-action:auto}
+#phone .where-search{padding:8px 10px;gap:8px}
+#phone .where-search input{font-size:16px}
+#phone .where-search button{font-size:12px}
+#phone .where-results{max-height:168px}
+#phone .where-app .where-result{min-height:44px}
+#phone .where-app .where-result small{white-space:normal;max-width:120px}

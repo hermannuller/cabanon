@@ -1,0 +1,218 @@
+{
+  "themes": {
+    "dark": {
+      "palette": {
+        "l1": "#0e100f",
+        "l2": "#1d1d1b",
+        "l3": "#414342",
+        "l4": "#fefbe3",
+        "l6": "#a85c20"
+      },
+      "pairs": [
+        {
+          "pair": "l1/l2",
+          "contrast": 1.13
+        },
+        {
+          "pair": "l2/l3",
+          "contrast": 1.69
+        },
+        {
+          "pair": "l1/l3",
+          "contrast": 1.92
+        },
+        {
+          "pair": "l3/l6",
+          "contrast": 2
+        },
+        {
+          "pair": "l2/l6",
+          "contrast": 3.39
+        },
+        {
+          "pair": "l1/l6",
+          "contrast": 3.83
+        },
+        {
+          "pair": "l4/l6",
+          "contrast": 4.77
+        },
+        {
+          "pair": "l3/l4",
+          "contrast": 9.55
+        },
+        {
+          "pair": "l2/l4",
+          "contrast": 16.18
+        },
+        {
+          "pair": "l1/l4",
+          "contrast": 18.3
+        }
+      ]
+    },
+    "soft": {
+      "palette": {
+        "l1": "#dfe0d7",
+        "l2": "#eeeee8",
+        "l3": "#b7bbb2",
+        "l4": "#252d2b",
+        "l6": "#edff35"
+      },
+      "pairs": [
+        {
+          "pair": "l2/l6",
+          "contrast": 1.05
+        },
+        {
+          "pair": "l1/l2",
+          "contrast": 1.14
+        },
+        {
+          "pair": "l1/l6",
+          "contrast": 1.2
+        },
+        {
+          "pair": "l1/l3",
+          "contrast": 1.47
+        },
+        {
+          "pair": "l2/l3",
+          "contrast": 1.68
+        },
+        {
+          "pair": "l3/l6",
+          "contrast": 1.76
+        },
+        {
+          "pair": "l3/l4",
+          "contrast": 7.23
+        },
+        {
+          "pair": "l1/l4",
+          "contrast": 10.6
+        },
+        {
+          "pair": "l2/l4",
+          "contrast": 12.11
+        },
+        {
+          "pair": "l4/l6",
+          "contrast": 12.73
+        }
+      ]
+    }
+  },
+  "cssUsage": {
+    "l1": {
+      "references": 97,
+      "files": 19,
+      "topFiles": [
+        {
+          "file": "style.css",
+          "count": 20
+        },
+        {
+          "file": "phone.css",
+          "count": 17
+        },
+        {
+          "file": "river.css",
+          "count": 16
+        },
+        {
+          "file": "txt.css",
+          "count": 6
+        },
+        {
+          "file": "canal.css",
+          "count": 5
+        }
+      ]
+    },
+    "l2": {
+      "references": 174,
+      "files": 19,
+      "topFiles": [
+        {
+          "file": "canal.css",
+          "count": 43
+        },
+        {
+          "file": "style.css",
+          "count": 39
+        },
+        {
+          "file": "phone.css",
+          "count": 13
+        },
+        {
+          "file": "river.css",
+          "count": 13
+        },
+        {
+          "file": "txt.css",
+          "count": 12
+        }
+      ]
+    },
+    "l3": {
+      "references": 101,
+      "files": 14,
+      "topFiles": [
+        {
+          "file": "style.css",
+          "count": 36
+        },
+        {
+          "file": "phone.css",
+          "count": 15
+        },
+        {
+          "file": "river.css",
+          "count": 14
+        },
+        {
+          "file": "canal.css",
+          "count": 7
+        },
+        {
+          "file": "wall.css",
+          "count": 6
+        }
+      ]
+    },
+    "l4": {
+      "references": 246,
+      "files": 22,
+      "topFiles": [
+        {
+          "file": "style.css",
+          "count": 50
+        },
+        {
+          "file": "canal.css",
+          "count": 34
+        },
+        {
+          "file": "river.css",
+          "count": 31
+        },
+        {
+          "file": "phone.css",
+          "count": 28
+        },
+        {
+          "file": "phone-quick.css",
+          "count": 23
+        }
+      ]
+    },
+    "l6": {
+      "references": 0,
+      "files": 0,
+      "topFiles": []
+    }
+  },
+  "errors": []
+}

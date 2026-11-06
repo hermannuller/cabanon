@@ -92,7 +92,7 @@ document.addEventListener('pointerdown',event=>{
  if(direct){fileGesture={list,item,x:event.clientX,y:event.clientY,mode:'item',moved:false,modifiers:{ctrlKey:event.ctrlKey,shiftKey:event.shiftKey}};if(list.id!=='files'){item.draggable=true;}}
  else beginFileSelectionBox(event,list,null,candidate);
 },true);
-// Pointer-down owns the gesture: selected L5 option or icon/name drags; unselected whitespace boxes.
+// Pointer-down owns the gesture: selected L4 option or icon/name drags; unselected whitespace boxes.
 function beginFileSelectionBox(event,list,onFinish,clickItem=null){
  const fromHeld=Boolean(event.metaKey||event.getModifierState?.('Meta')||window.CabanonFromKey?.held);
  event.preventDefault();const frame=document.createElement('div');frame.className='file-selection-frame';$('#desktop').append(frame);list.setPointerCapture(event.pointerId);

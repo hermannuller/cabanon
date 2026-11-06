@@ -21,9 +21,9 @@ function renderFolderPointerHelp(article){
  for(const text of [
   'Clicking, starting a drag and dropping onto a target have separate hit areas. These rules apply to list, details and paragraph folder views, with either mouse button.',
   'Left-click anywhere inside an option to select it, including its blank area. Right-click anywhere inside an option for its file menu, whether selected or not. Only true folder background opens the folder menu.',
-  'Drag start: on an unselected option, hold and move from its icon/name band: a continuous full-height rectangle from the option left edge to the visible text/icon right edge. Blank space above/below the text and between the icon and name is inside this band. On an already-selected L5 option, hold and move anywhere inside the L5 area to drag the selected files. Left dragging moves; right dragging copies.',
-  'Box selection: start from folder background or blank space inside an unselected option. Starting inside an already-selected L5 option drags files instead. A movement of at least 6px distinguishes dragging or box selection from a click; the pointer-down area determines the gesture.',
-  'Drop target: to put files into another folder or ZIP, release on that target’s icon or name. Its L5 blank area is not a folder or ZIP target, even when selected. Background dropping and sorting keep their normal rules.',
+  'Drag start: on an unselected option, hold and move from its icon/name band: a continuous full-height rectangle from the option left edge to the visible text/icon right edge. Blank space above/below the text and between the icon and name is inside this band. On an already-selected L4 option, hold and move anywhere inside the L4 area to drag the selected files. Left dragging moves; right dragging copies.',
+  'Box selection: start from folder background or blank space inside an unselected option. Starting inside an already-selected L4 option drags files instead. A movement of at least 6px distinguishes dragging or box selection from a click; the pointer-down area determines the gesture.',
+  'Drop target: to put files into another folder or ZIP, release on that target’s icon or name. Its L4 blank area is not a folder or ZIP target, even when selected. Background dropping and sorting keep their normal rules.',
   'Press Escape during dragging or box selection to cancel. Releasing afterward performs no action. Right dragging does not open a context menu.'
  ]){const paragraph=document.createElement('p');paragraph.textContent=text;article.append(paragraph);}
 }

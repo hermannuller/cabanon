@@ -1,8 +1,10 @@
 .txt-window .window-content{position:relative}
 .txt-title-spacer{flex:1 1 auto;min-width:0;align-self:stretch;pointer-events:none}
 .txt-panes{position:absolute;inset:0;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr);overflow:hidden}
-.txt-pane{position:relative;min-width:0;min-height:0;overflow:hidden;background:var(--l1)}
+.txt-pane{position:relative;min-width:0;min-height:0;overflow:hidden;background:var(--l2)}
+.txt-window.active:not(.txt-split) .txt-pane,.txt-window.active .txt-pane-current{background:var(--l1)}
+.txt-window.active .txt-pane-current>.txt-app,.txt-window.active .txt-pane-current textarea.txt-editor{background:var(--l1)}
+.txt-window.txt-split .txt-pane:not(.txt-pane-current){--l4:var(--l5)}
 .txt-pane>.txt-app{height:100%}
 .window.txt-split .txt-pane>.txt-app>.txt-toolbar{padding-right:46px}
 .txt-pane>.txt-app>.txt-toolbar{background:var(--l2)}
-.txt-pane .txt-find{top:36px}

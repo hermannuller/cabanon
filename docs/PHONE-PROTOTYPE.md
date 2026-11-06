@@ -27,7 +27,7 @@
 - Viewport geometry and persisted home layout are distinct. Current viewport remains where the user browsed; the home layout is independently packed by the same algorithm before saving, so removed/shrunk regions do not leave holes on reopening.
 - Unpin returns widget-only expanded heights to x1.
 - Test input: wheel over the home content scrolls through the same motion model. Pixel wheel deltas convert to logical points; line/page deltas use 56/840. A 160ms idle interval settles the grid when no pointer is held. During edit dragging, wheel scrolls other content while keeping the held APP at its screen position; pointer release settles and saves.
-- Edit drag: all labels use L6; only pins have L3 backgrounds. The dragged label follows the pointer continuously at 50% opacity, preserving its grab offset. Release uses the target container midpoint: upper half inserts before, lower half inserts after, including pinned targets. Pins remain fixed; insertion packs around their occupied rows. Wheel leaves the floating label under the pointer. No catalog-order tie decides insertion.
+- Edit drag: all labels use L5; only pins have L2 backgrounds. The dragged label follows the pointer continuously at 50% opacity, preserving its grab offset. Release uses the target container midpoint: upper half inserts before, lower half inserts after, including pinned targets. Pins remain fixed; insertion packs around their occupied rows. Wheel leaves the floating label under the pointer. No catalog-order tie decides insertion.
 
 ## Shared application naming
 
@@ -38,18 +38,18 @@
 
 ## Multi-selection and groups
 
-- While editing, the entire container is the selection and drag-origin hit area. Tapping toggles selection; selected containers use L5 background / L1 text, matching PC inversion. Pinned containers remain fixed and cannot join a movable selection.
+- While editing, the entire container is the selection and drag-origin hit area. Tapping toggles selection; selected containers use L4 background / L1 text, matching PC inversion. Pinned containers remain fixed and cannot join a movable selection.
 - Dragging any selected item carries the selected unpinned items together, in visual row/column order. The floating column retains full inverted container backgrounds and text, with 50% opacity applied to the whole column. It preserves the grab offset and stays under the pointer while wheel scrolling. Batch insertion uses the same target upper/lower-half rule as a single item.
 - Editing shows a grouping target left of Home: three 4×4 squares at upper-left, upper-right, lower-left. A group name includes the same mark in one 20.4px character cell.
 - Hovering a dragged selection over the target for 500ms replaces it at the pointer with a group named NEW, NEW1, NEW2, etc., choosing the first unused name. Hovering a single group instead expands its immediate members into the dragged column. Leaving/reentering is required to trigger another transformation; holding in place cannot repeatedly toggle.
 - Groups store member IDs, never copied APP names. Members stay in phone state but are excluded from the home grid while grouped. Group opening lists members; their names use the shared application registry. Grouping/dissolving and placement save together on release. Escape, pointer cancellation, mode changes and focus loss roll back in-flight group changes.
 - Regression: tmp/phone-groups-check.cjs covers full-container selection, inverted 50% drag, dwell threshold/latch, group/dissolve, Escape rollback, numbering, persistence and batch placement.
 
-- Selection palette override: selected containers and their floating drag copies use L3 dark gray backgrounds with L5 bright text. The floating column retains 50% overall opacity. Ur's stable ID remains Ur; its display name is LIST in application-names.js.
+- Selection palette override: selected containers and their floating drag copies use L2 dark gray backgrounds with L4 bright text. The floating column retains 50% overall opacity. Ur's stable ID remains Ur; its display name is LIST in application-names.js.
 
-- Selection palette update: selected containers and floating copies now use L4 backgrounds / L5 text, distinguishing selection from fixed PIN containers' L3 backgrounds. Drag opacity remains 50%.
+- Selection palette update: selected containers and floating copies now use L3 backgrounds / L4 text, distinguishing selection from fixed PIN containers' L2 backgrounds. Drag opacity remains 50%.
 
-- Editing background geometry: ordinary selected backgrounds cover the entire logical half-screen (0–215 / 215–430), retaining text positions. PIN L3 background starts at its half-screen left edge and ends at the label's measured right edge; its opaque full-container scrolling mask remains intact. Floating selected backgrounds use the same 215px width and remain 50% opaque. Colors unchanged (selected L4/L5, PIN L3).
+- Editing background geometry: ordinary selected backgrounds cover the entire logical half-screen (0–215 / 215–430), retaining text positions. PIN L2 background starts at its half-screen left edge and ends at the label's measured right edge; its opaque full-container scrolling mask remains intact. Floating selected backgrounds use the same 215px width and remain 50% opaque. Colors unchanged (selected L3/L4, PIN L2).
 
 - Footer update: grouping target sits at the left edge (hit area x=0–61.2; centered one-character symbol begins at x=20.4, aligned with the left text column). Home remains centered; its hit area is now five characters wide, 102px (x=164–266), with the visible 2px line still centered at x=215. Remaining side spaces retain no action.
 
@@ -76,12 +76,12 @@
 
 - Home short tap ALWAYS returns to the normal home page at scroll zero, from search, apps, editing, reachability and the home page itself. This supersedes the temporary-icon-preview tap binding. Downward Home drag still enables reachability.
 - Search pointer events never enter the home gesture recognizer. At scroll zero, wheel pull-down accumulates 112 logical px to open search, matching the existing two-row pull gesture.
-- Keyboard is square, edge-to-edge, 1px horizontal key gaps and 6px row gaps, with L5 held-letter popup. CSS symbols use the shared 2px icon stroke. Letter, shift, numeric, delete, space and return keys work; return opens the first result.
-- Search field follows FROM's 14/28 font, L3 fill, L4 border, 40px height and 6px/8px inner padding, with 2px outer horizontal margins. UI controls have zero corner radius; drawn symbol curves remain intentional.
+- Keyboard is square, edge-to-edge, 1px horizontal key gaps and 6px row gaps, with L4 held-letter popup. CSS symbols use the shared 2px icon stroke. Letter, shift, numeric, delete, space and return keys work; return opens the first result.
+- Search field follows FROM's 14/28 font, L2 fill, L3 border, 40px height and 6px/8px inner padding, with 2px outer horizontal margins. UI controls have zero corner radius; drawn symbol curves remain intentional.
 - Footer language toggles input language/placeholder between English and Chinese (Chinese composition uses system IME); microphone uses browser speech recognition where supported, otherwise states unavailability. No microphone access occurs before a user tap.
 - Regression: tmp/phone-keyboard-check.cjs covers actual pointer input, wheel entry, deletion/numbers/popup and Home from search and opened result.
 
-- Shift cycles off → one-letter uppercase → locked uppercase → off. One-letter shift clears after a letter only. Active key uses L5 background and L4 arrow; locked arrow keeps its shape and moves up 6px, with an independent 3px-high rectangle at its original bottom. Test: tmp/phone-shift-check.cjs.
+- Shift cycles off → one-letter uppercase → locked uppercase → off. One-letter shift clears after a letter only. Active key uses L4 background and L3 arrow; locked arrow keeps its shape and moves up 6px, with an independent 3px-high rectangle at its original bottom. Test: tmp/phone-shift-check.cjs.
 
 ## Application removal, naming and bottom sorting
 
@@ -150,7 +150,7 @@
 
 - Latest typography override: 28px large text (16.8px Latin advance), all home labels and widget text left aligned in both columns. Left margin 33.6px; each column 151.2px; gutter 33.6px; column starts x=33.6 / 218.4. Right remainder 23.4px (one character plus 6.6px surplus). Canvas remains 393 × 760, top 32px, 12 rows plus Home at 56px. Stock pairs retain two literal spaces.
 
-- PIN editing marker override: L3 occupies only the band from the Phone left edge to the pinned label's left edge, at full container height. No L3 background extends behind the text. Selected unpinned backgrounds retain their existing geometry.
+- PIN editing marker override: L2 occupies only the band from the Phone left edge to the pinned label's left edge, at full container height. No L2 background extends behind the text. Selected unpinned backgrounds retain their existing geometry.
 
 - PIN marker clarification: each column starts its editing marker at its own half-screen edge: x=0 for the left column, x=196.5 for the right column. The marker ends at that column's text left edge; never spans the opposite column.
 

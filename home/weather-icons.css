@@ -4,4 +4,3 @@
 .weather-main .phone-widget-icon.weather-symbol{width:36px;height:36px}
 #desktop #from [data-widget="weather"] .widget-value{display:flex;align-items:center;gap:14px;font-size:28px;font-weight:100;line-height:44px}
 #desktop #from [data-widget="weather"] .weather-symbol{width:36px;height:36px}
-#phone{--weather-paper:var(--l1)}

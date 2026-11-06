@@ -1,0 +1,239 @@
+{
+  "themes": {
+    "dark": {
+      "palette": {
+        "l1": "#0e100f",
+        "l2": "#1d1d1b",
+        "l3": "#1d1d1b",
+        "l4": "#414342",
+        "l6": "#6d6d62"
+      },
+      "pairs": [
+        {
+          "pair": "l2/l3",
+          "contrast": 1
+        },
+        {
+          "pair": "l1/l2",
+          "contrast": 1.13
+        },
+        {
+          "pair": "l1/l3",
+          "contrast": 1.13
+        },
+        {
+          "pair": "l2/l4",
+          "contrast": 1.69
+        },
+        {
+          "pair": "l3/l4",
+          "contrast": 1.69
+        },
+        {
+          "pair": "l4/l6",
+          "contrast": 1.91
+        },
+        {
+          "pair": "l1/l4",
+          "contrast": 1.92
+        },
+        {
+          "pair": "l2/l6",
+          "contrast": 3.23
+        },
+        {
+          "pair": "l3/l6",
+          "contrast": 3.23
+        },
+        {
+          "pair": "l1/l6",
+          "contrast": 3.65
+        }
+      ]
+    },
+    "soft": {
+      "palette": {
+        "l1": "#dfe0d7",
+        "l2": "#eeeee8",
+        "l3": "#eeeee8",
+        "l4": "#b7bbb2",
+        "l6": "#6c726a"
+      },
+      "pairs": [
+        {
+          "pair": "l2/l3",
+          "contrast": 1
+        },
+        {
+          "pair": "l1/l2",
+          "contrast": 1.14
+        },
+        {
+          "pair": "l1/l3",
+          "contrast": 1.14
+        },
+        {
+          "pair": "l1/l4",
+          "contrast": 1.47
+        },
+        {
+          "pair": "l2/l4",
+          "contrast": 1.68
+        },
+        {
+          "pair": "l3/l4",
+          "contrast": 1.68
+        },
+        {
+          "pair": "l4/l6",
+          "contrast": 2.53
+        },
+        {
+          "pair": "l1/l6",
+          "contrast": 3.71
+        },
+        {
+          "pair": "l2/l6",
+          "contrast": 4.24
+        },
+        {
+          "pair": "l3/l6",
+          "contrast": 4.24
+        }
+      ]
+    }
+  },
+  "cssUsage": {
+    "l1": {
+      "references": 97,
+      "files": 19,
+      "topFiles": [
+        {
+          "file": "style.css",
+          "count": 20
+        },
+        {
+          "file": "phone.css",
+          "count": 17
+        },
+        {
+          "file": "river.css",
+          "count": 16
+        },
+        {
+          "file": "txt.css",
+          "count": 6
+        },
+        {
+          "file": "canal.css",
+          "count": 5
+        }
+      ]
+    },
+    "l2": {
+      "references": 85,
+      "files": 15,
+      "topFiles": [
+        {
+          "file": "canal.css",
+          "count": 24
+        },
+        {
+          "file": "style.css",
+          "count": 16
+        },
+        {
+          "file": "marathon.css",
+          "count": 9
+        },
+        {
+          "file": "phone.css",
+          "count": 6
+        },
+        {
+          "file": "txt.css",
+          "count": 6
+        }
+      ]
+    },
+    "l3": {
+      "references": 89,
+      "files": 15,
+      "topFiles": [
+        {
+          "file": "style.css",
+          "count": 23
+        },
+        {
+          "file": "canal.css",
+          "count": 19
+        },
+        {
+          "file": "river.css",
+          "count": 12
+        },
+        {
+          "file": "phone.css",
+          "count": 7
+        },
+        {
+          "file": "txt.css",
+          "count": 6
+        }
+      ]
+    },
+    "l4": {
+      "references": 101,
+      "files": 14,
+      "topFiles": [
+        {
+          "file": "style.css",
+          "count": 36
+        },
+        {
+          "file": "phone.css",
+          "count": 15
+        },
+        {
+          "file": "river.css",
+          "count": 14
+        },
+        {
+          "file": "canal.css",
+          "count": 7
+        },
+        {
+          "file": "wall.css",
+          "count": 6
+        }
+      ]
+    },
+    "l6": {
+      "references": 192,
+      "files": 22,
+      "topFiles": [
+        {
+          "file": "river.css",
+          "count": 38
+        },
+        {
+          "file": "style.css",
+          "count": 35
+        },
+        {
+          "file": "canal.css",
+          "count": 31
+        },
+        {
+          "file": "phone-quick.css",
+          "count": 13
+        },
+        {
+          "file": "settings.css",
+          "count": 13
+        }
+      ]
+    }
+  },
+  "errors": []
+}

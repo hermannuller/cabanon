@@ -34,7 +34,7 @@
 | `paragraph-click-edit-check` | 基名点击插入光标、删除改名、后缀/图标整选 |
 | `paragraph-enter-check` | Enter 始终在文件前换行、重复下移、取消 F2 |
 | `title-rename-check` | 双击名称才改名、扩展名锁定、Escape、文件夹子树 |
-| `warning-dismiss-check` | `please name it.` 的 L5 文本与任意点击关闭 |
+| `warning-dismiss-check` | `please name it.` 的 L4 文本与任意点击关闭 |
 | `snap-smoke` | 贴边/四角吸附、左右拖拽、预览、72px 预留、最大化还原 |
 | `rename-syntax-audit` | 40 条改名语法，模型 + 真实键盘 + 提交 |
 | `save-close-check` | TXT/HELP/WALL/MARATHON 关闭前保存、Enter 默认、取消保留 |

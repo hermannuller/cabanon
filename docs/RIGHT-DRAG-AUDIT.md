@@ -33,7 +33,7 @@ Files/folders now add a seventh right-button route: copying into a target folder
 | Rive message/pending quote | Current input | Quote |
 | Rive message/pending quote | Contact ID | Share; contact forwarding dialog |
 | Pending quote | Chat messages or outside RIVER window | cancel quote |
-| Invalid destination | — | Can't; L9 fill / L5 text / no icon |
+| Invalid destination | — | Can't; L8 fill / L4 text / no icon |
 
 Desktop movement uses Still here. From app/folder/system/widget reordering keeps the line with no hint content. These entries supersede earlier descriptions in this audit.
 

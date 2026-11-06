@@ -34,4 +34,4 @@ The house's circular + entry is removed. New article remains available from the 
 
 ## MARATHON migration (2026-10-18)
 
-Writing editor/actions now live in the separate MARATHON app. The canal house and new-work + launch that editor; reading/publication browsing remain in canal. See MARATHON-SPEC.md for shared persistence and cross-window quoting. The house uses L5/deep text again, its right return strip is dark L2, and the split divider is removed.
+Writing editor/actions now live in the separate MARATHON app. The canal house and new-work + launch that editor; reading/publication browsing remain in canal. See MARATHON-SPEC.md for shared persistence and cross-window quoting. The house uses L4/deep text again, its right return strip is dark L2, and the split divider is removed.

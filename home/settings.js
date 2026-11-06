@@ -16,7 +16,7 @@ const settingSections=[
  ['about','About',[['about','About Cabanon']]]
 ];
 function settingPrefs(){
- prefs.settings ||= {};const s=prefs.settings;s.clock ||= {format:'24',zone:Intl.DateTimeFormat().resolvedOptions().timeZone,offset:0};s.modes ||= {silent:false,airplane:false,night:false};s.sounds ||= {};s.themes ||= {};s.shortcutSchemes ||= {};s.theme ||= 'dark';s.shortcutScheme ||= 'Cabanon';
+ prefs.settings ||= {};const s=prefs.settings;CabanonColorRoles.migrateSettings(s);s.clock ||= {format:'24',zone:Intl.DateTimeFormat().resolvedOptions().timeZone,offset:0};s.modes ||= {silent:false,airplane:false,night:false};s.sounds ||= {};s.themes ||= {};s.shortcutSchemes ||= {};s.theme ||= 'dark';s.shortcutScheme ||= 'Cabanon';
  for(const profile of Object.values(profiles))if(!profile.localId)profile.localId='CB-'+crypto.randomUUID().replaceAll('-','').slice(0,12).toUpperCase();
  prefs.localId ||= profiles[activeProfile]?.localId||'CB-'+crypto.randomUUID().slice(0,12).toUpperCase();return s;
 }

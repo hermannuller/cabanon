@@ -7,22 +7,22 @@
 .marathon-root .canal-switch-strip{display:none}
 .marathon-document{flex:1;min-height:280px;max-width:680px;width:100%;margin-inline:auto;overflow:auto;overscroll-behavior:contain;outline:none;white-space:pre-wrap;font-family:var(--writing-font);font-size:var(--writing-size);line-height:1.9;color:var(--ink);user-select:text}
 .marathon-document>[data-writing-text]{min-height:1.9em}
-.marathon-citation{margin:20px 0;padding:12px 16px;border:0;border-left:2px solid var(--l6);color:var(--l6);white-space:pre-wrap;font:14px/28px Inter,SourceHan,sans-serif;user-select:text}
+.marathon-citation{margin:20px 0;padding:12px 16px;border:0;border-left:2px solid var(--l5);color:var(--l5);white-space:pre-wrap;font:14px/28px Inter,SourceHan,sans-serif;user-select:text}
 .marathon-quote-source{font:12px/24px JetBrains,SourceHan,monospace;margin-bottom:4px}
 .marathon-quote-text{white-space:pre-wrap}
 .marathon-public-paragraph{white-space:pre-wrap;margin-bottom:1em}
 /* Restore the light house, preserving every cover/text position and dimension. */
-.canal-split-write,.canal-house,.canal-app.mode-write{background:var(--l5);color:var(--l2)}
-.canal-house .canal-work-shape{background:var(--l5);color:var(--l2);border-color:var(--l6)}
-.canal-house .canal-work-shape.article{background:linear-gradient(var(--article-edge),var(--article-edge)) left top/calc(100% - 15px) 1px no-repeat,linear-gradient(var(--article-edge),var(--article-edge)) right bottom/1px calc(100% - 15px) no-repeat,linear-gradient(var(--article-edge),var(--article-edge)) left bottom/100% 1px no-repeat,linear-gradient(var(--article-edge),var(--article-edge)) left top/1px 100% no-repeat,var(--l5)}
+.canal-split-write,.canal-house,.canal-app.mode-write{background:var(--l4);color:var(--l2)}
+.canal-house .canal-work-shape{background:var(--l4);color:var(--l2);border-color:var(--l5)}
+.canal-house .canal-work-shape.article{background:linear-gradient(var(--article-edge),var(--article-edge)) left top/calc(100% - 15px) 1px no-repeat,linear-gradient(var(--article-edge),var(--article-edge)) right bottom/1px calc(100% - 15px) no-repeat,linear-gradient(var(--article-edge),var(--article-edge)) left bottom/100% 1px no-repeat,linear-gradient(var(--article-edge),var(--article-edge)) left top/1px 100% no-repeat,var(--l4)}
 .canal-house .canal-work.finished .canal-work-shape{background:var(--l2);border-color:var(--l2)}
 .canal-house .canal-work.finished .canal-work-shape.article{--article-edge:var(--l2);background:var(--l2)}
 .canal-house .canal-work.finished .canal-work-shape.series{--series-edge:var(--l2)}
 .canal-house .canal-new{color:var(--l2)!important}
-.canal-house button:hover{background:var(--l6);color:var(--l5)}
+.canal-house button:hover{background:var(--l5);color:var(--l4)}
 .canal-split-read{border-left:0}
 .canal-app.mode-write>.canal-switch-strip.right{background:var(--l2);border-left:0!important}
-.canal-app.mode-write>.canal-switch-strip.right:hover{background:var(--l4)!important}
+.canal-app.mode-write>.canal-switch-strip.right:hover{background:var(--l3)!important}
 /* COLORS is monochrome until actual playback activates its FROM/DOCK marks. */
 .colors-icon{display:inline-block;width:28px;height:28px;flex:0 0 auto;background:currentColor;animation:none;pointer-events:none}
 #desktop :is(#pinned,#app-grid) .app-row>.colors-icon{width:36px;height:36px;flex:0 0 36px;margin:2px}

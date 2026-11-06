@@ -91,7 +91,7 @@
 ## Implemented overrides and current storage boundary
 
 - User-confirmed override: generated collision suffixes are `_1`, `_2`, etc.; parentheses typed by the user remain valid characters. Existing names are not migrated or deleted.
-- User-confirmed override: empty/whitespace, pure dots and extension-only names are rejected with `please name it.` in the L9 popup. Left/right clicking anywhere dismisses it.
+- User-confirmed override: empty/whitespace, pure dots and extension-only names are rejected with `please name it.` in the L8 popup. Left/right clicking anywhere dismisses it.
 - Validation is shared by folder New, normal/linked rename, paragraph rename, WALL Save As and generated local/shared collision names. Invalid names leave existing content intact. NFC conversion and automatic leading/trailing space removal are applied before validation; interior spaces remain unchanged. Trailing dots are rejected. Tab, CR, LF, NEL and U+2028/U+2029 separators are rejected anywhere, including the edges, instead of being trimmed away.
 - Unicode comparison is pinned to Unicode 15.0.0 default case folding. The 1530 mappings are generated from the matching Python Unicode database and checked into filename-rules.js. This is not a locale-dependent lowercasing approximation.
 - Collision numbering preserves recognized compound extensions and rechecks the 255-byte limit; generated stems are shortened by Unicode code point if a suffix needs space.

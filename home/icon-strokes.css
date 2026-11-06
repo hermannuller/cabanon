@@ -16,7 +16,7 @@
 /* Home right-hand identity icons only; controls and other surfaces stay 2px. */
 #phone .phone-scroll-endpoint{--icon-stroke:1px}
 
-:is(#desktop,#phone) svg[data-help-animation]>rect{stroke-width:1px!important}
+:is(#desktop,#phone) svg[data-help-animation]>rect{stroke-width:2px!important}
 
 svg[data-cbn-icon="quick-calculator"]{overflow:visible}
 
@@ -26,4 +26,4 @@ svg:is([data-cbn-icon="pdf-astro"],[data-cbn-icon="pdf-zip"]){overflow:visible}
 
 /* Home circular actions; the TIMER orange progress disc keeps its authored fill. */
 #phone .quick-home-timer button svg:not([data-countdown-progress]),
-#phone .quick-home-timer button svg:not([data-countdown-progress]) :is(path,circle,rect,line,polyline,polygon,g){fill:none!important;stroke:var(--l5)!important;stroke-width:1px!important}
+#phone .quick-home-timer button svg:not([data-countdown-progress]) :is(path,circle,rect,line,polyline,polygon,g){fill:none!important;stroke:var(--l4)!important;stroke-width:1px!important}

@@ -23,6 +23,7 @@
   <button class="mark" id="start" aria-label="Open From" aria-expanded="false"></button>
   <section id="power-screen" hidden><div><h1 id="power-title"></h1><p>Cabanon power state</p><button id="resume">Return to Cabanon</button><button id="exit-prototype">Exit HOME</button></div></section>
 </main>
+<script src="color-role-migration.js"></script>
 <script src="icon-assets.js"></script>
 <script src="save-button-label.js"></script>
 <script>for(const type of ["pointerdown","keydown"])window.addEventListener(type,()=>window.dismissWelcome?.(),{capture:true,passive:true});</script>
@@ -136,11 +137,16 @@
 <script src="drag-help.js"></script>
 <script src="colors-playback.js"></script>
 <link rel="stylesheet" href="txt.css"><link rel="stylesheet" href="txt-split.css">
-<script src="txt-encoding.js"></script><script src="txt.js"></script><script src="txt-split.js"></script>
+<script src="txt-encoding.js"></script><script src="txt-menus.js"></script><script src="txt.js"></script><script src="txt-split.js"></script>
 <link rel="stylesheet" href="title-rename.css"><script src="title-rename.js"></script>
+<link rel="stylesheet" href="file-cut-feedback.css"><script src="file-cut-feedback.js"></script>
 <link rel="stylesheet" href="phone.css"><link rel="stylesheet" href="widget-visuals.css"><script src="phone-flow.js"></script><script src="phone-widgets.js"></script><script src="phone-typography.js"></script><script src="phone-gestures.js"></script><script src="phone-dialogs.js"></script><script src="phone.js"></script><script src="phone-multitask.js"></script><link rel="stylesheet" href="phone-single.css"><link rel="stylesheet" href="phone-quick.css"><script src="compass-sensor.js"></script><script src="vendor/mathjs/math.js"></script><script src="calculator.js"></script><script src="phone-quick.js"></script><script src="phone-icon-boundary.js"></script>
 <link rel="stylesheet" href="icon-strokes.css"><link rel="stylesheet" href="phone-dialogs.css"><link rel="stylesheet" href="calculator.css">
 <link rel="stylesheet" href="folder-split.css">
+<link rel="stylesheet" href="where-map.css"><link rel="stylesheet" href="where.css">
+<link rel="stylesheet" href="interaction-states.css">
+<link rel="stylesheet" href="code-colors.css">
+<script src="vendor/d3/d3.min.js"></script><script src="where-data.js"></script><script src="where-model.js"></script><script src="where-map.js"></script><script src="where.js"></script>
 </body></html>
 
 

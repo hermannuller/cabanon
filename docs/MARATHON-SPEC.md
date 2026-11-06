@@ -4,7 +4,7 @@
 
 canal remains the writing-house list, file-like grouping and publication/reading area. Its new-work + and existing work entries open app:MARATHON. MARATHON contains the writing editor, title/body, notes, chapter ordering, writing environments, typography, save, finish/unfinished and publication dialog. The editor no longer appears inside RIVER. Returning to the house or completing publication focuses canal in RIVER. Work, notes, article/book/series references, typography and existing editions are shared, never copied into an unrelated draft store.
 
-The house is restored to L5 with dark L2 text; both its fixed 160×252 card geometry and responsive column count remain unchanged. The split divider is removed. The expanded writing-side return strip uses L2. Reading/store and FEATURE styles remain as previously specified.
+The house is restored to L4 with dark L2 text; both its fixed 160×252 card geometry and responsive column count remain unchanged. The split divider is removed. The expanded writing-side return strip uses L2. Reading/store and FEATURE styles remain as previously specified.
 
 ## Editing and references
 

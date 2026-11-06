@@ -13,7 +13,7 @@ let activeProfile='owner';
 let profiles={};
 try{activeProfile=localStorage.getItem('cabanon-active-user')||'owner';profiles=JSON.parse(localStorage.getItem('cabanon-profiles'))||{};}catch{}
 if(!profiles[activeProfile]&&!['owner','guest1','guest2'].includes(activeProfile))activeProfile='owner';
-const newGuest=id=>({pins:[],folders:[],volume:60,network:'Ethernet',user:id,sort:'name',usage:{},recents:[],files:[]});
+const newGuest=id=>({colorRoleVersion:3,pins:[],folders:[],volume:60,network:'Ethernet',user:id,sort:'name',usage:{},recents:[],files:[]});
 if(!profiles.owner)profiles.owner=activeProfile==='owner'?structuredClone(prefs):{...newGuest('MAIN'),pins:apps.map(app=>app.name),folders:['/cabanon','/jobs','/books']};
 for(const [id,name]of [['guest1','GUEST 01'],['guest2','GUEST 02']])if(!profiles.owner.settings?.deletedGuests?.includes(id))profiles[id] ||= newGuest(name);
 Object.values(profiles).forEach(normalizeApplicationCatalog);

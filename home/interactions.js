@@ -40,7 +40,7 @@ showFlyout=function(kind,button){
  initInteractionPrefs();
  if(kind==='input'){
   flyoutSource=kind;$('#flyout').hidden=false;
-  $('#flyout').innerHTML=inputMethods.filter(method=>prefs.input.enabled.includes(method.id)).map(method=>`<button data-ime="${method.id}" class="${prefs.input.current===method.id?'chosen':''}">${method.name}</button>`).join('')+(prefs.input.showWidth?['Full-width','Half-width'].map(value=>`<button data-ime-width="${value}" class="${prefs.input.width===value?'chosen':''}">${value}</button>`).join(''):'')+(prefs.input.showLanguage?['Chinese','English'].map(value=>`<button data-ime-language="${value}" class="${prefs.input.language===value?'chosen':''}">${value}</button>`).join(''):'');
+  $('#flyout').innerHTML=inputMethods.filter(method=>prefs.input.enabled.includes(method.id)).map(method=>`<button data-ime="${method.id}" class="runtime-state ${prefs.input.current===method.id?'chosen':''}">${method.name}</button>`).join('')+(prefs.input.showWidth?['Full-width','Half-width'].map(value=>`<button data-ime-width="${value}" class="runtime-state ${prefs.input.width===value?'chosen':''}">${value}</button>`).join(''):'')+(prefs.input.showLanguage?['Chinese','English'].map(value=>`<button data-ime-language="${value}" class="runtime-state ${prefs.input.language===value?'chosen':''}">${value}</button>`).join(''):'');
  }else priorFlyout(kind,button);
  if(kind!=='settings'){
   const setting=document.createElement('button');setting.className='menu-setting';setting.textContent=({network:'Internet',volume:'Volume',phone:'Phone',power:'Power',input:'Input method'}[kind]||kind)+' setting';setting.onclick=()=>openSpecificSettings(kind);$('#flyout').append(setting);

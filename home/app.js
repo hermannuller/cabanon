@@ -91,6 +91,7 @@ const escapeHTML = text => String(text).replace(/[&<>"']/g,char=>({'&':'&amp;','
 let prefs = { pins:apps.map(app=>app.name), folders:['/cabanon','/jobs','/books','/some','/samura','/Helllooo'], volume:60, network:'Ethernet', user:'MAIN' };
 try { const saved=JSON.parse(localStorage.getItem('cabanon-home')); if(saved) prefs={...prefs,...saved}; } catch {}
 function save(){if(typeof queueProfileSave==='function')queueProfileSave();else try{localStorage.setItem('cabanon-home',JSON.stringify(prefs));}catch{}}
+CabanonColorRoles.migrateProfile(prefs);
 normalizeApplicationCatalog(prefs);
 if(!['name','installed','usage'].includes(prefs.sort))prefs.sort='name';
 if(!prefs.usage||typeof prefs.usage!=='object')prefs.usage={};
@@ -144,10 +145,10 @@ $('#system-icons').innerHTML=systemItems.map(([name,title])=>`<button class="ico
 function showFlyout(kind,button){
  const fly=$('#flyout');flyoutSource=kind;fly.hidden=false;
  if(kind==='network'){
-  fly.innerHTML=`${['Ethernet','Homie705','Fabira 44','HKNH','Holt112'].map(name=>`<button class="${prefs.network===name?'chosen':''}" aria-pressed="${prefs.network===name}" data-network="${name}">${icon(name==='Ethernet'?'ethernet':'network')}<span>${name}</span></button>`).join('')}<button data-open="NETWORK">Network settings →</button>`;
+  fly.innerHTML=`${['Ethernet','Homie705','Fabira 44','HKNH','Holt112'].map(name=>`<button class="runtime-state ${prefs.network===name?'chosen':''}" aria-pressed="${prefs.network===name}" data-network="${name}">${icon(name==='Ethernet'?'ethernet':'network')}<span>${name}</span></button>`).join('')}<button data-open="NETWORK">Network settings →</button>`;
  }else if(kind==='volume'){
   const outputs=['Headphone Realtek 23026','SONOS KV455','Norik Display'];
-  fly.innerHTML=`<div class="volume-row">${icon('volume')}<div id="volume-shade" role="slider" tabindex="0" aria-label="Volume" aria-valuemin="0" aria-valuemax="100"></div><span id="volume-percent"></span></div>${outputs.map((name,index)=>`<button data-output="${name}" class="${(prefs.output||outputs[0])===name?'chosen':''}" aria-pressed="${(prefs.output||outputs[0])===name}" title="${['Wired','Bluetooth','Device'][index]}">${icon(['wired','bluetooth','desktop'][index])}<span>${name}</span></button>`).join('')}`;
+  fly.innerHTML=`<div class="volume-row">${icon('volume')}<div id="volume-shade" role="slider" tabindex="0" aria-label="Volume" aria-valuemin="0" aria-valuemax="100"></div><span id="volume-percent"></span></div>${outputs.map((name,index)=>`<button data-output="${name}" class="runtime-state ${(prefs.output||outputs[0])===name?'chosen':''}" aria-pressed="${(prefs.output||outputs[0])===name}" title="${['Wired','Bluetooth','Device'][index]}">${icon(['wired','bluetooth','desktop'][index])}<span>${name}</span></button>`).join('')}`;
   const shade=$('#volume-shade');
   const paint=()=>{const steps=Math.max(0,Math.min(20,Math.round(prefs.volume/5)));prefs.volume=steps*5;shade.textContent='▓'.repeat(steps)+'░'.repeat(20-steps);shade.setAttribute('aria-valuenow',prefs.volume);$('#volume-percent').textContent=prefs.volume+'%';const volumeButton=$('[data-system=volume]');if(volumeButton)volumeButton.innerHTML=icon('volume');const volumeMark=shade.parentElement.querySelector('svg');if(volumeMark)volumeMark.outerHTML=icon('volume');};
   const change=event=>{const rect=shade.getBoundingClientRect();prefs.volume=Math.max(0,Math.min(20,Math.round((event.clientX-rect.left)/rect.width*20)))*5;paint();save();};

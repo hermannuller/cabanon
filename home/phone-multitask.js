@@ -11,7 +11,7 @@
  home.addEventListener('pointerdown',e=>{if(e.button!==0)return;homePress={id:e.pointerId,p:point(e),at:performance.now()};home.setPointerCapture(e.pointerId);});
  home.addEventListener('pointerup',e=>{const g=homePress;homePress=null;if(!g||g.id!==e.pointerId)return;const p=point(e);if(performance.now()-g.at<500&&Math.hypot(p.x-g.p.x,p.y-g.p.y)<=10){hide(false);api.homeTap();}});
  home.addEventListener('pointercancel',()=>homePress=null);
- const closeAll=document.createElement('button');closeAll.type='button';closeAll.className='phone-task-close-all';closeAll.setAttribute('aria-label','Close all apps');closeAll.innerHTML='<svg data-task-close-all viewBox="0 0 36 36" aria-hidden="true" style="fill:none;stroke:var(--l5);stroke-width:1"><path d="M7 5V31M14 5V31M21 5V31M28 5V31M2 27.2376L34 8.7624"/></svg>';closeAll.onclick=confirmCloseAll;
+ const closeAll=document.createElement('button');closeAll.type='button';closeAll.className='phone-task-close-all';closeAll.setAttribute('aria-label','Close all apps');closeAll.innerHTML='<svg data-task-close-all viewBox="0 0 36 36" aria-hidden="true" style="fill:none;stroke:var(--l4);stroke-width:1"><path d="M7 5V31M14 5V31M21 5V31M28 5V31M2 27.2376L34 8.7624"/></svg>';closeAll.onclick=confirmCloseAll;
  overlay.append(cards,rail,axis,home,closeAll);root.append(overlay);
  const label=id=>appLabel(id).toUpperCase();
  function nameStarts(){const starts=[];let x=0;for(const id of order){starts.push(x);x+=Math.min(4,label(id).length)*CELL;}return starts;}

@@ -23,7 +23,7 @@ body{line-height:28px}
 
 
 /* Native text highlighting follows the Cabanon palette. */
-::selection{background-color:var(--l5);color:var(--l1);text-shadow:none}
+::selection{background-color:var(--l4);color:var(--l1);text-shadow:none}
 
 /* Close marks share the titlebar geometry without changing their button slots. */
 .cabanon-close-mark{position:relative;white-space:nowrap}

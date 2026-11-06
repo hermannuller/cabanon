@@ -18,8 +18,12 @@ npm start          # resolves Electron, then opens the app
 
 `npm start` looks for Electron in `home/node_modules`, `./node_modules`, the sibling
 `../blind` checkout used during development, or `$CABANON_ELECTRON`. `npm run start:where`
-prints the binary it would use. Windows can also double-click `home\start.cmd`; Linux and
-macOS can run `./start.sh`.
+prints the binary it would use. On Windows, double-click `home\start.lnk` to launch
+Electron directly. Generate or refresh this machine-specific shortcut with
+`powershell -NoProfile -File tools\create-start-shortcut.ps1` after moving the checkout
+or changing the Electron installation. The older `home\start.cmd` remains available,
+but Windows may show an unknown-publisher warning for that script. Linux and macOS
+can run `./start.sh`.
 
 The phone build is the same source served over the LAN:
 

@@ -20,6 +20,7 @@ function txtBind(win){
  const close=win.querySelector('[data-win=close]');win.txtGroupClose=close.onclick;
  close.onclick=()=>txtCloseGroup(win);
  win.addEventListener('keydown',txtKeys);
+ win.addEventListener('pointerdown',event=>{if(event.target.closest('.txt-pane-close'))return;const pane=event.target.closest('.txt-pane');if(pane&&pane.closest('.txt-window')===win)txtActivate(win,pane);},true);
  win.addEventListener('focusin',event=>{const pane=event.target.closest('.txt-pane');if(pane&&pane.closest('.txt-window')===win)txtActivate(win,pane);},true);
 }
 function txtPrepare(win){
@@ -85,13 +86,13 @@ function txtClosePane(win,pane,immediate=false){
  if(!immediate&&txtDirty(state))confirmDocumentClose(txtLabel(state),done=>CabanonTXT.saveCurrent(state,done),remove);
  else remove();
 }
-function txtCloseGroup(win){
+function txtCloseGroup(win,onClosed){
  const states=txtStates(win);let index=0;
  const step=()=>{
   const state=states[index++];
   if(!state){
    for(const item of states)CabanonTXT.editors.delete(item);
-   windowMap.delete(win.dataset.key);win.remove();renderTaskbar();return;
+   windowMap.delete(win.dataset.key);win.remove();renderTaskbar();onClosed?.();return;
   }
   if(txtDirty(state))confirmDocumentClose(txtLabel(state),done=>CabanonTXT.saveCurrent(state,done),step);
   else step();
@@ -189,4 +190,4 @@ closeShortcutWindow=function(win){
  if(win?.classList.contains('txt-window')){const panes=txtPanes(win);if(panes.length>1)txtClosePane(win,win.txtActive?.pane);else txtCloseGroup(win);return;}
  return txtCloseWindowBeforeGroups(win);
 };
-window.CabanonTxtSplit={activate:txtActivate,prepare:txtPrepare,addPane:txtAddPane,split:txtSplit};
+window.CabanonTxtSplit={activate:txtActivate,prepare:txtPrepare,addPane:txtAddPane,split:txtSplit,closeGroup:txtCloseGroup};

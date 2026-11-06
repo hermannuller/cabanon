@@ -90,8 +90,8 @@ function resolveContext(event) {
 
 // ── Shared helpers ─────────────────────────────────────────────────────────
 const markSwatchList = [
-  ['L7', '#10a53b'], ['L8', '#ff880a'], ['L9', '#c5173e'],
-  ['L10', '#ffb3c1'], ['L11', '#08c5eb'], ['L12', '#999efa'],
+  ['L6', '#10a53b'], ['L8', '#ff880a'], ['L7', '#c5173e'],
+  ['L9', '#ffb3c1'], ['L10', '#08c5eb'], ['L11', '#999efa'],
 ];
 function openInShell() { toast('Open in — not yet available'); }
 function shareShell() { toast('Share — not yet available'); }
@@ -544,7 +544,7 @@ function appendMarkSwatches(items, names) {
   row.className = 'mark-swatches';
   for (const [label, color] of markSwatchList) {
     const btn = document.createElement('button');
-    btn.style.background = color;
+    btn.style.background = fileMarkPaint(color);
     btn.title = label;
     btn.setAttribute('aria-label', 'Mark ' + label);
     btn.onclick = () => { closeContext(); applyMark(names, color); };

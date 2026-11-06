@@ -45,7 +45,7 @@ renderDesktop=renderHoleDesktop;
 function wallDesktopMenu(){
  const hidden=!!prefs.desktopHidden;
  const items=[
-  ['Setting wall',()=>openSettings('visual','wallpaper')],
+  ['Visual',()=>openSettings('visual','wallpaper')],
   ['open holle',()=>openFolderBrowser(HOLE_PATH)],
   [hidden?'Show':'Hidden',()=>{prefs.desktopHidden=!hidden;persistProfiles();renderDesktop();}],
   ['return',()=>{prefs.holePosition={x:20,y:16};if(prefs.desktopItem){prefs.desktopItem.x=32;prefs.desktopItem.y=88;}persistProfiles();renderDesktop();}],

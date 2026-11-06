@@ -10,7 +10,7 @@ All current and future applications saving Cabanon files must use `openSaveFileD
 - Delete acts only while the file list has focus, deleting the selected file/folder to the existing recycle bin. It must not delete text while a filename/path input is focused. Block read-only entries and folders containing read-only descendants. No permanent-delete shortcut in this dialog.
 - Enter on a folder navigates; Enter on a file submits its name. Escape/cancel closes without saving.
 - Application callback owns extension completion, name validation, collision confirmation, read-only overwrite protection and content serialization. Cancelling or failing must not mark the source saved.
-- Existing-file Save writes directly; Save As and first Save use this dialog. `saved` remains lowercase, disabled and L6 when content and encoding match the saved document.
+- Existing-file Save writes directly; Save As and first Save use this dialog. `saved` remains lowercase, disabled and L5 when content and encoding match the saved document.
 - Internal saving and external import/export remain distinct. Native browser/OS download dialogs are outside this component.
 
 ## Closing unsaved editors

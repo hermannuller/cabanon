@@ -54,7 +54,7 @@ Task-card selection activates the chosen app directly through activateTask, with
 
 ## Shared Phone confirmation dialogs (2026-10-27)
 
-phone-dialogs.js/css own Phone confirmations and adopted rename forms. The dialog is 288 logical pixels wide (eight 36px NAME cells), centered on the complete 414x896 canvas. Text is JetBrains Regular 14px with 18px message line-height. The last message-line center, the affirmative text center, and cancel text center are 30px apart. The affirmative row fills the complete dialog width, is 30px high and uses L9; cancel is another 30px row.
+phone-dialogs.js/css own Phone confirmations and adopted rename forms. The dialog is 288 logical pixels wide (eight 36px NAME cells), centered on the complete 414x896 canvas. Text is JetBrains Regular 14px with 18px message line-height. The last message-line center, the affirmative text center, and cancel text center are 30px apart. The affirmative row fills the complete dialog width, is 30px high and uses L8; cancel is another 30px row.
 
 The full-screen shade dims the background by exactly 50%, leaving the middle footer third / Home-line region undimmed. The shade still captures that region: all clicks outside the dialog cancel without triggering controls underneath. Escape cancels the shared modal before other app/page exit handling. Task close-all and app removal share the same component; rename forms adopt its centering, typography, shade and outside-cancel behavior.
 

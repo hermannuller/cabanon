@@ -11,7 +11,7 @@ window.CabanonWidgets=(()=>{
  function moon(phase){
   const p=((phase%1)+1)%1,wax=p<.5,cos=Math.cos(p*2*Math.PI),rx=Math.abs(cos)*9;
   const d=`M12 3A9 9 0 0 ${wax?1:0} 12 21A${rx||.001} 9 0 0 ${cos>=0?(wax?0:1):(wax?1:0)} 12 3Z`;
-  return `<svg class="phone-widget-icon moon-phase" viewBox="0 0 24 24" aria-label="Moon phase"><circle cx="12" cy="12" r="9" fill="var(--l3)"/><path d="${d}" fill="currentColor"/><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1"/></svg>`;
+  return `<svg class="phone-widget-icon moon-phase" viewBox="0 0 24 24" aria-label="Moon phase"><circle cx="12" cy="12" r="9" fill="var(--l2)"/><path d="${d}" fill="currentColor"/><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1"/></svg>`;
  }
  const line=(a,b,cls='')=>`<div class="phone-widget-row ${cls}"><div class="phone-widget-lines"><div>${a}</div><div>${b}</div></div></div>`;
  const pair=(a,b)=>`<span class="phone-widget-pair"><span>${a}</span>  <span>${b}</span></span>`;

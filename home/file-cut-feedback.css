@@ -1,0 +1,3 @@
+#desktop .file-cut-pending{opacity:.5}
+/* Clipboard membership owns cut visibility, independently of selection. */
+.paragraph-cut{opacity:1}

@@ -12,7 +12,7 @@
   if(!rect.width||!rect.height||!view.width||!view.height)return;
   const shapes=[...svg.querySelectorAll('path,rect,circle,ellipse,line,polyline,polygon')];
   const stroke=svg.closest('.phone-scroll-endpoint')?1:2;let outlined=false;
-  for(const shape of shapes){if(getComputedStyle(shape).stroke!=='none'){outlined=true;shape.style.setProperty('stroke-width',(svg.hasAttribute('data-help-animation')&&shape.tagName==='rect'?1:stroke)+'px','important');shape.style.vectorEffect='non-scaling-stroke';}}
+  for(const shape of shapes){if(getComputedStyle(shape).stroke!=='none'){outlined=true;shape.style.setProperty('stroke-width',(svg.hasAttribute('data-help-animation')&&shape.tagName==='rect'?2:stroke)+'px','important');shape.style.vectorEffect='non-scaling-stroke';}}
   let box;try{box=svg.getBBox();}catch{return;}
   if(!box.width||!box.height)return;
   const unit=Math.min(rect.width/view.width,rect.height/view.height),limit=Math.min(36,rect.width,rect.height)-(outlined?stroke:0);

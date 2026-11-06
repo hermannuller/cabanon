@@ -2,14 +2,14 @@
 
 ## SETTING — 2026-10-16 current revision
 
-- All on/off controls always show literal `on/off`. The current word is L5; the other word and slash are L6. Toggle only swaps emphasis. Place the group before its option label with exactly four preserved text spaces and no additional flex gap. This applies to sound effects, Ethernet, automatic updates and the locally saved mobile else switch. Selection checkboxes, pin/unpin and the separately specified mode choices retain their own semantics.
+- All on/off controls always show literal `on/off`. The current word is L4; the other word and slash are L5. Toggle only swaps emphasis. Place the group before its option label with exactly four preserved text spaces and no additional flex gap. This applies to sound effects, Ethernet, automatic updates and the locally saved mobile else switch. Selection checkboxes, pin/unpin and the separately specified mode choices retain their own semantics.
 
 - Acceptance revision: remove repeated section headings when an operational row already names the setting. Move explanatory gray paragraphs into HELP → Setting; else explanation belongs in HELP → else. Keep settings text concise.
 - Time zone has a current country/city and GMT-offset summary on its right. The country/city list uses IANA metadata; Beijing maps to Asia/Shanghai. Searching filters only; double-click or Enter applies, clears the search and updates the summary. Single click does not apply.
 - Save has one dirty-state rule across visible forms and WALL: no pending change means disabled gray text; edits enable it; successful saves disable it again. No “Saved” toast or success label. Save as remains a distinct operation.
 - Theme and font DIY editors are fixed760×1008 windows with only × in the titlebar. Drafts apply only on confirmation; × discards them. AAAA displays36/28/20/14px letters. S/M/L/XL/XXL font sizes are12/14/16/18/21px; user’s latest instruction applies only font size, with existing strokes, padding, row geometry and icon sizes preserved.
 - Setting Apps is an explicit exception to the ordinary strict content-hit rule: its entire row accepts context menus. Headers sort App/Installed/Size/Recently. Displayed metadata is demonstration data requested for testing.
-- Shared targets are a dropdown with +/−; each has its own credentials. Connect/Connected and Disconnect are separate lines with mutually exclusive actionability. Target deletion requires yes/no and reauthentication. Shared // badges are idle L6 and follow hover/selection ink.
+- Shared targets are a dropdown with +/−; each has its own credentials. Connect/Connected and Disconnect are separate lines with mutually exclusive actionability. Target deletion requires yes/no and reauthentication. Shared // badges are idle L5 and follow hover/selection ink.
 
 - Full agreed structure and placeholder boundaries: SETTING-SPEC.md. SETTING uses HELP-style left navigation/right details and a full-width40px search immediately below the titlebar. Search matches setting section/item titles only. About is last, plain text.
 - The previous single-default-name Setting rule is superseded: Welcome as the first item under It's me saves on blur and supplies both startup greeting and new-entry base names. No Save/Enter is required for this field.
@@ -39,7 +39,7 @@
 
 左右键拖动共享光标命中规则：上边最大化，左/右/下边各占半屏，四角150px范围占对应四分之一。角落优先于边缘。拖动时显示浅色矩形预览，松开应用，移离取消。布局以1920×1008工作区计算，保留底部72px。固定尺寸计算器维持固定，不吸附。不设置Win快捷键。
 
-预览使用L3、50%不透明度，无边框。首次从当前窗口范围过渡到目标，切换目标范围也以100ms完成位置与尺寸动画。
+预览使用L2、50%不透明度，无边框。首次从当前窗口范围过渡到目标，切换目标范围也以100ms完成位置与尺寸动画。
 
 最大化、半屏及四分之一布局后，按住顶部实际拖动超过4px即恢复贴边前尺寸并跟随光标；单击不恢复。左右键一致。再次进入顶部/边角命中区仍按贴边规则处理。
 
@@ -47,26 +47,26 @@
 
 ## 滚动条端点留距
 
-所有竖向滚动条轨道上下各留8px，所有横向滚动条轨道左右各留8px，与侧边留距一致；不改变8px条宽及L3/L4颜色规则。
+所有竖向滚动条轨道上下各留8px，所有横向滚动条轨道左右各留8px，与侧边留距一致；不改变8px条宽及L2/L3颜色规则。
 
 ## 文件交互范围与icon状态
 
 - 选择范围：鼠标抵达后显示灰色覆盖的完整区域。
 - 文本范围：icon到文件名（包含后缀）的横向范围；像素高度与选择范围一致，只是宽度不同。
 - 后续指令必须区分这两个范围。现有拖拽目标命中继续使用选择范围。
-- 无论标记色为何，悬停及对应右键菜单保持打开期间，icon统一L5；移出/菜单关闭后恢复标记色。
-- 文件拖到文件夹选择范围内，目标icon切为L5剪影；移离或完成/取消拖动后恢复勾线及通常颜色。
+- 无论标记色为何，悬停及对应右键菜单保持打开期间，icon统一L4；移出/菜单关闭后恢复标记色。
+- 文件拖到文件夹选择范围内，目标icon切为L4剪影；移离或完成/取消拖动后恢复勾线及通常颜色。
 
 ## 单实例启动
 
 start.cmd和未来打包exe均由Electron主进程的单实例锁保护。重复启动退出第二个进程，恢复并聚焦已运行的HOME。开发/打包使用固定用户数据目录保持身份一致；自动测试显式指定独立目录。
 
-永久滚动条标准：所有当前和未来的滚动容器都由 scrollbar-standard.js 统一识别。粗细8px，侧边和上下两端间距8px；横向两端与底边也为8px。滚动条使用L3，悬停／操作为L4，无箭头、无圆角。文件列表通过父容器8px留白实现边缘间距，避免重复叠加。8px已避开窗口缩放区，暂不增加为12px。
+永久滚动条标准：所有当前和未来的滚动容器都由 scrollbar-standard.js 统一识别。粗细8px，侧边和上下两端间距8px；横向两端与底边也为8px。滚动条使用L2，悬停／操作为L3，无箭头、无圆角。文件列表通过父容器8px留白实现边缘间距，避免重复叠加。8px已避开窗口缩放区，暂不增加为12px。
 
 滚动条端点补充：8px从所属区域内边界计量，不包含窗口1px描边。容器的8px留白与轨道端点不得重复叠加；双向滚动时补偿交汇区。文件列表、所有软件及搜索结果的横向滚动条左端对齐条目的选择区域左边，不对齐icon轮廓。实测文件列表纵向顶端8px，底端至窗口内边8px，横向右端至窗口内边8px，左端与选择框偏差0px。
 快捷方式右键不显示 Delete/Burn，仅用 Unpin 移除快捷方式；桌面、From 的 pin 文件夹、快捷导航与 link 对象均遵守。原文件／原文件夹即使被 pin，仍保留 Delete。文件条目整个选择区域右键均针对该对象，只有条目之外空白右键才打开视图菜单。
 
-拖拽规则：桌面仅对快捷方式排序，不转移原文件。文件拖拽显示半透明完整条目，多选保持相对位置；白底操作提示使用L5底L1字，多选前缀x数量。L5、1px连线连接起点与鼠标尖端，松手消失。进入文件夹或ZIP必须命中icon至实际文本末尾的范围（高度仍为条目高度）；其余空白只显示 > 排序。排序保存手动顺序，主动选择排序条件后恢复对应排序。
+拖拽规则：桌面仅对快捷方式排序，不转移原文件。文件拖拽显示半透明完整条目，多选保持相对位置；白底操作提示使用L4底L1字，多选前缀x数量。L4、1px连线连接起点与鼠标尖端，松手消失。进入文件夹或ZIP必须命中icon至实际文本末尾的范围（高度仍为条目高度）；其余空白只显示 > 排序。排序保存手动顺序，主动选择排序条件后恢复对应排序。
 
 Details表头点击排序：首击↓降序，再击↑升序，仅当前排序列显示箭头；滚动条顶端避开52px表头，框选顶界也限制在表头下沿。Power菜单为lock、sleep、shut_d at...、shut down，最后一项立即退出HOME，定时项定时退出HOME。框选通过指针捕获保持连续，松手、取消、失焦、原窗口关闭、原生拖动结束均清理选择框。
 当前文件窗口或桌面单选后 Enter 打开该对象；多选或没有选择时不打开。输入框和代码编辑区域保留原生 Enter 行为。HELP 中可编辑“打开单个选中的文件或文件夹”的快捷键。
@@ -75,15 +75,15 @@ Details表头点击排序：首击↓降序，再击↑升序，仅当前排序�
 
 拖拽简化：移除半透明条目预览，仅显示白底提示。单文件 .ext，多文件同后缀 xN .ext，不同后缀 xN；后接 >、+ archive.zip 或目标路径。无扩展名单文件显示名称。所有内置界面文案、HELP、提示、标题和辅助标签均使用英文；用户文件名和用户输入不翻译。
 
-悬停浮窗统一规则：默认紧贴触发按钮右侧，顶部对齐。按桌面可用范围逐轴夹紧，只平移超出边界的距离，不翻到对角线；应用于电源等系统浮窗、新建子菜单、任务列表、同步文件夹浮窗。拖拽连线恢复为1px L5矩形，仅按动画帧更新transform；不参与全桌面滚动条或菜单扫描。左键松开、取消、失焦立即隐藏并取消未执行帧。
+悬停浮窗统一规则：默认紧贴触发按钮右侧，顶部对齐。按桌面可用范围逐轴夹紧，只平移超出边界的距离，不翻到对角线；应用于电源等系统浮窗、新建子菜单、任务列表、同步文件夹浮窗。拖拽连线恢复为1px L4矩形，仅按动画帧更新transform；不参与全桌面滚动条或菜单扫描。左键松开、取消、失焦立即隐藏并取消未执行帧。
 
 桌面固定画布使用overflow:clip，允许窗口部分越界，但不可因聚焦、scrollIntoView等操作滚动整个桌面。文件夹搜索框使用focus({preventScroll:true})。越界窗口搜索回归：桌面scrollLeft保持0，桌面文件位置不变。
 
-From方块始终显示L5方块，不再在闲置状态显示时间或输入法；悬停和按下仍保持方块。
+From方块始终显示L4方块，不再在闲置状态显示时间或输入法；悬停和按下仍保持方块。
 桌面空白右键增加Clear all...。红色YES/NO确认后清空桌面快捷方式与手动顺序，保留原文件及From的pin对象；NO不修改数据。
 From最右侧新增Recent files，无标题，宽度280px，与文件夹列一致；14px字体、26px行距，不滚动，根据From可用高度截取完整条目，最近打开的文件靠前。支持点击打开及普通文件右键菜单。
 
-Pin目标：文件／文件夹右键Pin >悬停显示here、from page、desktop；here创建本地link，from page加入From入口，desktop添加桌面快捷方式。桌面Delete移除快捷方式，保留原文件。原文件与文件夹取消Pin底色；所有软件中被Pin的软件使用icon前4×4px的L5小方块。文件列表Delete与Shift+Delete分别删除／Burn，红底L5字yes/no确认；软件不属于文件操作，只支持Uninstall。
+Pin目标：文件／文件夹右键Pin >悬停显示here、from page、desktop；here创建本地link，from page加入From入口，desktop添加桌面快捷方式。桌面Delete移除快捷方式，保留原文件。原文件与文件夹取消Pin底色；所有软件中被Pin的软件使用icon前4×4px的L4小方块。文件列表Delete与Shift+Delete分别删除／Burn，红底L4字yes/no确认；软件不属于文件操作，只支持Uninstall。
 From文件／文件夹条目改为普通52px行高，14px文字、26px文本行距；最近文件数量按可用高度除以52取整，无滚动条。
 
 Ctrl目录树：默认仅展开当前文件夹祖先路径和当前文件夹，显示每层直接子项，无关分支折叠。重新呼出时当前文件夹定位至滚动内容顶端，固定头部显示house到当前位置路径；滚轮逐26px行移动。左键打开文件／进入目录，右键仅展开收起分支，不提供其他菜单。构建时只递归已展开分支，不先渲染完整旧树。
@@ -114,7 +114,7 @@ Ctrl树分支线条不可压缩，只截断文件名；Ctrl面板在左、Alt面
 ## 2026-10-15 batch operations and selection
 - Batch copy/paste/delete commits a single undo snapshot and refreshes only directories affected by the operation, including equivalent sync paths. File content is copied by exact source identity, not a filename-prefix guess.
 - Saves coalesce undo preparation within the same task. Hidden From does not render recent files; visible saves schedule one recent refresh.
-- Selection uses L5 icon/text and a text underline, with no selected-row gray fill. Hover behavior for other rows is unchanged.
+- Selection uses L4 icon/text and a text underline, with no selected-row gray fill. Hover behavior for other rows is unchanged.
 - Deleted names disappear concurrently from the end, 10ms per grapheme. Each corresponding icon disappears when that name finishes; all affected rows retain their places until the full batch finishes, then one removal/reorder commits. Offscreen names do not animate. Undo during the effect cancels the pending deletion.
 - Deletion animation clips the existing label through browser-managed keyframes; it never edits text or relayouts the folder on every character. Future font glyph icons can use the same icon state class.
 - Window, code and tree size observers are disconnected on removal. Temporary menu/scroll observers are unregistered after removal.
@@ -126,9 +126,9 @@ Ctrl树分支线条不可压缩，只截断文件名；Ctrl面板在左、Alt面
 
 ## From and Dock revision, 2026-10-15
 - Main left inset is 32px: desktop default/preview and All apps; folder content uses 31px plus 1px border. Existing old default desktop x40 migrates to x32.
-- From height is fixed at 600px; only the right edge resizes horizontally. Top/right edges have the same 1px L4 border as folder windows; no left/bottom border or thick edge hover.
-- A 1px L4 vertical separator touches the search field's right edge (x302), beginning at search top and ending 16px above From bottom. Main From columns do not scroll.
-- Dock icons other than From use L6 while inactive and L5 for the active group, including on hover. No rectangle underneath the active icon.
+- From height is fixed at 600px; only the right edge resizes horizontally. Top/right edges have the same 1px L3 border as folder windows; no left/bottom border or thick edge hover.
+- A 1px L3 vertical separator touches the search field's right edge (x302), beginning at search top and ending 16px above From bottom. Main From columns do not scroll.
+- Dock icons other than From use L5 while inactive and L4 for the active group, including on hover. No rectangle underneath the active icon.
 
 - Reopening start.cmd keeps one HOME instance. If local UI code changed, save pending data and reload without cache; if unchanged, only focus the existing window. No polling loop is used.
 
@@ -140,7 +140,7 @@ Ctrl树分支线条不可压缩，只截断文件名；Ctrl面板在左、Alt面
 
 
 ## 2026-10-16 selection and new-name reveal
-- In folder contents, selected rows use an L5 filled rectangle with L2 text and icon; no underline. Desktop selection rules stay separate.
+- In folder contents, selected rows use an L4 filled rectangle with L2 text and icon; no underline. Desktop selection rules stay separate.
 - New entries default to “Let there be light” plus their type suffix (folders have no suffix). Setting exposes only the new default base-name field and Save; Enter also saves. Duplicate names receive the existing numerical suffix convention.
 - New entry icons appear immediately; names reveal from left to right at 20ms per grapheme through clipped-label keyframes. No repeated name edits, saves or folder sorts happen during the effect. New items are scrolled into the folder viewport without scrolling the desktop.
 
@@ -167,10 +167,10 @@ Ctrl树分支线条不可压缩，只截断文件名；Ctrl面板在左、Alt面
 - Use the existing dark L palette, normal inputs, borders and typography. Reference screenshots describe behavior, not a replacement theme.
 - Logical canvas1920×1080 covers desktop and dock. The Windows/From key brings From and dock above WALL. Closing WALL restores normal dock visibility.
 - Default matrix uses English periods in bundled JetBrains Mono ExtraBold,14px font,28px row height. Margin and spacing determine capacity; remove overflowing rows/columns and fill newly available cells with periods. Every canvas point maps to a character, including the outer margin strips.
-- Typing a character selects the brush and displays a large L5 square with dark text. Any left click dismisses the prompt. Left click/drag paints; strokes interpolate crossed cells.
+- Typing a character selects the brush and displays a large L4 square with dark text. Any left click dismisses the prompt. Left click/drag paints; strokes interpolate crossed cells.
 - Right click opens a movable, fixed-size settings window. With settings open, another right click anywhere closes it. Settings remain above the canvas while painting.
 - Settings use56px rows: brush, bucket, font size, margin, height, spacing, color, opacity. Brush/bucket accept one grapheme or empty; empty changes color only. Bucket applies globally; brush applies to touched cells.
-- Shared current color defaults to L5. Exclude L2, the settings-window background. Swatches are14×14px, with an L5 period under the selected swatch. Opacity applies to the artwork, including the desktop version.
+- Shared current color defaults to L4. Exclude L2, the settings-window background. Swatches are14×14px, with an L4 period under the selected swatch. Opacity applies to the artwork, including the desktop version.
 - “as my desk!” saves a noninteractive wallpaper snapshot below desktop objects, folders and From. Editing the canvas afterward does not alter that snapshot until reapplied.
 - Save/Open use reduced movable/resizable folder windows, default /house. Back/forward/up/new-folder and close remain; search/minimize/maximize/context menus are absent. New creates a folder directly. Double-click titlebar enters the existing code style; ArrowDown navigates the entered folder path and exits.
 - Footer height42px, text14px. Save defaults to newone.wall; extensions may be changed. Open defaults to .*all and shows only folders and supported WALL documents. Custom-extension WALL documents remain identifiable by their file metadata. Files use the same virtual HOME storage as existing documents.
@@ -187,8 +187,8 @@ Ctrl树分支线条不可压缩，只截断文件名；Ctrl面板在左、Alt面
 - Mandatory context-menu hit rule: only the icon box or the visible filename/text width identifies a file/folder/app. Project those widths through the selection row's height; padding, gaps and unused label width are background. Clip the text hit area at its visible ellipsis/column edge. Details Type/Date/Size cells are background. A row being selected (including multi-selection) does not expand this menu hit area.
 - Enforce the rule in the central resolver, including file/folder windows in all three views, desktop, From pins/recents, search results, All apps and archive entries. Misses use the containing surface's existing blank-space menu (or no menu where none exists), without clicked-file highlighting, locked-folder prompts or file-specific passthrough actions. fileContentHit is independent of dragInsideContent; drag selection/insertion/entry rules remain unchanged. Verified with isolated actual pointer context-menu checks across these surfaces.
 - Marked icons retain their assigned hue: idle ink is60% brightness; hovered, selected or context-active ink is100%. Use direct CSS color mixing rather than per-icon compositor filters. Unmarked icon rules are unchanged.
-- From and folder-local search accept :1 through :6, corresponding left-to-right to the six mark colors (L7 green, L8 orange, L9 red, L10 pink, L11 cyan, L12 purple). Optional text after a space narrows the result, e.g. :1 notes. File/folder marks both match; software results are omitted for a color query. Updating a mark refreshes any active color filter.
-- WALL target row “for” is first and displays PC / PHONE in14px text. PC is the initial target; clicking either label toggles target, with only the current one in L5. PC retains1920×1080. Phone is portrait9:19.5, stored at1080×2340 and fitted to the desktop preview. Phone margin is0 and its input/label are disabled gray. Phone as my desk! is disabled gray until a phone screen exists; it never changes PC wallpaper.
+- From and folder-local search accept :1 through :6, corresponding left-to-right to the six mark colors (L6 green, L7 orange, L8 red, L9 pink, L10 cyan, L11 purple). Optional text after a space narrows the result, e.g. :1 notes. File/folder marks both match; software results are omitted for a color query. Updating a mark refreshes any active color filter.
+- WALL target row “for” is first and displays PC / PHONE in14px text. PC is the initial target; clicking either label toggles target, with only the current one in L4. PC retains1920×1080. Phone is portrait9:19.5, stored at1080×2340 and fitted to the desktop preview. Phone margin is0 and its input/label are disabled gray. Phone as my desk! is disabled gray until a phone screen exists; it never changes PC wallpaper.
 - Keep each target's current picture and saved-file target while switching within an editing session. Target switching is undoable. Save phone documents as .pwall (including Save as); PC remains .wall by default. Open accepts both formats and restores their saved target. Existing .wall files without target metadata remain PC.
 - Final settings rows: for, margin, brush, bucket!, font weight, font size, spacing, height, color, opacity, undo, as my desk!, save, save as…, open…, quit all use56px. Right alignment and14px text remain unchanged. Fixed control panel480×972px.
 - Brush size is a dropdown immediately to the right of the brush character input, in the same row. Choices only1×1,3×3,5×5,7×7,9×9; default1×1. Stamp a square centered on the character under the pointer, clip at the canvas edges, and interpolate stamps during drag. Empty brush still only changes color over the selected square. One entire stroke remains one undo step. Size is a tool setting (retained when undoing), saved with the WALL/pwall document; legacy documents default to1×1.
@@ -233,19 +233,19 @@ ESC always invokes the current window's titlebar close action (including draft d
 
 ## 2026-10-17: welcome and unified drag feedback
 
-- Startup welcome is a content-width, 28px-high L5 box with L1 text. It stays after typing completes, until any pointer/keyboard/wheel action. It never covers the full desktop.
-- Invalid object drops show only `Can't`: L9 fill, L5 text, no border and no prohibition icon. Self and descendant targets remain invalid in paragraph mode for both buttons.
+- Startup welcome is a content-width, 28px-high L4 box with L1 text. It stays after typing completes, until any pointer/keyboard/wheel action. It never covers the full desktop.
+- Invalid object drops show only `Can't`: L8 fill, L4 text, no border and no prohibition icon. Self and descendant targets remain invalid in paragraph mode for both buttons.
 - Same-folder file sorting uses `summary >` with no directory. Right copying adds `+ `. Paragraph sorting retains horizontal insertion and paragraph-break handling.
-- Selected/inverted option icons retain their original L6 or explicit file-mark color.
+- Selected/inverted option icons retain their original L5 or explicit file-mark color.
 - Escape dismisses an open context menu before closing a window. Outside clicks, keys, wheel/scroll, drag starts and window blur dismiss the context menu.
 - Moving the desktop object shows `Still here`. From app/folder/system/widget reordering has the shared line but no content hint.
 - Element focus changes never cancel the shared line; actual window blur still cancels dragging.
 
 - Latest adjustment: startup welcome survives mouse motion and scrolling; it dismisses only on keyboard or mouse-button press. River content has no shared 8px bottom/right gutter, so the writing button and composer meet the window interior bottom edge.
 
-- Invalid drag hint now displays uppercase X with exactly three preserved spaces on each side (`   X   `); L9 background, L5 text and no border remain unchanged.
+- Invalid drag hint now displays uppercase X with exactly three preserved spaces on each side (`   X   `); L8 background, L4 text and no border remain unchanged.
 
-- Native text selection uses theme colors throughout the app: L5 fill/L1 text on dark surfaces; the light River composer reverses these to L1 fill/L5 text. Browser-default blue/white selection is replaced.
+- Native text selection uses theme colors throughout the app: L4 fill/L1 text on dark surfaces; the light River composer reverses these to L1 fill/L4 text. Browser-default blue/white selection is replaced.
 
 - Menu actions that own a complete confirmation flow can declare `managesConfirmation`, preventing a duplicate generic Clear/Delete confirmation. Other menu actions retain the existing automatic confirmation rules.
 
@@ -256,9 +256,9 @@ ESC always invokes the current window's titlebar close action (including draft d
 - Covered: all window/dialog closes, code exit, both color-mark clear builders, River ordinary/repost drafts, Rive pending quotes and removable attachments. Mathematical multiplication symbols and prose retain their typography.
 
 - The time widget keeps its 127px width and two 56px rows: HH:MM on top; large AM/PM below (12-hour mode only) beside left-aligned 12px date and weekday on separate lines. Calendar and period use the selected clock time zone. In 24-hour mode there is no period; the calendar remains two left-aligned lines.
-- Invalid dragging now renders the shared 20px titlebar close SVG instead of the X letter, retaining three spaces on each side, L9 fill and L5 icon color.
+- Invalid dragging now renders the shared 20px titlebar close SVG instead of the X letter, retaining three spaces on each side, L8 fill and L4 icon color.
 
 
 ## Save / saved — universal rule (2026-10-19)
 
-Every current or future Save control follows the same lifecycle: successful save → label `saved`, L6 gray, disabled. Editing saved content → label `save`, enabled. Navigation and focus changes alone do not make a document dirty. Save failures and cancelled save/overwrite dialogs do not mark a document saved. Use `setFileSaveButton` in `home/save-button-label.js` with document-level change tracking.
+Every current or future Save control follows the same lifecycle: successful save → label `saved`, L5 gray, disabled. Editing saved content → label `save`, enabled. Navigation and focus changes alone do not make a document dirty. Save failures and cancelled save/overwrite dialogs do not mark a document saved. Use `setFileSaveButton` in `home/save-button-label.js` with document-level change tracking.
