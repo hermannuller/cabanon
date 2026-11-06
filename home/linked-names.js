@@ -18,7 +18,7 @@ function automaticRenameValues(sources,values){
 function fileRenameChanges(sources,values){
  const plans=sources.map((entry,i)=>({entry,old:entry.name,leaf:values[i]}));
  const remap=name=>{if(!name)return name;const direct=plans.find(p=>p.old===name);if(direct)return remap(direct.entry.parent)+'/'+direct.leaf;const parent=plans.filter(p=>p.entry.folder&&name.startsWith(folderPath(p.old)+'/')).sort((a,b)=>b.old.length-a.old.length)[0];return parent?remap(parent.old)+name.slice(folderPath(parent.old).length):name;};
- const changes=prefs.entries.map(entry=>({entry,old:entry.name,name:entry.shortcut?remap(entry.parent)+'/'+remap(renameSource(entry.name)?.name||entry.target).split('/').at(-1)+'.link':remap(entry.name),parent:remap(entry.parent),target:remap(entry.target)}));
+ const changes=prefs.entries.map(entry=>({entry,old:entry.name,name:entry.shortcut&&entry.parent!=='/house/now'?remap(entry.parent)+'/'+remap(renameSource(entry.name)?.name||entry.target).split('/').at(-1)+'.link':remap(entry.name),parent:remap(entry.parent),target:remap(entry.target)}));
  return{changes,remap};
 }
 function commitFileRename(sources,values,options={}){

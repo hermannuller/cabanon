@@ -2,6 +2,8 @@
 
 WHERE 从现有软件列表打开，PC 和 Phone 共享搜索解析、地点索引、路线计算与地图样式。HELP 的 `/house/Cabanon.help`（用户称 `/house/cabanon.help`）有独立的 `map spells` 设计条目；原有正文和独立草稿保留。
 
+当前仅提供英文界面：菜单、图层、搜索与路线提示、分类、工具、错误及 map spells 内置说明均为英文。真实地点原名、用户查询和备注不翻译。英文表达式使用 `:walk`、`:bike`、`:car`、`:time<=30min`、`:distance<=1000m`；旧中文解析别名仅保留输入兼容，不出现在补全或界面中。HELP 更新只替换已知的内置说明，保留自写内容和草稿。
+
 ## 已接入的搜索
 
 - 名称、道路名、门牌地址搜索；原始名称来自图恩 OSM 快照。中文类别支持酒店、青旅、餐厅、咖啡馆、医院、学校、火车站、药店、超市和城堡。
@@ -27,8 +29,11 @@ WHERE 从现有软件列表打开，PC 和 Phone 共享搜索解析、地点索�
 
 ## 实现
 
+PC 的 Ctrl+N 打开干净默认地图窗口；Ctrl+T 增加干净默认分栏，最多四栏，再按开新窗口。Ctrl+W 关闭当前栏，标题栏 × 关闭整组，Ctrl+Q 关闭所有 WHERE 窗口。分栏共用文件夹的网格布局、分隔线调整与拖拽提示：同组交换、跨组合并、左拖出组分离、右拖出组／拖到关闭区域关闭；Escape 取消。地图内部仍是平移，跨出原栏才进入分栏拖拽。移动整栏保留原有搜索、路线、地图与控件状态，避免重新加载；各栏的搜索和视图相互独立，视图通过地理中心跨尺寸恢复。Phone 保持和文件夹相同的单视图布局。
+
 - `home/where-model.js`：语法、查询语义、路网构图与最短时间路径。
 - `home/where.js`：PC 窗口、Phone 挂载、补全、搜索结果和状态保存。
+- `home/where-panes.js` / `where-panes.css`：WHERE 窗口与分栏，复用文件夹布局与分隔线控制。
 - `home/where-map.js` / `where-map.css`：共享地图组件；独立 SVG ID，隔离系统图标的描边规则。
 - `home/where-data.js`：压缩 OSM 快照，开箱可用。`tools/import-where-data.cjs` 从已下载数据重建；网络补充输入可作为第三个参数。
 - `tools/build-where-map.cjs`：从已审核的图恩样张重建地图组件。
@@ -37,8 +42,23 @@ WHERE 从现有软件列表打开，PC 和 Phone 共享搜索解析、地点索�
 
 ## 验证
 
+搜索界面采用用户 `where.pdf` 的四页模板：浮动搜索框、3×5 无文字分类图标、竖向图层/定位/缩放工具。分类与四个交通图标直接提取原始矢量，使用 `currentColor` 继承主题，不使用 PDF 的红色。双击搜索框切换独立 Code 配色的 spell 输入；回车与搜索按钮执行，前往打开路线面板。路线支持多选交通方式、两点交换、途经点增删和六点把手排序；默认在可计算的驾车/步行/骑行中比较估算耗时。公交没有时刻表时明确报错。
+
+`where-search-ui.js` 与 `where-tools.js` 共享 PC/Phone。File 使用现有窗口/分栏操作；Tool 的 view 控制七类底图显示，末尾 help 直达 map spells。测距与可编辑 Pin 是独立叠加层，用经纬度保存，平移、缩放和分栏调整后保持锚点。测距左键加点、鼠标移动实时预览累计距离；双击完成后保留结果且工具继续开启，下次点击另起一条，允许多条结果共存。右键某条末端距离标签只删除该条；右键底图或 Escape 取消未完成的测距并退出，保留已完成结果。定位需要设备授权，范围外提示而不显示空白底图。各栏独立保存图层和路线字段。Pin 与测距只在所属地图栏内保留，不进入用户默认配置；新窗口、新栏不复制搜索、视图、图层或任何标注，拖动现有栏则保留该栏标注。
+
+`tools/enrich-where-pois.cjs <local-osm.json>` 可从本地快照补充分类，不改变已审核的几何与路网；分类无记录时显示无匹配，绝不生成地点。地点与同一 OSM 建筑地址可能共用 ID，解析绑定同时核对 ID 和名称，避免把已选地点误显示成门牌。
+
+- `node tmp/where-template-check.cjs`
+- `node tmp/where-tools-check.cjs`
+
+拖动与滚轮缩放按显示帧合并更新。地名尺寸缓存并在字体加载完成后失效；平移只改变地图与地名层的位置，沿用路线几何，不再逐事件测量文字或重建路线。滚轮视图状态延迟合并保存，关闭组件时取消待执行的帧与定时器。生成工具保留 `WHERE motion` 标记内的交互引擎，`--check` 可只验证生成结果而不覆盖文件。
+
 - `node tools/check-source.cjs`
 - `node tmp/help-map-spells-check.cjs`
 - `node tmp/where-model-check.cjs`
 - `node tmp/where-app-check.cjs`
 - `node tmp/where-lifecycle-check.cjs`
+- `node tmp/where-pan-performance-check.cjs --assert-fast`
+- `node tmp/where-label-selection-check.cjs`
+- `node tmp/where-panes-check.cjs`
+- `node tmp/where-pane-drag-check.cjs`

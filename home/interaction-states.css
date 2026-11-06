@@ -2,6 +2,8 @@
 :root{--hover-surface:var(--green);--selection-hover-surface:color-mix(in srgb,var(--green) 50%,transparent);--hover-text:var(--l4);--selected-surface:var(--green);--selected-text:var(--l4)}
 /* Runtime state is separate from a committed menu/file selection. */
 :root{--runtime-current:var(--l4);--runtime-idle:var(--l5)}
+/* FROM's entrance square is the one control with no hover/press recoloring. */
+#desktop #start{background:var(--l4)!important;opacity:1}
 :is(#desktop,#phone) :is(button,a[href],[role="option"],.file,.archive-row,.river-fragment,.rive-message):not(:disabled):not([aria-disabled="true"]):not(.runtime-state):not(.setting-text-toggle):not(.code-action):not(:is(.selected,.chosen,[aria-selected="true"],[aria-pressed="true"]:not(.on-off-toggle))):hover{background:var(--hover-surface)!important;color:var(--hover-text)!important}
 :is(#desktop,#phone) :is(button,a[href],[role="option"],.file,.archive-row,.river-fragment,.rive-message):not(:disabled):not([aria-disabled="true"]):not(.runtime-state):not(.setting-text-toggle):not(.code-action):not(:is(.selected,.chosen,[aria-selected="true"],[aria-pressed="true"]:not(.on-off-toggle))):hover :is(svg,.css-icon,.software-icon,.shortcut-icon,.file-icon){color:var(--hover-text)!important}
 /* Choices that remain selected after clicking keep a distinct half-strength preview.
@@ -9,6 +11,15 @@
 :is(#desktop,#phone) :is(.file,.folder-row,.archive-row,.help-topic,.help-save-entry,.rive-picker-row,.pending-quote,.canal-work,.river-fragment,.rive-message,[role="option"],button[aria-selected],button[aria-pressed]:not(.on-off-toggle),.house-navigation button):not(:disabled):not([aria-disabled="true"]):not(.runtime-state):not(.setting-text-toggle):not(.code-action):not(:is(.selected,.chosen,[aria-selected="true"],[aria-pressed="true"])):hover{background:var(--selection-hover-surface)!important;color:var(--hover-text)!important}
 /* FROM file/folder rows open their destination instead of persisting selection. */
 #desktop #from :is(#folders .folder-row,#recent-files .file):not(:disabled):not([aria-disabled="true"]):hover{background:var(--hover-surface)!important;color:var(--hover-text)!important}
+/* Apps behave like details rows: one surface across every column, no nested tile. */
+#desktop .setting-table [data-setting-app]:hover{background:var(--selection-hover-surface)!important;color:var(--hover-text)!important}
+#desktop .setting-table [data-setting-app].selected{background:var(--selected-surface)!important;color:var(--selected-text)!important}
+#desktop .setting-table [data-setting-app] :is(button,svg,.css-icon,.software-icon){color:inherit!important}
+#desktop .setting-table [data-setting-app] :is(svg,.css-icon,.software-icon){color:var(--l5)!important}
+#desktop .setting-table [data-setting-app]:is(:hover,.selected) :is(svg,.css-icon,.software-icon){color:var(--l4)!important}
+#desktop #windows .setting-table [data-setting-app] button:hover{background:transparent!important}
+#desktop .setting-table [data-setting-app] td:not(:first-child){color:var(--l5)}
+#desktop .setting-table [data-setting-app]:is(:hover,.selected) td{color:var(--l4)}
 /* RIVER/RIVE metadata and secondary labels brighten with their owning item. */
 :is(#desktop,#phone) :is(.river-fragment,.rive-message):is(:hover,.selected){--l5:var(--l4)}
 :is(#desktop,#phone) :is(.river-fragment,.rive-message):is(:hover,.selected) :is(time,.river-meta,.river-meta button,.river-count,.river-count button,.river-quote-arrow,.rive-message-more,.rive-quote,.rive-quote-meta){color:var(--l4)!important}
@@ -36,6 +47,16 @@
 :is(#desktop,#phone) .setting-text-toggle{background:transparent!important;color:var(--runtime-idle)!important}
 :is(#desktop,#phone) .setting-text-toggle>span{color:var(--runtime-idle)!important}
 :is(#desktop,#phone) .setting-text-toggle>span.is-current{color:var(--runtime-current)!important}
+/* Authored on/off mark: equal-height circle and capsule plus a 2px outline.
+   The reference places the on circle on the left, and the off circle on the right. */
+:is(#desktop,#phone) .on-off-toggle{display:inline-flex!important;align-items:center;gap:8px!important;padding:0!important;border:0!important;box-shadow:none;min-width:74px!important;white-space:nowrap;opacity:1}
+:is(#desktop,#phone) .on-off-toggle>.toggle-symbol{position:relative;display:inline-block;flex:0 0 auto;box-sizing:content-box;width:34px;height:14px;border:2px solid var(--l3);border-radius:999px;background:var(--l3);pointer-events:none}
+:is(#desktop,#phone) .on-off-toggle .toggle-thumb{position:absolute;top:0;right:0;display:block;width:14px;height:14px;border:0;border-radius:50%;background:var(--l2);pointer-events:none}
+:is(#desktop,#phone) .on-off-toggle[data-toggle-state="on"]>.toggle-symbol{background:var(--green);border-color:var(--green)}
+:is(#desktop,#phone) .on-off-toggle[data-toggle-state="on"] .toggle-thumb{left:0;right:auto;background:var(--l4)}
+:is(#desktop,#phone) .on-off-toggle>.toggle-label{color:var(--l5)!important}
+:is(#desktop,#phone) .on-off-toggle[data-toggle-state="on"]>.toggle-label{color:var(--l4)!important}
+:is(#desktop,#phone) .on-off-toggle:disabled{cursor:default}
 :is(#desktop,#phone) .runtime-state-row .setting-switch-label{color:var(--runtime-idle)}
 :is(#desktop,#phone) .runtime-state-row[data-runtime-active="true"] .setting-switch-label{color:var(--runtime-current)}
 #desktop #taskbar>button.current::after{background:var(--runtime-current)}
@@ -49,7 +70,7 @@
 #desktop #task-popup>.task-window-row{width:100%}
 #desktop #task-popup .task-window-row:hover{background:var(--hover-surface);color:var(--hover-text)}
 #desktop #task-popup .task-window-row:hover .task-window-open{color:var(--hover-text)!important}
-#desktop #task-popup .task-window-close{display:flex;align-items:center;justify-content:center}
+#desktop #task-popup .task-window-close{display:flex;align-items:center;justify-content:center;align-self:stretch}
 /* Runtime choices still indicate current/idle with ink when the pointer leaves. */
 #desktop #flyout button.runtime-state:not(:disabled):not([aria-disabled="true"]):hover{background:var(--hover-surface)!important;color:var(--hover-text)!important}
 

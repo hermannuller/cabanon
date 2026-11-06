@@ -2,6 +2,7 @@
 // Import the reviewed Thun OSM snapshot. Pass the directory containing thun-data.json,
 // thun-osm.json and d3.min.js. No network requests are made by the importer.
 const fs=require('node:fs'),path=require('node:path'),zlib=require('node:zlib');
+const kindOf=require('./where-poi-kinds.cjs');
 const source=process.argv[2];if(!source)throw Error('Pass the Thun snapshot directory.');
 const data=JSON.parse(fs.readFileSync(path.join(source,'thun-data.json'),'utf8'));
 const raw=JSON.parse(fs.readFileSync(path.join(source,'thun-osm.json'),'utf8'));
@@ -13,9 +14,9 @@ function add(p){if(!p.xy||!p.name||p.xy[0]<data.bounds[0]||p.xy[0]>data.bounds[2
 for(const p of data.places)add({...p,tags:{}});
 for(const e of raw.elements){const t=e.tags||{},point=xy(e),id=e.type+'/'+e.id;
  if(e.type==='way'&&t.highway&&e.geometry?.length>1){data.network.push({nodes:e.nodes,points:e.geometry.map(p=>[+p.lon.toFixed(6),+p.lat.toFixed(6)]),tags:Object.fromEntries(['highway','oneway','oneway:bicycle','junction','area','access','foot','bicycle','motor_vehicle','motorcar','maxspeed'].filter(k=>t[k]!==undefined).map(k=>[k,t[k]]))});if(t.name){const s=streets.get(t.name)||[];s.push(...e.geometry.map(p=>[p.lon,p.lat]));streets.set(t.name,s);}}
- const kind=t.tourism==='hotel'?'hotel':t.tourism==='hostel'?'hostel':t.amenity==='cafe'?'cafe':t.amenity==='restaurant'?'restaurant':t.amenity==='pharmacy'?'pharmacy':t.shop==='supermarket'?'supermarket':null;
+ const kind=kindOf(t);
  if(t.name&&kind)add({id,name:t.name,kind,xy:point,tags:Object.fromEntries(['amenity','tourism','opening_hours','wheelchair','brand'].filter(k=>t[k]).map(k=>[k,t[k]]))});
- if(t['addr:street']&&t['addr:housenumber'])add({id,name:t['addr:street']+' '+t['addr:housenumber'],kind:'address',xy:point,tags:{city:t['addr:city']||'',postcode:t['addr:postcode']||''}});
+ if(t['addr:street']&&t['addr:housenumber'])add({id:id+':address',name:t['addr:street']+' '+t['addr:housenumber'],kind:'address',xy:point,tags:{city:t['addr:city']||'',postcode:t['addr:postcode']||''}});
 }
 for(const[name,p]of streets)add({id:'street:'+name,name,kind:'street',xy:[p.reduce((n,a)=>n+a[0],0)/p.length,p.reduce((n,a)=>n+a[1],0)/p.length],tags:{}});
 data.search.unshift({id:'city:thun',name:'Thun · 图恩',kind:'area',xy:[7.63,46.758],bounds:data.bounds,tags:{}});

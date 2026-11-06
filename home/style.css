@@ -174,9 +174,9 @@
 #desktop .window[data-file-browser] :is(.house-file-list,.window-content):not(:has(.file)){overflow:hidden}
 
 /* Soft keeps Cabanon's geometry; citron is a surface accent, with darker text ink. */
-:root[data-theme="soft"]{--green-ink:color-mix(in srgb,var(--green) 28%,var(--l4))}
-:root[data-theme="soft"] #start{background:var(--green)}
-:root[data-theme="soft"] .quick-theme-pattern[data-theme="soft"]{background:var(--green);color:var(--l4)}
+:root[data-theme="mint"]{--green-ink:color-mix(in srgb,var(--green) 28%,var(--l4))}
+:root[data-theme="mint"] #start{background:var(--green)}
+:root[data-theme="mint"] .quick-theme-pattern[data-theme="mint"]{background:var(--green);color:var(--l4)}
 
 /* Title controls fill the title row, sharing its exact hover and click height. */
 .window:not(.code-mode)>.titlebar :is(button,.folder-header-actions,.txt-toolbar){height:100%;min-height:0;align-self:stretch}

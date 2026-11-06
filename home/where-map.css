@@ -4,7 +4,7 @@
 .where-map header span:first-child{font-family:'JetBrains Mono',monospace}
 .where-map header span:last-child{opacity:.7;font-size:12px}
 .where-map .map-stage{position:relative;overflow:hidden}
-.where-map .map{display:block;width:100%;height:650px;background:var(--l1);touch-action:none;cursor:grab}
+.where-map .map{display:block;width:100%;height:650px;background:var(--l1);touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
 .where-map .map:active{cursor:grabbing}
 .where-map .where-north{position:absolute;top:16px;left:20px;font:14px monospace;pointer-events:none}
 .where-map .zoom{position:absolute;bottom:20px;right:20px;display:flex;background:var(--l2)}

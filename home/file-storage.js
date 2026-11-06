@@ -33,11 +33,26 @@ const CabanonStorage=(()=>{
   }
   profile.hollePathVersion=1;
  }
+ function migratePocket(profile){
+  if(profile.desktopPocketVersion===1)return;
+  const entries=profile.entries,old='/house/holle',next='/house/pocket';
+  const moveTree=(from,to)=>{const map=new Map();for(const e of entries){const change=value=>typeof value==='string'&&(value===from||value.startsWith(from+'/'))?to+value.slice(from.length):value;const prior=e.name;e.name=change(e.name);e.parent=change(e.parent);map.set(prior,e.name);}remap(profile,map);if(profile.legacyFileIds)profile.legacyFileIds=Object.fromEntries(Object.entries(profile.legacyFileIds).map(([key,id])=>[map.get(key)||key,id]));};
+  const displace=e=>{const name=CabanonFilenames.unique(leaf(e.name),candidate=>entries.some(item=>item.parent==='/house'&&CabanonFilenames.key(leaf(item.name))===CabanonFilenames.key(candidate)),e.folder);moveTree(e.name,'/house/'+name);};
+  if(entries.some(e=>e.folder&&e.name===old)){
+   const conflict=entries.find(e=>CabanonFilenames.key(e.name)===CabanonFilenames.key(next));if(conflict)displace(conflict);
+   moveTree(old,next);
+  }
+  const pocket=entries.find(e=>CabanonFilenames.key(e.name)===CabanonFilenames.key(next));
+  if(pocket&&(!pocket.folder||pocket.shortcut))displace(pocket);
+  const now=entries.find(e=>CabanonFilenames.key(e.name)===CabanonFilenames.key('/house/now'));
+  if(now&&!now.desktopNow)displace(now);
+  profile.desktopPocketVersion=1;install(profile);
+ }
  function prepare(profile){if(!profile||typeof profile!=='object')return;profile.entries ||= (profile.files||[]).map(name=>({name,parent:'/house',folder:name.startsWith('/')}));if(profile.fileStorageVersion!==1){const raw=profile.content||{},map=new Map();profile.legacyFileIds ||= {};for(const e of profile.entries){const old=e.name;e.parent=path(e.parent||'/house');e.name=e.folder?path(e.name):e.parent+'/'+leaf(e.name);e.id ||= (e.folder?'folder:':'file:')+crypto.randomUUID();map.set(old,e.name);profile.legacyFileIds[old]=e.id;}remap(profile,map);const data={};for(const [key,value]of Object.entries(raw)){const mapped=map.get(key)||key,e=entry(profile,mapped);data[e&&!e.folder?e.id:key]=value;}profile.content=data;profile.fileStorageVersion=1;}
  // Support old bundled seeds that still supply an unqualified name.
  for(const e of profile.entries){e.readOnly ??= false;e.parent=path(e.parent||'/house');if(!e.name.startsWith('/')){const old=e.name;e.name=e.parent+'/'+e.name;remap(profile,new Map([[old,e.name]]));}e.id ||= (e.folder?'folder:':'file:')+crypto.randomUUID();}profile.files=[...new Set((profile.files||[]).concat(profile.entries.map(e=>e.name)))];install(profile);
  if(!profile.marathonFileIdentityVersion&&profile.user){const key='cabanon-river:'+profile.user,raw=localStorage.getItem(key);if(raw)try{const data=JSON.parse(raw);let changed=false;for(const work of data.canal?.items||[])if(work.sourceFile&&!work.sourceId){const source=entry(profile,work.sourceFile);if(source){work.sourceId=source.id;work.sourceFile=source.name;changed=true;}}if(changed){const backup='cabanon-file-storage-backup-river-v1:'+profile.user;if(!localStorage.getItem(backup))localStorage.setItem(backup,raw);localStorage.setItem(key,JSON.stringify(data));}}catch(error){console.error('Unable to migrate linked manuscripts',error);}profile.marathonFileIdentityVersion=1;}
- migrateHolle(profile);return profile;}
+ migrateHolle(profile);migratePocket(profile);return profile;}
  function resolve(name,parent){prepare(prefs);return entry(prefs,name,parent)?.name||(String(name).startsWith('/')?path(name):(parent||'/house')+'/'+name);}
  function refresh(){prepare(prefs);}
  function moved(map){

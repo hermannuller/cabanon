@@ -31,3 +31,129 @@
 #phone .where-results{max-height:168px}
 #phone .where-app .where-result{min-height:44px}
 #phone .where-app .where-result small{white-space:normal;max-width:120px}
+
+/* Search and tools share the system palette; symbols are CSS geometry. */
+.where-app{position:relative}
+.where-search{gap:4px;padding:8px 12px}
+.where-search input{border-radius:0}
+.where-search.where-spell{background:var(--code-background);color:var(--code-text)}
+.where-search.where-spell input{background:var(--code-background);color:var(--code-text);caret-color:var(--code-text)}
+.where-search.where-spell button{color:var(--code-text)}
+.where-search.where-spell input::selection{background:var(--code-text);color:var(--code-background)}
+.where-search button.where-icon-button,.where-map .zoom button.where-icon-button,.where-pin-editor .where-icon-button{display:inline-grid;place-items:center;flex:0 0 36px;width:36px;height:36px;padding:0;border:0;border-radius:0;background:transparent;color:var(--l5);cursor:pointer}
+.where-search button.where-icon-button:hover,.where-map .zoom button.where-icon-button:hover,.where-pin-editor .where-icon-button:hover{background:var(--l6);color:var(--l4)}
+.where-search button:focus-visible,.where-map .zoom button:focus-visible{outline:1px solid var(--l4);outline-offset:-2px}
+.where-icon-button:disabled{opacity:.5;cursor:wait}
+.where-symbol{display:block;position:relative;width:20px;height:20px;box-sizing:border-box;pointer-events:none;color:inherit}
+.where-symbol::before,.where-symbol::after{content:"";position:absolute;box-sizing:border-box;background:currentColor}
+.plus-symbol::before,.minus-symbol::before{width:16px;height:2px;left:2px;top:9px}
+.plus-symbol::after{height:16px;width:2px;top:2px;left:9px}
+.search-symbol::before{width:12px;height:12px;border:2px solid currentColor;border-radius:50%;background:none;left:1px;top:1px}
+.search-symbol::after{width:9px;height:2px;left:11px;top:14px;transform:rotate(45deg)}
+.goto-symbol::before{left:2px;top:8px;width:14px;height:10px;border-left:2px solid currentColor;border-top:2px solid currentColor;background:none}
+.goto-symbol::after{width:9px;height:9px;left:9px;top:4px;border-right:2px solid currentColor;border-top:2px solid currentColor;transform:rotate(45deg);background:none}
+.location-symbol{background:linear-gradient(currentColor,currentColor) center top/2px 4px no-repeat,linear-gradient(currentColor,currentColor) center bottom/2px 4px no-repeat,linear-gradient(currentColor,currentColor) left center/4px 2px no-repeat,linear-gradient(currentColor,currentColor) right center/4px 2px no-repeat}
+.location-symbol::before{inset:3px;border:2px solid currentColor;border-radius:50%;background:none}
+.location-symbol::after{inset:7px;border:1px solid currentColor;border-radius:50%;background:none}
+.close-symbol::before,.close-symbol::after{width:18px;height:2px;left:1px;top:9px;transform:rotate(45deg)}
+.close-symbol::after{transform:rotate(-45deg)}
+.where-check{position:relative;display:inline-block;width:16px;height:16px;flex:0 0 16px;color:inherit}
+.where-check::after{content:"";position:absolute;left:3px;top:2px;width:7px;height:11px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg)}
+.where-feedback{display:none}
+.where-feedback[data-error=true]{display:block;background:var(--l1);z-index:3}
+.where-results{position:absolute;left:0;right:0;top:52px;z-index:20;max-height:min(40%,216px);border:1px solid var(--l3);padding:0;background:var(--l2)}
+.where-result:hover,.where-result:focus{background:var(--l6);color:var(--l4)}
+.where-menu,.where-view-menu{position:absolute;z-index:11000;min-width:150px;padding:0;border:1px solid var(--l3);background:var(--l2);color:var(--l4);font:14px/28px JetBrains,SourceHan,monospace}
+.where-menu button{display:flex;align-items:center;gap:10px;width:100%;min-height:32px;padding:2px 12px;border:0;border-radius:0;background:transparent;color:var(--l5);font:inherit;text-align:left;white-space:nowrap;cursor:pointer}
+.where-menu button:hover,.where-menu button:focus-visible{background:var(--l6);color:var(--l4);outline:0}
+.where-menu button[aria-pressed=true]{color:var(--l4)}
+.where-menu [aria-checked=false] .where-check{visibility:hidden}
+.where-view-wrap{position:relative}
+.where-view-menu{left:100%;top:-1px;min-width:160px}
+.where-view-menu.where-view-left{left:auto;right:100%}
+.where-view-menu[hidden]{display:none}
+.where-annotation-layer,.where-pin-layer,.where-distance-layer{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:hidden}
+.where-map .where-annotation-layer{fill:none;stroke:none}
+.where-distance{position:absolute;pointer-events:auto;user-select:none;padding:0 6px;background:var(--l1);color:var(--l8);font:12px/24px JetBrains,SourceHan,monospace;white-space:nowrap}
+.where-pin{position:absolute;pointer-events:auto;display:flex;align-items:center;gap:6px;transform:translate(-7px,-16px);border:0;border-radius:0;padding:0;background:none;color:var(--l8);cursor:pointer}
+.pin-symbol{width:14px;height:16px;flex-shrink:0;background:currentColor;clip-path:path('M7 16C4 14 0 10.5 0 7C0 3.134 3.134 0 7 0C10.866 0 14 3.134 14 7C14 10.5 10 14 7 16Z')}
+.pin-symbol::before,.pin-symbol::after{content:none}
+.where-pin-note{padding:0 4px;background:var(--l1);color:var(--l8);font:12px/24px JetBrains,SourceHan,monospace;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.where-pin-editor{position:absolute;z-index:5;display:flex;max-width:calc(100% - 24px);padding:2px;background:var(--l2);border:1px solid var(--l3);transform:translateX(min(0px,calc(100vw - 400px)))}
+.where-pin-editor input{min-width:0;width:180px;padding:4px 6px;border:0;border-radius:0;background:var(--l1);color:var(--l8);caret-color:var(--l8);font:14px/24px JetBrains,SourceHan,monospace}
+.where-pin-editor input::placeholder{color:var(--l8);opacity:.6}
+.where-pin-editor .where-icon-button,.where-pin-editor .where-icon-button:hover{color:var(--l8)}
+.where-map.where-no-text .labels{visibility:hidden}
+.where-map.where-no-text .where-pin-note{display:none}
+.where-map.where-hide-forest [data-layer=forest],.where-map.where-hide-buildings [data-layer=buildings],.where-map.where-hide-roads [data-layer=roads],.where-map.where-hide-rails [data-layer=rails],.where-map.where-hide-subway [data-layer=subway],.where-map.where-hide-water [data-layer=water],.where-map.where-hide-water [data-kind=water]{visibility:hidden}
+.where-window.where-split .where-search{flex-wrap:nowrap;gap:4px;padding:8px 42px 8px 8px}
+.where-window.where-split .where-search input{flex-basis:auto}
+
+/* User's four-page WHERE template: floating search, category grid and route panel. */
+.where-app>.where-search{position:absolute;z-index:25;left:12px;top:12px;width:min(460px,calc(100% - 24px));box-sizing:border-box;border:1px solid var(--l3);padding:6px 8px;background:var(--l2)}
+.where-app>.where-search.where-spell{background:var(--code-background)}
+.where-app>.where-search input{background:transparent;font-size:14px}
+.where-app>.where-map-host{height:100%;min-height:0}
+.where-app>.where-feedback[data-error=true]{position:absolute;z-index:26;left:12px;top:64px;max-width:calc(100% - 24px);box-sizing:border-box;border:1px solid var(--l7);padding:4px 10px}
+.where-app>.where-results{left:12px;right:auto;top:64px;width:min(460px,calc(100% - 24px));box-sizing:border-box;max-height:40%}
+.where-app>.where-results .where-result{display:block}
+.where-app>.where-results .where-result small{display:block;white-space:normal}
+.where-category-grid{position:absolute;z-index:24;top:62px;left:12px;width:min(460px,calc(100% - 24px));box-sizing:border-box;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px 0;padding:12px 4px;border:1px solid var(--l3);background:var(--l2);color:var(--l5)}
+.where-category-grid[hidden]{display:none}
+.where-category{display:grid;place-items:center;width:100%;height:58px;padding:10px;border:0;border-radius:0;background:transparent;color:var(--l5);--where-icon-hole:var(--l2);cursor:pointer}
+.where-category svg{width:28px;height:28px;fill:none;stroke:none}
+.where-category:hover,.where-category:focus-visible{background:var(--l6);color:var(--l4);--where-icon-hole:var(--l6);outline:0}
+.where-app .where-map .zoom{flex-direction:column;right:16px;bottom:16px;z-index:4}
+.where-app .where-map .where-north{left:auto;right:20px;top:16px;background:var(--l1)}
+.where-app .where-map .scale{left:auto;right:62px;bottom:16px;background:none}
+.layers-symbol::before{left:3px;top:3px;width:14px;height:14px;border:2px solid currentColor;transform:rotate(30deg) skew(-25deg);background:none}
+.layers-symbol::after{left:3px;top:9px;width:14px;height:10px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(30deg) skew(-25deg);background:none}
+.back-symbol::before{width:12px;height:12px;left:6px;top:4px;border-left:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);background:none}
+.swap-symbol{background:linear-gradient(currentColor,currentColor) 5px 3px/2px 15px no-repeat,linear-gradient(currentColor,currentColor) 13px 2px/2px 15px no-repeat}
+.swap-symbol::before{left:2px;top:2px;height:8px;width:8px;border-left:2px solid currentColor;border-top:2px solid currentColor;transform:rotate(45deg);background:none}
+.swap-symbol::after{right:2px;bottom:2px;height:8px;width:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);background:none}
+.grip-symbol{background:radial-gradient(circle,currentColor 1.5px,transparent 1.7px) 3px 1px/7px 6px repeat-y,radial-gradient(circle,currentColor 1.5px,transparent 1.7px) 10px 1px/7px 6px repeat-y}
+.where-route-panel{position:absolute;left:0;top:0;bottom:0;z-index:25;width:min(340px,100%);box-sizing:border-box;border-right:1px solid var(--l3);background:var(--l2);color:var(--l4);overflow-y:auto}
+.where-route-open>.where-search,.where-route-open>.where-category-grid{display:none}
+.where-route-open>.where-feedback[data-error=true]{left:8px;top:auto;bottom:30px;max-width:min(324px,calc(100% - 16px));z-index:30}
+.where-route-panel .where-results{position:static;max-height:none;border:0;border-top:1px solid var(--l3);padding:0}
+.where-route-modes{display:flex;align-items:center;gap:4px;padding:12px 8px}
+.where-route-modes .where-icon-button,.where-route-controls .where-icon-button,.where-route-addresses .where-icon-button{display:grid;place-items:center;width:36px;height:36px;padding:0;border:0;background:none;color:var(--l5);cursor:pointer}
+.where-route-modes .where-icon-button:hover,.where-route-controls .where-icon-button:hover,.where-route-addresses .where-icon-button:hover{background:var(--l6);color:var(--l4)}
+.where-transport{flex:1;display:grid;place-items:center;height:42px;border:0;background:none;color:var(--l5);--where-icon-hole:var(--l2);cursor:pointer}
+.where-transport svg{width:32px;height:32px;fill:none;stroke:none}
+.where-transport[aria-pressed=true]{background:var(--l6);color:var(--l4);--where-icon-hole:var(--l6)}
+.where-transport:hover{background:var(--l6);color:var(--l4);--where-icon-hole:var(--l6)}
+.where-route-stops{padding:0 8px}
+.where-route-addresses{position:relative}
+.where-route-addresses .where-stop-swap{position:absolute;right:8px;top:50%;transform:translateY(-50%)}
+.where-route-stop{display:grid;grid-template-columns:36px minmax(0,1fr) 36px;align-items:center;gap:0;position:relative;min-height:54px}
+.where-route-stop+.where-route-stop::before{content:"";position:absolute;top:-6px;left:15.5px;width:5px;height:5px;border-right:1px solid var(--l5);border-bottom:1px solid var(--l5);transform:rotate(45deg)}
+.where-route-stop input{grid-column:2;grid-row:1;min-width:0;width:100%;height:36px;margin:8px 0;padding:2px 4px;border:0;border-bottom:1px solid var(--l5);border-radius:0;background:transparent;color:var(--l4);font:14px/28px Inter,SourceHan,sans-serif}
+.where-route-stop .where-stop-grip{grid-column:1;grid-row:1;width:36px;cursor:grab;touch-action:none}
+.where-route-stop .where-stop-remove{grid-column:3;grid-row:1;visibility:hidden;width:36px}
+.where-route-stop:focus-within .where-stop-remove,.where-route-stop:hover .where-stop-remove{visibility:visible}
+.where-route-stop .where-icon-button[hidden]{display:none}
+.where-route-stop.where-stop-drop{background:color-mix(in srgb,var(--l6) 50%,transparent)}
+.where-route-controls{display:flex;justify-content:space-between;padding:0 8px 8px;border-bottom:1px solid var(--l3)}
+.where-route-controls [hidden]{display:none}
+.where-route-suggestions{max-height:280px;overflow-y:auto}
+.where-route-panel .where-result{font-family:Inter,SourceHan,sans-serif}
+.where-route-panel .where-result small{display:block;white-space:normal}
+.where-route-panel .where-result{display:block}
+.where-menu:has(.where-view-menu) .where-view-menu{z-index:11001}
+.where-pin-editor{transform:none}
+#phone .where-app>.where-search{top:8px;left:8px;width:calc(100% - 16px)}
+#phone .where-route-panel{width:min(320px,100%)}
+#phone .where-category-grid{top:60px;left:8px;width:calc(100% - 16px)}
+#phone .where-category{height:52px}
+.where-window .window-title{flex:0 1 auto;min-width:0;padding-right:8px}
+.where-window .where-header-actions{margin-right:auto}
+.where-map .where-pin{width:auto;height:16px;background:none;color:var(--l8)}
+.where-map .where-pin:hover{background:none}
+.where-app{container-type:inline-size}
+.where-route-open>.where-map-host{margin-left:340px}
+@container(max-width:650px){
+ .where-route-open>.where-map-host{margin-left:0}
+ .where-route-panel{width:100%;bottom:auto;max-height:55%;border-right:0;border-bottom:1px solid var(--l3)}
+}

@@ -47,6 +47,7 @@ window.addEventListener('keydown',event=>{
  if(escape&&window.CabanonQuick?.dismissPicker?.())return;
  if(escape&&window.CabanonHelpEditor?.dismissFileMenu?.())return;
  if(escape&&window.CabanonTxtMenus?.dismissTransient?.())return;
+ if(escape&&window.CabanonWhereTools?.dismissTransient?.())return;
  if(escape&&window.CabanonHelpEditor?.dismissSearch?.())return;
  if(escape&&window.CabanonDragFeedback?.cancelActive())return;
  if(quit){if(!document.querySelector('.removal-confirmation'))quitCurrentProgram();return;}

@@ -1,5 +1,16 @@
 'use strict';
 const hoverMenuAnchors=new WeakMap();
+// Hover ownership is the anchor plus its flyout, never the entire parent menu/bar.
+// Leaving both closes immediately, even if an older caller has a delayed timer.
+document.addEventListener('pointerout',event=>{
+ for(const menu of document.querySelectorAll('#flyout,.new-types,.header-new-menu,#task-popup,#sync-popover,.pin-destinations,.select-flyout')){
+  if(menu.hidden||menu===taskPopup&&menu.dataset.mode==='close-all')continue;
+  const anchor=hoverMenuAnchors.get(menu);if(!anchor)continue;
+  if(!anchor.contains(event.target)&&!menu.contains(event.target))continue;
+  if(anchor.contains(event.relatedTarget)||menu.contains(event.relatedTarget))continue;
+  if(menu.matches('#flyout,#task-popup,#sync-popover'))menu.hidden=true;else menu.remove();
+ }
+},true);
 function placeHoverMenu(menu,button){
  if(!menu||!button?.isConnected||menu.hidden)return;hoverMenuAnchors.set(menu,button);
  const desktop=$('#desktop'),bounds=desktop.getBoundingClientRect(),scale=bounds.width/1920;

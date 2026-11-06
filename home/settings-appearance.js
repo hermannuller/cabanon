@@ -1,9 +1,9 @@
 'use strict';
 const settingDark={l1:'#0e100f',l2:'#1d1d1b',l3:'#414342',l4:'#fefbe3',l5:'#6d6d62',green:'#186551',orange:'#ff880a',red:'#c5173e',pink:'#ffb3c1',cyan:'#08c5eb',purple:'#999efa'};
-const settingBuiltinThemes={gray:{l1:'#414342',l2:'#4b4d4c',l3:'#747670',l4:'#fefbe3',l5:'#b6b5a6'},bright:{l1:'#fefbe3',l2:'#eeecd5',l3:'#bab9a6',l4:'#0e100f',l5:'#6d6d62'}};
-// Soft: warm mineral surfaces, charcoal ink and the reference's citron accent.
-settingBuiltinThemes.soft={l1:'#dfe0d7',l2:'#eeeee8',l3:'#b7bbb2',l4:'#252d2b',l5:'#6c726a',green:'#edff35',orange:'#526b2d',red:'#e875aa',pink:'#c58295',cyan:'#438b89',purple:'#8a79ad'};
-function settingThemeOptions(){return [['dark','dark'],...Object.keys(settingBuiltinThemes).map(key=>[key,key]),...Object.keys(settingPrefs().themes).filter(key=>key!=='dark'&&!Object.hasOwn(settingBuiltinThemes,key)).map(key=>[key,key])];}
+const settingBuiltinThemes={gray:{l1:'#c7c7c7',l2:'#b7b7bb',l3:'#96969e',l4:'#4a4a52',l5:'#6d6d76',green:'#ffe703',orange:'#9a6944',red:'#f58f85',pink:'#a06482',cyan:'#467f84',purple:'#77679b'}};
+// Mint: warm mineral surfaces, charcoal ink and the reference's citron accent.
+settingBuiltinThemes.mint={l1:'#dfe0d7',l2:'#eeeee8',l3:'#b7bbb2',l4:'#252d2b',l5:'#6c726a',green:'#edff35',orange:'#006b36',red:'#e875aa',pink:'#c58295',cyan:'#438b89',purple:'#8a79ad'};
+function settingThemeOptions(){return [['dark','dark'],...Object.keys(settingBuiltinThemes).map(key=>[key,key]),...Object.keys(settingPrefs().themes).filter(key=>!['dark','bright','soft'].includes(key)&&!Object.hasOwn(settingBuiltinThemes,key)).map(key=>[key,key])];}
 function settingThemeMarks(colors){const palette=[colors.green,colors.orange,colors.red,colors.pink||'#ffb3c1',colors.cyan||'#08c5eb',colors.purple||'#999efa'];palette.forEach((color,index)=>document.documentElement.style.setProperty('--mark-'+(index+1),color));}
 const settingColorRoles=[['l1','Background · L1'],['l2','Panels / controls · L2'],['l3','Borders · L3'],['l4','Text · L4'],['l5','Secondary text · L5'],['green','Selection · L6'],['red','Warning · L7']];
 const settingMarkColorRoles=[['orange','File/folder mark · L8'],['pink','File/folder mark · L9'],['cyan','File/folder mark · L10'],['purple','File/folder mark · L11']];

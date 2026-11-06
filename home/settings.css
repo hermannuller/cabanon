@@ -21,7 +21,7 @@
 .setting-table{width:100%;border-collapse:collapse;table-layout:fixed;font:400 14px/28px JetBrains,SourceHan,monospace}
 .setting-table th,.setting-table td{text-align:left;height:56px;padding:0 8px;border-bottom:1px solid var(--l2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:400}
 .setting-table th{color:var(--l5);position:sticky;top:-8px;background:var(--l2)}.setting-table th:first-child{width:28%}.setting-table td button{padding:0}
-.setting-table td button{display:flex;align-items:center;gap:8px;height:56px;max-width:100%}.setting-table td button svg{width:36px;height:36px;flex-shrink:0}.setting-table td button span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.setting-table td button{display:flex;align-items:center;gap:16px;height:56px;max-width:100%}.setting-table td button svg{width:24px;height:24px;flex-shrink:0;color:var(--l5)}.setting-table td button span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .setting-dialog{font:400 14px/28px JetBrains,SourceHan,monospace}.setting-dialog .setting-row{gap:12px}.setting-dialog input{min-width:0}
 .setting-actions{display:flex;align-items:center;gap:16px;min-height:56px;flex-wrap:wrap}.setting-swatch{width:28px;height:28px;border:1px solid var(--l3);padding:0}
 .setting-wall-preview{background:var(--l1);color:var(--l4);max-width:480px;height:200px;overflow:hidden;margin:8px 0}.setting-wall-preview canvas{width:100%;height:100%;object-fit:contain}

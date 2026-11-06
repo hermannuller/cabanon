@@ -216,5 +216,7 @@
   "pdf-zip.solid": "pdf/zip.svg",
   "pdf-zip.outline": "pdf/zip.svg",
   "pdf-contacts.solid": "pdf/contacts.svg",
-  "pdf-contacts.outline": "pdf/contacts.svg"
+  "pdf-contacts.outline": "pdf/contacts.svg",
+  "now.solid": "os/now.svg",
+  "now.outline": "os/now.svg"
 }
