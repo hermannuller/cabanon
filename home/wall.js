@@ -4,19 +4,29 @@ let wallState=null;
 function wallHideLetter(state){if(!state)return;clearTimeout(state.letterTimer);state.letterTimer=null;state.win.querySelector('.wall-letter-prompt')?.setAttribute('hidden','');}
 function wallShowLetter(state,letter){wallHideLetter(state);if(state.controls?.isConnected)return;const prompt=state.win.querySelector('.wall-letter-prompt');prompt.querySelector('span').textContent=letter;prompt.querySelector('span').style.fontWeight=state.model.settings.fontWeight;prompt.hidden=false;state.letterTimer=setTimeout(()=>wallHideLetter(state),2000);}
 paths.wall='M5 24Q27 2 25 16T9 8T23 26T6 17T26 6M7 28L26 4';
+// Wall documents store palette indices; the rendered palette follows the active theme.
+const wallColorRoles=['l1','l2','','l3','l4','l5','green','orange','red','l9','l10','l11'];
+function wallRgb(hex){const match=/^#?([\da-f]{6})$/i.exec(hex.trim());return match?[0,2,4].map(index=>parseInt(match[1].slice(index,index+2),16)):null;}
+function wallMix(from,to,amount){const a=wallRgb(from),b=wallRgb(to);if(!a||!b)return from;return '#'+a.map((value,index)=>Math.round(value+(b[index]-value)*amount).toString(16).padStart(2,'0')).join('');}
+function wallPalette(){
+ const style=getComputedStyle(document.documentElement),read=(name,fallback)=>{const value=style.getPropertyValue('--'+name).trim();return wallRgb(value)?value:fallback;};
+ const colors=WALL_COLORS.map((fallback,index)=>wallColorRoles[index]?read(wallColorRoles[index],fallback):fallback);
+ colors[2]=wallMix(colors[1],colors[3],.28);
+ return colors;
+}
 function wallDraw(canvas,model,cache,indices){
  const resized=canvas.width!==model.canvasWidth||canvas.height!==model.canvasHeight;if(resized){canvas.width=model.canvasWidth;canvas.height=model.canvasHeight;}
- const ctx=canvas.getContext('2d'),s=model.settings;
+ const ctx=canvas.getContext('2d'),s=model.settings,colors=wallPalette();
  canvas.style.opacity=s.opacity/100;
  const partial=!resized&&indices&&s.height>=s.fontSize*1.5&&model.step>=model.advance+8;
  if(!partial)ctx.clearRect(0,0,model.canvasWidth,model.canvasHeight);
  const draw=partial?indices:model.cells.keys();
  for(const index of draw){
-  const p=model.center(index),char=model.cells[index],key=s.fontWeight+':'+s.fontSize+':'+model.colors[index]+':'+char;
+  const p=model.center(index),char=model.cells[index],color=colors[model.colors[index]],key=s.fontWeight+':'+s.fontSize+':'+color+':'+char;
   if(partial){const col=index%model.columns,row=Math.floor(index/model.columns),left=col===0?0:p.x-model.step/2,right=col===model.columns-1?model.canvasWidth:p.x+model.step/2,top=row===0?0:s.margin+row*s.height,bottom=row===model.rows-1?model.canvasHeight:top+s.height;ctx.clearRect(left,top,right-left,bottom-top);}
   let sprite=cache.get(key);
   if(!sprite){
-   const node=document.createElement('canvas'),c=node.getContext('2d');c.font=s.fontWeight+' '+s.fontSize+'px JetBrainsWall, SourceHan, monospace';node.width=Math.ceil(Math.max(model.advance,c.measureText(char).width)+12);node.height=Math.ceil(s.fontSize*2+8);c.font=s.fontWeight+' '+s.fontSize+'px JetBrainsWall, SourceHan, monospace';c.fillStyle=WALL_COLORS[model.colors[index]];c.textAlign='center';c.textBaseline='middle';c.fillText(char,node.width/2,node.height/2);sprite=node;cache.set(key,node);
+   const node=document.createElement('canvas'),c=node.getContext('2d');c.font=s.fontWeight+' '+s.fontSize+'px JetBrainsWall, MiSans, monospace';node.width=Math.ceil(Math.max(model.advance,c.measureText(char).width)+12);node.height=Math.ceil(s.fontSize*2+8);c.font=s.fontWeight+' '+s.fontSize+'px JetBrainsWall, MiSans, monospace';c.fillStyle=color;c.textAlign='center';c.textBaseline='middle';c.fillText(char,node.width/2,node.height/2);sprite=node;cache.set(key,node);
   }
   ctx.drawImage(sprite,p.x-sprite.width/2,p.y-sprite.height/2);
  }
@@ -45,6 +55,13 @@ function wallDesktop(){
  let canvas=$('#wallpaper-canvas');
  if(!prefs.wallpaper){canvas?.remove();return;}
  try{const model=new WallDocument(prefs.wallpaper);if(!canvas){canvas=document.createElement('canvas');canvas.id='wallpaper-canvas';canvas.width=1920;canvas.height=1080;$('#desktop').prepend(canvas);}wallDraw(canvas,model,new Map());}catch{canvas?.remove();}
+}
+// The applied wallpaper keeps its document; only the palette is re-resolved for the theme.
+function wallRefreshTheme(){
+ wallDesktop();if(!wallState)return;
+ wallState.cache.clear();wallQueue(wallState);
+ const colors=wallPalette();
+ for(const button of wallState.controls?.querySelectorAll('[data-wall-color]')||[])button.style.setProperty('--wall-swatch',colors[Number(button.dataset.wallColor)]);
 }
 function wallSupported(entry){return !entry.folder&&(entry.wall===true||/\.(?:pwall|wall)$/i.test(entry.name));}
 function wallClose(win){if(win?.isConnected)closeShortcutWindow(win);}
@@ -95,7 +112,7 @@ function wallControls(state,x,y){
  wallHideLetter(state);
  if(state.controls?.isConnected){wallClose(state.controls);state.controls=null;return;}
  const field=(key,label,unit='',hint='')=>'<label class="wall-setting"><span>'+label+'</span><input data-wall-field="'+key+'" aria-label="'+label+'" '+(key==='brush'||key==='bucket'?'type="text"':'type="number" step="any"')+'><span>'+unit+'</span><small>'+hint+'</small></label>';
- const colors=WALL_COLORS.map((color,index)=>index===1?'':'<button data-wall-color="'+index+'" title="L'+(index+1)+'" aria-label="L'+(index+1)+'" aria-pressed="false" style="--wall-swatch:'+color+'"><span>■</span></button>').join('');
+ const colors=wallPalette().map((color,index)=>index===1?'':'<button data-wall-color="'+index+'" title="L'+(index+1)+'" aria-label="L'+(index+1)+'" aria-pressed="false" style="--wall-swatch:'+color+'"><span>■</span></button>').join('');
  const weight='<label class="wall-setting"><span>font weight</span><select data-wall-field="fontWeight" aria-label="font weight">'+['Thin','ExtraLight','Light','Regular','Medium','SemiBold','Bold','ExtraBold'].map((name,index)=>'<option value="'+((index+1)*100)+'">'+name+'</option>').join('')+'</select></label>';
  const target='<div class="wall-setting"><span>for</span><div class="wall-targets"><button data-wall-mode="pc" aria-label="PC wallpaper">PC</button><span aria-hidden="true">/</span><button data-wall-mode="phone" aria-label="Phone wallpaper">PHONE</button></div></div>';
  const brush='<label class="wall-setting wall-brush"><span>brush</span><input type="text" data-wall-field="brush" aria-label="brush"><select data-wall-field="brushSize" aria-label="brush size">'+[1,3,5,7,9].map(size=>'<option value="'+size+'">'+size+'×'+size+'</option>').join('')+'</select></label>';
@@ -201,6 +218,6 @@ window.addEventListener('keydown',event=>{
  event.preventDefault();state.model.brush=event.key;wallShowLetter(state,event.key);wallSyncControls();wallRemember(state);
 },true);
 const wallPriorProfile=refreshUserIcon;refreshUserIcon=function(){if(wallState){wallHideLetter(wallState);if(wallState.frame)cancelAnimationFrame(wallState.frame);wallOwnedClose();wallState=null;}wallPriorProfile();wallDesktop();};
-wallDesktop();Promise.all([document.fonts.load('800 14px JetBrainsWall'),document.fonts.load('14px SourceHan','中文')]).then(()=>{if(wallState){wallState.cache.clear();wallQueue(wallState);}wallDesktop();});
+wallDesktop();Promise.all([document.fonts.load('800 14px JetBrainsWall'),document.fonts.load('14px MiSans','中文')]).then(()=>{if(wallState){wallState.cache.clear();wallQueue(wallState);}wallDesktop();});
 
 

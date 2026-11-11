@@ -13,11 +13,6 @@ if (!binary) {
   process.exit(1);
 }
 
-if (process.argv.includes('--where')) {
-  console.log(binary);
-  process.exit(0);
-}
-
 const flags = [];
 // Chromium refuses to start as root without this on Linux; keep normal sandboxing everywhere else.
 if (process.platform === 'linux' && typeof process.getuid === 'function' && process.getuid() === 0) {
@@ -25,7 +20,7 @@ if (process.platform === 'linux' && typeof process.getuid === 'function' && proc
   console.warn('Running Electron as root: adding --no-sandbox.');
 }
 
-const args = [...flags, homeDir, ...process.argv.slice(2).filter(argument => argument !== '--where')];
+const args = [...flags, homeDir, ...process.argv.slice(2)];
 const env = { ...process.env };
 // A globally exported ELECTRON_RUN_AS_NODE would start Node instead of the app.
 delete env.ELECTRON_RUN_AS_NODE;

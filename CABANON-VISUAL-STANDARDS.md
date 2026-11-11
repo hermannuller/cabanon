@@ -40,9 +40,9 @@
 | --- | --- | --- |
 | JetBrains Mono | 系统UI、软件名、菜单、代码、行号、导航、状态和计算器 | Regular 400；大字widget使用Bold 700；同步小标识也使用700 |
 | Inter | 文件名、文件夹名、文件正文 | 主要为Regular 400 |
-| 思源黑体 Source Han Sans SC | 中文字形补充 | 当前随项目附带Regular |
+| MiSans | 中文字形补充 | 当前随项目附带Regular |
 
-JetBrains Mono、Inter为主字体；中文由思源黑体补充。系统不使用字体文件以外的图片构成普通UI。
+JetBrains Mono、Inter为主字体；中文由MiSans补充。系统不使用字体文件以外的图片构成普通UI。
 
 ## 两档主要UI标准
 

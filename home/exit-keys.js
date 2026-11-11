@@ -42,14 +42,13 @@ window.addEventListener('keydown',event=>{
  const quit=event.ctrlKey&&!event.altKey&&!event.metaKey&&!event.shiftKey&&event.key.toLowerCase()==='q';
  if(!escape&&!quit)return;
  event.preventDefault();event.stopImmediatePropagation();if(event.repeat)return;
+ if(escape&&window.CabanonDragFeedback?.cancelActive())return;
  if(escape&&window.CabanonPhoneDialogs?.cancel?.())return;
  if(escape&&window.CabanonPhoneMultitask?.dismissConfirmation?.())return;
  if(escape&&window.CabanonQuick?.dismissPicker?.())return;
  if(escape&&window.CabanonHelpEditor?.dismissFileMenu?.())return;
  if(escape&&window.CabanonTxtMenus?.dismissTransient?.())return;
- if(escape&&window.CabanonWhereTools?.dismissTransient?.())return;
  if(escape&&window.CabanonHelpEditor?.dismissSearch?.())return;
- if(escape&&window.CabanonDragFeedback?.cancelActive())return;
  if(quit){if(!document.querySelector('.removal-confirmation'))quitCurrentProgram();return;}
  const confirmation=document.querySelector('.removal-confirmation');if(confirmation){confirmation.querySelector('[data-close-choice=cancel],[data-answer=no]')?.click();return;}
  const win=activeWindow;if(win&&!win.hidden)closeShortcutWindow(win);

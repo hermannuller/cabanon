@@ -193,7 +193,7 @@
 .quick-home-timer button,.quick-home-timer button svg{width:var(--timer-diameter);height:var(--timer-diameter)}
 
 /* Three compact lines in the existing 56px COLORS container. */
-.phone-colors-playing{height:56px;width:100%;font:400 14px/18px JetBrains,SourceHan,monospace;color:var(--l4);overflow:hidden}
+.phone-colors-playing{height:56px;width:100%;font:400 14px/18px JetBrains,MiSans,monospace;color:var(--l4);overflow:hidden}
 .phone-colors-title,.phone-colors-detail{height:18px;width:100%;overflow:hidden;white-space:nowrap}
 .phone-colors-marquee>span{display:flex;width:max-content;will-change:transform}
 .phone-colors-marquee>span>span{flex:none;white-space:pre}

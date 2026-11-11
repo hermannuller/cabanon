@@ -6,7 +6,7 @@ Updated 2026-10-17. This is a local interaction prototype inside Cabanon HOME, n
 
 - Bound to the Cabanon identity; no application login.
 - Inherit the system palette and ordinary window controls. Supplied two-band logo is stored as a theme-colored SVG.
-- Current typography: system small grid, 14px / 28px. ID, time and controls use JetBrains Mono; body text uses Inter, with Source Han fallback.
+- Current typography: system small grid, 14px / 28px. ID, time and controls use JetBrains Mono; body text uses Inter, with MiSans fallback.
 - A post is one selectable block, including its carried reposts. Left dragging selects text. Right dragging is the hidden block gesture.
 - Homepage: original posts on the left, repost blocks on the right. Right dragging any homepage message fragment in either column, in any direction, opens its repost composer on release. There is no cross-column destination test or drag-to-open-original action; click the body for detail.
 - At most three messages are carried in a block. A → AB → ABC → ACD by default. In the composer, optional carried messages may be unchecked; the directly reposted author's message is required. Hidden messages remain in the underlying ancestry and receive renewal.

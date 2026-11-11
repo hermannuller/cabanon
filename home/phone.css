@@ -1,7 +1,7 @@
 @font-face{font-family:JetBrains;src:url('fonts/JetBrainsMono-Variable.ttf') format('truetype');font-weight:100 800;font-style:normal;font-display:swap}
 /* Phone owns its type scale; palette and application identities stay shared. */
 body.phone-mode>#desktop{display:none!important}
-#phone{--phone-font-large:28px;--phone-label-width:168px;position:absolute;width:414px;height:896px;left:50%;top:50%;transform-origin:center;background:var(--l1);color:var(--l4);font:400 14px/28px JetBrains,SourceHan,monospace;overflow:hidden;touch-action:none;user-select:none}
+#phone{--phone-font-large:28px;--phone-label-width:168px;position:absolute;width:414px;height:896px;left:50%;top:50%;transform-origin:center;background:var(--l1);color:var(--l4);font:400 14px/28px JetBrains,MiSans,monospace;overflow:hidden;touch-action:none;user-select:none}
 #phone[hidden]{display:none!important}
 #phone.shifted{overflow:hidden}
 #phone:before,#phone:after{content:'';position:absolute;top:0;bottom:0;width:1px;background:var(--l5);z-index:100;pointer-events:none}
@@ -13,13 +13,13 @@ body.phone-mode>#desktop{display:none!important}
 .phone-battery:after{content:'';position:absolute;right:-3px;top:2px;width:2px;height:4px;background:currentColor}
 .phone-page{position:absolute;left:0;right:0;top:32px;height:808px;overflow:hidden}
 .phone-container{position:absolute;width:var(--phone-label-width);height:calc(var(--rows,1)*56px);color:var(--l4);overflow:visible;isolation:isolate}
-.phone-name{display:inline-block;vertical-align:top;white-space:pre;height:56px;font:700 var(--phone-font-large)/56px JetBrains,SourceHan,monospace;padding:0;max-width:100%;overflow:hidden}
+.phone-name{display:inline-block;vertical-align:top;white-space:pre;height:56px;font:700 var(--phone-font-large)/56px JetBrains,MiSans,monospace;padding:0;max-width:100%;overflow:hidden}
 .phone-container.pinned{z-index:20;background:var(--l1)}
 .phone-page.editing .phone-container.pinned:not(.has-widget) .phone-name{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-skip-ink:none}
 .phone-page.editing .phone-container{color:var(--l5)}
 .phone-page.editing .phone-container.pinned:before{content:"";position:absolute;left:calc(-1 * var(--pin-inset));top:0;height:100%;width:var(--pin-inset);background:var(--l2);z-index:-1;pointer-events:none}
 .phone-page .phone-container.dragging{opacity:.5;z-index:60;pointer-events:none;background:transparent}
-.phone-widget{position:absolute;inset:0;font:400 14px/20px JetBrains,SourceHan,monospace;pointer-events:none;overflow:hidden}
+.phone-widget{position:absolute;inset:0;font:400 14px/20px JetBrains,MiSans,monospace;pointer-events:none;overflow:hidden}
 .phone-container.has-widget>.phone-name{visibility:hidden}
 .phone-widget-row{height:56px;box-sizing:border-box;overflow:hidden;padding-top:6px}
 .phone-widget-lines>div{height:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -47,8 +47,8 @@ body.phone-mode>#desktop{display:none!important}
 .phone-home:hover{background:transparent}
 .phone-home:before{content:'';position:absolute;left:50px;top:11px;width:2px;height:34px;background:var(--l4)}
 .phone-app{position:absolute;inset:32px 0 56px;padding:0 20.4px;overflow:auto;touch-action:pan-y;background:var(--l1);z-index:40}
-.phone-app h1{font:700 var(--phone-font-large)/56px JetBrains,SourceHan,monospace;margin:0 0 28px;overflow-wrap:anywhere}
-.phone-app p{font:14px/28px JetBrains,SourceHan,monospace;margin:0;white-space:pre-wrap}
+.phone-app h1{font:700 var(--phone-font-large)/56px JetBrains,MiSans,monospace;margin:0 0 28px;overflow-wrap:anywhere}
+.phone-app p{font:14px/28px JetBrains,MiSans,monospace;margin:0;white-space:pre-wrap}
 .phone-menu{position:absolute;z-index:70;width:207px;box-sizing:border-box;background:var(--l2);padding:0;color:var(--l4)}
 .phone-menu button{display:block;width:100%;padding:0 14px;font:14px/28px JetBrains,monospace;min-height:42px}
 .phone-menu .remove{background:var(--red);color:var(--l4)}
@@ -92,18 +92,18 @@ body.phone-mode>#desktop{display:none!important}
 .phone-search-results{order:0}
 .phone-search .phone-keyboard{order:2}
 .phone-search-bar{flex:0 0 auto;padding:12px 20.4px;background:var(--l2)}
-.phone-search-input{width:100%;height:40px;box-sizing:border-box;padding:6px 12px;font:400 16px/28px JetBrains,SourceHan,monospace;background:var(--l2);border:1px solid var(--l3);color:var(--l4);border-radius:4px}
+.phone-search-input{width:100%;height:40px;box-sizing:border-box;padding:6px 12px;font:400 16px/28px JetBrains,MiSans,monospace;background:var(--l2);border:1px solid var(--l3);color:var(--l4);border-radius:4px}
 .phone-search-input:focus{outline:none;border-color:var(--l4)}
 .phone-search-results{flex:1 1 auto;min-height:0;display:flex;flex-direction:column-reverse;overflow-y:auto;padding:8px 20.4px}
 .phone-search-hint{color:var(--l5);font:400 14px/28px JetBrains,monospace;text-align:center;margin:40px 0}
-.phone-search-result{flex-shrink:0;display:flex;align-items:center;gap:12px;width:100%;height:56px;padding:0 8px;background:transparent;border:0;color:var(--l4);font:700 var(--phone-font-large)/56px JetBrains,SourceHan,monospace;text-align:left;cursor:pointer}
+.phone-search-result{flex-shrink:0;display:flex;align-items:center;gap:12px;width:100%;height:56px;padding:0 8px;background:transparent;border:0;color:var(--l4);font:700 var(--phone-font-large)/56px JetBrains,MiSans,monospace;text-align:left;cursor:pointer}
 
 .phone-search-result>svg,.phone-search-result>.app-motion,.phone-search-result>.colors-icon{width:36px;height:36px;flex:0 0 36px}
 .phone-search-result>span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .phone-keyboard{flex:0 0 auto;background:var(--l2);padding:8px 4px;display:flex;flex-direction:column;gap:6px}
 .phone-keyboard[hidden]{display:none!important}
 .phone-keyboard-row{display:flex;gap:4px;justify-content:center}
-.phone-key{flex:1;max-width:42px;height:56px;background:var(--l2);border:0;color:var(--l4);font:700 var(--phone-font-large)/56px JetBrains,SourceHan,monospace;cursor:pointer;border-radius:4px}
+.phone-key{flex:1;max-width:42px;height:56px;background:var(--l2);border:0;color:var(--l4);font:700 var(--phone-font-large)/56px JetBrains,MiSans,monospace;cursor:pointer;border-radius:4px}
 
 .phone-key.key-space{max-width:none;flex:3}
 .phone-key.key-back,.phone-key.key-fn{background:var(--l3);font-size:24px}
@@ -126,7 +126,7 @@ body.phone-mode>#desktop{display:none!important}
 #desktop button,#desktop input,#desktop textarea,#desktop select,#phone button,#phone input{border-radius:0!important}
 .phone-search{overflow:visible}
 .phone-search-bar{padding:0 2px;background:var(--l2)}
-.phone-search-input{height:40px;padding:4px 8px;background:var(--l1);color:var(--l4);border:1px solid var(--l3);font:400 14px/28px JetBrains,SourceHan,monospace}
+.phone-search-input{height:40px;padding:4px 8px;background:var(--l1);color:var(--l4);border:1px solid var(--l3);font:400 14px/28px JetBrains,MiSans,monospace}
 .phone-keyboard{padding:0;gap:6px;background:var(--l2);overflow:visible}
 .phone-keyboard-row{gap:1px;display:flex}
 .phone-keyboard-row:nth-child(2){padding:0 21.55px}
@@ -197,7 +197,7 @@ body.phone-mode>#desktop{display:none!important}
 /* Pull down the home content before opening search beyond two rows. */
 .phone-page{transition:translate 180ms ease-out}
 #phone.pulling .phone-page{transition:none}
-.phone-pull-hint{position:absolute;top:32px;left:0;right:0;display:flex;align-items:center;justify-content:center;font:400 14px/28px JetBrains,SourceHan,monospace;color:var(--l5);pointer-events:none}
+.phone-pull-hint{position:absolute;top:32px;left:0;right:0;display:flex;align-items:center;justify-content:center;font:400 14px/28px JetBrains,MiSans,monospace;color:var(--l5);pointer-events:none}
 
 .time-main .phone-widget-lines>div:first-child{height:44px;display:flex;align-items:center}
 
@@ -206,17 +206,17 @@ body.phone-mode>#desktop{display:none!important}
 .phone-task-cards{position:absolute;inset:0 0 168px;overflow:hidden}
 .phone-task-card{position:absolute;inset:0 auto 0 0;width:414px;background:var(--l1);overflow:hidden;touch-action:none;animation:phone-task-enter 180ms ease-out}
 .phone-task-card.next{left:276px;border-left:1px solid var(--l3);z-index:2;animation:phone-task-preview-enter 180ms ease-out}
-.phone-task-body{width:414px;height:100%;padding:0 16.8px;overflow:hidden;font:14px/28px JetBrains,SourceHan,monospace;pointer-events:none}
-.phone-task-body h1{font:700 28px/56px JetBrains,SourceHan,monospace;text-transform:uppercase;margin:0 0 28px}
+.phone-task-body{width:414px;height:100%;padding:0 16.8px;overflow:hidden;font:14px/28px JetBrains,MiSans,monospace;pointer-events:none}
+.phone-task-body h1{font:700 28px/56px JetBrains,MiSans,monospace;text-transform:uppercase;margin:0 0 28px}
 .phone-task-body p{white-space:pre-wrap;margin:0}
 .phone-task-rail{position:absolute;top:696px;left:0;right:0;height:calc(56px * var(--task-rows,3));border-top:1px solid var(--l3);overflow:hidden;background:var(--l1)}
 .phone-multitask[data-rows="2"]{--task-rows:2}
 .phone-multitask[data-rows="1"]{--task-rows:1}
-.phone-task-name{position:absolute;height:56px;padding:0;white-space:nowrap;font:700 28px/56px JetBrains,SourceHan,monospace;color:var(--l5);background:transparent}
+.phone-task-name{position:absolute;height:56px;padding:0;white-space:nowrap;font:700 28px/56px JetBrains,MiSans,monospace;color:var(--l5);background:transparent}
 .phone-task-name.current{color:var(--l4)}
 #phone .phone-task-name:hover{background:transparent}
 .phone-task-axis{position:absolute;top:696px;bottom:0;left:207px;width:1px;background:var(--l4);pointer-events:none}
-.phone-task-empty{padding:28px 16.8px;color:var(--l5);font:14px/28px JetBrains,SourceHan,monospace}
+.phone-task-empty{padding:28px 16.8px;color:var(--l5);font:14px/28px JetBrains,MiSans,monospace}
 @keyframes phone-task-enter{from{translate:-24px 0;opacity:.65}to{translate:0 0;opacity:1}}
 @keyframes phone-task-preview-enter{from{translate:131px 0}to{translate:0 0}}
 @media(prefers-reduced-motion:reduce){.phone-task-card{animation:none}}

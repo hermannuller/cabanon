@@ -9,7 +9,7 @@
 #desktop .folder-pane:not(.folder-pane-current) .file.selected{background:var(--l2);color:var(--l5)}
 #desktop .folder-pane:not(.folder-pane-current) .file.selected :is(svg,.css-icon,.software-icon,.shortcut-icon,.detail-cell){color:var(--l5)}
 #desktop .window.folder-split .folder-pane .house-file-list{position:absolute;inset:0;width:auto;height:auto;margin:0;padding:0;min-width:0}
-.folder-pane-path{position:absolute;left:0;top:0;max-width:calc(100% - 42px);height:24px;padding:3px 8px;background:var(--l2);color:var(--l5);font:400 12px/18px JetBrains,SourceHan,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;z-index:6}
+.folder-pane-path{position:absolute;left:0;top:0;max-width:calc(100% - 42px);height:24px;padding:3px 8px;background:var(--l2);color:var(--l5);font:400 12px/18px JetBrains,MiSans,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;z-index:6}
 .folder-pane-close{position:absolute;top:0;right:0;width:42px;height:40px;padding:0;display:flex;align-items:center;justify-content:center;background:var(--l2);color:var(--l5);z-index:9}
 .window:not(.active) .folder-pane-close{background:var(--l2)}
 .window .folder-pane-close:hover{background:var(--red);color:var(--folder-close-hover-ink)}

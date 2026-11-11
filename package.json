@@ -5,7 +5,6 @@
   "description": "Cabanon — a text-and-icon operating system prototype built with Electron.",
   "scripts": {
     "start": "node tools/launch.cjs",
-    "start:where": "node tools/launch.cjs --where",
     "phone:serve": "node serve-phone.cjs",
     "phone:start": "node serve-phone.cjs --background",
     "phone:stop": "node serve-phone.cjs --stop",

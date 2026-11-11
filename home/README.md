@@ -21,7 +21,7 @@
 - 打开应用自动收起面板。窗口支持拖动、缩放、最小化、最大化、关闭。
 - 设置中的“运行中的窗口”可恢复最小化的窗口。“桌面”入口隐藏所有窗口。
 - 主用户入口与账户设置占位，ID可保存。
-- 字体随项目附带：JetBrains Mono Regular / Bold、Inter Regular、思源黑体。from大字36px Bold；展开列表16px Regular；文件名14px Inter。
+- 字体随项目附带：JetBrains Mono Regular / Bold、Inter Regular、MiSans。from大字36px Bold；展开列表16px Regular；文件名14px Inter。
 - 文件夹窗口可用 `Ctrl+T` 拆分为最多 4 个窗格；窗格可拖拽互换、拖入其他窗口合并、单独关闭，分隔条可拖动或按方向键缩放。
 - 新建文件/文件夹自动命名为 `new`、`new_1`…（扩展名前编号），Welcome 文本只用于启动画面。
 

@@ -27,15 +27,8 @@
 /* Animate the user's SVG geometry without replacing the authored silhouettes. */
 .authored-caret{animation:app-caret-blink 1.2s steps(1,end) infinite paused}
 .authored-blind-line{animation:app-line-wipe 2.8s linear infinite paused}
-.where-route{animation:where-route-first 4s linear infinite paused}
-.where-route-2{animation-name:where-route-second}.where-route-3{animation-name:where-route-third}
-.where-cross{animation:where-arrival 4s steps(1,end) infinite paused}
-@keyframes where-route-first{0%{clip-path:inset(0 100% 0 0)}23%,100%{clip-path:inset(0)}}
-@keyframes where-route-second{0%,23%{clip-path:inset(100% 0 0 0)}46%,100%{clip-path:inset(0)}}
-@keyframes where-route-third{0%,46%{clip-path:inset(0 100% 0 0)}70%,100%{clip-path:inset(0)}}
-@keyframes where-arrival{0%,74.99%{opacity:0}75%,100%{opacity:1}}
-:root:not(.cabanon-window-blurred) :is(#taskbar>button.current,#from #pinned .app-row:hover)>svg :is(.authored-caret,.authored-blind-line,.where-route,.where-cross){animation-play-state:running}
-@media(prefers-reduced-motion:reduce){.authored-caret,.authored-blind-line,.where-route,.where-cross{animation:none}}
+:root:not(.cabanon-window-blurred) :is(#taskbar>button.current,#from #pinned .app-row:hover)>svg :is(.authored-caret,.authored-blind-line){animation-play-state:running}
+@media(prefers-reduced-motion:reduce){.authored-caret,.authored-blind-line{animation:none}}
 
 .app-motion--empty{background:transparent}
 .app-motion--empty::before,.app-motion--empty::after{content:none}
@@ -60,10 +53,9 @@
 @media(prefers-reduced-motion:reduce){.app-motion--river>.river-logo-track{animation:none}}
 
 /* FROM plays on hover; DOCK plays for the focused app. All other marks are static. */
-:is(.app-motion,.app-motion *,.colors-icon,.help-icon-frame,.authored-caret,.authored-blind-line,.where-route,.where-cross):not(#taskbar *,#from #pinned *){animation:none!important}
+:is(.app-motion,.app-motion *,.colors-icon,.help-icon-frame,.authored-caret,.authored-blind-line):not(#taskbar *,#from #pinned *){animation:none!important}
 .app-motion:not(#taskbar *,#from #pinned *)::before,.app-motion:not(#taskbar *,#from #pinned *)::after{animation:none!important}
 .help-icon-frame-1:not(#taskbar *,#from #pinned *){opacity:1}
-.where-cross:not(#taskbar *,#from #pinned *){opacity:1}
 .empty-snow:not(#taskbar *,#from #pinned *){top:15%}
 .empty-snow:nth-child(2):not(#taskbar *,#from #pinned *){top:40%}
 .empty-snow:nth-child(3):not(#taskbar *,#from #pinned *){top:65%}

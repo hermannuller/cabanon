@@ -22,7 +22,7 @@ containers. Set `CABANON_ELECTRON` to use a system-wide Electron instead.
 - `serve-phone.cjs` uses `os.networkInterfaces()` and `fetch`, not `ipconfig`.
 - `internet-time.cjs` uses `fetch` only; it never touches the system clock.
 - Storage usage uses `fs.statfs`, available in the bundled Node.
-- Fonts (JetBrains Mono, Inter, Source Han Sans, MiSans) ship in `home/fonts`.
+- Fonts (JetBrains Mono, Inter, MiSans, MiSans) ship in `home/fonts`.
 - File URLs use forward slashes; `npm run check` verifies every `index.html` reference
   with exact case, so a Linux-only casing failure is caught even on Windows.
 - `windows-key.ps1` and `captureWindowsKey` are already guarded by

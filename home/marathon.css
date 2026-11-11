@@ -1,14 +1,14 @@
 /* Dedicated writing workspace; canal retains the publication house. */
 .marathon-window{min-width:560px;min-height:440px}
-.marathon-window>.window-content{padding:0;margin:0;display:flex;overflow:hidden;min-height:0;font:14px/28px Inter,SourceHan,sans-serif;container:river / inline-size}
+.marathon-window>.window-content{padding:0;margin:0;display:flex;overflow:hidden;min-height:0;font:14px/28px Inter,MiSans,sans-serif;container:river / inline-size}
 .marathon-root{display:flex;flex:1;min-height:0;min-width:0}
 .marathon-root .canal-app{width:100%}
 .marathon-root .canal-app.mode-write{padding-right:0}
 .marathon-root .canal-switch-strip{display:none}
 .marathon-document{flex:1;min-height:280px;max-width:680px;width:100%;margin-inline:auto;overflow:auto;overscroll-behavior:contain;outline:none;white-space:pre-wrap;font-family:var(--writing-font);font-size:var(--writing-size);line-height:1.9;color:var(--ink);user-select:text}
 .marathon-document>[data-writing-text]{min-height:1.9em}
-.marathon-citation{margin:20px 0;padding:12px 16px;border:0;border-left:2px solid var(--l5);color:var(--l5);white-space:pre-wrap;font:14px/28px Inter,SourceHan,sans-serif;user-select:text}
-.marathon-quote-source{font:12px/24px JetBrains,SourceHan,monospace;margin-bottom:4px}
+.marathon-citation{margin:20px 0;padding:12px 16px;border:0;border-left:2px solid var(--l5);color:var(--l5);white-space:pre-wrap;font:14px/28px Inter,MiSans,sans-serif;user-select:text}
+.marathon-quote-source{font:12px/24px JetBrains,MiSans,monospace;margin-bottom:4px}
 .marathon-quote-text{white-space:pre-wrap}
 .marathon-public-paragraph{white-space:pre-wrap;margin-bottom:1em}
 /* Restore the light house, preserving every cover/text position and dimension. */

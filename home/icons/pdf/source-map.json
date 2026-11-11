@@ -182,18 +182,6 @@
       "file": "pdf/translation.svg"
     },
     {
-      "name": "where",
-      "sourcePage": 2,
-      "sourceRegion": [
-        343,
-        223,
-        373,
-        252
-      ],
-      "paths": 3,
-      "file": "pdf/where.svg"
-    },
-    {
       "name": "outdesign",
       "sourcePage": 2,
       "sourceRegion": [
